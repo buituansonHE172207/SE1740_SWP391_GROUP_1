@@ -1,0 +1,1605 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Doctris - Doctor Appointment Booking System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
+        <meta name="keywords" content="Appointment, Booking, System, Dashboard, Health" />
+        <meta name="author" content="Shreethemes" />
+        <meta name="email" content="support@shreethemes.in" />
+        <meta name="website" content="../../../index.html" />
+        <meta name="Version" content="v1.2.0" />
+        <!-- favicon -->
+        <link rel="shortcut icon" href="../assets/images/favicon.ico.png">
+        <!-- Bootstrap -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- simplebar -->
+        <link href="../assets/css/simplebar.css" rel="stylesheet" type="text/css" />
+        <!-- Icons -->
+        <link href="../assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/remixicon.css" rel="stylesheet" type="text/css" />
+        <link href="https://unicons.iconscout.com/release/v3.0.6/css/line.css"  rel="stylesheet">
+        <!-- Css -->
+        <link href="../assets/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
+
+    </head>
+
+    <body>
+        <!-- Loader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Loader -->
+
+        <div class="page-wrapper doctris-theme toggled">
+            <nav id="sidebar" class="sidebar-wrapper">
+                <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
+                    <div class="sidebar-brand">
+                        <a href="index.html">
+                            <img src="../assets/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
+                            <img src="../assets/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
+                        </a>
+                    </div>
+
+                    <ul class="sidebar-menu pt-3">
+                        <li><a href="index.html"><i class="uil uil-dashboard me-2 d-inline-block"></i>Dashboard</a></li>
+                        <li><a href="appointment.html"><i class="uil uil-stethoscope me-2 d-inline-block"></i>Appointment</a></li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-user me-2 d-inline-block"></i>Doctors</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="doctors.html">Doctors</a></li>
+                                    <li><a href="add-doctor.html">Add Doctor</a></li>
+                                    <li><a href="dr-profile.html">Profile</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-wheelchair me-2 d-inline-block"></i>Patients</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="patients.html">All Patients</a></li>
+                                    <li><a href="add-patient.html">Add Patients</a></li>
+                                    <li><a href="patient-profile.html">Profile</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-apps me-2 d-inline-block"></i>Apps</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="chat.html">Chat</a></li>
+                                    <li><a href="email.html">Email</a></li>
+                                    <li><a href="calendar.html">Calendar</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-shopping-cart me-2 d-inline-block"></i>Pharmacy</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="product-detail.html">Shop Detail</a></li>
+                                    <li><a href="shopcart.html">Shopcart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-flip-h me-2 d-inline-block"></i>Blogs</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="blogs.html">Blogs</a></li>
+                                    <li><a href="blog-detail.html">Blog Detail</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-file me-2 d-inline-block"></i>Pages</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="faqs.html">FAQs</a></li>
+                                    <li><a href="review.html">Reviews</a></li>
+                                    <li><a href="invoice-list.html">Invoice List</a></li>
+                                    <li><a href="invoice.html">Invoice</a></li>
+                                    <li><a href="terms.html">Terms & Policy</a></li>
+                                    <li><a href="privacy.html">Privacy Policy</a></li>
+                                    <li><a href="error.html">404 !</a></li>
+                                    <li><a href="blank-page.html">Blank Page</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:void(0)"><i class="uil uil-sign-in-alt me-2 d-inline-block"></i>Authentication</a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="signup.html">Signup</a></li>
+                                    <li><a href="forgot-password.html">Forgot Password</a></li>
+                                    <li><a href="lock-screen.html">Lock Screen</a></li>
+                                    <li><a href="thankyou.html">Thank you...!</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li><a href="components.html"><i class="uil uil-cube me-2 d-inline-block"></i>Components</a></li>
+
+                        <li><a href="../landing/index-two.html" target="_blank"><i class="uil uil-window me-2 d-inline-block"></i>Landing page</a></li>
+                    </ul>
+                    <!-- sidebar-menu  -->
+                </div>
+                <!-- sidebar-content  -->
+                <ul class="sidebar-footer list-unstyled mb-0">
+                    <li class="list-inline-item mb-0 ms-1">
+                        <a href="#" class="btn btn-icon btn-pills btn-soft-primary">
+                            <i class="uil uil-comment icons"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- sidebar-wrapper  -->
+
+            <!-- Start Page Content -->
+            <main class="page-content bg-light">
+                <div class="top-header">
+                    <div class="header-bar d-flex justify-content-between border-bottom">
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="logo-icon">
+                                <img src="../assets/images/logo-icon.png" height="30" class="small" alt="">
+                                <span class="big">
+                                    <img src="../assets/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
+                                    <img src="../assets/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
+                                </span>
+                            </a>
+                            <a id="close-sidebar" class="btn btn-icon btn-pills btn-soft-primary ms-2" href="#">
+                                <i class="uil uil-bars"></i>
+                            </a>
+                            <div class="search-bar p-0 d-none d-lg-block ms-2">
+                                <div id="search" class="menu-search mb-0">
+                                    <form role="search" method="get" id="searchform" class="searchform">
+                                        <div>
+                                            <input type="text" class="form-control border rounded-pill" name="s" id="s" placeholder="Search Keywords...">
+                                            <input type="submit" id="searchsubmit" value="Search">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <ul class="list-unstyled mb-0">
+                            <li class="list-inline-item mb-0">
+                                <div class="dropdown dropdown-primary">
+                                    <button type="button" class="btn btn-pills btn-soft-primary dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/language/american.png" class="avatar avatar-ex-small rounded-circle p-2" alt=""></button>
+                                    <div class="dropdown-menu dd-menu drop-ups dropdown-menu-end bg-white shadow border-0 mt-3 p-2" data-simplebar style="height: 175px;">
+                                        <a href="javascript:void(0)" class="d-flex align-items-center">
+                                            <img src="../assets/images/language/chinese.png" class="avatar avatar-client rounded-circle shadow" alt="">
+                                            <div class="flex-1 text-left ms-2 overflow-hidden">
+                                                <small class="text-dark mb-0">Chinese</small>
+                                            </div>
+                                        </a>
+        
+                                        <a href="javascript:void(0)" class="d-flex align-items-center mt-2">
+                                            <img src="../assets/images/language/european.png" class="avatar avatar-client rounded-circle shadow" alt="">
+                                            <div class="flex-1 text-left ms-2 overflow-hidden">
+                                                <small class="text-dark mb-0">European</small>
+                                            </div>
+                                        </a>
+        
+                                        <a href="javascript:void(0)" class="d-flex align-items-center mt-2">
+                                            <img src="../assets/images/language/indian.png" class="avatar avatar-client rounded-circle shadow" alt="">
+                                            <div class="flex-1 text-left ms-2 overflow-hidden">
+                                                <small class="text-dark mb-0">Indian</small>
+                                            </div>
+                                        </a>
+        
+                                        <a href="javascript:void(0)" class="d-flex align-items-center mt-2">
+                                            <img src="../assets/images/language/japanese.png" class="avatar avatar-client rounded-circle shadow" alt="">
+                                            <div class="flex-1 text-left ms-2 overflow-hidden">
+                                                <small class="text-dark mb-0">Japanese</small>
+                                            </div>
+                                        </a>
+        
+                                        <a href="javascript:void(0)" class="d-flex align-items-center mt-2">
+                                            <img src="../assets/images/language/russian.png" class="avatar avatar-client rounded-circle shadow" alt="">
+                                            <div class="flex-1 text-left ms-2 overflow-hidden">
+                                                <small class="text-dark mb-0">Russian</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list-inline-item mb-0 ms-1">
+                                <a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <div class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="settings" class="fea icon-sm"></i></div>
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item mb-0 ms-1">
+                                <div class="dropdown dropdown-primary">
+                                    <button type="button" class="btn btn-icon btn-pills btn-soft-primary dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail" class="fea icon-sm"></i></button>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">4 <span class="visually-hidden">unread mail</span></span>
+                                    
+                                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 px-2 py-2" data-simplebar style="height: 320px; width: 300px;">
+                                        <a href="#" class="d-flex align-items-center justify-content-between py-2">
+                                            <div class="d-inline-flex position-relative overflow-hidden">
+                                                <img src="../assets/images/client/02.jpg" class="avatar avatar-md-sm rounded-circle shadow" alt="">
+                                                <small class="text-dark mb-0 d-block text-truncat ms-3">You received a new email from <b>Janalia</b> <small class="text-muted fw-normal d-inline-block">1 hour ago</small></small>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="d-flex align-items-center justify-content-between py-2 border-top">
+                                            <div class="d-inline-flex position-relative overflow-hidden">
+                                                <img src="../assets/images/client/Codepen.svg" class="avatar avatar-md-sm rounded-circle shadow" alt="">
+                                                <small class="text-dark mb-0 d-block text-truncat ms-3">You received a new email from <b>codepen</b>  <small class="text-muted fw-normal d-inline-block">4 hour ago</small></small>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="d-flex align-items-center justify-content-between py-2 border-top">
+                                            <div class="d-inline-flex position-relative overflow-hidden">
+                                                <img src="../assets/images/client/03.jpg" class="avatar avatar-md-sm rounded-circle shadow" alt="">
+                                                <small class="text-dark mb-0 d-block text-truncat ms-3">You received a new email from <b>Cristina</b> <small class="text-muted fw-normal d-inline-block">5 hour ago</small></small>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="d-flex align-items-center justify-content-between py-2 border-top">
+                                            <div class="d-inline-flex position-relative overflow-hidden">
+                                                <img src="../assets/images/client/dribbble.svg" class="avatar avatar-md-sm rounded-circle shadow" alt="">
+                                                <small class="text-dark mb-0 d-block text-truncat ms-3">You received a new email from <b>Dribbble</b> <small class="text-muted fw-normal d-inline-block">24 hour ago</small></small>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="d-flex align-items-center justify-content-between py-2 border-top">
+                                            <div class="d-inline-flex position-relative overflow-hidden">
+                                                <img src="../assets/images/client/06.jpg" class="avatar avatar-md-sm rounded-circle shadow" alt="">
+                                                <small class="text-dark mb-0 d-block text-truncat ms-3">You received a new email from <b>Donald Aghori</b> <small class="text-muted fw-normal d-inline-block">1 day ago</small></small>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="d-flex align-items-center justify-content-between py-2 border-top">
+                                            <div class="d-inline-flex position-relative overflow-hidden">
+                                                <img src="../assets/images/client/07.jpg" class="avatar avatar-md-sm rounded-circle shadow" alt="">
+                                                <small class="text-dark mb-0 d-block text-truncat ms-3">You received a new email from <b>Calvin</b> <small class="text-muted fw-normal d-inline-block">2 day ago</small></small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list-inline-item mb-0 ms-1">
+                                <div class="dropdown dropdown-primary">
+                                    <button type="button" class="btn btn-pills btn-soft-primary dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/doctors/01.jpg" class="avatar avatar-ex-small rounded-circle" alt=""></button>
+                                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow border-0 mt-3 py-3" style="min-width: 200px;">
+                                        <a class="dropdown-item d-flex align-items-center text-dark" href="https://shreethemes.in/doctris/layouts/admin/profile.html">
+                                            <img src="../assets/images/doctors/01.jpg" class="avatar avatar-md-sm rounded-circle border shadow" alt="">
+                                            <div class="flex-1 ms-2">
+                                                <span class="d-block mb-1">Calvin Carlo</span>
+                                                <small class="text-muted">Orthopedic</small>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-dark" href="index.html"><span class="mb-0 d-inline-block me-1"><i class="uil uil-dashboard align-middle h6"></i></span> Dashboard</a>
+                                        <a class="dropdown-item text-dark" href="dr-profile.html"><span class="mb-0 d-inline-block me-1"><i class="uil uil-setting align-middle h6"></i></span> Profile Settings</a>
+                                        <div class="dropdown-divider border-top"></div>
+                                        <a class="dropdown-item text-dark" href="lock-screen.html"><span class="mb-0 d-inline-block me-1"><i class="uil uil-sign-out-alt align-middle h6"></i></span> Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="layout-specing">
+                        <div class="d-md-flex justify-content-between">
+                            <h5 class="mb-0">Components</h5>
+
+                            <nav aria-label="breadcrumb" class="d-inline-block mt-4 mt-sm-0">
+                                <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
+                                    <li class="breadcrumb-item"><a href="index.html">Doctris</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Components</li>
+                                </ul>
+                            </nav>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Typography Heading </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;h1&gt; H1. Bootstrap heading &lt;/h1&gt;</code></h6>
+        
+                                                <h1>H1. Bootstrap heading</h1>
+                                                <h2>H2. Bootstrap heading</h2>
+                                                <h3>H3. Bootstrap heading</h3>
+                                                <h4>H4. Bootstrap heading</h4>
+                                                <h5>H5. Bootstrap heading</h5>
+                                                <h6 class="mb-0">H6. Bootstrap heading</h6>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                    
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Display Heading </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;p class="display-1"&gt; Display 1 &lt;/p&gt;</code></h6>
+                                                
+                                                <p class="display-1">Display 1</p>
+                                                <p class="display-2">Display 2</p>
+                                                <p class="display-3">Display 3</p>
+                                                <p class="display-4 mb-0">Display 4</p>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Background Color </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;div class="bg-primary"&gt; Doctris Multipurpose Template &lt;/div&gt;</code></h6>
+                                                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-primary">
+                                                    <p class="avatar avatar-small bg-primary rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-secondary">
+                                                    <p class="avatar avatar-small bg-secondary rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-success">
+                                                    <p class="avatar avatar-small bg-success rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-danger">
+                                                    <p class="avatar avatar-small bg-danger rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-warning">
+                                                    <p class="avatar avatar-small bg-warning rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-info">
+                                                    <p class="avatar avatar-small bg-info rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-light">
+                                                    <p class="avatar avatar-small bg-light rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-white">
+                                                    <p class="avatar avatar-small bg-white border rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-dark">
+                                                    <p class="avatar avatar-small bg-dark rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-muted">
+                                                    <p class="avatar avatar-small bg-muted rounded mb-0"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Soft Background Color </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;div class="bg-soft-primary"&gt; Doctris Multipurpose Template &lt;/div&gt;</code></h6>
+                                                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-primary">
+                                                    <p class="avatar avatar-small bg-soft-primary rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-secondary">
+                                                    <p class="avatar avatar-small bg-soft-secondary rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-success">
+                                                    <p class="avatar avatar-small bg-soft-success rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-danger">
+                                                    <p class="avatar avatar-small bg-soft-danger rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-warning">
+                                                    <p class="avatar avatar-small bg-soft-warning rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-info">
+                                                    <p class="avatar avatar-small bg-soft-info rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-light">
+                                                    <p class="avatar avatar-small bg-soft-light rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-white">
+                                                    <p class="avatar avatar-small bg-soft-white border rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-dark">
+                                                    <p class="avatar avatar-small bg-soft-dark rounded mb-0"></p>
+                                                </div>
+                
+                                                <div class="d-inline-block m-1" data-bs-toggle="tooltip" data-bs-placement="top" title=".bg-soft-muted">
+                                                    <p class="avatar avatar-small bg-soft-muted rounded mb-0"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Text Color </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;div class="text-primary"&gt; Doctris Multipurpose Template &lt;/div&gt;</code></h6>
+                
+                                                <h6 class="text-primary">.text-primary</h6>
+                                                <h6 class="text-secondary">.text-secondary</h6>
+                                                <h6 class="text-success">.text-success</h6>
+                                                <h6 class="text-danger">.text-danger</h6>
+                                                <h6 class="text-warning">.text-warning</h6>
+                                                <h6 class="text-info">.text-info</h6>
+                                                <div class="d-block"><h6 class="text-light bg-dark d-inline-block">.text-light</h6></div>
+                                                <div class="d-block"><h6 class="text-white bg-dark d-inline-block">.text-white</h6></div>
+                                                <div class="d-block"><h6 class="text-white-50 bg-dark d-inline-block">.text-white-50</h6></div>
+                                                <h6 class="text-dark mb-0">.text-dark</h6>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Buttons</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-primary"&gt; Primary &lt;/a&gt;</code></h6>
+                                                
+                                                <a href="javascript:void(0)" class="btn btn-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="btn btn-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="btn btn-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="btn btn-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="btn btn-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="btn btn-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="btn btn-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="btn btn-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Buttons Pill</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-pills btn-primary"&gt; Primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Buttons Soft</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-soft-primary"&gt; Primary &lt;/a&gt;</code></h6>
+                                                
+                                                <a href="javascript:void(0)" class="btn btn-soft-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="btn btn-soft-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Buttons Pill Soft</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-pills btn-soft-primary"&gt; Primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-soft-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Buttons Outline</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-outline-primary"&gt; Primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-outline-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Buttons Pill Outline</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-outline-primary"&gt; Primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="btn btn-pills btn-outline-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Button Icons</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-icon btn-primary"&gt;&lt;i data-feather="facebook" class="fea icon-sm"&gt;&lt;/i&gt;&lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-info m-1"><i data-feather="twitter" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-danger m-1"><i data-feather="youtube" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-success m-1"><i data-feather="gitlab" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-secondary m-1"><i data-feather="linkedin" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-warning m-1"><i data-feather="github" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-info m-1"><i data-feather="star" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Soft Button Icons</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-icon btn-soft-primary"&gt;&lt;i data-feather="facebook" class="fea icon-sm"&gt;&lt;/i&gt;&lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-info m-1"><i data-feather="twitter" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-danger m-1"><i data-feather="youtube" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-success m-1"><i data-feather="gitlab" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-secondary m-1"><i data-feather="linkedin" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-warning m-1"><i data-feather="github" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-soft-info m-1"><i data-feather="star" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Outline Button Icons</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-icon btn-outline-primary"&gt;&lt;i data-feather="facebook" class="fea icon-sm"&gt;&lt;/i&gt;&lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-info m-1"><i data-feather="twitter" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-danger m-1"><i data-feather="youtube" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-success m-1"><i data-feather="gitlab" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-secondary m-1"><i data-feather="linkedin" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-warning m-1"><i data-feather="github" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Button Pill Icons</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-icon btn-pills btn-primary"&gt;&lt;i data-feather="facebook" class="fea icon-sm"&gt;&lt;/i&gt;&lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-info m-1"><i data-feather="twitter" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-danger m-1"><i data-feather="youtube" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-success m-1"><i data-feather="gitlab" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-secondary m-1"><i data-feather="linkedin" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-warning m-1"><i data-feather="github" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-danger m-1"><i data-feather="heart" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Soft Button Icons Pill</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-icon btn-pills btn-soft-primary"&gt;&lt;i data-feather="facebook" class="fea icon-sm"&gt;&lt;/i&gt;&lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-info m-1"><i data-feather="twitter" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger m-1"><i data-feather="youtube" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-success m-1"><i data-feather="gitlab" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-secondary m-1"><i data-feather="linkedin" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-warning m-1"><i data-feather="github" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger m-1"><i data-feather="heart" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Outline Button Pill Icons</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-icon btn-pills btn-outline-primary"&gt;&lt;i data-feather="facebook" class="fea icon-sm"&gt;&lt;/i&gt;&lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-outline-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-outline-info m-1"><i data-feather="twitter" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-outline-danger m-1"><i data-feather="youtube" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-outline-success m-1"><i data-feather="gitlab" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-outline-secondary m-1"><i data-feather="linkedin" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-pills btn-outline-warning m-1"><i data-feather="github" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Button Sizing</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-primary btn-sm"&gt; Primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-primary m-1">Small</a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-pills btn-primary m-1">Small</a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary m-1">Small</a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-pills btn-outline-primary m-1">Small</a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-pills btn-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-outline-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-pills btn-outline-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                
+                                                <h6 class="text-muted mb-2 mt-4 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="btn btn-primary btn-lg"&gt; Primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="btn btn-lg btn-primary m-1">Large</a>
+                                                <a href="javascript:void(0)" class="btn btn-lg btn-pills btn-primary m-1">Large</a>
+                                                <a href="javascript:void(0)" class="btn btn-lg btn-outline-primary m-1">Large</a>
+                                                <a href="javascript:void(0)" class="btn btn-lg btn-pills btn-outline-primary m-1">Large</a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-lg btn-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-lg btn-pills btn-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-lg btn-outline-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-lg btn-pills btn-outline-primary m-1"><i data-feather="facebook" class="icons"></i></a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Badges </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;span class="badge bg-primary"&gt; primary &lt;/span&gt;</code></h6>
+                
+                                                <span class="badge bg-primary m-1">Primary</span>
+                                                <span class="badge bg-secondary m-1">Secondary</span>
+                                                <span class="badge bg-success m-1">Success</span>
+                                                <span class="badge bg-danger m-1">Danger</span>
+                                                <span class="badge bg-warning m-1">Warning</span>
+                                                <span class="badge bg-info m-1">Info</span>
+                                                <span class="badge bg-light m-1">Light</span>
+                                                <span class="badge bg-dark m-1">Dark</span>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Soft Badges </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;span class="badge bg-soft-primary"&gt; primary &lt;/span&gt;</code></h6>
+                
+                                                <span class="badge bg-soft-primary m-1">Primary</span>
+                                                <span class="badge bg-soft-secondary m-1">Secondary</span>
+                                                <span class="badge bg-soft-success m-1">Success</span>
+                                                <span class="badge bg-soft-danger m-1">Danger</span>
+                                                <span class="badge bg-soft-warning m-1">Warning</span>
+                                                <span class="badge bg-soft-info m-1">Info</span>
+                                                <span class="badge bg-soft-light m-1">Light</span>
+                                                <span class="badge bg-soft-dark m-1">Dark</span>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Pill Badges </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;span class="badge rounded-md bg-primary"&gt; primary &lt;/span&gt;</code></h6>
+                
+                                                <span class="badge rounded-md bg-primary m-1">Primary</span>
+                                                <span class="badge rounded-md bg-secondary m-1">Secondary</span>
+                                                <span class="badge rounded-md bg-success m-1">Success</span>
+                                                <span class="badge rounded-md bg-danger m-1">Danger</span>
+                                                <span class="badge rounded-md bg-warning m-1">Warning</span>
+                                                <span class="badge rounded-md bg-info m-1">Info</span>
+                                                <span class="badge rounded-md bg-light m-1">Light</span>
+                                                <span class="badge rounded-md bg-dark m-1">Dark</span>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Soft Pill Badges </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;span class="badge rounded-md bg-soft-primary"&gt; primary &lt;/span&gt;</code></h6>
+                
+                                                <span class="badge rounded-md bg-soft-primary m-1">Primary</span>
+                                                <span class="badge rounded-md bg-soft-secondary m-1">Secondary</span>
+                                                <span class="badge rounded-md bg-soft-success m-1">Success</span>
+                                                <span class="badge rounded-md bg-soft-danger m-1">Danger</span>
+                                                <span class="badge rounded-md bg-soft-warning m-1">Warning</span>
+                                                <span class="badge rounded-md bg-soft-info m-1">Info</span>
+                                                <span class="badge rounded-md bg-soft-light m-1">Light</span>
+                                                <span class="badge rounded-md bg-soft-dark m-1">Dark</span>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Link Badges </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-2 pb-2">Ex. <code class="text-danger">&lt;a href="#" class="badge bg-primary"&gt; primary &lt;/a&gt;</code></h6>
+                
+                                                <a href="javascript:void(0)" class="badge bg-primary m-1">Primary</a>
+                                                <a href="javascript:void(0)" class="badge bg-secondary m-1">Secondary</a>
+                                                <a href="javascript:void(0)" class="badge bg-success m-1">Success</a>
+                                                <a href="javascript:void(0)" class="badge bg-danger m-1">Danger</a>
+                                                <a href="javascript:void(0)" class="badge bg-warning m-1">Warning</a>
+                                                <a href="javascript:void(0)" class="badge bg-info m-1">Info</a>
+                                                <a href="javascript:void(0)" class="badge bg-light m-1">Light</a>
+                                                <a href="javascript:void(0)" class="badge bg-dark m-1">Dark</a>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Breadcrumb </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <br> 
+                                                    <code class="text-danger">
+                                                        &lt;ul class="breadcrumb bg-transparent rounded mb-0 p-0"&gt;<br>
+                                                            &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Doctris&lt;/a&gt;&lt;/li&gt;<br>
+                                                            &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;<br>
+                                                            &lt;li class="breadcrumb-item active" aria-current="page"&gt;Menu&lt;/li&gt;<br>
+                                                        &lt;/ul&gt;
+                                                    </code>
+                                                </h6>
+                
+                                                <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
+                                                    <li class="breadcrumb-item"><a href="#">Doctris</a></li>
+                                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Menu</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Pagination </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <br>
+                                                    <code class="text-danger">
+                                                        &lt;ul class="pagination mb-0 list-unstyled"&gt;<br>
+                                                            &nbsp;&lt;li&gt;&lt;a href="#" class="px-3 py-2 border"&gt; Prev&lt;/a&gt;&lt;/li&gt;<br>
+                                                            &nbsp;&lt;li class="active"&gt;&lt;a href="#" class="px-3 py-2 border"&gt;1&lt;/a&gt;&lt;/li&gt;<br>
+                                                            &nbsp;&lt;li&gt;&lt;a href="#" class="px-3 py-2 border"&gt;2&lt;/a&gt;&lt;/li&gt;<br>
+                                                            &nbsp;&lt;li&gt;&lt;a href="#" class="px-3 py-2 border"&gt;Next &lt;/a&gt;&lt;/li&gt;<br>
+                                                        &lt;/ul&gt;
+                                                    </code>
+                                                </h6>
+                                                
+                                                <div class="col-12">
+                                                    <ul class="pagination mb-0">
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous">Prev</a></li>
+                                                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next">Next</a></li>
+                                                    </ul>
+                                                </div><!--end col-->
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+                            </div><!--end col-->
+        
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Alert </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;div class="alert alert-primary" role="alert"&gt; A simple primary alert—check it out! &lt;/div&gt;</code></h6>
+                
+                                                <div class="alert alert-primary" role="alert">A simple primary alert—check it out!</div>
+                                                <div class="alert alert-secondary" role="alert">A simple secondary alert—check it out!</div>
+                                                <div class="alert alert-success" role="alert">A simple success alert—check it out!</div>
+                                                <div class="alert alert-danger" role="alert">A simple danger alert—check it out!</div>
+                                                <div class="alert alert-warning" role="alert">A simple warning alert—check it out!</div>
+                                                <div class="alert alert-info" role="alert">A simple info alert—check it out!</div>
+                                                <div class="alert alert-light" role="alert">A simple light alert—check it out!</div>
+                                                <div class="alert alert-dark" role="alert">A simple dark alert—check it out!</div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Additional Content </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="alert alert-success" role="alert">
+                                                    <h4 class="alert-heading">Well done!</h4>
+                                                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                                                    <hr>
+                                                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Dismissing Alert </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <br> 
+                                                    <code class="text-danger">
+                                                        &lt;div class="alert alert-success alert-dismissible fade show" role="alert"&gt; <br>&nbsp; 
+                                                        &lt;strong&gt;Well done!&lt;/strong&gt; You successfully read this important alert message. <br>&nbsp;    
+                                                        &lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp; 
+                                                        &lt;span aria-hidden="true"&gt; &times; &lt;/span&gt; <br>&nbsp;
+                                                        &lt;/button&gt; <br>
+                                                        &lt;/div&gt; 
+                                                    </code>
+                                                </h6>
+                                                    
+                                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    <strong>Well done!</strong> You successfully read this important alert message.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                
+                                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                
+                                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                
+                                                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                                    <strong>Oh snap! </strong> Change a few things up and try submitting again.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Advanced Alert </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <br>
+                                                    <code class="text-danger">&lt;div class="alert alert-primary alert-pills" role="alert"&gt; <br>&nbsp;&nbsp;
+                                                        &lt;span class="badge rounded-md bg-danger"&gt; New &lt;/span&gt; <br>&nbsp;&nbsp;
+                                                        &lt;span class="alert-content"&gt; A Modern primary alert—check it out! &lt;/span&gt; <br>
+                                                        &lt;/div&gt;
+                                                    </code>
+                                                </h6>
+                
+                                                <div class="d-block">
+                                                    <div class="alert alert-primary alert-pills" role="alert">
+                                                        <span class="badge rounded-md bg-info me-1">New</span>
+                                                        <span class="content"> A Modern primary alert—check it out! <i class="mdi mdi-chevron-right"></i></span>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="d-block">
+                                                    <div class="alert alert-danger alert-pills mb-0" role="alert">
+                                                        <span class="badge rounded-md bg-success me-1"> New </span>
+                                                        <span class="content"> A Modern danger alert—check it out! <i class="mdi mdi-chevron-right"></i> </span> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Advanced Outline Alert </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <br> 
+                                                    <code class="text-danger">
+                                                        &lt;div class="alert alert-outline-primary alert-pills" role="alert"&gt; <br>&nbsp;&nbsp;
+                                                        &lt;span class="badge rounded-md bg-danger"&gt; New &lt;/span&gt; <br>&nbsp;&nbsp;
+                                                        &lt;span class="alert-content"&gt; A Modern primary alert—check it out! &lt;/span&gt; <br>
+                                                        &lt;/div&gt;
+                                                    </code>
+                                                </h6>
+                
+                                                <div class="d-block">
+                                                    <div class="alert alert-outline-primary alert-pills" role="alert">
+                                                        <span class="badge rounded-md bg-primary me-1">New</span>
+                                                        <span class="content"> A Modern primary alert—check it out! <i class="mdi mdi-chevron-right"></i></span>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="d-block">
+                                                    <div class="alert alert-outline-danger alert-pills mb-0" role="alert">
+                                                        <span class="badge rounded-md bg-danger me-1"> New </span>
+                                                        <span class="content"> A Modern danger alert—check it out! <i class="mdi mdi-chevron-right"></i> </span> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0">Accordions</h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="accordion" id="accordionExample">
+                                                    <div class="accordion-item border rounded">
+                                                        <h2 class="accordion-header" id="headingOne">
+                                                            <button class="accordion-button border-0 bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                                aria-expanded="true" aria-controls="collapseOne">
+                                                                How does it work ?
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseOne" class="accordion-collapse border-0 collapse show" aria-labelledby="headingOne"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body text-muted">
+                                                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="accordion-item border rounded mt-2">
+                                                        <h2 class="accordion-header" id="headingTwo">
+                                                            <button class="accordion-button border-0 bg-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                                Do I need a designer to use Doctris ?
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseTwo" class="accordion-collapse border-0 collapse" aria-labelledby="headingTwo"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body text-muted">
+                                                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="accordion-item border rounded mt-2">
+                                                        <h2 class="accordion-header" id="headingThree">
+                                                            <button class="accordion-button border-0 bg-light collapsed" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                What do I need to do to start selling ?
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseThree" class="accordion-collapse border-0 collapse" aria-labelledby="headingThree"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body text-muted">
+                                                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="accordion-item border rounded mt-2">
+                                                        <h2 class="accordion-header" id="headingFour">
+                                                            <button class="accordion-button border-0 bg-light collapsed" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                                What happens when I receive an order ?
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseFour" class="accordion-collapse border-0 collapse" aria-labelledby="headingFour"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body text-muted">
+                                                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Forms </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                                                                <input name="name" id="name" type="text" class="form-control" placeholder="First Name :">
+                                                            </div>
+                                                        </div><!--end col-->
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                                                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :">
+                                                            </div> 
+                                                        </div><!--end col-->
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Subject</label>
+                                                                <input name="subject" id="subject" class="form-control" placeholder="Your subject :">
+                                                            </div>                                                                               
+                                                        </div><!--end col-->
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Comments</label>
+                                                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Your Message :"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--end row-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="submit" id="submit" name="send" class="btn btn-primary" value="Send Message">
+                                                        </div><!--end col-->
+                                                    </div><!--end row-->
+                                                </form><!--end form-->
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Checkboxes </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Default checkbox
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Checked checkbox
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
+                                                    <label class="form-check-label" for="flexCheckDisabled">
+                                                        Disabled checkbox
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+                                                    <label class="form-check-label" for="flexCheckCheckedDisabled">
+                                                        Disabled checked checkbox
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Radio Buttons </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Default radio
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        Default checked radio
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
+                                                    <label class="form-check-label" for="flexRadioDisabled">
+                                                        Disabled radio
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked
+                                                        disabled>
+                                                    <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                                        Disabled checked radio
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Switches Button </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
+                                                    <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
+                                                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Form Select Box </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <select class="form-select form-control" id="inputGroupSelect01">
+                                                    <option selected>Choose...</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Google Map </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="map">
+                                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin" style="border:0" class="rounded" allowfullscreen></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Default Avatars </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;img src="../assets/images/home/01.jpg" class="img-fluid avatar avatar-ex-sm rounded"&gt;</code></h6>
+                                                
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-ex-sm me-2 rounded" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-md-sm me-2 rounded" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-small me-2 rounded" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-medium me-2 rounded" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-large mt-3 mt-sm-0 me-2 rounded" alt="">
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Circle Avatars </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;img src="../assets/images/home/01.jpg" class="img-fluid avatar avatar-ex-sm rounded-circle"&gt;</code></h6>
+                                                
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-ex-sm me-2 rounded-circle" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-md-sm me-2 rounded-circle" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-small me-2 rounded-circle" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-medium me-2 rounded-circle" alt="">
+                                                <img src="../assets/images/client/05.jpg" class="img-fluid avatar avatar-large mt-3 mt-sm-0 me-2 rounded-circle" alt="">
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Nav Tabs </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <ul class="nav nav-pills nav-justified flex-column flex-sm-row rounded" id="pills-tab" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link rounded active" id="pills-cloud-tab" data-bs-toggle="pill" href="#pills-cloud" role="tab" aria-controls="pills-cloud" aria-selected="false">
+                                                                    <div class="text-center pt-1 pb-1">
+                                                                        <h4 class="title font-weight-normal mb-0">Home</h4>
+                                                                    </div>
+                                                                </a><!--end nav link-->
+                                                            </li><!--end nav item-->
+                                                            
+                                                            <li class="nav-item">
+                                                                <a class="nav-link rounded" id="pills-smart-tab" data-bs-toggle="pill" href="#pills-smart" role="tab" aria-controls="pills-smart" aria-selected="false">
+                                                                    <div class="text-center pt-1 pb-1">
+                                                                        <h4 class="title font-weight-normal mb-0">About</h4>
+                                                                    </div>
+                                                                </a><!--end nav link-->
+                                                            </li><!--end nav item-->
+                                                            
+                                                            <li class="nav-item">
+                                                                <a class="nav-link rounded" id="pills-apps-tab" data-bs-toggle="pill" href="#pills-apps" role="tab" aria-controls="pills-apps" aria-selected="false">
+                                                                    <div class="text-center pt-1 pb-1">
+                                                                        <h4 class="title font-weight-normal mb-0">Service</h4>
+                                                                    </div>
+                                                                </a><!--end nav link-->
+                                                            </li><!--end nav item-->
+                                                        </ul><!--end nav pills-->
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                
+                                                <div class="row pt-2">
+                                                    <div class="col-12">
+                                                        <div class="tab-content" id="pills-tabContent">
+                                                            <div class="tab-pane fade show active" id="pills-cloud" role="tabpanel" aria-labelledby="pills-cloud-tab">
+                                                                <p class="text-muted mb-0">You can combine all the Doctris templates into a single one, you can take a component from the Application theme and use it in the Website.</p>
+                                                            </div><!--end teb pane-->
+                                                            
+                                                            <div class="tab-pane fade" id="pills-smart" role="tabpanel" aria-labelledby="pills-smart-tab">
+                                                                <p class="text-muted mb-0">You can combine all the Doctris templates into a single one, you can take a component from the Application theme and use it in the Website.</p>                       
+                                                            </div><!--end teb pane-->
+                                
+                                                            <div class="tab-pane fade" id="pills-apps" role="tabpanel" aria-labelledby="pills-apps-tab">
+                                                                <p class="text-muted mb-0">You can combine all the Doctris templates into a single one, you can take a component from the Application theme and use it in the Website.</p>                       
+                                                            </div><!--end teb pane-->
+                                                        </div><!--end tab content-->
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Modal </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"> Click Here</a>
+                                            </div>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header border-bottom p-3">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ...
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Table </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <div class="table-responsive bg-white shadow rounded">
+                                                    <table class="table mb-0 table-center">
+                                                        <thead>
+                                                            <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">First</th>
+                                                            <th scope="col">Last</th>
+                                                            <th scope="col">Handle</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">1</th>
+                                                                <td>Mark</td>
+                                                                <td>Otto</td>
+                                                                <td>@mdo</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">2</th>
+                                                                <td>Jacob</td>
+                                                                <td>Thornton</td>
+                                                                <td>@fat</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">3</th>
+                                                                <td>Harry</td>
+                                                                <td>Potter</td>
+                                                                <td>@hpt</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
+                                    <div class="col-12 mt-4">
+                                        <div class="card component-wrapper border-0 rounded shadow">
+                                            <div class="p-4 border-bottom">
+                                                <h5 class="mb-0"> Icons </h5>
+                                            </div>
+        
+                                            <div class="p-4">
+                                                <h6>Feather Icons</h6>
+                                                <p class="text-muted">There are 280+ feather icons and you can get all icons info from here: <a href="https://feathericons.com/" target="_blank"><code class="text-primary">https://feathericons.com/</code></a></p>
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;i data-feather="mail" class="fea icon-sm"&gt; &lt;/i&gt;</code></h6>
+                
+                                                <i data-feather="user" class="fea icon-ex-md me-2"></i>
+                                                <i data-feather="facebook" class="fea icon-ex-md me-2"></i>
+                                                <i data-feather="map-pin" class="fea icon-ex-md me-2"></i>
+                                                <i data-feather="linkedin" class="fea icon-ex-md me-2"></i>
+                                                <i data-feather="camera" class="fea icon-ex-md me-2"></i>
+                                                <i data-feather="mail" class="fea icon-ex-md me-2"></i>
+                
+                                                <h6 class="mt-4">Material Design Icons</h6>
+                                                <p class="text-muted">There are 4400+ Material Design icons and you can get all icons info from here: <a href="https://materialdesignicons.com/" target="_blank"><code class="text-primary">https://materialdesignicons.com/</code></a></p>
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger">&lt;i class="mdi mdi-home"&gt; &lt;/i&gt;</code></h6>
+                
+                                                <i class="mdi mdi-home h4 me-2"></i>
+                                                <i class="mdi mdi-facebook h4 me-2"></i>
+                                                <i class="mdi mdi-chevron-tight h4 me-2"></i>
+                                                <i class="mdi mdi-camera-image h4 me-2"></i>
+                                                <i class="mdi mdi-car-light-high h4 me-2"></i>
+                                                <i class="mdi mdi-silverware-fork-knife h4 me-2"></i>
+                
+                                                <h6 class="mt-4">Iconscout (Unicons) Icons</h6>
+                                                <p class="text-muted">There are 1100+ Iconscout (Unicons) Icons and you can get all icons info from here: <a href="https://iconscout.com/unicons" target="_blank"><code class="text-primary">https://www.flaticon.com/packs/basic-icon</code></a></p>
+                                                <h6 class="text-muted mb-4 pb-2">Ex. <code class="text-danger"><br>&lt;span class="h3 text-primary me-2"&gt;<br>&nbsp; &lt;i class="uil uil-0-plus"&gt;&lt;/i&gt;<br>&lt;/span&gt;</code></h6>
+                
+                                                <span class="h3 text-primary me-2"><i class="uil uil-0-plus"></i></span>
+                                                <span class="h3 text-primary me-2"><i class="uil uil-android"></i></span>
+                                                <span class="h3 text-primary me-2"><i class="uil uil-bitcoin"></i></span>
+                                                <span class="h3 text-primary me-2"><i class="uil uil-calendar-alt"></i></span>
+                                                <span class="h3 text-primary"><i class="uil uil-chart-pie-alt"></i></span>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div><!--end container-->
+
+                <!-- Footer Start -->
+                <footer class="bg-white shadow py-3">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="text-sm-start text-center">
+                                    <p class="mb-0 text-muted"><script>document.write(new Date().getFullYear())</script> © Doctris. Design with <i class="mdi mdi-heart text-danger"></i> by <a href="../../../index.html" target="_blank" class="text-reset">Shreethemes</a>.</p>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end container-->
+                </footer><!--end footer-->
+                <!-- End -->
+            </main>
+            <!--End page-content" -->
+        </div>
+        <!-- page-wrapper -->
+
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end bg-white shadow" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header p-4 border-bottom">
+                <h5 id="offcanvasRightLabel" class="mb-0">
+                    <img src="../assets/images/logo-dark.png" height="24" class="light-version" alt="">
+                    <img src="../assets/images/logo-light.png" height="24" class="dark-version" alt="">
+                </h5>
+                <button type="button" class="btn-close d-flex align-items-center text-dark" data-bs-dismiss="offcanvas" aria-label="Close"><i class="uil uil-times fs-4"></i></button>
+            </div>
+            <div class="offcanvas-body p-4 px-md-5">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Style switcher -->
+                        <div id="style-switcher">
+                            <div>
+                                <ul class="text-center list-unstyled mb-0">
+                                    <li class="d-grid"><a href="javascript:void(0)" class="rtl-version t-rtl-light" onclick="setTheme('style-rtl')"><img src="../assets/images/layouts/light-dash-rtl.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">RTL Version</span></a></li>
+                                    <li class="d-grid"><a href="javascript:void(0)" class="ltr-version t-ltr-light" onclick="setTheme('style')"><img src="../assets/images/layouts/light-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">LTR Version</span></a></li>
+                                    <li class="d-grid"><a href="javascript:void(0)" class="dark-rtl-version t-rtl-dark" onclick="setTheme('style-dark-rtl')"><img src="../assets/images/layouts/dark-dash-rtl.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">RTL Version</span></a></li>
+                                    <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark')"><img src="../assets/images/layouts/dark-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">LTR Version</span></a></li>
+                                    <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark')"><img src="../assets/images/layouts/dark-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">Dark Version</span></a></li>
+                                    <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style')"><img src="../assets/images/layouts/light-dash.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">Light Version</span></a></li>
+                                    <li class="d-grid"><a href="../landing/index.html" target="_blank" class="mt-4"><img src="../assets/images/layouts/landing-light.png" class="img-fluid rounded-md shadow-md d-block" alt=""><span class="text-muted mt-2 d-block">Landing Demos</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end Style switcher -->
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div>
+
+            <div class="offcanvas-footer p-4 border-top text-center">
+                <ul class="list-unstyled social-icon mb-0">
+                    <li class="list-inline-item mb-0"><a href="https://1.envato.market/doctris-template" target="_blank" class="rounded"><i class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
+                    <li class="list-inline-item mb-0"><a href="https://dribbble.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
+                    <li class="list-inline-item mb-0"><a href="https://www.facebook.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
+                    <li class="list-inline-item mb-0"><a href="https://www.instagram.com/shreethemes/" target="_blank" class="rounded"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
+                    <li class="list-inline-item mb-0"><a href="https://twitter.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+                    <li class="list-inline-item mb-0"><a href="mailto:support@shreethemes.in" class="rounded"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
+                    <li class="list-inline-item mb-0"><a href="../../../index.html" target="_blank" class="rounded"><i class="uil uil-globe align-middle" title="website"></i></a></li>
+                </ul><!--end icon-->
+            </div>
+        </div>
+        <!-- Offcanvas End -->
+
+        <!-- javascript -->
+        <script src="../assets/js/bootstrap.bundle.min.js"></script>
+        <!-- simplebar -->
+        <script src="../assets/js/simplebar.min.js"></script>
+        <!-- Icons -->
+        <script src="../assets/js/feather.min.js"></script>
+        <!-- Main Js -->
+        <script src="../assets/js/app.js"></script>
+        
+    </body>
+
+</html>
