@@ -10,7 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -43,11 +44,13 @@ public class User {
 
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Role role;
+    private Set<Role> roles;
 
     @Enumerated(EnumType.STRING)
     private AccountStatus status;

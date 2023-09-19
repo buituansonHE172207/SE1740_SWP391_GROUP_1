@@ -15,22 +15,23 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
-@Entity
-@Table(name = "role")
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Role {
+@AllArgsConstructor
+@Data
+@Builder
+@Table(name = "collection")
+@Entity
+public class BookCollection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-
+    
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    private String type;
+
+    @ManyToMany(mappedBy = "collections")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<User> users;
+    private Set<Book> books;
 }

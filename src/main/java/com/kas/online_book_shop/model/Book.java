@@ -48,6 +48,12 @@ public class Book {
     @ToString.Exclude
     private Set<Author> authors;
 
+    @ManyToMany()
+    @JoinTable(name = "book_collection", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "collection_id"))
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<BookCollection> collections;
+
     @Lob
     private String description;
 
