@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table (name = "wishlist")
-class Wishlist {
+public class Wishlist {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
