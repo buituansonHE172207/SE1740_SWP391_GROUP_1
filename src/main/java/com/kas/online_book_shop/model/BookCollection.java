@@ -30,6 +30,8 @@ public class BookCollection {
 
     private String type;
 
+    private Boolean isDisplay;
+
     @ManyToMany(mappedBy = "collections")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
