@@ -1,7 +1,7 @@
 package com.kas.online_book_shop.model;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -46,13 +46,13 @@ public class Book {
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Author> authors;
+    private List<Author> authors;
 
     @ManyToMany()
     @JoinTable(name = "book_collection", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "collection_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<BookCollection> collections;
+    private List<BookCollection> collections;
 
     @Lob
     private String description;
@@ -93,25 +93,32 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Feedback> feedbacks; // Cascade: Remove (Deleting a Book deletes associated Feedbacks)
+    private List<Feedback> feedbacks; // Cascade: Remove (Deleting a Book deletes associated Feedbacks)
 
     @OneToMany(mappedBy = "book")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<OrderDetail> orderDetails; 
+    private List<OrderDetail> orderDetails; 
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Wishlist> wishlistDetails; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
+    private List<Wishlist> wishlistDetails; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Rating> ratings; // Cascade: Remove (Deleting a Book deletes associated Ratings)
+    private List<Rating> ratings; // Cascade: Remove (Deleting a Book deletes associated Ratings)
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Image> images;
+    private List<Image> images;
+
+    public Long getSalePrice() {
+        if (price != null && discount != null) {
+            return (long) (price - (price * discount));
+        }
+        return null; // Return null to indicate no sale price
+    }
 }
