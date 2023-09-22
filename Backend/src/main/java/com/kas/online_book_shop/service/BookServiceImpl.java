@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -34,21 +35,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findAllBooksByCollectionId(Long collectionId) {
-        return bookRepository.findByCollections(collectionRepository.findById(collectionId).get());
+    public Page<Book> findAllBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
-    @Override
-    public List<Book> findEightBestSellingBooks() {
-        Page<Book> topBooksPage = bookRepository.findAll(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "price")));
-        return topBooksPage.getContent();
-    }
-
-    @Override
-    public List<Book> findEightNewestBooks() {
-        Page<Book> topBooksPage = bookRepository.findAll(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "publicationDate")));
-        return topBooksPage.getContent();
-    }
-    
     
 }
