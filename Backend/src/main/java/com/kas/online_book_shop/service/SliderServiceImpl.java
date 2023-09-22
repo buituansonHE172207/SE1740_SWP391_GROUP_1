@@ -21,10 +21,9 @@ public class SliderServiceImpl implements SliderService {
         return sliderRepository.findAll();
     }
 
-    @Override
+    @Override       
     public Slider findSliderById(Long id) {
         return sliderRepository.findById(id).orElse(null);
     }
-
     
 }
