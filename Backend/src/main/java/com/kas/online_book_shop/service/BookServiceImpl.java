@@ -3,9 +3,7 @@ package com.kas.online_book_shop.service;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.model.Book;
@@ -25,19 +23,18 @@ public class BookServiceImpl implements BookService {
     private final BookCategoryRepository categoryRepository;
 
     @Override
-    public List<Book> findAllBooks() {
+    public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
     @Override
-    public List<Book> findAllBooksByCategoryId(Long categoryId) {
-        return bookRepository.findByCategory(categoryRepository.findById(categoryId).get());
-    }
-
-    @Override
-    public Page<Book> findAllBooks(Pageable pageable) {
+    public Page<Book> getAllBooks(Pageable pageable) {
         return bookRepository.findAll(pageable);
     }
 
-    
+    @Override
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id).orElse(null);
+    }
+
 }

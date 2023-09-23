@@ -1,5 +1,7 @@
 package com.kas.online_book_shop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +29,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn (name = "book_id")
+    @JsonIgnore
     private Book book;
 
     private String link;
