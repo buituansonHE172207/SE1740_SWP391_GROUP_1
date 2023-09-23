@@ -37,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author updateAuthor(Author author) {
-        var currentAuthor = authorRepository.findById(author.getId());
+        var currentAuthor = authorRepository.findById(author.getId()).orElse(null);
         if (currentAuthor == null) 
             throw new AuthorNotFoundException("Không tìm thấy tác giả để cập nhật");
         return authorRepository.save(author);
