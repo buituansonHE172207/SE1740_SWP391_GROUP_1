@@ -1,0 +1,204 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: normal !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+header .header-top {
+  background: #a9171d;
+  padding: 2px 0px;
+}
+
+header .header-top .hdt-social-network a {
+  display: inline-block;
+  margin-right: 15px;
+  color: #ffffff;
+}
+
+header .header-top .hdt-shortnews i {
+  display: inline-block;
+  color: #ffffff;
+}
+
+header .header-top .hdt-shortnews marquee {
+  display: inline-block;
+  width: calc(100% - 30px);
+  color: #ffffff;
+  transform: translateY(2px);
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.fa-rss{
+  margin-right: 5px;
+}
+
+header .header-top .hdt-contact a {
+  transform: translateY(2px);
+  display: inline-block;
+  margin-right: 15px;
+  color: #ffffff;
+}
+
+header .header-top .hdt-contact a:last-child {
+  margin-right: 0px;
+}
+
+a{
+  text-decoration: none!important;
+}
+
+header .desktop-header {
+  padding: 15px 0px;
+  height: 131px;
+}
+
+.align-items-center {
+  height: -webkit-fill-available;
+  align-items: center;
+}
+
+.search-form-wrapper {
+  position: relative;
+  border: solid 1px #ebebeb;
+  width: 290px;
+}
+
+.search-form-wrapper #searchauto {
+  width: 100%;
+  position: relative;
+}
+
+.search-form-wrapper #searchauto .input-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+
+.search-form-wrapper #searchauto .input-group input#searchtext {
+  height: 25px;
+  padding: 5px 15px 5px 15px;
+  border: solid 1px transparent;
+  /* border-radius: 30px; */
+  width: calc(100% - 25px);
+}
+
+.search-form-wrapper #searchauto .input-group span.input-group-btn {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e6e6e6;
+}
+
+.search-form-wrapper #searchauto .input-group span.input-group-btn button {
+  color: #d51c24;
+}
+
+.input-group .search-btn{
+  border: none;
+  background: white;
+}
+
+header .desktop-header .hd-account {
+  display: inline-block;
+  margin-right: 30px;
+  position: relative;
+}
+
+header .desktop-header .hd-account > a {
+  display: inline-block;
+  margin-right: 30px;
+  color: #333333;
+  cursor: pointer;
+}
+
+header .desktop-header .hd-account > a:hover {
+  color: #d51c24;
+}
+
+header .desktop-header .wishlist_btn {
+  display: inline-block;
+  margin-right: 30px;
+  position: relative;
+}
+
+header .desktop-header .wishlist_btn {
+  display: inline-block;
+  margin-right: 30px;
+  position: relative;
+}
+
+header .desktop-header .wishlist_btn #onAppWishList_btn_page > a #onAppWishList_numberLike {
+  display: inline-block;
+  line-height: normal;
+  position: absolute;
+  right: -10px;
+  top: -12px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d51c24;
+  color: #fff;
+  font-size: 12px !important;
+  text-align: center;
+  font-family: "UVF-ProductSans-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.fa-heart, .fa-bag-shopping {
+  font-size: 23px;
+}
+
+header .desktop-header .desktop-cart-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+header .desktop-header .desktop-cart-wrapper > a.hd-cart {
+  position: relative;
+  display: inline-block;
+  color: #333333;
+}
+
+header .desktop-header .desktop-cart-wrapper > a.hd-cart span.hd-cart-count {
+  display: inline-block;
+  line-height: normal;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d51c24;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  font-family: "UVF-ProductSans-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+#onAppWishList_btn_page{
+  display: block;
+}
