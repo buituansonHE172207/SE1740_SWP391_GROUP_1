@@ -27,6 +27,7 @@ const Slider = () => {
     })
 
     React.useEffect(() => {
+        console.log(sliders)
         fetchData();
     }, [])
 
