@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.kas.online_book_shop.dto.BookDTO;
 import com.kas.online_book_shop.model.Book;
 
 public interface BookService {
-    List<Book> findAllBooks();
+    Book getBookById(Long id);
+    List<BookDTO> findAllBooks();
     List<Book> findAllBooksByCategoryId(Long bookCategoryId);
-    Page<Book> findAllBooks(Pageable pageable);
+    Page<BookDTO> findAllBooks(Pageable pageable);
 
 }

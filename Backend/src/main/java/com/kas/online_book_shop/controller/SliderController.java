@@ -14,13 +14,13 @@ import com.kas.online_book_shop.service.SliderService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/slider")
 public class SliderController {
     private final SliderService sliderService;
 
-    @GetMapping("/slider")
+    @GetMapping("")
     public List<Slider> getSliders() {
         return sliderService.findAllSliders();
     }
