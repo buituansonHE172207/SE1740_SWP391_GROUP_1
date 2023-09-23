@@ -3,6 +3,8 @@ package com.kas.online_book_shop.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -93,21 +95,25 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private List<Feedback> feedbacks; // Cascade: Remove (Deleting a Book deletes associated Feedbacks)
 
     @OneToMany(mappedBy = "book")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private List<OrderDetail> orderDetails; 
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private List<Wishlist> wishlistDetails; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private List<Rating> ratings; // Cascade: Remove (Deleting a Book deletes associated Ratings)
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
