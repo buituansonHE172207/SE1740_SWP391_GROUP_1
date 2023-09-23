@@ -11,5 +11,7 @@ public interface BookService {
     Book getBookById(Long id);
     List<Book> getAllBooks();
     Page<Book> getAllBooks(Pageable pageable);
-    
+    Book saveBook(Book book);
+    Book UpdateBook (Book book);
+    void DeleteBook (Long id);
 }
