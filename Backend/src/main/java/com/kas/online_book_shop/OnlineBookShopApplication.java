@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OnlineBookShopApplication {
 	/**
 	 * This is the main class!
+	 * aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 	 * @param args
 	 */
 	public static void main(String[] args) {
