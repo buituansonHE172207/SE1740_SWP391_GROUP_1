@@ -60,7 +60,7 @@ public class BookServiceImpl implements BookService {
     public Book UpdateBook(Book book) {
         var updatedBook = bookRepository.findById(book.getId()).orElse(null);
         if (updatedBook == null)    
-            throw new BookNotFoundException("Không tìm thấy sách để xóa");
+            throw new BookNotFoundException("Không tìm thấy sách để câp nhật");
         else 
             return bookRepository.save(book);
     }
