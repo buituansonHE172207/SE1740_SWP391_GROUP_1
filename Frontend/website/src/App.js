@@ -1,9 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Header from './components/Header';
-import Slider from './components/Slider';
-import ListProduct from './components/ListProduct';
-import ViewProduct from './components/ViewProduct';
+import Home from './components/Home/Home';
 function App() {
   return (
     <div>
@@ -13,10 +11,8 @@ function App() {
             
           </Routes>
         </Router> */}
-      {/* <Header/> */}
-        {/* <Slider/> */}
-      {/* <ListProduct title="SÁCH MỚI" query="sorted-and-paged?sortBy=sold&page=1&size=5" /> */}
-      <ViewProduct/>
+        <Header/>
+        <Home/>
     </div>
   );
 }

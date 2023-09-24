@@ -35,7 +35,7 @@ public class BookController {
         List<Book> books = bookService.getAllBooks();
         if (books.isEmpty()) {
             return ResponseEntity.notFound().build();
-        } else 
+        } else
             return ResponseEntity.ok(books);
     }
 
@@ -65,6 +65,5 @@ public class BookController {
         Book savedBook = bookService.saveBook(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
     }
-
 
 }
