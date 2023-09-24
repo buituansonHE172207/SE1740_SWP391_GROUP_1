@@ -22,7 +22,7 @@ public class PostCategoryController {
     @GetMapping()
     public ResponseEntity<List<PostCategory>> getBookCategories() {
         var postCategories = postCategoryService.getAllPostCategories();
-        if (postCategories == null) {
+        if (postCategories.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else 
             return ResponseEntity.ok(postCategories);
