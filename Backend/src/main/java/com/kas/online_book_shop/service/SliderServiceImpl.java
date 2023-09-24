@@ -1,3 +1,4 @@
+
 package com.kas.online_book_shop.service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class SliderServiceImpl implements SliderService {
         return sliderRepository.findAll();
     }
 
-    @Override       
+    @Override
     public Slider findSliderById(Long id) {
         return sliderRepository.findById(id).orElse(null);
     }
@@ -30,22 +31,23 @@ public class SliderServiceImpl implements SliderService {
     @Override
     public void deleteSlider(Long id) {
         var slider = sliderRepository.findById(id);
-        if (slider == null){
+        if (slider == null) {
             throw new SliderNotFoundException("Không tìm thấy slider để xóa.");
-        } 
+        }
+        sliderRepository.deleteById(id);
     }
 
     @Override
     public Slider saveSlider(Slider slider) {
-        // TODO Auto-generated method stub
-        return null;
+        return sliderRepository.save(slider);
     }
 
     @Override
     public Slider updateSlider(Slider slider) {
-        // TODO Auto-generated method stub
-        return null;
+        if (slider == null) {
+            throw new SliderNotFoundException("Không tìm thấy slider để cap nhat.");
+        }
+        return sliderRepository.save(slider);
     }
-    
-    
+
 }
