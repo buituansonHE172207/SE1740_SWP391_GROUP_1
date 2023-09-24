@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.exception.BookCategoryNotFoundException;
 import com.kas.online_book_shop.model.BookCollection;
 import com.kas.online_book_shop.repository.BookCollectionRepository;
 
@@ -14,34 +15,38 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class BookCollectionServiceImpl implements BookCollectionService {
-    private final BookCollectionRepository BookCollectionRepository;
+    private final BookCollectionRepository bookCollectionRepository;
 
     @Override
     public void deleteBookCollection(Long id) {
-        
+        var bookCollection = bookCollectionRepository.findById(id).orElse(null);
+        if (bookCollection == null) 
+            throw new BookCategoryNotFoundException("Không tìm bộ sưu tập để xóa");
+        bookCollection.getBooks().forEach((book) -> book.getCollections().remove(bookCollection));
+        bookCollectionRepository.deleteById(id);
     }
 
     @Override
     public List<BookCollection> getAllBookCollections() {
-        return BookCollectionRepository.findAll();
+        return bookCollectionRepository.findAll();
     }
 
     @Override
     public BookCollection saveBookCollection(BookCollection bookCollection) {
-        return BookCollectionRepository.save(bookCollection);
+        return bookCollectionRepository.save(bookCollection);
     }
 
     @Override
     public BookCollection updateBookCollection(BookCollection bookCollection) {
-        var currentBookCollection = BookCollectionRepository.findById(bookCollection.getId()).orElse(null);
-        //if (currentBookCollection == null) 
-            //throw new BookCollectionNotFoundException("Không tìm thấy tác giả để cập nhật");
-        return BookCollectionRepository.save(bookCollection);
+        var currentBookCollection = bookCollectionRepository.findById(bookCollection.getId()).orElse(null);
+        if (currentBookCollection == null) 
+            throw new BookCategoryNotFoundException("Không tìm bộ sưu tập để cập nhật");
+        return bookCollectionRepository.save(bookCollection);
     }
 
     @Override
     public BookCollection getBookCollectionById(Long id) {
-        return BookCollectionRepository.findById(id).orElse(null);
+        return bookCollectionRepository.findById(id).orElse(null);
     }
     
     

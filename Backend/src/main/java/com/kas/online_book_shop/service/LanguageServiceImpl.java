@@ -14,15 +14,16 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class LanguageServiceImpl implements LanguageService{
+public class LanguageServiceImpl implements LanguageService {
     private final LanguageRepository languageRepository;
 
     @Override
     public void deleteLanguage(Long id) {
-        var Language = languageRepository.findById(id).orElse(null);
-        if (Language == null)
+        var language = languageRepository.findById(id).orElse(null);
+        if (language == null)
             throw new LanguageNotFoundException("Không tìm thấy tác giả để xóa");
-        languageRepository.delete(Language);
+        language.getBooks().forEach(x -> x.setLanguage(null));
+        languageRepository.deleteById(id);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class LanguageServiceImpl implements LanguageService{
     @Override
     public Language updateLanguage(Language Language) {
         var currentLanguage = languageRepository.findById(Language.getId()).orElse(null);
-        if (currentLanguage == null) 
+        if (currentLanguage == null)
             throw new LanguageNotFoundException("Không tìm thấy tác giả để cập nhật");
         return languageRepository.save(Language);
     }
@@ -47,5 +48,5 @@ public class LanguageServiceImpl implements LanguageService{
     public Language getLanguageById(Long id) {
         return languageRepository.findById(id).orElse(null);
     }
-    
+
 }

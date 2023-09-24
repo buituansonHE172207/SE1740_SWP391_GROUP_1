@@ -5,7 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.kas.online_book_shop.exception.AuthorNotFoundException;
+import com.kas.online_book_shop.exception.BookCategoryNotFoundException;
+import com.kas.online_book_shop.exception.BookCollectionNotFoundException;
 import com.kas.online_book_shop.exception.BookNotFoundException;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.LanguageNotFoundException;
@@ -18,18 +19,23 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
-    @ExceptionHandler(AuthorNotFoundException.class)
-    public ResponseEntity<String> authorNotFoundException(AuthorNotFoundException ex) {
+    @ExceptionHandler(BookCategoryNotFoundException.class)
+    public ResponseEntity<String> handleAuthorNotFoundException(BookCategoryNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
     
     @ExceptionHandler(BookNotFoundException.class)
-    public ResponseEntity<String> bookNotFoundException(BookNotFoundException ex) {
+    public ResponseEntity<String> handleBookNotFoundException(BookNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
     
     @ExceptionHandler(LanguageNotFoundException.class)
-    public ResponseEntity<String> languageNotFoundException(LanguageNotFoundException ex) {
+    public ResponseEntity<String> handleLanguageNotFoundException(LanguageNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+    
+    @ExceptionHandler(BookCollectionNotFoundException.class)
+    public ResponseEntity<String> handleBookCollectionNotFoundException(BookCollectionNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

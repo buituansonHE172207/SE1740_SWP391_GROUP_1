@@ -34,7 +34,7 @@ public class Author {
 
     private String company;
 
-    @ManyToMany(mappedBy = "authors", cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "authors")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore

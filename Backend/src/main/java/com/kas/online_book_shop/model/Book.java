@@ -44,8 +44,8 @@ public class Book {
     @ToString.Exclude
     private Publisher publisher;
 
-    @ManyToMany()
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id", nullable = true))
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Author> authors;

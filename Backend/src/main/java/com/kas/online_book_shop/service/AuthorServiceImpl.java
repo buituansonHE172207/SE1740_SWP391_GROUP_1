@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.AuthorNotFoundException;
+import com.kas.online_book_shop.exception.BookCategoryNotFoundException;
 import com.kas.online_book_shop.model.Author;
 import com.kas.online_book_shop.repository.AuthorRepository;
 
@@ -21,9 +21,9 @@ public class AuthorServiceImpl implements AuthorService {
     public void deleteAuthor(Long id) {
         var author = authorRepository.findById(id).orElse(null);
         if (author == null)
-            throw new AuthorNotFoundException("Không tìm thấy tác giả để xóa");
-        author.getBooks().clear();
-        authorRepository.delete(author);
+            throw new BookCategoryNotFoundException("Không tìm thấy tác giả để xóa");
+        author.getBooks().forEach(x -> x.getAuthors().remove(author));
+        authorRepository.deleteById(id);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Author updateAuthor(Author author) {
         var currentAuthor = authorRepository.findById(author.getId()).orElse(null);
         if (currentAuthor == null) 
-            throw new AuthorNotFoundException("Không tìm thấy tác giả để cập nhật");
+            throw new BookCategoryNotFoundException("Không tìm thấy tác giả để cập nhật");
         return authorRepository.save(author);
     }
 
