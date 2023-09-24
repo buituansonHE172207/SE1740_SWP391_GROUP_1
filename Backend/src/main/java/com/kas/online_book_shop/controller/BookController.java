@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import com.kas.online_book_shop.service.BookService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/book")
 public class BookController {
@@ -31,7 +32,7 @@ public class BookController {
         List<Book> books = bookService.getAllBooks();
         if (books.isEmpty()) {
             return ResponseEntity.notFound().build();
-        } else 
+        } else
             return ResponseEntity.ok(books);
     }
 
@@ -54,5 +55,5 @@ public class BookController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    } 
+    }
 }
