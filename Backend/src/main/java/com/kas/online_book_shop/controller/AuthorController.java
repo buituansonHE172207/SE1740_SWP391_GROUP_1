@@ -53,7 +53,6 @@ public class AuthorController {
 
     @PutMapping
     public ResponseEntity<Author> updateAuthor(@RequestBody Author updatedAuthor) {
-    
         var author = authorService.updateAuthor(updatedAuthor);
         return ResponseEntity.ok(author);
     }

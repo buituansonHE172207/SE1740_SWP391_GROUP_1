@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kas.online_book_shop.model.Book;
+import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.service.BookService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,9 +42,9 @@ public class BookController {
 
     @GetMapping("/sorted-and-paged")
     public Page<Book> getAllBooksSortedAndPaged(
-            @RequestParam String sortBy,
-            @RequestParam int page,
-            @RequestParam int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
@@ -64,6 +65,21 @@ public class BookController {
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book savedBook = bookService.saveBook(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+    }
+
+    @GetMapping("/sorted-and-paged/by-categories")
+    public Page<Book> getBooksByCategoriesAndPriceBetween(
+            @RequestParam List<BookCategory> categories,
+            @RequestParam(defaultValue = "0") int min,
+            @RequestParam(defaultValue = "0") int max,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        if(max == 0) max = Integer.MAX_VALUE;
+        return bookService.getBookByCategoriesAndPriceRange(categories, min, max, pageable);
     }
 
 }
