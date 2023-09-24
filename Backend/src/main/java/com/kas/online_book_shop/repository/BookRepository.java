@@ -15,4 +15,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByCategory(BookCategory category);
     Page<Book> findAll(Pageable pageable);
     List<Book> findByCollections(BookCollection collection);
+    Boolean existsByISBN(String ISBN);
 }

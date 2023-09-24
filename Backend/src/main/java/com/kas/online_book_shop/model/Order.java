@@ -54,7 +54,10 @@ public class Order {
     private String shopNote;
 
     @Enumerated(EnumType.STRING)
-    private PaymentStatus paymentStatus;
+    private OrderState orderState;
+
+    @Enumerated(EnumType.STRING)
+    private OrderState paymentStatus;
 
     @Enumerated(EnumType.STRING)
     private ShippingStatus shippingStatus;

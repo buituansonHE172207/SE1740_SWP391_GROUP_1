@@ -44,7 +44,7 @@ public class Book {
     @ToString.Exclude
     private Publisher publisher;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
@@ -102,7 +102,7 @@ public class Book {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
-    private List<OrderDetail> orderDetails; 
+    private List<OrderDetail> orderDetails;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
@@ -121,10 +121,16 @@ public class Book {
     @ToString.Exclude
     private List<Image> images;
 
-    public Long getSalePrice() {
+    public long getSalePrice() {
         if (price != null && discount != null) {
             return (long) (price - (price * discount));
         }
-        return null; // Return null to indicate no sale price
+        return 0;
+    }
+
+    public double getRating() {
+        return ratings.stream()
+                .mapToDouble(Rating::getRating)
+                .average().orElse(0.0);
     }
 }
