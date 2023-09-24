@@ -2,6 +2,8 @@ package com.kas.online_book_shop.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,5 +34,6 @@ public class PostCategory {
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Post> posts;
 }

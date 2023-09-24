@@ -18,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/post-category")
 public class PostCategoryController {
+    
     private final PostCategoryService postCategoryService;
+    
     @GetMapping("")
     public ResponseEntity<List<PostCategory>> getPostCategories() {
         var postCategories = postCategoryService.getAllPostCategories();

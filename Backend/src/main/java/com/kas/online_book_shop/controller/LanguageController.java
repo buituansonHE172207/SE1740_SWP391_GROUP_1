@@ -27,7 +27,7 @@ public class LanguageController {
     private final LanguageService languageService;
 
     @GetMapping ("")
-    public ResponseEntity<List<Language>> getLanguage() {
+    public ResponseEntity<List<Language>> getLanguages() {
         var Languages = languageService.getAllLanguages();
         if (Languages.isEmpty())
             return ResponseEntity.noContent().build();
@@ -46,7 +46,6 @@ public class LanguageController {
 
     @PutMapping
     public ResponseEntity<Language> updateLanguage(@RequestBody Language updatedLanguage) {
-    
         var Language = languageService.updateLanguage(updatedLanguage);
         return ResponseEntity.ok(Language);
     }

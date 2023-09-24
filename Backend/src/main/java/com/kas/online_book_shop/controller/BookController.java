@@ -35,7 +35,7 @@ public class BookController {
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
         if (books.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         } else
             return ResponseEntity.ok(books);
     }

@@ -2,6 +2,8 @@ package com.kas.online_book_shop.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -36,6 +38,12 @@ public class User {
 
     private String fullName;
 
+    private String city;
+
+    private String district;
+
+    private String village;
+
     private String address;
 
     private String phone;
@@ -58,25 +66,30 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "user")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Order> orders;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Post> posts;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Rating> ratings;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Wishlist wishlist;
 }

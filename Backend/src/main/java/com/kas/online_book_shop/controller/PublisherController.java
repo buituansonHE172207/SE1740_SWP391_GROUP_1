@@ -26,7 +26,7 @@ public class PublisherController {
     private final PublisherService publisherService;
 
     @GetMapping("")
-    public ResponseEntity<List<Publisher>> getPublisher() {
+    public ResponseEntity<List<Publisher>> getPublishers() {
         var publishers = publisherService.getAllPublishers();
         if (publishers == null)
             return ResponseEntity.noContent().build();
@@ -45,7 +45,6 @@ public class PublisherController {
 
     @PutMapping
     public ResponseEntity<Publisher> updatePublisher(@RequestBody Publisher updatedPublisher) {
-
         var Publisher = publisherService.updatePublisher(updatedPublisher);
         return ResponseEntity.ok(Publisher);
     }

@@ -3,6 +3,8 @@ package com.kas.online_book_shop.model;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -41,6 +43,12 @@ public class Order {
 
     private String fullname;
 
+    private String city;
+
+    private String district;
+
+    private String village;
+
     private String address;
 
     private Long totalPrice;
@@ -62,12 +70,13 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private ShippingStatus shippingStatus;
 
-    private LocalDateTime time;
+    private LocalDateTime created;
 
     private String email;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<OrderDetail> orderDetails;
 }

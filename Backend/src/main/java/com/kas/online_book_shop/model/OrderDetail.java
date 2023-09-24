@@ -41,6 +41,8 @@ public class OrderDetail {
 
     private int amount;
 
-    private int unitPrice;
+    private int originalPrice;
+
+    private int salePrice;
 }
 
