@@ -10,6 +10,8 @@ import com.kas.online_book_shop.exception.BookCollectionNotFoundException;
 import com.kas.online_book_shop.exception.BookNotFoundException;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.LanguageNotFoundException;
+import com.kas.online_book_shop.exception.PostNotFoundException;
+import com.kas.online_book_shop.exception.SliderNotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,6 +38,16 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(BookCollectionNotFoundException.class)
     public ResponseEntity<String> handleBookCollectionNotFoundException(BookCollectionNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(SliderNotFoundException.class)
+    public ResponseEntity<String> handleSliderNotFoundException(SliderNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<String> handlePostNotFoundException(PostNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

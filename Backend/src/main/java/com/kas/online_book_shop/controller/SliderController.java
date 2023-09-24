@@ -3,6 +3,7 @@ package com.kas.online_book_shop.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,11 @@ public class SliderController {
     private final SliderService sliderService;
 
     @GetMapping("")
-    public List<Slider> getSliders() {
-        return sliderService.findAllSliders();
+    public ResponseEntity<List<Slider>> getSliders() {
+        var sliders = sliderService.getAllSliders();
+        if (sliders.isEmpty())
+            return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(sliders);
     }
-
-
 
 }

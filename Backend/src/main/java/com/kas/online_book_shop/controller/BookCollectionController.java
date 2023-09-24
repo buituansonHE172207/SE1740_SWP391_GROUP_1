@@ -28,7 +28,7 @@ public class BookCollectionController {
     private final BookCollectionService bookCollectionService;
 
     @GetMapping ("")
-    public ResponseEntity<List<BookCollection>> getBookCollection() {
+    public ResponseEntity<List<BookCollection>> getBookCollections() {
         var bookCollections = bookCollectionService.getAllBookCollections();
         if (bookCollections.isEmpty())
             return ResponseEntity.noContent().build();
