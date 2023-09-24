@@ -202,3 +202,136 @@ header .desktop-header .desktop-cart-wrapper > a.hd-cart span.hd-cart-count {
 #onAppWishList_btn_page{
   display: block;
 }
+
+.product-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #fff;
+  padding: 5px;
+}
+
+.product-item .product-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-item .product-img > a {
+  display: block;
+  overflow: hidden;
+}
+
+.product-item .product-img .product-tags .tag-saleoff {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  background: #d51c24;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.product-item .product-info {
+  margin-top: 5px;
+}
+
+.product-item .product-title {
+  margin-bottom: 5px;
+}
+
+.product-title > a {
+  color: #333333;
+  min-height: 34px;
+}
+
+span.current-price {
+  color: #d51c24;
+  float: left;
+}
+
+span.original-price {
+  color: #bebebe;
+  float: right;
+}
+
+.product-img img{
+  width: -webkit-fill-available;
+}
+
+.tag-saleoff {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  background: #d51c24;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.text-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+#home-pro-products{
+  margin-bottom: 30px;
+}
+
+.main-slider{
+  margin-bottom: 40px;
+}
+
+.large--one-whole a {
+  color: #d51c24;
+  text-decoration: none;
+  background: transparent;
+}
+
+.product-item:hover {
+  -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.35);
+}
+
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
