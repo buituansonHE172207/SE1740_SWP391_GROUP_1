@@ -10,9 +10,6 @@ import com.kas.online_book_shop.model.Post;
 import com.kas.online_book_shop.model.PostCategory;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    // List<Post> findByCategory(PostCategory category);
-
-    // Page<Post> findAll(Pageable pageable);
-
-
+    List<Post> findByCategory(PostCategory category);
+    Page<Post> findAll(Pageable pageable);
 }
