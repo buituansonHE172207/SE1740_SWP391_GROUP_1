@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/Language")
+@RequestMapping("/api/v1/language")
 public class LanguageController {
     private final LanguageService languageService;
 

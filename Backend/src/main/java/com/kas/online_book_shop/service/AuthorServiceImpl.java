@@ -22,6 +22,7 @@ public class AuthorServiceImpl implements AuthorService {
         var author = authorRepository.findById(id).orElse(null);
         if (author == null)
             throw new AuthorNotFoundException("Không tìm thấy tác giả để xóa");
+        author.getBooks().clear();
         authorRepository.delete(author);
     }
 
