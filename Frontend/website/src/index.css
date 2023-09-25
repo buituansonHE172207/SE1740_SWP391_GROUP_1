@@ -287,6 +287,7 @@ span.original-price {
 
 .main-slider{
   margin-bottom: 40px;
+  position: relative;
 }
 
 .large--one-whole a {
@@ -301,9 +302,9 @@ span.original-price {
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background: #d51c24;
   color: white;
-  padding: 16px;
+  padding: 8px;
   font-size: 16px;
   border: none;
 }
@@ -321,6 +322,7 @@ span.original-price {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  width: -webkit-fill-available;
 }
 
 .dropdown-content a {
@@ -334,4 +336,100 @@ span.original-price {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {  background: #d51c24;}
+
+#megamenu-wrapper .megamenu-nav-wrapper {
+  z-index: 3;
+  position: relative;
+}
+
+#megamenu-wrapper {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0px;
+  
+}
+
+#breadscrumb-wrapper5{
+  position: relative;
+}
+
+.breadcrumb-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 100%;
+}
+
+.breadcrumb-big h2 {
+  font-size: 24px;
+  color: #fff;
+  padding: 0px;
+  margin: 0px 0px 5px 0px;
+}
+
+.breadcrumb-small a, .breadcrumb-small span{
+  color: #fff;
+}
+
+#collection-wrapper {
+  padding: 30px 0px;
+  background-color: #f3f2f0;
+}
+
+.collection-item-tacgia {
+  background: #fff;
+  margin-bottom: 30px;
+}
+
+.collection-item-tacgia .c-author-listing--title {
+  border-bottom: 0.2rem solid #ee2932;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 15px;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.collection-item-tacgia .lastname {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  clear: both;
+  width: 100%;
+}
+
+.collection-item-tacgia img {
+  width: -webkit-fill-available;
+}
+
+#pagination span {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  margin: 5px;
+}
+
+#pagination span:hover {
+  padding: 0px !important;
+  color: #fff;
+  background: #d51c24;
+  border: 1px solid #d51c24;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#pagination > span.current {
+  padding: 0px !important;
+  color: #fff;
+  background: #d51c24;
+  border: 1px solid #d51c24;
+  border-radius: 3px;
+}
