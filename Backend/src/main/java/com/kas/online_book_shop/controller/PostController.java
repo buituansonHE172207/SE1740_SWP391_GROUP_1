@@ -33,11 +33,11 @@ public class PostController {
 
     @GetMapping("")
     public ResponseEntity<List<Post>> getAllBooks() {
-        List<Post> books = postService.getAllPosts();
-        if (books.isEmpty()) {
+        List<Post> posts = postService.getAllPosts();
+        if (posts.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else
-            return ResponseEntity.ok(books);
+            return ResponseEntity.ok(posts);
     }
 
     @GetMapping("/sorted-and-paged")

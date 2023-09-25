@@ -30,7 +30,7 @@ public class SliderServiceImpl implements SliderService {
 
     @Override
     public void deleteSlider(Long id) {
-        var slider = sliderRepository.findById(id);
+        var slider = sliderRepository.findById(id).orElse(null);
         if (slider == null) {
             throw new SliderNotFoundException("Không tìm thấy slider để xóa.");
         }
@@ -45,7 +45,7 @@ public class SliderServiceImpl implements SliderService {
     @Override
     public Slider updateSlider(Slider slider) {
         if (slider == null) {
-            throw new SliderNotFoundException("Không tìm thấy slider để cap nhat.");
+            throw new SliderNotFoundException("Không tìm thấy slider để cập nhật.");
         }
         return sliderRepository.save(slider);
     }
