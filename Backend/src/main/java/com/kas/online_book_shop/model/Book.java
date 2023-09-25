@@ -1,6 +1,7 @@
 package com.kas.online_book_shop.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,7 +45,7 @@ public class Book {
     @ToString.Exclude
     private Publisher publisher;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
@@ -104,33 +105,35 @@ public class Book {
     @JsonIgnore
     private List<OrderDetail> orderDetails;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
     private List<Wishlist> wishlistDetails; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
     private List<Rating> ratings; // Cascade: Remove (Deleting a Book deletes associated Ratings)
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Image> images;
 
-    public long getSalePrice() {
+    public Long getSalePrice() {
         if (price != null && discount != null) {
             return (long) (price - (price * discount));
         }
-        return 0;
+        return null;
     }
 
-    public double getRating() {
+    public Double getRating() {
+        if (ratings == null)
+            return null;
         return ratings.stream()
                 .mapToDouble(Rating::getRating)
-                .average().orElse(0.0);
+                .average().orElse(0);
     }
 }

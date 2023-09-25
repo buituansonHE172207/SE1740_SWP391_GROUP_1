@@ -41,7 +41,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    // TODO Auto-generated method stub
     public void DeleteBook(Long id) {
         var deletedBook = bookRepository.findById(id).orElse(null);
         if (deletedBook == null)
@@ -51,7 +50,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book UpdateBook(Book book) {
+    public Book updateBook(Book book) {
         var updatedBook = bookRepository.findById(book.getId()).orElse(null);
         if (updatedBook == null)    
             throw new BookNotFoundException("Không tìm thấy sách để câp nhật");

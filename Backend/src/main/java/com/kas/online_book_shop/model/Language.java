@@ -31,7 +31,7 @@ public class Language {
     
     private String name;
     
-    @OneToMany(mappedBy = "language", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "language")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
