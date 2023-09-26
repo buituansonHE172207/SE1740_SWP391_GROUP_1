@@ -12,7 +12,7 @@ const CollectionList = (props) => {
                                         <div className="collection-item-tacgia">
                                             <div className="row">
                                                 <div className="col-lg-7">
-                                                    <Link to={`${collection.id}`}><img src="./img/book_shell.png"/></Link>
+                                                    <Link to={`${collection.id}`}><img src="./img/book_shell.png" alt="img"/></Link>
                                                 </div>
                                                 <div className="col-lg-5">
                                                     <div className="c-author-listing--details">
