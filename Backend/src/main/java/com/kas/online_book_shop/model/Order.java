@@ -65,7 +65,7 @@ public class Order {
     private OrderState orderState;
 
     @Enumerated(EnumType.STRING)
-    private OrderState paymentStatus;
+    private PaymentStatus paymentStatus;
 
     @Enumerated(EnumType.STRING)
     private ShippingStatus shippingStatus;
