@@ -1,11 +1,9 @@
 package com.kas.online_book_shop.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.model.Role;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.UserRepository;
 
