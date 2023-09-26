@@ -1,10 +1,11 @@
 package com.kas.online_book_shop.model;
 
 public enum PaymentStatus {
-    PENDING("Chờ thanh toán"),
-    PAID("Đã thanh toán"),
-    FAILED("Thanh toán thất bại"),
-    REFUNDED("Đã hoàn tiền");
+
+    PENDING("Payment is pending - Đang chờ thanh toán"),
+    PAID("Payment is Done - Thanh toán thành công"),
+    FAILED("Payment is Failed - Thanh toán thất bại"),
+    REFUNDED("Payment is Refunded - Đã hoàn trả"),;
 
     private String displayName;
 
