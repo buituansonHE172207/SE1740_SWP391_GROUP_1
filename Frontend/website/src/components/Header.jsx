@@ -17,6 +17,7 @@ const Header = () => {
             ...prevData, [name] : type === 'checkbox'? checked : value
         }))
         console.log(formData)
+
     }
     return (
         <header id="header">
@@ -49,7 +50,7 @@ const Header = () => {
                         <div className="col-lg-5">
                             <div className="hdt-contact text-right">
                                 <a href="tel:(+84) 1900561595"><i className="fa fa-phone" aria-hidden="true"></i>  (+84) 1900561595</a>
-                                <a href="mailto:cskh_online@sachtructuyen.com.vn "><i className="fa fa-envelope" aria-hidden="true"></i>  cskh_online@sachtructuyen.com.vn </a>
+                                <a href="mailto:cskh_online@sachtructuyen.com.vn"><i className="fa fa-envelope" aria-hidden="true"></i>  cskh_online@sachtructuyen.com.vn </a>
                             </div>
                         </div>
                     </div>
@@ -117,10 +118,10 @@ const Header = () => {
                         <form>
                             <div className="modal-body">
                                 <div className="form-group mb-3">
-                                    <input onChange={handleInput} type="email" name="si_email" className="form-control" aria-describedby="emailHelp" placeholder="Email" />
+                                    <input onClick={handleInput} type="email" name="si_email" className="form-control" aria-describedby="emailHelp" placeholder="Email" />
                                 </div>
                                 <div className="form-group mb-3">
-                                    <input onChange={handleInput} type="password" name="si_password" className="form-control" placeholder="Mật Khẩu" />
+                                    <input onClick={handleInput} type="password" name="si_password" className="form-control" placeholder="Mật Khẩu" />
                                 </div>
                             </div>
                             <div className="modal-footer justify-content-start">
@@ -142,22 +143,22 @@ const Header = () => {
                         <form>
                             <div className="modal-body">
                                 <div className="form-group mb-3">
-                                    <input onChange={handleInput} type="text" name="name" className="form-control" placeholder="Họ tên" />
+                                    <input onClick={handleInput} type="text" name="name" className="form-control" placeholder="Họ tên" />
                                 </div>
                                 <div className="form-group mb-3">
-                                    <inpu onChange={handleInput} type="text" name="su_phone" className="form-control"  placeholder="Số điện thoại" />
+                                    <input onClick={handleInput} type="text" name="su_phone" className="form-control" placeholder="Số điện thoại" />
                                 </div>
                                 <div className="form-group mb-3">
-                                    <input onChange={handleInput} type="email" name="su_email" className="form-control" placeholder="Email" />
+                                    <input onClick={handleInput} type="email" name="su_email" className="form-control" placeholder="Email" />
                                 </div>
                                 <div className="form-group mb-3">
-                                    <input onChange={handleInput} type="password" name="su_email" className="form-control" placeholder="Mật khẩu" />
+                                    <input onClick={handleInput} type="password" name="su_password" className="form-control" placeholder="Mật khẩu" />
                                 </div>
                                 <div className="form-group mb-3">
-                                    <input onChange={handleInput} type="text" name="su_address" className="form-control" placeholder="Địa chỉ" />
+                                    <input onClick={handleInput} type="text" name="su_address" className="form-control" placeholder="Địa chỉ" />
                                 </div>
                                 <div class="form-check">
-                                    <input onChange={handleInput} class="form-check-input" name="su_noti" type="checkbox" value="" id="flexCheckDefault"/>
+                                    <input onClick={handleInput} class="form-check-input" name="su_noti" type="checkbox" value="" id="flexCheckDefault"/>
                                     <label class="form-check-label" for="flexCheckDefault">
                                     Nhận thông tin và chương trình khuyến mãi của SACHTRUCTUYEN qua Email
                                     </label>
