@@ -1,11 +1,13 @@
 package com.kas.online_book_shop.controller;
 
-
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +29,19 @@ public class SliderController {
         if (sliders.isEmpty())
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(sliders);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Slider> getSliderById(@PathVariable Long id) {
+        var slider = sliderService.getSliderById(id);
+        if (slider == null)
+            return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(slider);
+    }
+
+    @PostMapping()
+    public ResponseEntity<Slider> updateSlider(@RequestBody Slider slider) {
+        return ResponseEntity.ok(sliderService.saveSlider(slider));
     }
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.BookCategoryNotFoundException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.BookCollection;
 import com.kas.online_book_shop.repository.BookCollectionRepository;
 
@@ -19,9 +19,9 @@ public class BookCollectionServiceImpl implements BookCollectionService {
 
     @Override
     public void deleteBookCollection(Long id) {
-        var bookCollection = bookCollectionRepository.findById(id).orElse(null);
-        if (bookCollection == null) 
-            throw new BookCategoryNotFoundException("Không tìm bộ sưu tập để xóa");
+        var bookCollection = bookCollectionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm bộ sưu tập để xóa"));
+
         bookCollection.getBooks().forEach((book) -> book.getCollections().remove(bookCollection));
         bookCollectionRepository.deleteById(id);
     }
@@ -38,9 +38,8 @@ public class BookCollectionServiceImpl implements BookCollectionService {
 
     @Override
     public BookCollection updateBookCollection(BookCollection bookCollection) {
-        var currentBookCollection = bookCollectionRepository.findById(bookCollection.getId()).orElse(null);
-        if (currentBookCollection == null) 
-            throw new BookCategoryNotFoundException("Không tìm bộ sưu tập để cập nhật");
+        bookCollectionRepository.findById(bookCollection.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm bộ sưu tập để cập nhật"));
         return bookCollectionRepository.save(bookCollection);
     }
 
@@ -48,6 +47,5 @@ public class BookCollectionServiceImpl implements BookCollectionService {
     public BookCollection getBookCollectionById(Long id) {
         return bookCollectionRepository.findById(id).orElse(null);
     }
-    
-    
+
 }

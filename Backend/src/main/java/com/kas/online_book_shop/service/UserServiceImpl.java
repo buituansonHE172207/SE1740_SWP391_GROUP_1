@@ -33,11 +33,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByRolesId(id);
     }
 
-    
-
     // @Override
     // public User getUserByEmail(String email) {
-    //     return userRepository.findByEmail(email);
+    // return userRepository.findByEmail(email);
     // }
 
 }

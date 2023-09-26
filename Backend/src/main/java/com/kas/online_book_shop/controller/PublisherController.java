@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +53,11 @@ public class PublisherController {
     @PostMapping()
     public ResponseEntity<Publisher> savePublisher(@RequestBody Publisher publisher) {
         return ResponseEntity.status(HttpStatus.CREATED).body(publisherService.savePublisher(publisher));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePublisher(@PathVariable Long id) {
+        publisherService.deletePublisher(id);
+        return ResponseEntity.noContent().build();
     }
 }

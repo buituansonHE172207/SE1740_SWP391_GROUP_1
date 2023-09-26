@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.kas.online_book_shop.exception.PostNotFoundException;
+
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.PostCategory;
 import com.kas.online_book_shop.repository.PostCategoryRepository;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -40,18 +42,16 @@ public class PostCategoryServiceImpl implements PostCategoryService {
 
     @Override
     public PostCategory updatePostCategory(PostCategory postCategory) {
-        var currentPostCategory = postCategoryRepository.findById(postCategory.getId()).orElse(null);
-        if (currentPostCategory == null) {
-            throw new PostNotFoundException("Không tìm thấy thể loại bài viết để cập nhật");
-        }
+        postCategoryRepository.findById(postCategory.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại bài viết để cập nhật"));
+
         return postCategoryRepository.save(postCategory);
     }
 
     @Override
     public void deletePostCategory(Long id) {
-        var currentPostCategory = postCategoryRepository.findById(id).orElse(null);
-        if (currentPostCategory == null)
-            throw new PostNotFoundException("Không tìm thấy thể loại bài viết để xóa");
+        postCategoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại bài viết để xóa"));
         postCategoryRepository.deleteById(id);
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.PublisherNotFoundException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Publisher;
 import com.kas.online_book_shop.repository.PublisherRepository;
 
@@ -19,8 +19,8 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public void deletePublisher(Long id) {
-        // TODO Auto-generated method stub
-
+        publisherRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy nhà xuất bản để xóa."));
     }
 
     @Override
@@ -34,16 +34,15 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
-    public Publisher savePublisher(Publisher Publisher) {
-        return publisherRepository.save(Publisher);
+    public Publisher savePublisher(Publisher publisher) {
+        return publisherRepository.save(publisher);
     }
 
     @Override
-    public Publisher updatePublisher(Publisher Publisher) {
-        var currentPublisher = publisherRepository.findById(Publisher.getId()).orElse(null);
-        if (currentPublisher == null)
-            throw new PublisherNotFoundException("Không tìm thấy tác giả để xoá");
-        return publisherRepository.save(Publisher);
+    public Publisher updatePublisher(Publisher publisher) {
+        publisherRepository.findById(publisher.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy nhà xuất bản để cập nhật."));
+        return publisherRepository.save(publisher);
     }
 
 }

@@ -26,13 +26,13 @@ import lombok.RequiredArgsConstructor;
 public class LanguageController {
     private final LanguageService languageService;
 
-    @GetMapping ("")
+    @GetMapping("")
     public ResponseEntity<List<Language>> getLanguages() {
         var Languages = languageService.getAllLanguages();
         if (Languages.isEmpty())
             return ResponseEntity.noContent().build();
         else
-            return ResponseEntity.ok(Languages); 
+            return ResponseEntity.ok(Languages);
     }
 
     @GetMapping("/{id}")
@@ -40,14 +40,13 @@ public class LanguageController {
         var Language = languageService.getLanguageById(id);
         if (Language == null)
             return ResponseEntity.noContent().build();
-        else 
+        else
             return ResponseEntity.ok(Language);
     }
 
     @PutMapping
     public ResponseEntity<Language> updateLanguage(@RequestBody Language updatedLanguage) {
-        var Language = languageService.updateLanguage(updatedLanguage);
-        return ResponseEntity.ok(Language);
+        return ResponseEntity.ok(languageService.updateLanguage(updatedLanguage));
     }
 
     @DeleteMapping("/{id}")

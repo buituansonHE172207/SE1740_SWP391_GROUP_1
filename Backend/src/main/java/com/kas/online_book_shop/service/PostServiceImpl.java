@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.PostNotFoundException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Post;
 import com.kas.online_book_shop.model.PostCategory;
 import com.kas.online_book_shop.repository.PostRepository;
@@ -24,9 +24,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(Long id) {
-        var currentPost = postRepository.findById(id).orElse(null);
-        if (currentPost == null)
-            throw new PostNotFoundException("khong tim thay post de xoa:");
+        postRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy post để xóa"));
         postRepository.deleteById(id);
     }
 
@@ -53,9 +52,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post updatePost(Post post) {
-        var currentPost = postRepository.findById(post.getId()).orElse(null);
-        if (currentPost == null)
-            throw new PostNotFoundException("khong tim thay post de cap nhat:");
+        var currentPost = postRepository.findById(post.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy post để cập nhật"));
         post.setCreatedAt(currentPost.getCreatedAt());
         return postRepository.save(post);
     }
@@ -65,5 +63,4 @@ public class PostServiceImpl implements PostService {
         return postRepository.findByCategory(postCategory, pageable);
     }
 
-    
 }

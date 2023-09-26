@@ -19,7 +19,6 @@ import com.kas.online_book_shop.service.BookCollectionService;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
@@ -27,13 +26,13 @@ import lombok.RequiredArgsConstructor;
 public class BookCollectionController {
     private final BookCollectionService bookCollectionService;
 
-    @GetMapping ("")
+    @GetMapping("")
     public ResponseEntity<List<BookCollection>> getBookCollections() {
         var bookCollections = bookCollectionService.getAllBookCollections();
         if (bookCollections.isEmpty())
             return ResponseEntity.noContent().build();
         else
-            return ResponseEntity.ok(bookCollections); 
+            return ResponseEntity.ok(bookCollections);
     }
 
     @GetMapping("/{id}")
@@ -41,7 +40,7 @@ public class BookCollectionController {
         var bookCollection = bookCollectionService.getBookCollectionById(id);
         if (bookCollection == null)
             return ResponseEntity.noContent().build();
-        else 
+        else
             return ResponseEntity.ok(bookCollection);
     }
 
@@ -52,9 +51,7 @@ public class BookCollectionController {
 
     @PutMapping
     public ResponseEntity<BookCollection> updateBookCollection(@RequestBody BookCollection updatedBookCollection) {
-    
-        var bookCollection = bookCollectionService.updateBookCollection(updatedBookCollection);
-        return ResponseEntity.ok(bookCollection);
+        return ResponseEntity.ok(bookCollectionService.updateBookCollection(updatedBookCollection));
     }
 
     @DeleteMapping("/{id}")
@@ -63,5 +60,4 @@ public class BookCollectionController {
         return ResponseEntity.noContent().build();
     }
 
-     
 }

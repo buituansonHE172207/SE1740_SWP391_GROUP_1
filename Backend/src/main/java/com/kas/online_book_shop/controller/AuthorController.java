@@ -41,8 +41,7 @@ public class AuthorController {
         var author = authorService.getAuthorById(id);
         if (author == null)
             return ResponseEntity.noContent().build();
-        else 
-            return ResponseEntity.ok(author);
+        return ResponseEntity.ok(author);
     }
 
     @PostMapping()
@@ -52,8 +51,7 @@ public class AuthorController {
 
     @PutMapping
     public ResponseEntity<Author> updateAuthor(@RequestBody Author updatedAuthor) {
-        var author = authorService.updateAuthor(updatedAuthor);
-        return ResponseEntity.ok(author);
+        return ResponseEntity.ok(authorService.updateAuthor(updatedAuthor));
     }
 
     @DeleteMapping("/{id}")

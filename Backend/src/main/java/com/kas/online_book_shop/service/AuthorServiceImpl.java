@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.BookCategoryNotFoundException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Author;
 import com.kas.online_book_shop.repository.AuthorRepository;
 
@@ -19,9 +19,9 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void deleteAuthor(Long id) {
-        var author = authorRepository.findById(id).orElse(null);
-        if (author == null)
-            throw new BookCategoryNotFoundException("Không tìm thấy tác giả để xóa");
+        var author = authorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tác giả để xóa"));
+
         author.getBooks().forEach(x -> x.getAuthors().remove(author));
         authorRepository.deleteById(id);
     }
@@ -38,9 +38,8 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author updateAuthor(Author author) {
-        var currentAuthor = authorRepository.findById(author.getId()).orElse(null);
-        if (currentAuthor == null) 
-            throw new BookCategoryNotFoundException("Không tìm thấy tác giả để cập nhật");
+        authorRepository.findById(author.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tác giả để cập nhật"));
         return authorRepository.save(author);
     }
 
@@ -48,6 +47,5 @@ public class AuthorServiceImpl implements AuthorService {
     public Author getAuthorById(Long id) {
         return authorRepository.findById(id).orElse(null);
     }
-    
-    
+
 }

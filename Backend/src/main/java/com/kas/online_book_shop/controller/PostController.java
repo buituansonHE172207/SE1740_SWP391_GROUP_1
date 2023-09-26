@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,17 +41,6 @@ public class PostController {
             return ResponseEntity.ok(posts);
     }
 
-    @GetMapping("/sorted-and-paged")
-    public Page<Post> getAllPostsSortedAndPaged(
-            @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "asc") String sortOrder) {
-        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
-        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        return postService.getAllPosts(pageable);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable Long id) {
         Post post = postService.getPostById(id);
@@ -65,6 +55,22 @@ public class PostController {
     public ResponseEntity<Post> addPost(@RequestBody Post post) {
         Post savedPost = postService.savePost(post);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
+    }
+
+    @PutMapping()
+    public ResponseEntity<Post> updatePost(@RequestBody Post post) {
+        return ResponseEntity.ok(postService.updatePost(post));
+    }
+
+    @GetMapping("/sorted-and-paged")
+    public Page<Post> getAllPostsSortedAndPaged(
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return postService.getAllPosts(pageable);
     }
 
     @GetMapping("/sorted-and-paged/by-categories")

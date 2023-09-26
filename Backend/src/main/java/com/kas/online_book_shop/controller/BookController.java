@@ -92,7 +92,8 @@ public class BookController {
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        if(max == 0) max = Integer.MAX_VALUE;
+        if (max == 0)
+            max = Integer.MAX_VALUE;
         return ResponseEntity.ok(bookService.getBookByCategoriesAndPriceRange(categories, min, max, pageable));
     }
 
@@ -107,7 +108,8 @@ public class BookController {
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        if(max == 0) max = Integer.MAX_VALUE;
+        if (max == 0)
+            max = Integer.MAX_VALUE;
         return ResponseEntity.ok(bookService.getBookByCollectionAndPriceRanges(collection, min, max, pageable));
     }
 }

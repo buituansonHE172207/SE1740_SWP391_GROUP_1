@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.kas.online_book_shop.model.Role;
 import com.kas.online_book_shop.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
