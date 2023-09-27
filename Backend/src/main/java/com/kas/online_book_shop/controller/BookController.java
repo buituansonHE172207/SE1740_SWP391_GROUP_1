@@ -65,9 +65,8 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        Book savedBook = bookService.saveBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookService.saveBook(book));
     }
 
     @DeleteMapping("/{id}")

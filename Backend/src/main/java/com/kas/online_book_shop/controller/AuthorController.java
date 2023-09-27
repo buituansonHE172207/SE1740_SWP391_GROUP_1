@@ -19,7 +19,6 @@ import com.kas.online_book_shop.service.AuthorService;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
@@ -27,13 +26,13 @@ import lombok.RequiredArgsConstructor;
 public class AuthorController {
     private final AuthorService authorService;
 
-    @GetMapping ("")
+    @GetMapping("")
     public ResponseEntity<List<Author>> getAuthor() {
         var authors = authorService.getAllAuthors();
         if (authors.isEmpty())
             return ResponseEntity.noContent().build();
         else
-            return ResponseEntity.ok(authors); 
+            return ResponseEntity.ok(authors);
     }
 
     @GetMapping("/{id}")

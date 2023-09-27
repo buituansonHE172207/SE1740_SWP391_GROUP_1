@@ -43,10 +43,18 @@ public class WishlistServiceImpl implements WishlistService {
     }
 
     @Override
-    public void deleteFromWishlist(Long wishlistId) {
-        Wishlist wishlistItem = wishListRepository.findById(wishlistId)
-                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy wishlist để xóa"));
-        wishListRepository.delete(wishlistItem);
+    public void deleteFromWishlist(Long userId, Long bookId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy người dùng để xóa wishlist"));
+
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để xóa khỏi wishlist"));
+
+        var existingWishlist = wishListRepository.findByUserAndBook(user, book);
+
+        if (existingWishlist != null) 
+            wishListRepository.delete(existingWishlist);        
+        
     }
 
     @Override

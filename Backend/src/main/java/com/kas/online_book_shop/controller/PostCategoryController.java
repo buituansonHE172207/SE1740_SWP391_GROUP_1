@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kas.online_book_shop.model.PostCategory;
@@ -48,12 +47,12 @@ public class PostCategoryController {
     @PostMapping()
     public ResponseEntity<PostCategory> savePostCategory(
         @RequestBody PostCategory postCategory) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(postCategory);
+        return ResponseEntity.status(HttpStatus.CREATED).body(postCategoryService.savePostCategory(postCategory));
     }
 
     @PutMapping()
     public ResponseEntity<PostCategory> updatePostCategory(
-        @RequestParam PostCategory category) {
+        @RequestBody PostCategory category) {
         return ResponseEntity.ok(postCategoryService.updatePostCategory(category));        
     }
 

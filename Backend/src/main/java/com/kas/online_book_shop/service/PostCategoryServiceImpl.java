@@ -36,7 +36,6 @@ public class PostCategoryServiceImpl implements PostCategoryService {
 
     @Override
     public PostCategory savePostCategory(PostCategory postCategory) {
-        postCategory.setId(null);
         return postCategoryRepository.save(postCategory);
     }
 
@@ -50,8 +49,10 @@ public class PostCategoryServiceImpl implements PostCategoryService {
 
     @Override
     public void deletePostCategory(Long id) {
-        postCategoryRepository.findById(id)
+        var postCategoryExist = postCategoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại bài viết để xóa"));
+        postCategoryExist.getPosts()
+                .forEach((post) -> post.setCategory(null));
         postCategoryRepository.deleteById(id);
     }
 }

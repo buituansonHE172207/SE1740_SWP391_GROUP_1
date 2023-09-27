@@ -9,7 +9,7 @@ public interface WishlistService {
 
     Wishlist addToWishlist(Long userId, Long bookId);
 
-    void deleteFromWishlist(Long wishListId);
+    void deleteFromWishlist(Long userId, Long bookId);
 
     List<Wishlist> getAllWishlist();
 

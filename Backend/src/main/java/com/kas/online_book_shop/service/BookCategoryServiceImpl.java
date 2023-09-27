@@ -26,8 +26,10 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
     @Override
     public void deleteBookCategory(Long id) {
-        bookCategoryRepository.findById(id)
+        var existingBookCategory = bookCategoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại sách để xóa"));
+        existingBookCategory.getBooks()
+                .forEach((book) -> book.setCategory(null));
         bookCategoryRepository.deleteById(id);
     }
 
