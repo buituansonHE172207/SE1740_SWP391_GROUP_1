@@ -13,9 +13,17 @@ const getBookByQuery = (query) => {
 const getBooksByCollectionId = (id) => {
     if(id === 'all')
     {
-        return getBook()
+        return axios.get(BOOK_API_BASE_URL + '/sorted-and-paged')
     }
     return axios.get(BOOK_API_BASE_URL + '/sorted-and-paged/by-collection?collection=' + id )
 }
 
-export {getBook, getBookByQuery, getBooksByCollectionId}
+const getBooksByCollectionIdAndPage = (id, page) => {
+    if(id === 'all')
+    {
+        return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged?sortBy=id&page=${page === null ? 0 : page - 1}&size=12&sortOrder=asc`)
+    }
+    return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged/by-collection?collection=${id}&sortBy=authors&page=${page -1}&size=12&sortOrder=desc`)
+}
+
+export {getBook, getBookByQuery, getBooksByCollectionId, getBooksByCollectionIdAndPage}
