@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Feedback;
 import com.kas.online_book_shop.service.FeedbackService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/feedback")
 public class FeedbackController {
@@ -58,6 +59,18 @@ public class FeedbackController {
         if (Feedback == null)
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(Feedback);
+    }
+
+    @GetMapping("/by-book")
+    public ResponseEntity<Page<Feedback>> getFeedbackByBook(
+            @RequestParam Book book,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return ResponseEntity.ok(feedbackService.getFeedbacksByBook(book, pageable));
     }
 
     @PostMapping()

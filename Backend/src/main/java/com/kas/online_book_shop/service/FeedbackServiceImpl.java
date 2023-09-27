@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
+import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Feedback;
 import com.kas.online_book_shop.repository.FeedbackRepository;
 
@@ -57,6 +58,10 @@ public class FeedbackServiceImpl implements FeedbackService{
         return feedbackRepository.save(feedback);
     }
 
-    
+    @Override
+    public Page<Feedback> getFeedbacksByBook(Book book, Pageable pageable) {
+        return feedbackRepository.findByBook(book, pageable);
+    }
 
+    
 }
