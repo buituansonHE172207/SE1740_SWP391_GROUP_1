@@ -20,60 +20,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kas.online_book_shop.model.BookCollection;
-import com.kas.online_book_shop.service.BookCollectionService;
+import com.kas.online_book_shop.model.Feedback;
+import com.kas.online_book_shop.service.FeedbackService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/book-collection")
-public class BookCollectionController {
-    private final BookCollectionService bookCollectionService;
+@RequestMapping("/api/v1/feedback")
+public class FeedbackController {
+    private final FeedbackService feedbackService;
 
     @GetMapping("")
-    public ResponseEntity<List<BookCollection>> getBookCollections() {
-        var bookCollections = bookCollectionService.getAllBookCollections();
-        if (bookCollections.isEmpty())
+    public ResponseEntity<List<Feedback>> getAllFeedbacks() {
+        var feedbacks = feedbackService.getAllFeedbacks();
+        if (feedbacks.isEmpty())
             return ResponseEntity.noContent().build();
         else
-            return ResponseEntity.ok(bookCollections);
+            return ResponseEntity.ok(feedbacks);
     }
 
     @GetMapping("/sorted-and-paged")
-    public ResponseEntity<Page<BookCollection>> getAllAuthorPagedAndSorted(
+    public ResponseEntity<Page<Feedback>> getAllFeedbacksPagedAndSorted(
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        return ResponseEntity.ok(bookCollectionService.getAllBookCollections(pageable));
+        return ResponseEntity.ok(feedbackService.getAllFeedbacks(pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookCollection> getBookCollectionById(@PathVariable Long id) {
-        var bookCollection = bookCollectionService.getBookCollectionById(id);
-        if (bookCollection == null)
+    public ResponseEntity<Feedback> getFeedbackById(@PathVariable Long id) {
+        var Feedback = feedbackService.getFeedbackById(id);
+        if (Feedback == null)
             return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(bookCollection);
+        return ResponseEntity.ok(Feedback);
     }
 
     @PostMapping()
-    public ResponseEntity<BookCollection> saveBookCollection(@RequestBody BookCollection BookCollection) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(bookCollectionService.saveBookCollection(BookCollection));
+    public ResponseEntity<Feedback> saveFeedback(@RequestBody Feedback Feedback) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(feedbackService.saveFeedback(Feedback));
     }
 
     @PutMapping
-    public ResponseEntity<BookCollection> updateBookCollection(@RequestBody BookCollection updatedBookCollection) {
-        return ResponseEntity.ok(bookCollectionService.updateBookCollection(updatedBookCollection));
+    public ResponseEntity<Feedback> updateFeedback(@RequestBody Feedback updatedFeedback) {
+        return ResponseEntity.ok(feedbackService.updateFeedback(updatedFeedback));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBookCollection(@PathVariable Long id) {
-        bookCollectionService.deleteBookCollection(id);
+    public ResponseEntity<Void> deleteFeedback(@PathVariable Long id) {
+        feedbackService.deleteFeedback(id);
         return ResponseEntity.noContent().build();
     }
 

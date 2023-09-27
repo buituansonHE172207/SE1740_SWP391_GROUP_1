@@ -2,6 +2,8 @@ package com.kas.online_book_shop.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
@@ -46,6 +48,11 @@ public class BookCollectionServiceImpl implements BookCollectionService {
     @Override
     public BookCollection getBookCollectionById(Long id) {
         return bookCollectionRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Page<BookCollection> getAllBookCollections(Pageable pageable) {
+        return bookCollectionRepository.findAll(pageable);
     }
 
 }

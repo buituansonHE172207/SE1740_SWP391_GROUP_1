@@ -55,7 +55,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Long id) {
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Book book = bookService.getBookById(id);
         if (book != null) {
             return ResponseEntity.ok(book);
@@ -110,5 +110,17 @@ public class BookController {
         if (max == 0)
             max = Integer.MAX_VALUE;
         return ResponseEntity.ok(bookService.getBookByCollectionAndPriceRanges(collection, min, max, pageable));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<Book>> searchBookByName(
+            @RequestParam String name,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return ResponseEntity.ok(bookService.getBooksByName(name, pageable));
     }
 }

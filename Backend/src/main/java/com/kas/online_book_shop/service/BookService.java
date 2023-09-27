@@ -25,4 +25,6 @@ public interface BookService {
     Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max, Pageable pageable);
 
     Page<Book> getBookByCollectionAndPriceRanges(BookCollection collection,int min, int max,Pageable pageable);
+
+    Page<Book> getBooksByName(String name, Pageable pageable);
 }

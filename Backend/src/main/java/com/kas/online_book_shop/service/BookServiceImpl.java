@@ -13,7 +13,6 @@ import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
 import com.kas.online_book_shop.model.OrderState;
 import com.kas.online_book_shop.repository.BookRepository;
-import com.kas.online_book_shop.repository.OrderRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
-    private final OrderRepository orderRepository;
 
     @Override
     public Page<Book> getAllBooks(Pageable pageable) {
@@ -78,4 +76,10 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public Page<Book> getBooksByName(String name, Pageable pageable) {
+        return bookRepository.findByTitleContaining(name, pageable);
+    }
+   
 }
