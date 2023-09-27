@@ -91,6 +91,7 @@ const BookCategoryPage = () => {
     try {
       if (selectedRow) {
         await deleteBookCategory(selectedRow.id.toString());
+        handleClose();
       }
     } catch (error) {}
   };
