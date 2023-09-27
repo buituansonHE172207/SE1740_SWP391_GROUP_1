@@ -1,7 +1,12 @@
 package com.kas.online_book_shop.model;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,7 +35,7 @@ import lombok.ToString;
 @Builder
 @Table(name = "[user]")
 @Entity
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -93,4 +98,47 @@ public class User {
     @ToString.Exclude
     @JsonIgnore
     private List<Wishlist> wishlists;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(roles.getClass().getName()));
+    }
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public String getPassword() {
+        // TODO Auto-generated method stub
+        return password;
+    }
+
+
 }
