@@ -8,8 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.config.JwtService;
-import com.kas.online_book_shop.model.Role;
 import com.kas.online_book_shop.model.User;
+import com.kas.online_book_shop.repository.RoleRepository;
 import com.kas.online_book_shop.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,14 +21,16 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final RoleRepository roleRepository;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        Role userRole = request.getRole();
+        // Set<Role> userRole = request.getRole();
 
         var user = User.builder()
-        .fullName(request.getFullname())
+                .fullName(request.getFullname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .roles(List.of(roleRepository.findByName("User")))
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
