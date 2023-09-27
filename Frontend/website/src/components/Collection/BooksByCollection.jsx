@@ -53,7 +53,7 @@ const BooksByCollection = () => {
 
     const book_items = books.map(book => {
         return (
-            <div key={book.id} className='col-lg-3'>
+            <div key={book.id} className='col-lg-3 mb-4'>
                 <div className="product-item">
                     <div className="product-img">
                         <a href="#">
@@ -91,7 +91,7 @@ const BooksByCollection = () => {
     useEffect(() => {
         fetchData(id)
     }, [id, page])
-    
+
     useEffect(() => {
         setPage(1)
     }, [id])
