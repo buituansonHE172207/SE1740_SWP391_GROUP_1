@@ -124,3 +124,289 @@ Press
 }
 
 export default CollectionList
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
+Bootstrap Version	React-Bootstrap Version	Documentation
+v5.x	2.x	Link
+v4.x	1.x	Link
+v3.x	0.33.x (not maintained)	Link
+Migrating from previous versions
+Bootstrap 4 to Bootstrap 5
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 5, please read our docs for migrating to React-Bootstrap V2.
+
+Bootstrap 3 to Bootstrap 4
+If you would like to update React-Bootstrap within an existing project to use Bootstrap 4, please read our docs for migrating to React-Bootstrap V1.
+
+Related modules
+react-router-bootstrap – Integration with React Router
