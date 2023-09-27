@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif!important;
+    sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: normal !important;
@@ -45,7 +45,7 @@ header .header-top .hdt-shortnews marquee {
   text-align: right !important;
 }
 
-.fa-rss{
+.fa-rss {
   margin-right: 5px;
 }
 
@@ -60,8 +60,8 @@ header .header-top .hdt-contact a:last-child {
   margin-right: 0px;
 }
 
-a{
-  text-decoration: none!important;
+a {
+  text-decoration: none !important;
 }
 
 header .desktop-header {
@@ -118,7 +118,7 @@ header .desktop-header {
   color: #d51c24;
 }
 
-.input-group .search-btn{
+.input-group .search-btn {
   border: none;
   background: white;
 }
@@ -129,14 +129,14 @@ header .desktop-header .hd-account {
   position: relative;
 }
 
-header .desktop-header .hd-account > a {
+header .desktop-header .hd-account>a {
   display: inline-block;
   margin-right: 30px;
   color: #333333;
   cursor: pointer;
 }
 
-header .desktop-header .hd-account > a:hover {
+header .desktop-header .hd-account>a:hover {
   color: #d51c24;
 }
 
@@ -152,7 +152,7 @@ header .desktop-header .wishlist_btn {
   position: relative;
 }
 
-header .desktop-header .wishlist_btn #onAppWishList_btn_page > a #onAppWishList_numberLike {
+header .desktop-header .wishlist_btn #onAppWishList_btn_page>a #onAppWishList_numberLike {
   display: inline-block;
   line-height: normal;
   position: absolute;
@@ -168,7 +168,8 @@ header .desktop-header .wishlist_btn #onAppWishList_btn_page > a #onAppWishList_
   font-family: "UVF-ProductSans-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-.fa-heart, .fa-bag-shopping {
+.fa-heart,
+.fa-bag-shopping {
   font-size: 23px;
 }
 
@@ -177,13 +178,13 @@ header .desktop-header .desktop-cart-wrapper {
   position: relative;
 }
 
-header .desktop-header .desktop-cart-wrapper > a.hd-cart {
+header .desktop-header .desktop-cart-wrapper>a.hd-cart {
   position: relative;
   display: inline-block;
   color: #333333;
 }
 
-header .desktop-header .desktop-cart-wrapper > a.hd-cart span.hd-cart-count {
+header .desktop-header .desktop-cart-wrapper>a.hd-cart span.hd-cart-count {
   display: inline-block;
   line-height: normal;
   position: absolute;
@@ -199,7 +200,7 @@ header .desktop-header .desktop-cart-wrapper > a.hd-cart span.hd-cart-count {
   font-family: "UVF-ProductSans-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-#onAppWishList_btn_page{
+#onAppWishList_btn_page {
   display: block;
 }
 
@@ -216,7 +217,7 @@ header .desktop-header .desktop-cart-wrapper > a.hd-cart span.hd-cart-count {
   overflow: hidden;
 }
 
-.product-item .product-img > a {
+.product-item .product-img>a {
   display: block;
   overflow: hidden;
 }
@@ -242,7 +243,7 @@ header .desktop-header .desktop-cart-wrapper > a.hd-cart span.hd-cart-count {
   margin-bottom: 5px;
 }
 
-.product-title > a {
+.product-title>a {
   color: #333333;
   min-height: 34px;
 }
@@ -257,7 +258,7 @@ span.original-price {
   float: right;
 }
 
-.product-img img{
+.product-img img {
   width: -webkit-fill-available;
 }
 
@@ -281,11 +282,11 @@ span.original-price {
   overflow: hidden;
 }
 
-#home-pro-products{
+#home-pro-products {
   margin-bottom: 30px;
 }
 
-.main-slider{
+.main-slider {
   margin-bottom: 40px;
   position: relative;
 }
@@ -320,7 +321,7 @@ span.original-price {
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   width: -webkit-fill-available;
 }
@@ -332,11 +333,17 @@ span.original-price {
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.dropdown:hover .dropbtn {  background: #d51c24;}
+.dropdown:hover .dropbtn {
+  background: #d51c24;
+}
 
 #megamenu-wrapper .megamenu-nav-wrapper {
   z-index: 3;
@@ -350,10 +357,10 @@ span.original-price {
   right: 0;
   top: 0;
   height: 0px;
-  
+
 }
 
-#breadscrumb-wrapper5{
+#breadscrumb-wrapper5 {
   position: relative;
 }
 
@@ -374,7 +381,8 @@ span.original-price {
   margin: 0px 0px 5px 0px;
 }
 
-.breadcrumb-small a, .breadcrumb-small span{
+.breadcrumb-small a,
+.breadcrumb-small span {
   color: #fff;
 }
 
@@ -426,10 +434,97 @@ span.original-price {
   cursor: pointer;
 }
 
-#pagination > span.current {
+#pagination>span.current {
   padding: 0px !important;
   color: #fff;
   background: #d51c24;
   border: 1px solid #d51c24;
   border-radius: 3px;
+}
+
+.breadscrumb-w-img>img {
+  width: -webkit-fill-available;
+}
+
+.accordion {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 30px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.panel {
+  padding: 0px 15px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+div.panel>ul {
+  padding: 15px 0px 0px 0px;
+}
+
+.no-bullets {
+  list-style: none outside;
+}
+
+div.panel>ul>li {
+  margin-bottom: 10px;
+}
+
+div.panel>ul>li>a {
+  color: black !important;
+}
+
+div.panel>ul>li>a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #d51c24;
+  transition: width .3s;
+}
+
+div.panel>ul>li>a:hover::after {
+  width: 100%;
+  transition: width 0.5s;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button {
+  background-color: #d51c24 !important;
+  color: #fff !important;
+}
+
+input[type=radio] {
+  border: 1px solid #fff;
+  padding: 0.5em;
+}
+
+.collection-title h1 {
+  margin: 0px;
+  padding: 0px;
+  color: #333333;
+}
+
+.btn-signin {
+  padding: 2px 10px;
+  width: auto;
+  margin: 0;
+  line-height: 1.42;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 0px;
+  background-color: #d51c24;
+  color: #fff;
+  border-radius: 5px;
 }

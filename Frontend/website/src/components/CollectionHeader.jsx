@@ -1,6 +1,6 @@
 import React from "react";
 import { getCollections } from "../services/CollectionService"
-
+import { Link } from "react-router-dom";
 const CollectionHeader = () => {
     
     const [collections, setCollections] = React.useState([])
@@ -17,9 +17,9 @@ const CollectionHeader = () => {
     const collection_item = collections.map(collection => {
         if (collection.isDisplay)
         {
-            return <a href="#" key={collection.id}>
-            {collection.name}
-        </a>
+            return <Link to={`/collections/${collection.id}`} key={collection.id}>
+                {collection.name}
+            </Link>
         }
     })
 
@@ -39,13 +39,13 @@ const CollectionHeader = () => {
                                     Danh Mục Sản Phẩm
                                 </button>
                                 <div className="dropdown-content">
-                                   <a href="/collections/${}">Tất cả sản phẩm</a>
+                                   <Link to={`/collections/all`}>Tất cả sản phẩm</Link>
                                     {collection_item}
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-10">
-
+                            
                         </div>
                     </div>
                 </div>
