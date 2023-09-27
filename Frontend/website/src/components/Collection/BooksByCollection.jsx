@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { getBooksByCollectionId } from "../../services/BookService"
-import { useParams } from 'react-router-dom'
+import { getBooksByCollectionId, getBooksByCollectionIdAndPage } from "../../services/BookService"
+import { useNavigate, useParams } from 'react-router-dom'
 import Breadscrumb from '../Breadscrumb'
 import { Link } from 'react-router-dom'
 import { getCollections, getCollectionById } from '../../services/CollectionService'
 import { getCategories } from '../../services/CategoryService'
+import Pagination from '../Pagination'
 const BooksByCollection = () => {
+    const navigate = useNavigate()
     const [books, setBooks] = useState([])
+    const [bookData, setBookData] = useState([])
     const [collections, setCollections] = useState([])
     const [categories, setCategories] = useState([])
     const [curCollection, setCurCollection] = useState()
     const { id } = useParams()
+    const urlParams = new URLSearchParams(window.location.search);
+    const [page, setPage] = useState(urlParams.get('page'));
     const fetchData = (id) => {
-        getBooksByCollectionId(id)
-            .then(res => setBooks(res.data.content))
+        getBooksByCollectionIdAndPage(id, page)
+            .then(res => {
+                setBooks(res.data.content)
+                setBookData(res.data)
+            })
             .catch(error => console.error(error))
         getCollections()
             .then(res => setCollections(res.data))
@@ -21,9 +29,10 @@ const BooksByCollection = () => {
         getCategories()
             .then(res => setCategories(res.data))
             .catch(error => console.error(error))
-        getCollectionById(id)
-            .then(res => setCurCollection(res.data))
-            .catch(error => console.error(error))
+        if (id !== 'all')
+            getCollectionById(id)
+                .then(res => setCurCollection(res.data))
+                .catch(error => console.error(error))
     }
 
     const collection_items = collections.map(collection => (
@@ -33,6 +42,14 @@ const BooksByCollection = () => {
             </li>
         ) : null
     ));
+
+    const setCurrentPage = (page) => {
+        setPage(page)
+        if (id === 'all')
+            navigate(`/collections/all?page=${page}`)
+        else
+            navigate(`/collections/${id}?page=${page}`)
+    }
 
     const book_items = books.map(book => {
         return (
@@ -73,7 +90,10 @@ const BooksByCollection = () => {
 
     useEffect(() => {
         fetchData(id)
-        
+    }, [id, page])
+
+    useEffect(() => {
+        setPage(1)
     }, [id])
     return (
         <>
@@ -96,6 +116,9 @@ const BooksByCollection = () => {
                                                     <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                                                         <div className='panel'>
                                                             <ul className='no-bullets'>
+                                                                <li>
+                                                                    <Link to={`/collections/all`}>TẤT CẢ SẢN PHẨM</Link>
+                                                                </li>
                                                                 {collection_items}
                                                             </ul>
                                                         </div>
@@ -187,7 +210,7 @@ const BooksByCollection = () => {
                                         <div className='row'>
                                             <div className='col-lg-6'>
                                                 <div className='collection-title'>
-                                                    <h3>{curCollection ? curCollection.name : "Loading..."}</h3>
+                                                    <h3>{curCollection ? curCollection.name : "TẤT CẢ SẢN PHẨM"}</h3>
                                                 </div>
                                             </div>
                                             <div className='col-lg-6'>
@@ -221,6 +244,7 @@ const BooksByCollection = () => {
                     </div>
                 </section>
             </div>
+            <Pagination totalPosts={bookData.totalElements} postsPerPage={12} setCurrentPage={setCurrentPage} />
         </>
     )
 
