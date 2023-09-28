@@ -157,9 +157,9 @@ const Header = () => {
                                 <div className="form-group mb-3">
                                     <input onClick={handleInput} type="text" name="su_address" className="form-control" placeholder="Địa chỉ" />
                                 </div>
-                                <div class="form-check">
-                                    <input onClick={handleInput} class="form-check-input" name="su_noti" type="checkbox" value="" id="flexCheckDefault"/>
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                <div className="form-check">
+                                    <input onClick={handleInput} className="form-check-input" name="su_noti" type="checkbox" value="" id="flexCheckDefault"/>
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
                                     Nhận thông tin và chương trình khuyến mãi của SACHTRUCTUYEN qua Email
                                     </label>
                                 </div>

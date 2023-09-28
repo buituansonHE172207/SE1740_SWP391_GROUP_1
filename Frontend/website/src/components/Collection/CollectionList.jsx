@@ -34,5 +34,4 @@ const CollectionList = (props) => {
         </div>
     )
 }
-
 export default CollectionList
