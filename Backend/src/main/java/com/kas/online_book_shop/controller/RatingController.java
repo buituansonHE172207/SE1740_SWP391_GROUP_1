@@ -35,7 +35,7 @@ public class RatingController {
         return ResponseEntity.ok(ratings);
     }
 
-    @GetMapping("")
+    @GetMapping("/by-book-user")
     public ResponseEntity<Rating> getRatingByBookAndUser(
             @RequestParam Book book,
             @RequestParam User user) {

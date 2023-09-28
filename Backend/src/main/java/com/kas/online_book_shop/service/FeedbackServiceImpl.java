@@ -18,14 +18,14 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class FeedbackServiceImpl implements FeedbackService{
+public class FeedbackServiceImpl implements FeedbackService {
     private final FeedbackRepository feedbackRepository;
 
     @Override
     public void deleteFeedback(Long id) {
-        var existingFeedback = feedbackRepository.findById(id);
-        if (existingFeedback == null) 
-            throw new ResourceNotFoundException("Không tìm thấy Feedback để xóa");
+        feedbackRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy feedback để xóa"));
+
         feedbackRepository.deleteById(id);
     }
 
@@ -53,7 +53,7 @@ public class FeedbackServiceImpl implements FeedbackService{
     @Override
     public Feedback updateFeedback(Feedback feedback) {
         var existingFeedback = feedbackRepository.findById(feedback.getId());
-        if (existingFeedback == null) 
+        if (existingFeedback == null)
             throw new ResourceNotFoundException("Không tìm thấy Feedback để xóa");
         return feedbackRepository.save(feedback);
     }
@@ -63,5 +63,4 @@ public class FeedbackServiceImpl implements FeedbackService{
         return feedbackRepository.findByBook(book, pageable);
     }
 
-    
 }
