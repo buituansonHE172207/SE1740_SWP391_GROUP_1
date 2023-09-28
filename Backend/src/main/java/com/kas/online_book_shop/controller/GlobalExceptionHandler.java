@@ -10,7 +10,10 @@ import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.InvalidValueException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 
-@RestControllerAdvice
+import jakarta.annotation.security.PermitAll;
+
+@RestControllerAdvice()
+@PermitAll
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ISBNDuplicateException.class)
