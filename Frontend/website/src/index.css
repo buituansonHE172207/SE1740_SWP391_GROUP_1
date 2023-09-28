@@ -528,3 +528,7 @@ input[type=radio] {
   color: #fff;
   border-radius: 5px;
 }
+
+.megamenu-nav-wrapper .dropdown{
+  width: max-content;
+}
