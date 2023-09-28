@@ -20,7 +20,7 @@ import com.kas.online_book_shop.service.BookCategoryService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/book-category")
 public class BookCategoryController {
@@ -30,7 +30,7 @@ public class BookCategoryController {
     @GetMapping()
     public ResponseEntity<List<BookCategory>> getBookCategories() {
         var bookCategories = bookCategoryService.getAllBookCategories();
-        if (bookCategories.isEmpty()) 
+        if (bookCategories.isEmpty())
             return ResponseEntity.noContent().build();
         else
             return ResponseEntity.ok(bookCategories);
@@ -39,9 +39,9 @@ public class BookCategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<BookCategory> getBookCategoryById(@PathVariable Long id) {
         var bookCategory = bookCategoryService.getBookCategoryById(id);
-        if (bookCategory == null) 
+        if (bookCategory == null)
             return ResponseEntity.noContent().build();
-        else 
+        else
             return ResponseEntity.ok(bookCategory);
     }
 

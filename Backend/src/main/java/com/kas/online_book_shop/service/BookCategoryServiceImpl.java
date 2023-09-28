@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.BookCategoryNotFoundException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.repository.BookCategoryRepository;
 
@@ -26,9 +26,10 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
     @Override
     public void deleteBookCategory(Long id) {
-        var currentBookCategory = bookCategoryRepository.findById(id).orElse(null);
-        if (currentBookCategory == null)
-            throw new BookCategoryNotFoundException("Không tìm thấy thể loại sách để xóa");
+        var existingBookCategory = bookCategoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại sách để xóa"));
+        existingBookCategory.getBooks()
+                .forEach((book) -> book.setCategory(null));
         bookCategoryRepository.deleteById(id);
     }
 
@@ -50,13 +51,9 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
     @Override
     public BookCategory updateBookCategory(BookCategory bookCategory) {
-        var currentBookCategory = bookCategoryRepository.findById(bookCategory.getId()).orElse(null);
-        if (currentBookCategory == null) {
-            throw new BookCategoryNotFoundException("Không tìm thấy thể loại sách để cập nhât");
-        }
+        bookCategoryRepository.findById(bookCategory.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại sách để cập nhật"));
         return bookCategoryRepository.save(bookCategory);
     }
 
-    
-    
 }

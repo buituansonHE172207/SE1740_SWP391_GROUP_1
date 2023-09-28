@@ -1,7 +1,6 @@
 package com.kas.online_book_shop.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -99,7 +98,7 @@ public class Book {
     @JsonIgnore
     private List<Feedback> feedbacks; // Cascade: Remove (Deleting a Book deletes associated Feedbacks)
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
@@ -109,13 +108,13 @@ public class Book {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
-    private List<Wishlist> wishlistDetails; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
+    private List<Wishlist> wishlists; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
-    private List<Rating> ratings; // Cascade: Remove (Deleting a Book deletes associated Ratings)
+    private List<Rating> ratings; 
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
@@ -133,7 +132,7 @@ public class Book {
         if (ratings == null)
             return null;
         return ratings.stream()
-                .mapToDouble(Rating::getRating)
+                .mapToDouble(Rating::getValue)
                 .average().orElse(0);
     }
 }

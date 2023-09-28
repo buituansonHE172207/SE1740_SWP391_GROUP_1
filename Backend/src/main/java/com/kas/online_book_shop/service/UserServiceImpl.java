@@ -16,9 +16,26 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    
+
+    @Override
+    public User getUserById(Long id) {
+
+        return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<User> getUserByRoleId(Long id) {
+        return userRepository.findByRolesId(id);
+    }
+
+    // @Override
+    // public User getUserByEmail(String email) {
+    // return userRepository.findByEmail(email);
+    // }
+
 }

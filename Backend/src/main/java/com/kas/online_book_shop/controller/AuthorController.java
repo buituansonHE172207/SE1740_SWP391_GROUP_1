@@ -2,6 +2,11 @@ package com.kas.online_book_shop.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kas.online_book_shop.model.Author;
@@ -19,21 +25,31 @@ import com.kas.online_book_shop.service.AuthorService;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/author")
 public class AuthorController {
     private final AuthorService authorService;
 
-    @GetMapping ("")
-    public ResponseEntity<List<Author>> getAuthor() {
+    @GetMapping("")
+    public ResponseEntity<List<Author>> getAllAuthors() {
         var authors = authorService.getAllAuthors();
         if (authors.isEmpty())
             return ResponseEntity.noContent().build();
         else
-            return ResponseEntity.ok(authors); 
+            return ResponseEntity.ok(authors);
+    }
+
+    @GetMapping("/sorted-and-paged")
+    public ResponseEntity<Page<Author>> getAllAuthorsPagedAndSorted(
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return ResponseEntity.ok(authorService.getAllAuthor(pageable));
     }
 
     @GetMapping("/{id}")
@@ -41,8 +57,7 @@ public class AuthorController {
         var author = authorService.getAuthorById(id);
         if (author == null)
             return ResponseEntity.noContent().build();
-        else 
-            return ResponseEntity.ok(author);
+        return ResponseEntity.ok(author);
     }
 
     @PostMapping()
@@ -52,8 +67,7 @@ public class AuthorController {
 
     @PutMapping
     public ResponseEntity<Author> updateAuthor(@RequestBody Author updatedAuthor) {
-        var author = authorService.updateAuthor(updatedAuthor);
-        return ResponseEntity.ok(author);
+        return ResponseEntity.ok(authorService.updateAuthor(updatedAuthor));
     }
 
     @DeleteMapping("/{id}")

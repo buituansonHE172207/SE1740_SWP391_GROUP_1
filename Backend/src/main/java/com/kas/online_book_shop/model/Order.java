@@ -41,7 +41,7 @@ public class Order {
     @ToString.Exclude
     private User user;
 
-    private String fullname;
+    private String fullName;
 
     private String city;
 
@@ -53,7 +53,7 @@ public class Order {
 
     private Long totalPrice;
 
-    private String shippingPrice;
+    private Long shippingPrice;
 
     @Lob
     private String customerNote;
@@ -65,7 +65,7 @@ public class Order {
     private OrderState orderState;
 
     @Enumerated(EnumType.STRING)
-    private OrderState paymentStatus;
+    private PaymentStatus paymentStatus;
 
     @Enumerated(EnumType.STRING)
     private ShippingStatus shippingStatus;

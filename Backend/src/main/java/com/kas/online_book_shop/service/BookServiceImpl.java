@@ -6,11 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.exception.BookNotFoundException;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
+import com.kas.online_book_shop.model.OrderState;
 import com.kas.online_book_shop.repository.BookRepository;
 
 import jakarta.transaction.Transactional;
@@ -42,26 +43,27 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void DeleteBook(Long id) {
-        var deletedBook = bookRepository.findById(id).orElse(null);
-        if (deletedBook == null)
-            throw new BookNotFoundException("Không tìm thấy sách để xóa");
-        else 
-            bookRepository.delete(deletedBook);
+        var existingBook = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để xóa"));
+        existingBook.getOrderDetails().forEach((x) -> {
+            if (x.getOrder().getOrderState() == OrderState.ORDER) 
+                x.setBook(null); 
+        });
+        bookRepository.deleteById(id);
     }
 
     @Override
     public Book updateBook(Book book) {
-        var updatedBook = bookRepository.findById(book.getId()).orElse(null);
-        if (updatedBook == null)    
-            throw new BookNotFoundException("Không tìm thấy sách để câp nhật");
-        else 
-            return bookRepository.save(book);
+        bookRepository.findById(book.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để câp nhật"));
+        return bookRepository.save(book);
     }
 
     @Override
-    public Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max, Pageable pageable) {
+    public Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max,
+            Pageable pageable) {
         return bookRepository.findByCategoryInAndPriceBetween(categories, min, max, pageable);
-        
+
     }
 
     @Override
@@ -73,5 +75,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
-    } 
+    }
+
+    @Override
+    public Page<Book> getBooksByName(String name, Pageable pageable) {
+        return bookRepository.findByTitleContaining(name, pageable);
+    }
+   
 }

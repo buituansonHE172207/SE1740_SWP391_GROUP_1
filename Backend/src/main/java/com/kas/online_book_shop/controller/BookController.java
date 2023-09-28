@@ -28,7 +28,7 @@ import com.kas.online_book_shop.service.BookService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/book")
 public class BookController {
@@ -55,7 +55,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Long id) {
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Book book = bookService.getBookById(id);
         if (book != null) {
             return ResponseEntity.ok(book);
@@ -65,9 +65,8 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        Book savedBook = bookService.saveBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookService.saveBook(book));
     }
 
     @DeleteMapping("/{id}")
@@ -92,7 +91,8 @@ public class BookController {
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        if(max == 0) max = Integer.MAX_VALUE;
+        if (max == 0)
+            max = Integer.MAX_VALUE;
         return ResponseEntity.ok(bookService.getBookByCategoriesAndPriceRange(categories, min, max, pageable));
     }
 
@@ -107,7 +107,20 @@ public class BookController {
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        if(max == 0) max = Integer.MAX_VALUE;
+        if (max == 0)
+            max = Integer.MAX_VALUE;
         return ResponseEntity.ok(bookService.getBookByCollectionAndPriceRanges(collection, min, max, pageable));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<Book>> searchBookByName(
+            @RequestParam String name,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return ResponseEntity.ok(bookService.getBooksByName(name, pageable));
     }
 }
