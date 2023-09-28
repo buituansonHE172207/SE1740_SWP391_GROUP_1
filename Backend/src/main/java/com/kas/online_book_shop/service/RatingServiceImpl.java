@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.kas.online_book_shop.exception.InvalidValueException;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Rating;
+import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.RatingRepository;
 
 import jakarta.transaction.Transactional;
@@ -47,6 +48,11 @@ public class RatingServiceImpl implements RatingService {
         }
         return ratingRepository.save(rating); 
     }
+
+    @Override
+    public Rating getRatingByBookAndUser(Book book, User user) {
+        return ratingRepository.findByBookAndUser(book, user);
+    }
     
-    
+
 }

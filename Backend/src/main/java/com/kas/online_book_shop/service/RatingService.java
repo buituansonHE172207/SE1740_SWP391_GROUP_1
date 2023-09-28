@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Rating;
+import com.kas.online_book_shop.model.User;
 
 public interface RatingService {
     
@@ -14,4 +15,6 @@ public interface RatingService {
     Rating updateRating(Rating rating);
 
     List<Rating> getRatingByBook(Book book);
+
+    Rating getRatingByBookAndUser(Book book, User user);
 }
