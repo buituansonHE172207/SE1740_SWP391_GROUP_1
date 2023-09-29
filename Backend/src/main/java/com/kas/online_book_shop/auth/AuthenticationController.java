@@ -25,4 +25,25 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<AuthenticationResponse> forgotPassword(
+            @RequestBody ForgotPasswordRequest request) {
+        authenticationService.forgotPassword(request);
+        return ResponseEntity.ok().build();
+    }
+
+    // @PostMapping("/change-password")
+    // public ResponseEntity<AuthenticationResponse> changePassword(
+    //         @RequestBody AuthenticationRequest request) {
+    //     ResponseEntity.ok(authenticationService.authenticate(request));
+    //     return ResponseEntity.ok().build();
+    // }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<AuthenticationResponse> resetPassword(
+            @RequestBody ResetPasswordRequest request) {
+        authenticationService.resetPassword(request);
+        return ResponseEntity.ok().build();
+    }
 }
