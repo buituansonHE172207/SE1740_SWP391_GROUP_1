@@ -165,7 +165,7 @@ const Header = () => {
                                 </div>
                             </div>
                             <div className="modal-footer justify-content-start">
-                                <button type="button" className="btn-signin">Đăng nhập</button>
+                                <button type="button" className="btn-signin">Đăng ký</button>
                             </div>
                         </form>
                     </div>

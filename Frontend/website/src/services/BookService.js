@@ -6,6 +6,10 @@ const getBook = () => {
     return axios.get(BOOK_API_BASE_URL)
 }
 
+const getBookById = (id) => {
+    return axios.get(BOOK_API_BASE_URL + '/' + id)
+}
+
 const getBookByQuery = (query) => {
     return axios.get(BOOK_API_BASE_URL + '/' + query)
 }
@@ -26,4 +30,4 @@ const getBooksByCollectionIdAndPage = (id, page) => {
     return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged/by-collection?collection=${id}&sortBy=authors&page=${page -1}&size=12&sortOrder=desc`)
 }
 
-export {getBook, getBookByQuery, getBooksByCollectionId, getBooksByCollectionIdAndPage}
+export {getBook, getBookByQuery, getBooksByCollectionId, getBooksByCollectionIdAndPage, getBookById}
