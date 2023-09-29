@@ -33,12 +33,12 @@ public class AuthenticationController {
         return ResponseEntity.ok().build();
     }
 
-    // @PostMapping("/change-password")
-    // public ResponseEntity<AuthenticationResponse> changePassword(
-    //         @RequestBody AuthenticationRequest request) {
-    //     ResponseEntity.ok(authenticationService.authenticate(request));
-    //     return ResponseEntity.ok().build();
-    // }
+    @PostMapping("/change-password")
+    public ResponseEntity<AuthenticationResponse> changePassword(
+            @RequestBody ChangePasswordRequest request) {
+        ResponseEntity.ok(authenticationService.changePassword(request));
+        return ResponseEntity.ok().build();
+    }
 
     @PostMapping("/reset-password")
     public ResponseEntity<AuthenticationResponse> resetPassword(

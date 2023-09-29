@@ -10,7 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.config.JwtService;
+import com.kas.online_book_shop.exception.OldPasswordMismatchException;
 import com.kas.online_book_shop.exception.UserAlreadyExistsException;
+import com.kas.online_book_shop.exception.UserNotFoundException;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.RoleRepository;
 import com.kas.online_book_shop.repository.UserRepository;
@@ -64,7 +66,7 @@ public class AuthenticationService {
         public AuthenticationResponse forgotPassword(ForgotPasswordRequest request) {
                 var nonExistingUser = repository.findByEmail(request.getEmail());
                 if (nonExistingUser.isEmpty()) {
-                        throw new UserAlreadyExistsException(
+                        throw new UserNotFoundException(
                                         "Người dùng với email '" + request.getEmail() + "' không tồn tại.");
                 }
                 var user = repository.findByEmail(request.getEmail())
@@ -82,20 +84,41 @@ public class AuthenticationService {
                                 .build();
         }
 
-        // public AuthenticationResponse changePassword(AuthenticationRequest request) {
-        //         var user = repository.findByEmail(jwtService.extractUsername(request))
-        //                         .orElseThrow();
-        //         var jwtToken = jwtService.generateToken(user);
-        //         return AuthenticationResponse.builder()
-        //                         .token(jwtToken)
-        //                         .build();
+        public AuthenticationResponse changePassword(ChangePasswordRequest request) {
+                var user = repository.findByEmail(jwtService.extractUsername(request.getToken()))
+                                .orElseThrow();
+                if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+                        throw new OldPasswordMismatchException("Mật khẩu cũ không đúng.");
+                }
+                user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+                repository.save(user);
+                var jwtToken = jwtService.generateToken(user);
+                return AuthenticationResponse.builder()
+                                .token(jwtToken)
+                                .build();
+        }
+
+        // public AuthenticationResponse changePassword(ChangePasswordRequest request) {
+        // var user =
+        // repository.findByEmail(jwtService.extractUsername(request.getToken()))
+        // .orElseThrow();
+        // String encodedOldPassword = passwordEncoder.encode(request.getOldPassword());
+
+        // if (!encodedOldPassword.equals(user.getPassword())) {
+        // throw new OldPasswordMismatchException("Mật khẩu cũ không đúng.");
+        // }
+        // user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        // var jwtToken = jwtService.generateToken(user);
+        // return AuthenticationResponse.builder()
+        // .token(jwtToken)
+        // .build();
         // }
 
         public AuthenticationResponse resetPassword(ResetPasswordRequest request) {
                 var userEmail = jwtService.extractUsername(request.getToken());
                 var user = repository.findByEmail(userEmail)
                                 .orElseThrow();
-                user.setPassword(passwordEncoder.encode(passwordEncoder.encode(request.getPassword())));
+                user.setPassword(passwordEncoder.encode(request.getPassword()));
                 repository.save(user);
                 var jwtToken = jwtService.generateToken(user);
                 return AuthenticationResponse.builder()
