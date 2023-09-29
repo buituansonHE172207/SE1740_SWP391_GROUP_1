@@ -1,6 +1,6 @@
-package com.kas.online_book_shop.model;
+package com.kas.online_book_shop.enums;
 
-public enum AccountStatus {
+public enum AccountState {
     ACTIVE("Hoạt động"),
     INACTIVE("Không hoạt động"),
     SUSPENDED("Tạm ngưng"),
@@ -8,7 +8,7 @@ public enum AccountStatus {
 
     private String displayName;
 
-    AccountStatus(String displayName) {
+    AccountState(String displayName) {
         this.displayName = displayName;
     }
 

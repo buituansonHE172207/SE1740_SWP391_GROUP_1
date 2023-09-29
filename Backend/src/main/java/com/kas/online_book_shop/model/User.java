@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kas.online_book_shop.enums.AccountState;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -70,7 +71,7 @@ public class User implements UserDetails {
     private List<Role> roles;
 
     @Enumerated(EnumType.STRING)
-    private AccountStatus status;
+    private AccountState state;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude

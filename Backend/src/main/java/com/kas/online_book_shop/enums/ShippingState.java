@@ -1,6 +1,6 @@
-package com.kas.online_book_shop.model;
+package com.kas.online_book_shop.enums;
 
-public enum ShippingStatus {
+public enum ShippingState {
     NOT_SHIPPED("Chưa vận chuyển"),
     SHIPPED("Đã vận chuyển"),
     DELIVERED("Đã giao hàng"),
@@ -8,7 +8,7 @@ public enum ShippingStatus {
 
     private String displayName;
 
-    ShippingStatus(String displayName) {
+    ShippingState(String displayName) {
         this.displayName = displayName;
     }
 

@@ -6,12 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.enums.BookState;
+import com.kas.online_book_shop.enums.OrderState;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
-import com.kas.online_book_shop.model.OrderState;
 import com.kas.online_book_shop.repository.BookRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,7 +31,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getBookById(Long id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách tương ứng"));
     }
 
     @Override
@@ -46,8 +48,8 @@ public class BookServiceImpl implements BookService {
         var existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để xóa"));
         existingBook.getOrderDetails().forEach((x) -> {
-            if (x.getOrder().getOrderState() == OrderState.ORDER) 
-                x.setBook(null); 
+            if (x.getOrder().getState() == OrderState.ORDER)
+                x.setBook(null);
         });
         bookRepository.deleteById(id);
     }
@@ -62,7 +64,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max,
             Pageable pageable) {
-        return bookRepository.findByCategoryInAndPriceBetween(categories, min, max, pageable);
+        return bookRepository.findByCategoryInAndStateAndPriceBetween(categories, min, max, BookState.ACTIVE, pageable);
 
     }
 
@@ -81,5 +83,12 @@ public class BookServiceImpl implements BookService {
     public Page<Book> getBooksByName(String name, Pageable pageable) {
         return bookRepository.findByTitleContaining(name, pageable);
     }
-   
+
+    @Override
+    public Page<Book> getBookByState(BookState state, Pageable pageable) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    
 }

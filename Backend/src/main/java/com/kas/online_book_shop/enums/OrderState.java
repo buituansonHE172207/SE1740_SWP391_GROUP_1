@@ -1,4 +1,4 @@
-package com.kas.online_book_shop.model;
+package com.kas.online_book_shop.enums;
 
 public enum OrderState {
     ORDER("Chờ thanh toán"),
