@@ -98,22 +98,6 @@ public class AuthenticationService {
                                 .build();
         }
 
-        // public AuthenticationResponse changePassword(ChangePasswordRequest request) {
-        // var user =
-        // repository.findByEmail(jwtService.extractUsername(request.getToken()))
-        // .orElseThrow();
-        // String encodedOldPassword = passwordEncoder.encode(request.getOldPassword());
-
-        // if (!encodedOldPassword.equals(user.getPassword())) {
-        // throw new OldPasswordMismatchException("Mật khẩu cũ không đúng.");
-        // }
-        // user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        // var jwtToken = jwtService.generateToken(user);
-        // return AuthenticationResponse.builder()
-        // .token(jwtToken)
-        // .build();
-        // }
-
         public AuthenticationResponse resetPassword(ResetPasswordRequest request) {
                 var userEmail = jwtService.extractUsername(request.getToken());
                 var user = repository.findByEmail(userEmail)
