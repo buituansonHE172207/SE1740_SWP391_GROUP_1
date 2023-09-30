@@ -2,8 +2,6 @@ package com.kas.online_book_shop.service;
 
 import java.util.List;
 
-import javax.swing.plaf.nimbus.State;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

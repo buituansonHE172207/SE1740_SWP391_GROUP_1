@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.enums.Role;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.UserRepository;
 
@@ -34,9 +35,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByRole(role);
     }
 
-    // @Override
-    // public User getUserByEmail(String email) {
-    // return userRepository.findByEmail(email);
-    // }
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tai khoan."));
+    }
 
 }

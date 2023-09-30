@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kas.online_book_shop.config.JwtService;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.exception.OldPasswordMismatchException;
+import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.exception.UserAlreadyExistsException;
 import com.kas.online_book_shop.exception.UserNotFoundException;
 import com.kas.online_book_shop.model.User;
@@ -29,10 +30,10 @@ public class AuthenticationService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         public AuthenticationResponse register(RegisterRequest request) {
-                var existingUser = repository.findByEmail(request.getEmail());
-                if (existingUser.isPresent()) {
-                        throw new UserAlreadyExistsException("Người dùng đã tồn tại.");
-                }
+                repository.findByEmail(request.getEmail())
+                                .ifPresent(user -> {
+                                        throw new UserAlreadyExistsException("Người dùng đã tồn tại.");
+                                });
 
                 var user = User.builder()
                                 .fullName(request.getFullname())
@@ -48,12 +49,12 @@ public class AuthenticationService {
         }
 
         public AuthenticationResponse authenticate(AuthenticationRequest request) {
+                var user = repository.findByEmail(request.getEmail())
+                                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy email"));
                 authenticationManager.authenticate(
                                 new UsernamePasswordAuthenticationToken(
                                                 request.getEmail(),
                                                 request.getPassword()));
-                var user = repository.findByEmail(request.getEmail())
-                                .orElseThrow();
                 var jwtToken = jwtService.generateToken(user);
                 return AuthenticationResponse.builder()
                                 .token(jwtToken)
@@ -61,19 +62,15 @@ public class AuthenticationService {
         }
 
         public AuthenticationResponse forgotPassword(ForgotPasswordRequest request) {
-                var nonExistingUser = repository.findByEmail(request.getEmail());
-                if (nonExistingUser.isEmpty()) {
-                        throw new UserNotFoundException(
-                                        "Người dùng với email '" + request.getEmail() + "' không tồn tại.");
-                }
-                var user = repository.findByEmail(request.getEmail())
-                                .orElseThrow();
-                var jwtToken = jwtService.generateToken(user);
+                var existingUser = repository.findByEmail(request.getEmail())
+                                .orElseThrow(() -> new UserNotFoundException(
+                                                "Người dùng với email '" + request.getEmail() + "' không tồn tại."));
+                var jwtToken = jwtService.generateToken(existingUser);
                 String urlWithToken = "http://localhost:3000/reset-password/" + jwtToken;
                 mailMessage.setFrom("sachtructuyen123@gmail.com");
                 mailMessage.setTo(request.getEmail());
                 mailMessage.setSubject("Đặt lại mật khẩu");
-                mailMessage.setText("Xin chào " + user.getFullName() + "!\n"
+                mailMessage.setText("Xin chào " + existingUser.getFullName() + "!\n"
                                 + "Hãy nhấn vào đường link bên dưới để đặt lại mật khẩu: \n" + urlWithToken);
                 javaMailSender.send(mailMessage);
                 return AuthenticationResponse.builder()
