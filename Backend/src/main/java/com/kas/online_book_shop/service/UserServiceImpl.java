@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.UserRepository;
 
@@ -29,8 +30,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUserByRoleId(Long id) {
-        return userRepository.findByRolesId(id);
+    public List<User> getUserByRole(Role role) {
+        return userRepository.findByRole(role);
     }
 
     // @Override

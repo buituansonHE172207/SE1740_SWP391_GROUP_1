@@ -23,11 +23,11 @@ public interface BookService {
 
     Book updateBook(Book book);
 
-    void DeleteBook(Long id);
+    void deleteBook(Long id);
 
     Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max, Pageable pageable);
 
-    Page<Book> getBookByCollectionAndPriceRanges(BookCollection collection,int min, int max,Pageable pageable);
+    Page<Book> getBooksByCollectionAndPriceRanges(BookCollection collection,int min, int max,Pageable pageable);
 
     Page<Book> getBookByState(BookState state, Pageable pageable);
 

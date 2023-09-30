@@ -66,7 +66,7 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
-        bookService.DeleteBook(id);
+        bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -104,7 +104,7 @@ public class BookController {
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
         if (max == 0)
             max = Integer.MAX_VALUE;
-        return ResponseEntity.ok(bookService.getBookByCollectionAndPriceRanges(collection, min, max, pageable));
+        return ResponseEntity.ok(bookService.getBooksByCollectionAndPriceRanges(collection, min, max, pageable));
     }
 
     @GetMapping("/search")

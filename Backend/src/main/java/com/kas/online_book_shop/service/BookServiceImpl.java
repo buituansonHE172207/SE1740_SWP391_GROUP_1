@@ -44,7 +44,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void DeleteBook(Long id) {
+    public void deleteBook(Long id) {
         var existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để xóa"));
         existingBook.getOrderDetails().forEach((x) -> {
@@ -69,7 +69,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> getBookByCollectionAndPriceRanges(BookCollection collection, int min, int max,
+    public Page<Book> getBooksByCollectionAndPriceRanges(BookCollection collection, int min, int max,
             Pageable pageable) {
         return bookRepository.findByCollectionsAndPriceBetween(collection, min, max, pageable);
     }
@@ -86,8 +86,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Page<Book> getBookByState(BookState state, Pageable pageable) {
-        // TODO Auto-generated method stub
-        return null;
+        return bookRepository.findByState(state, pageable);
     }
 
     

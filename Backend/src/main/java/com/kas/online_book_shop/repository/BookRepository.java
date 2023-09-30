@@ -18,6 +18,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findByCollectionsAndStateAndPriceBetween(BookCollection collection, int min, int max,BookState bookState, Pageable pageable);
     Page<Book> findByCollectionsAndPriceBetween(BookCollection collection, int min, int max, Pageable pageable);
     Page<Book> findByTitleContainingAndState(String title,BookState bookState, Pageable pageable);
-    Page<Book> findByTitleContaining(String title,Pageable pageable);
+    Page<Book> findByTitleContaining(String title, Pageable pageable);
+    Page<Book> findByState(BookState bookState, Pageable pageable);
     Boolean existsByISBN(String ISBN);
 }
