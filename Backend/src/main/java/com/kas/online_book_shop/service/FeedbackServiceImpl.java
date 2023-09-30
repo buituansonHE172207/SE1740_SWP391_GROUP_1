@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.enums.FeedbackState;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Feedback;
@@ -23,10 +24,9 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public void deleteFeedback(Long id) {
-        feedbackRepository.findById(id)
+        var existingFeedback = feedbackRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy feedback để xóa"));
-
-        feedbackRepository.deleteById(id);
+        existingFeedback.setState(FeedbackState.DELETED);
     }
 
     @Override
@@ -41,11 +41,13 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public Feedback getFeedbackById(Long id) {
-        return feedbackRepository.findById(id).orElse(null);
+        return feedbackRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy feedback tương ứng"));
     }
 
     @Override
     public Feedback saveFeedback(Feedback feedback) {
+        feedback.setState(FeedbackState.ACTIVE);
         feedback.setCreatedAt(LocalDateTime.now());
         return feedbackRepository.save(feedback);
     }
@@ -63,4 +65,11 @@ public class FeedbackServiceImpl implements FeedbackService {
         return feedbackRepository.findByBook(book, pageable);
     }
 
+    @Override
+    public void answerFeedback(Long id, Feedback feedback) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    
 }

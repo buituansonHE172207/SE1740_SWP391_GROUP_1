@@ -22,4 +22,6 @@ public interface FeedbackService {
     Feedback updateFeedback(Feedback feedback);
 
     void deleteFeedback(Long id);
+
+    void answerFeedback(Long id, Feedback feedback);
 }

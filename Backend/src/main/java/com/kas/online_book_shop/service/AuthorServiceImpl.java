@@ -47,7 +47,8 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author getAuthorById(Long id) {
-        return authorRepository.findById(id).orElse(null);
+        return authorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tác giả tương ứng"));
     }
 
     @Override
@@ -55,5 +56,4 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.findAll(pageable);
     }
 
-    
 }

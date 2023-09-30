@@ -7,15 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Rating;
-import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.service.RatingService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,24 +33,18 @@ public class RatingController {
 
     @GetMapping("/by-book-user")
     public ResponseEntity<Rating> getRatingByBookAndUser(
-            @RequestParam Book book,
-            @RequestParam User user) {
+            @RequestParam Long book,
+            @RequestParam Long user) {
         var rating = ratingService.getRatingByBookAndUser(book, user);
-        if (rating == null)
-            return ResponseEntity.noContent().build();
         return ResponseEntity.ok(rating);
     }
 
     @PostMapping()
     public ResponseEntity<Rating> addRating(
-            @RequestBody Rating rating) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.saveRating(rating));
-    }
-
-    @PutMapping()
-    public ResponseEntity<Rating> updateRating(
-            @RequestBody Rating rating) {
-        return ResponseEntity.ok(ratingService.updateRating(rating));
+            @RequestParam(name = "book") Long bookId,
+            @RequestParam(name = "user") Long userId,
+            @RequestParam int value) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.saveRating(bookId, userId, value));
     }
 
 }

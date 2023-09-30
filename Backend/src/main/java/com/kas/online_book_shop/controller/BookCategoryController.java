@@ -31,18 +31,14 @@ public class BookCategoryController {
     public ResponseEntity<List<BookCategory>> getBookCategories() {
         var bookCategories = bookCategoryService.getAllBookCategories();
         if (bookCategories.isEmpty())
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         else
             return ResponseEntity.ok(bookCategories);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<BookCategory> getBookCategoryById(@PathVariable Long id) {
-        var bookCategory = bookCategoryService.getBookCategoryById(id);
-        if (bookCategory == null)
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(bookCategory);
+            return ResponseEntity.ok(bookCategoryService.getBookCategoryById(id));
     }
 
     @PostMapping("")

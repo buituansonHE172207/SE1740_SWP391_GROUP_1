@@ -2,7 +2,11 @@ package com.kas.online_book_shop.model;
 
 import java.time.LocalDateTime;
 
+import com.kas.online_book_shop.enums.PostState;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -50,4 +54,7 @@ public class Post {
     private String brief;
 
     private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    private PostState state;
 }

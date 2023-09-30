@@ -40,7 +40,8 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
     @Override
     public BookCategory getBookCategoryById(Long id) {
-        return bookCategoryRepository.findById(id).orElse(null);
+        return bookCategoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thể loại tương ứng"));
     }
 
     @Override
