@@ -46,11 +46,11 @@ public class Order {
 
     private String fullName;
 
-    private String city;
+    private String province;
 
     private String district;
 
-    private String village;
+    private String ward;
 
     private String address;
 

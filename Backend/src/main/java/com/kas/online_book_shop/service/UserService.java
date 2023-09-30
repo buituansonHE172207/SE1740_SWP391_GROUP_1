@@ -13,4 +13,6 @@ public interface UserService {
     List<User> getUserByRole(Role role);
 
     User getUserByEmail(String email);
+
+    User updateUser(User user);
 }
