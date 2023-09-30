@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tai khoan."));
     }
 
+    @Override
+    public User updateUser(User user) {
+        var existingUser = userRepository.findById(user.getId())
+            .orElseThrow(() -> new ResourceNotFoundException("Khong tim thay user tuong ung"));
+        user.setRole(existingUser.getRole());
+        return userRepository.save(user);
+    }
+
+    
+
 }

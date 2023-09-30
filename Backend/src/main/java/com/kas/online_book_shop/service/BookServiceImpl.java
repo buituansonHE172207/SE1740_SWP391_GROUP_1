@@ -64,14 +64,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max,
             Pageable pageable) {
-        return bookRepository.findByCategoryInAndStateAndPriceBetween(categories, BookState.ACTIVE,min ,max , pageable);
+        return bookRepository.findByCategoryInAndStateAndPriceBetween(categories, BookState.ACTIVE, min, max, pageable);
 
     }
 
     @Override
     public Page<Book> getBooksByCollectionAndPriceRanges(BookCollection collection, int min, int max,
             Pageable pageable) {
-        return bookRepository.findByCollectionsAndStateAndPriceBetween(collection,BookState.ACTIVE, min, max, pageable);
+        return bookRepository.findByCollectionsAndStateAndPriceBetween(collection, BookState.ACTIVE, min, max,
+                pageable);
     }
 
     @Override
@@ -89,5 +90,4 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByState(state, pageable);
     }
 
-    
 }

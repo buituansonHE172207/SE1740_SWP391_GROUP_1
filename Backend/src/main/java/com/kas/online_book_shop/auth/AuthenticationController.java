@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.dto.AuthenticationRequest;
+import com.kas.online_book_shop.dto.AuthenticationResponse;
+import com.kas.online_book_shop.dto.ChangePasswordRequest;
+import com.kas.online_book_shop.dto.ForgotPasswordRequest;
+import com.kas.online_book_shop.dto.RegisterRequest;
+import com.kas.online_book_shop.dto.ResetPasswordRequest;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
