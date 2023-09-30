@@ -54,11 +54,7 @@ public class BookCollectionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<BookCollection> getBookCollectionById(@PathVariable Long id) {
-        var bookCollection = bookCollectionService.getBookCollectionById(id);
-        if (bookCollection == null)
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(bookCollection);
+            return ResponseEntity.ok(bookCollectionService.getBookCollectionById(id));
     }
 
     @PostMapping()

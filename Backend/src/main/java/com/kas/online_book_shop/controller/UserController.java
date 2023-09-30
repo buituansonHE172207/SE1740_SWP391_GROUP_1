@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.service.UserService;
 
@@ -40,10 +42,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("/role/{roleId}")
-    public ResponseEntity<List<User>> getUserByRoleId(@PathVariable Long roleId) {
-        var users = userService.getUserByRoleId(roleId);
-
+    @GetMapping("/role")
+    public ResponseEntity<List<User>> getUserByRole(@RequestParam Role role) {
+        var users = userService.getUserByRole(role);
         if (users.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {

@@ -1,7 +1,5 @@
 package com.kas.online_book_shop.auth;
 
-import java.util.List;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,11 +8,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.config.JwtService;
+import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.exception.OldPasswordMismatchException;
 import com.kas.online_book_shop.exception.UserAlreadyExistsException;
 import com.kas.online_book_shop.exception.UserNotFoundException;
 import com.kas.online_book_shop.model.User;
-import com.kas.online_book_shop.repository.RoleRepository;
 import com.kas.online_book_shop.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +24,6 @@ public class AuthenticationService {
         private final JwtService jwtService;
         private final PasswordEncoder passwordEncoder;
         private final AuthenticationManager authenticationManager;
-        private final RoleRepository roleRepository;
         private final JavaMailSender javaMailSender;
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -41,7 +38,7 @@ public class AuthenticationService {
                                 .fullName(request.getFullname())
                                 .email(request.getEmail())
                                 .password(passwordEncoder.encode(request.getPassword()))
-                                .roles(List.of(roleRepository.findByName("CUSTOMER")))
+                                .role(Role.USER)
                                 .build();
                 repository.save(user);
                 var jwtToken = jwtService.generateToken(user);

@@ -23,7 +23,6 @@ public class BookCollectionServiceImpl implements BookCollectionService {
     public void deleteBookCollection(Long id) {
         var bookCollection = bookCollectionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm bộ sưu tập để xóa"));
-
         bookCollection.getBooks().forEach((book) -> book.getCollections().remove(bookCollection));
         bookCollectionRepository.deleteById(id);
     }
@@ -47,7 +46,8 @@ public class BookCollectionServiceImpl implements BookCollectionService {
 
     @Override
     public BookCollection getBookCollectionById(Long id) {
-        return bookCollectionRepository.findById(id).orElse(null);
+        return bookCollectionRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy bộ sưu tập tương ứng"));
     }
 
     @Override

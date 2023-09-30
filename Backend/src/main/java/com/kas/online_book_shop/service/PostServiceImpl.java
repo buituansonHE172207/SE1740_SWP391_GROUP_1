@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.enums.PostState;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Post;
 import com.kas.online_book_shop.model.PostCategory;
@@ -24,9 +25,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(Long id) {
-        postRepository.findById(id)
+        var existingPost = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy post để xóa"));
-        postRepository.deleteById(id);
+        existingPost.setState(PostState.HIDDEN);
     }
 
     @Override

@@ -2,7 +2,11 @@ package com.kas.online_book_shop.model;
 
 import java.time.LocalDateTime;
 
+import com.kas.online_book_shop.enums.FeedbackState;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +32,9 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private FeedbackState state;
 
     @ManyToOne
     @JoinColumn(name = "book_id")

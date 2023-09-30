@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kas.online_book_shop.enums.OrderState;
+import com.kas.online_book_shop.enums.PaymentState;
+import com.kas.online_book_shop.enums.ShippingState;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -62,13 +65,13 @@ public class Order {
     private String shopNote;
 
     @Enumerated(EnumType.STRING)
-    private OrderState orderState;
+    private OrderState state;
 
     @Enumerated(EnumType.STRING)
-    private PaymentStatus paymentStatus;
+    private PaymentState paymentState;
 
     @Enumerated(EnumType.STRING)
-    private ShippingStatus shippingStatus;
+    private ShippingState shippingState;
 
     private LocalDateTime created;
 

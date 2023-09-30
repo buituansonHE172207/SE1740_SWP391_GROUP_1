@@ -13,6 +13,7 @@ import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.exception.UserAlreadyExistsException;
 import com.kas.online_book_shop.exception.UserNotFoundException;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.annotation.security.PermitAll;
 
 @RestControllerAdvice()
@@ -53,5 +54,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(OldPasswordMismatchException.class)
     public ResponseEntity<String> handleOldPasswordMismatchException(OldPasswordMismatchException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    
+    /* @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    } */
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<String> handleExpiredJwtException(ExpiredJwtException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("JWT has expired");
     }
 }

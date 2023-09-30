@@ -36,7 +36,7 @@ public class AuthorController {
     public ResponseEntity<List<Author>> getAllAuthors() {
         var authors = authorService.getAllAuthors();
         if (authors.isEmpty())
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         else
             return ResponseEntity.ok(authors);
     }
@@ -54,10 +54,7 @@ public class AuthorController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
-        var author = authorService.getAuthorById(id);
-        if (author == null)
-            return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(author);
+        return ResponseEntity.ok(authorService.getAuthorById(id));
     }
 
     @PostMapping()

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class OnlineBookShopApplication {
-
+	//private static final Logger logger = LoggerFactory.getLogger(OnlineBookShopApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineBookShopApplication.class, args);
 	}
