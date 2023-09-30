@@ -13,10 +13,10 @@ const ListProduct = (props) => {
             })
             .catch((error) => console.log("Error fetching book data " + error));
     }
-
+    
     useEffect(() => {
         fetchData()
-    }, [books]);
+    }, []);
 
     return (
         <div id="home-pro-products">
