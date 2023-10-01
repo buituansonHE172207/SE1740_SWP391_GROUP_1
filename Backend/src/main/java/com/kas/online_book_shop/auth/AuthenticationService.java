@@ -46,9 +46,9 @@ public class AuthenticationService {
                                 .email(request.email())
                                 .password(passwordEncoder.encode(request.password()))
                                 .role(Role.USER)
-                                .city(request.province())
+                                .province(request.province())
                                 .district(request.district())
-                                .village(request.ward())
+                                .ward(request.ward())
                                 .phone(request.ward())
                                 .address(request.address())
                                 .build();
