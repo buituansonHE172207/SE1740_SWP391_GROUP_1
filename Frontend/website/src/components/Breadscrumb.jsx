@@ -1,6 +1,6 @@
 import React from "react";
 import CollectionHeader from "./CollectionHeader";
-const Breadscrumb = () => {
+const Breadscrumb = ({label}) => {
     return (
         <>
             <section id="breadscrumb-wrapper5" className="breadscrumb-w-img">
@@ -10,11 +10,11 @@ const Breadscrumb = () => {
                     <div className="breadcrumb-content">
                         <div className="container">
                             <div className="breadcrumb-big">
-                                <h2>Collections</h2>
+                                <h2>{label}</h2>
                             </div>
                             <div className="breadcrumb-small">
                                 <a href="/" title="Trang chủ">Trang chủ</a>
-                                <span>/Collections</span>
+                                <span>/{label}</span>
                             </div>
                         </div>
                     </div>
