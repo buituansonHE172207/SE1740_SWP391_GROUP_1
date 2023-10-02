@@ -27,7 +27,7 @@ const Collection = () => {
 
     return (
         <>
-            <Breadscrumb/>
+            <Breadscrumb label='Collection'/>
             <CollectionList collections={currentPosts}/>
             <Pagination totalPosts={collections.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}/>
         </>
