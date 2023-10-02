@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.service.UserService;
@@ -19,7 +20,7 @@ import com.kas.online_book_shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:3001" })
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -63,5 +64,21 @@ public class UserController {
     @GetMapping("/by-email/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
         return ResponseEntity.ok(userService.getUserByEmail(email));
+    }
+
+    @PutMapping("/set-account-state/{id}")
+    public ResponseEntity<Void> setAccountState(
+            @PathVariable Long id,
+            @RequestParam String state) {
+            userService.setAccountState(id, state);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/set-role/{id}")
+    public ResponseEntity<Void> setRole(
+            @PathVariable Long id,
+            @RequestParam String role) {
+            userService.setRole(id, role);
+        return ResponseEntity.ok().build();
     }
 }
