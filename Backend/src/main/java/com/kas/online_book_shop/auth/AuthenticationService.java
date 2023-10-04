@@ -49,7 +49,7 @@ public class AuthenticationService {
                                 .province(request.province())
                                 .district(request.district())
                                 .ward(request.ward())
-                                .phone(request.ward())
+                                .phone(request.phone())
                                 .address(request.address())
                                 .build();
                 repository.save(user);

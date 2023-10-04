@@ -30,4 +30,6 @@ public interface BookService {
     Page<Book> getBookByState(BookState state, Pageable pageable);
 
     Page<Book> getBooksByName(String name, Pageable pageable);
+
+    void addBookToCollection(Long bookId, Long collectionId);
 }
