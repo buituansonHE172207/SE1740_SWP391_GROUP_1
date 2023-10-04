@@ -189,7 +189,7 @@ const Header = () => {
                                     authToken ? (
                                         <>
                                             <Link className="popup_form_user_btn" to={`/account`}>
-                                                <i class="fa-solid fa-user"></i>
+                                                <i className="fa-solid fa-user"></i>
                                                 Tài khoản
                                             </Link>
                                             <a className="popup_form_user_btn2" onClick={logout}>

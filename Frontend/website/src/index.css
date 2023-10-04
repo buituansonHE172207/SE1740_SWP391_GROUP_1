@@ -694,3 +694,18 @@ input[type=radio] {
   position: relative;
   background: rgba(213, 28, 36, 0.5);
 }
+
+#page-wrapper{
+  padding: 50px 0;
+}
+
+#page-wrapper h1 {
+  color: #333333;
+  padding: 0px 0px 15px 0px;
+  margin: 0px 0px 15px 0px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+hr.hr--small {
+  margin: 15px 0;
+}
