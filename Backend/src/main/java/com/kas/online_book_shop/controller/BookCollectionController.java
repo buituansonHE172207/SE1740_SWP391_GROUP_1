@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kas.online_book_shop.model.BookCollection;
 import com.kas.online_book_shop.service.BookCollectionService;
+import com.kas.online_book_shop.service.BookService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/book-collection")
 public class BookCollectionController {
     private final BookCollectionService bookCollectionService;
+    private final BookService bookService;
 
     @GetMapping("")
     public ResponseEntity<List<BookCollection>> getBookCollections() {
@@ -70,6 +72,15 @@ public class BookCollectionController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBookCollection(@PathVariable Long id) {
         bookCollectionService.deleteBookCollection(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/add-to-collection")
+    public ResponseEntity<Void> addBookToCollection(
+        @RequestParam(name = "book") Long bookId,
+        @RequestParam(name = "collection") Long collectionId
+    ) {
+        bookService.addBookToCollection(bookId, collectionId);
         return ResponseEntity.noContent().build();
     }
 

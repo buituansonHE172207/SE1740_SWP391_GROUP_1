@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.enums.BookState;
 import com.kas.online_book_shop.enums.OrderState;
+import com.kas.online_book_shop.exception.BookDuplicateException;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
+import com.kas.online_book_shop.repository.BookCollectionRepository;
 import com.kas.online_book_shop.repository.BookRepository;
 
 import jakarta.transaction.Transactional;
@@ -23,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
+    private final BookCollectionRepository collectionRepository;
 
     @Override
     public Page<Book> getAllBooks(Pageable pageable) {
@@ -90,4 +93,19 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByState(state, pageable);
     }
 
+    @Override
+    public void addBookToCollection(Long bookId, Long collectionId) {
+        var existingBook = bookRepository.findById(bookId)
+            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách tương ứng"));
+        var existingCollection = collectionRepository.findById(collectionId)
+            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy bộ sưu tập tương ứng"));
+        if (existingBook.getCollections().contains(existingCollection)) {
+            throw new BookDuplicateException("Sách này đã được thêm vào bộ sưu tập.");
+        } else {
+            existingBook.getCollections().add(existingCollection);
+        }
+
+    }
+
+    
 }
