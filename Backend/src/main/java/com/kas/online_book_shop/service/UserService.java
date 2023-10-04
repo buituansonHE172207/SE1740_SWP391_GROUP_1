@@ -15,4 +15,8 @@ public interface UserService {
     User getUserByEmail(String email);
 
     User updateUser(User user);
+
+    void setAccountState(Long userId, String state);
+
+    void setRole(Long userId, String role);
 }

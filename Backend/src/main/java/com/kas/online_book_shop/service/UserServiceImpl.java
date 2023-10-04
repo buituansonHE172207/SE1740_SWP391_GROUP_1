@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.User;
@@ -45,10 +46,29 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         var existingUser = userRepository.findById(user.getId())
             .orElseThrow(() -> new ResourceNotFoundException("Khong tim thay user tuong ung"));
-        user.setRole(existingUser.getRole());
-        return userRepository.save(user);
+        existingUser.setAddress(user.getAddress());
+        existingUser.setFullName(user.getFullName());
+        existingUser.setProvince(user.getProvince());
+        existingUser.setDistrict(user.getDistrict());
+        existingUser.setWard(user.getWard());
+        existingUser.setPhone(user.getPhone());
+        existingUser.setAddress(user.getAddress());
+        return existingUser;
+    }
+
+    @Override
+    public void setAccountState(Long userId, String state) {
+        var existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tai khoan."));
+        existingUser.setState(AccountState.valueOf(state));
+    }
+
+    @Override
+    public void setRole(Long userId, String role) {
+        var existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tai khoan."));
+        existingUser.setRole(Role.valueOf(role));
     }
 
     
-
 }
