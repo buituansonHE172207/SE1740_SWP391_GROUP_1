@@ -46,9 +46,14 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         var existingUser = userRepository.findById(user.getId())
             .orElseThrow(() -> new ResourceNotFoundException("Khong tim thay user tuong ung"));
-        user.setRole(existingUser.getRole());
-        user.setEmail(existingUser.getEmail());
-        return userRepository.save(user);
+        existingUser.setAddress(user.getAddress());
+        existingUser.setFullName(user.getFullName());
+        existingUser.setProvince(user.getProvince());
+        existingUser.setDistrict(user.getDistrict());
+        existingUser.setWard(user.getWard());
+        existingUser.setPhone(user.getPhone());
+        existingUser.setAddress(user.getAddress());
+        return existingUser;
     }
 
     @Override
