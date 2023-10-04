@@ -10,9 +10,8 @@ const SelectAddress = ({label, options = null, name, setValue, setName}) => {
       };
   return (
     <div>
-        <label htmlFor="select-address">{label}</label>
         <FormSelect name={name} onChange={handleSelectChange}>
-            <option value=''> {`--Chọn ${label}--`} </option>
+            <option value=''> {`--${label}--`} </option>
             {
                 options?.map(option => {
                     return (

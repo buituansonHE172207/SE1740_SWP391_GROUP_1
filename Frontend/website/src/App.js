@@ -6,11 +6,12 @@ import Collection from './components/Collection/Collection';
 import BooksByCollection from './components/Collection/BooksByCollection';
 import ProductDetail from './components/Product/ProductDetail';
 import Profile from './components/User/Profile';
+import Footer from './components/Footer';
 function App() {
   return (
     <div>
       <Router>
-      <Header />
+        <Header />
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/collections' Component={Collection}></Route>
@@ -18,6 +19,7 @@ function App() {
           <Route path='/products/:id' Component={ProductDetail}></Route>
           <Route path='/account' Component={Profile}></Route>
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );

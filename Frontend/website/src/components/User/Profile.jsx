@@ -108,14 +108,10 @@ const Profile = () => {
     else{
       setErrors({...errors, passwordError: false})
     }
-    if (province_name !== null && district_name !== null && ward_name !== null && province_name !== undefined) {
-      setProfileData((prevProfileData) => ({
-        ...prevProfileData,
-        province: province_name,
-        district: district_name,
-        ward: ward_name,
-      }));
-
+    if(province_name && district_name && ward_name){
+      profileData.province = province_name
+      profileData.district = district_name
+      profileData.ward = ward_name
     }
     updateUser(profileData).then(res => {
       if (res.status === 200) {
@@ -149,7 +145,7 @@ const Profile = () => {
                         <Form.Label>Họ tên</Form.Label>
                         <Form.Control
                           type="text"
-                          name="name"
+                          name="fullName"
                           value={profileData.fullName}
                           onChange={handleProfileChange}
                           style={{ marginBottom: '10px' }}
@@ -180,7 +176,7 @@ const Profile = () => {
                         />
                         <Row>
                           <Col lg={12} style={{marginBottom : '10px'}}>
-                            <b>{profileData.province}</b>
+                            <label htmlFor="select-address">Tỉnh/Thành phố:</label>
                             <SelectAddress
                               reset={reset}
                               options={provinces}
@@ -188,12 +184,12 @@ const Profile = () => {
                               setValue={setProvince}
                               setName={setProvinceName}
                               name="su_province"
-                              label={'Tỉnh/Thành phố'}
+                              label={` ${profileData.province}`}
                               style={{ marginBottom: '10px' }}
                             />
                           </Col>
                           <Col lg={12} style={{marginBottom : '10px'}}>
-                            <b>{profileData.district}</b>
+                          <label htmlFor="select-address">Quận/Huyện:</label>
                             <SelectAddress
                               reset={reset}
                               options={districts}
@@ -201,18 +197,18 @@ const Profile = () => {
                               setValue={setDistrict}
                               setName={setDistrictName}
                               name="su_district"
-                              label={'Quận/Huyện'}
+                              label={`${profileData.district}`}
                             />
                           </Col>
                           <Col lg={12} style={{marginBottom : '10px'}}>
-                            <b>{profileData.ward}</b>
+                          <label htmlFor="select-address">Phường/Xã:</label>
                             <SelectAddress
                               reset={reset}
                               options={wards}
                               value={ward}
                               setValue={setWard}
                               setName={setWardName}
-                              label={'Phường/Xã'}
+                              label={` ${profileData.ward}`}
                               name="su_ward"
                             />
                           </Col>

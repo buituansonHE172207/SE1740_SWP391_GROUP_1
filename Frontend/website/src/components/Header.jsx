@@ -85,9 +85,9 @@ const Header = () => {
             Cookies.set('authToken', res.data.token)
             window.location.reload()
         })
-        .catch(err => {
-            setError((prevData) => ({ ...prevData, loginError: true }))
-        })
+            .catch(err => {
+                setError((prevData) => ({ ...prevData, loginError: true }))
+            })
     }
     const handleSignUp = (event) => {
         event.preventDefault()
@@ -113,16 +113,16 @@ const Header = () => {
             Cookies.set('authToken', res.data.token)
             window.location.reload()
         })
-        .catch(err => {
-            setError((prevData) => ({ ...prevData, existError: true }))
-        })
+            .catch(err => {
+                setError((prevData) => ({ ...prevData, existError: true }))
+            })
     }
 
     const logout = () => {
         Cookies.remove('authToken')
         window.location.reload()
     }
-    
+
     return (
         <header id="header">
             <div className="header-top medium">
@@ -181,9 +181,9 @@ const Header = () => {
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div className="col-lg-4">
-                            
+
                             <div className="hd-account">
                                 {
                                     authToken ? (
@@ -210,7 +210,7 @@ const Header = () => {
                                         </>
                                     )
                                 }
-                                
+
                             </div>
                             <div className="wishlist_btn">
                                 <div id="onAppWishList_btn_page">
@@ -287,12 +287,15 @@ const Header = () => {
                                 <div className="form-group mb-3">
                                     <Row>
                                         <Col lg={6}>
+                                            <label htmlFor="select-address">Tỉnh/Thành phố:</label>
                                             <SelectAddress reset={reset} options={provinces} value={province} setValue={setProvince} setName={setProvinceName} name='su_province' label={'Tỉnh/Thành phố'} />
                                         </Col>
                                         <Col lg={6}>
+                                            <label htmlFor="select-address">Quận/Huyện:</label>
                                             <SelectAddress reset={reset} options={districts} value={district} setValue={setDistrict} setName={setDistrictName} name='su_district' label={'Quận/Huyện'} />
                                         </Col>
                                         <Col lg={6}>
+                                            <label htmlFor="select-address">Phường/Xã:</label>
                                             <SelectAddress reset={reset} options={wards} value={ward} setValue={setWard} setName={setWardName} label={'Phường/Xã'} name='su_ward' />
                                         </Col>
                                     </Row>
@@ -309,7 +312,7 @@ const Header = () => {
                         </form>
                     </div>
                 </div>
-            </div> 
+            </div>
         </header>
     )
 }
