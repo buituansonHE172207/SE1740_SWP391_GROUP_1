@@ -64,7 +64,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AccountState state;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
@@ -82,7 +82,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore

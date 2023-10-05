@@ -61,5 +61,4 @@ public class PostCategoryController {
         postCategoryService.deletePostCategory(id);
         return ResponseEntity.noContent().build();
     }
-    
 }
