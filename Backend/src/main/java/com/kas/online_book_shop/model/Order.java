@@ -1,9 +1,9 @@
 package com.kas.online_book_shop.model;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kas.online_book_shop.enums.OrderState;
 import com.kas.online_book_shop.enums.PaymentState;
 import com.kas.online_book_shop.enums.ShippingState;
@@ -58,6 +58,8 @@ public class Order {
 
     private Long shippingPrice;
 
+    private String phone;
+
     @Lob
     private String customerNote;
     
@@ -77,9 +79,9 @@ public class Order {
 
     private String email;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @JsonIgnore
-    private Set<OrderDetail> orderDetails;
+    @JsonManagedReference
+    private List<OrderDetail> orderDetails;
 }

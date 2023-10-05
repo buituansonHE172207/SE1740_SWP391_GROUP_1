@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
+import com.kas.online_book_shop.exception.InsufficientStockException;
 import com.kas.online_book_shop.exception.InvalidValueException;
 import com.kas.online_book_shop.exception.OldPasswordMismatchException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
@@ -34,6 +35,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handlePropertyReferenceException(PropertyReferenceException e) {
         String errorMessage = "Lỗi: Thuộc tính không hợp lệ.";
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InsufficientStockException.class)
+    public ResponseEntity<String> handleInsufficientStockException(PropertyReferenceException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidValueException.class)
