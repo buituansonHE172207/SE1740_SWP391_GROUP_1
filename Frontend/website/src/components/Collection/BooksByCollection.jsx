@@ -56,9 +56,9 @@ const BooksByCollection = () => {
             <div key={book.id} className='col-lg-3 mb-4'>
                 <div className="product-item">
                     <div className="product-img">
-                        <a href="#">
+                        <Link to={`/products/${book.id}`}>
                             <img src={book.images[0].link} alt={book.title} />
-                        </a>
+                        </Link>
                         <div className="tag-saleoff text-center">
                             -{book.discount * 100}%
                         </div>
@@ -66,7 +66,7 @@ const BooksByCollection = () => {
                 </div>
                 <div className="product-info">
                     <div className="product-title">
-                        <a className="text-container" href="#">{book.title}</a>
+                        <Link className="text-container" to={`/products/${book.id}`}>{book.title}</Link>
                     </div>
                     <div className="product-price">
                         <span className="current-price">{book.salePrice.toLocaleString()}₫</span>

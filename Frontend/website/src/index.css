@@ -694,3 +694,70 @@ input[type=radio] {
   position: relative;
   background: rgba(213, 28, 36, 0.5);
 }
+
+#page-wrapper{
+  padding: 50px 0;
+}
+
+#page-wrapper h1 {
+  color: #333333;
+  padding: 0px 0px 15px 0px;
+  margin: 0px 0px 15px 0px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+hr.hr--small {
+  margin: 15px 0;
+}
+
+footer .ft-content {
+  padding: 30px 0px 0px 0px;
+  color: #333333;
+  border-top: 1px solid #e6e6e6;
+  position: relative;
+}
+
+footer .ft-content .ft-nav {
+  margin-bottom: 30px;
+}
+
+footer .ft-content h4 {
+  margin: 0px 0px 15px 0px;
+  padding: 0px;
+  color: #333333;
+}
+
+li {
+  margin-bottom: 0.25em;
+}
+
+footer .ft-content .ft-nav ul li a {
+  display: inline-block;
+  position: relative;
+  color: #333333;
+}
+
+footer .ft-content .ft-contact {
+  margin-bottom: 30px;
+}
+
+footer .ft-content .ft-contact > div {
+  margin-bottom: 0.3em;
+}
+
+.ft-social-network a {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.no-bullet {
+  list-style: none outside;
+}
+
+footer .ft-content .ft-subscribe {
+  margin-bottom: 30px;
+}
+
+footer .ft-content .ft-subscribe .ft-sub-desc {
+  margin-bottom: 15px;
+}

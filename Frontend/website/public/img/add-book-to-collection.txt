@@ -1,0 +1,102 @@
+{
+    "id": 2,
+    "user": {
+        "id": 2,
+        "fullName": "Jane Smith",
+        "province": "Los Angeles",
+        "district": "Downtown",
+        "ward": "Westwood",
+        "address": "456 Elm St",
+        "phone": "9876543210",
+        "email": "user2@email.com",
+        "role": null,
+        "state": "ACTIVE",
+        "enabled": true,
+        "accountNonLocked": true,
+        "username": "user2@email.com",
+        "accountNonExpired": true,
+        "credentialsNonExpired": true
+    },
+    "fullName": "Jane Smith",
+    "province": "Los Angeles",
+    "district": "Downtown",
+    "ward": "Westwood",
+    "address": "456 Elm St",
+    "totalPrice": 5,
+    "shippingPrice": 5,
+    "phone": null,
+    "customerNote": "",
+    "shopNote": "Waiting...",
+    "state": "CART",
+    "paymentState": "PENDING",
+    "shippingState": "NOT_SHIPPED",
+    "created": "2023-03-26T11:30:00",
+    "email": "user2@email.com",
+    "orderDetails": [
+        {
+            "id": 2,
+            "book": {
+                "id": 2,
+                "title": "Yona - Công chúa bình minh - Tập 33 (Tặng Kèm Postcard)",
+                "publisher": {
+                    "id": 1,
+                    "name": "Nhà Xuất Bản Kim Đồng",
+                    "website": null
+                },
+                "authors": [
+                    {
+                        "id": 2,
+                        "name": "Mizuho Kusana",
+                        "company": null
+                    }
+                ],
+                "collections": [
+                    {
+                        "id": 14,
+                        "name": "TUỔI TRƯỞNG THÀNH(TRÊN 18 TUỔI)",
+                        "type": "ĐỘ TUỔI",
+                        "isDisplay": true
+                    },
+                    {
+                        "id": 6,
+                        "name": "MANGA-COMIC",
+                        "type": "THỂ LOẠI",
+                        "isDisplay": true
+                    }
+                ],
+                "description": null,
+                "stock": 5,
+                "sold": 5,
+                "publicationDate": "2021-08-15",
+                "size": "11.3x17.6 cm",
+                "weight": 150,
+                "price": 25000,
+                "language": {
+                    "id": 1,
+                    "name": "Tiếng Anh"
+                },
+                "page": 176,
+                "cover": "Bìa mềm",
+                "discount": 0.2,
+                "state": "ACTIVE",
+                "category": {
+                    "id": 1,
+                    "name": "Manga - Comic"
+                },
+                "images": [
+                    {
+                        "id": 2,
+                        "link": "https://product.hstatic.net/200000343865/product/33_c41b6baaa61d479f9846d9f65d09e717_master.jpg",
+                        "description": "Cover Image"
+                    }
+                ],
+                "rating": 0.0,
+                "isbn": "978-604-2-28453-0",
+                "salePrice": 20000
+            },
+            "amount": 1,
+            "originalPrice": 20,
+            "salePrice": 20
+        }
+    ]
+}
