@@ -1,24 +1,24 @@
 import React from 'react'
-const Pagination = ({totalPosts, postsPerPage, setCurrentPage}) => {
-    const [currentPage, setCurrentPageState] = React.useState(1);
-    let pages = []
-
-    for (let i = 1; i <= Math.ceil(totalPosts/postsPerPage); i++){
-        pages.push(i)
-    }
-
-  return (
-    <div>
-        <div id='pagination' className='text-center'>
-            {
-                pages.map((page, index) => {
-                    return <span key={index} onClick={() => {setCurrentPage(page); setCurrentPageState(page)}} className={`page ${page === currentPage ? 'current' : ''}`}>{page}</span>
-                })
-            }
+import { paginationRange } from '../utils/appUtils';
+const Pagination = (props) => {
+    let array = paginationRange(props.totalPage, props.page, props.limit, props.siblings)
+    return (
+        <div>
+            <ul id='pagination' className='pagination pagination-md justify-content-center'>
+                <li onClick={() => {props.setCurrentPage('&laquo;')}} className="page page-item"><span className="page-link">&laquo;</span></li>
+                <li onClick={() => {props.setCurrentPage('&lsaquo;')}} className="page page-item"><span className="page-link">&lsaquo;</span></li>
+                {
+                    array.map((value, i) =>
+                        <li key={i} onClick={() => props.setCurrentPage(value)} className={value === props.page ? "page page-item active page-link" : "page page-item page-link"}><span className="">{value}</span></li>
+                    )
+                }
+                <li onClick={() => {props.setCurrentPage('&rsaquo;')}} className="page page-item"><span className="page-link">&rsaquo;</span></li>
+                <li onClick={() => {props.setCurrentPage('&raquo;')}} className="page page-item"><span className="page-link">&raquo;</span></li>
+            </ul>
         </div>
-        
-    </div>
-  )
+
+
+    )
 }
 
 export default Pagination
