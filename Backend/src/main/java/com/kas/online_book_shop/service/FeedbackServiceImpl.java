@@ -69,6 +69,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         var existingFeedback = getFeedbackById(id);
         existingFeedback.setState(FeedbackState.ANSWERED);
         if (feedback != null)
+            feedback.setState(FeedbackState.ANSWERED);
+            feedback.setCreatedAt(LocalDateTime.now());
             feedbackRepository.save(feedback);
     }
 

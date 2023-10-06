@@ -93,7 +93,7 @@ public class BookController {
 
     @GetMapping("/sorted-and-paged/by-collection")
     public ResponseEntity<Page<Book>> getBooksByCollectionAndPriceBetween(
-            @RequestParam BookCollection collection,
+            @RequestParam(required = false) BookCollection collection,
             @RequestParam(defaultValue = "0") int min,
             @RequestParam(defaultValue = "0") int max,
             @RequestParam(defaultValue = "id") String sortBy,

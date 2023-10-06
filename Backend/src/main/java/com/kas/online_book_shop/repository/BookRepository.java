@@ -12,24 +12,26 @@ import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Page<Book> findAll(Pageable pageable);
+        Page<Book> findAll(Pageable pageable);
 
-    Page<Book> findByCategoryInAndStateAndPriceBetween(List<BookCategory> categories, BookState bookState, int min,
-            int max, Pageable pageable);
+        Page<Book> findByCategoryInAndStateAndPriceBetween(List<BookCategory> categories, BookState bookState, int min,
+                        int max, Pageable pageable);
 
-    Page<Book> findByCategoryInAndState(List<BookCategory> categories, BookState bookState, int min, int max,
-            Pageable pageable);
+        Page<Book> findByCategoryInAndState(List<BookCategory> categories, BookState bookState, int min, int max,
+                        Pageable pageable);
 
-    Page<Book> findByCollectionsAndStateAndPriceBetween(BookCollection collection, BookState bookState, int min,
-            int max, Pageable pageable);
+        Page<Book> findByCollectionsAndStateAndPriceBetween(BookCollection collection, BookState bookState, int min,
+                        int max, Pageable pageable);
 
-    Page<Book> findByCollectionsAndPriceBetween(BookCollection collection, int min, int max, Pageable pageable);
+        Page<Book> findByStateAndPriceBetween(BookState bookState, int min, int max, Pageable pageable);
 
-    Page<Book> findByTitleContainingAndState(String title, BookState bookState, Pageable pageable);
+        Page<Book> findByCollectionsAndPriceBetween(BookCollection collection, int min, int max, Pageable pageable);
 
-    Page<Book> findByTitleContaining(String title, Pageable pageable);
+        Page<Book> findByTitleContainingAndState(String title, BookState bookState, Pageable pageable);
 
-    Page<Book> findByState(BookState bookState, Pageable pageable);
+        Page<Book> findByTitleContaining(String title, Pageable pageable);
 
-    Boolean existsByISBN(String ISBN);
+        Page<Book> findByState(BookState bookState, Pageable pageable);
+
+        Boolean existsByISBN(String ISBN);
 }

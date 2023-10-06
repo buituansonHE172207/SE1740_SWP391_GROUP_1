@@ -250,6 +250,7 @@ const Header = () => {
                             </div>
                             <div className="modal-footer justify-content-start">
                                 <button className="btn-signin">Đăng nhập</button>
+                                <a href="/forgot-password">Quên mật khẩu</a>
                             </div>
                             <div>
                                 {error.loginError && <p className="text-danger">Tài khoản hoặc mật khẩu không đúng</p>}
