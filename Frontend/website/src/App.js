@@ -7,6 +7,8 @@ import BooksByCollection from './components/Collection/BooksByCollection';
 import ProductDetail from './components/Product/ProductDetail';
 import Profile from './components/User/Profile';
 import Footer from './components/Footer';
+import ResetPassword from './components/User/ResetPassword';
+import ForgotPassword from './components/User/ForgotPassword';
 function App() {
   return (
     <div>
@@ -18,6 +20,8 @@ function App() {
           <Route path='/collections/:id' Component={BooksByCollection}></Route>
           <Route path='/products/:id' Component={ProductDetail}></Route>
           <Route path='/account' Component={Profile}></Route>
+          <Route path='/reset-password/:token' Component={ResetPassword}></Route>
+          <Route path='/forgot-password' Component={ForgotPassword}></Route>
         </Routes>
         <Footer/>
       </Router>
