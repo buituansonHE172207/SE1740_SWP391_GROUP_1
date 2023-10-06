@@ -74,8 +74,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<Book> getBooksByCollectionAndPriceRanges(BookCollection collection, int min, int max,
             Pageable pageable) {
-        return bookRepository.findByCollectionsAndStateAndPriceBetween(collection, BookState.ACTIVE, min, max,
-                pageable);
+        if (collection != null)
+            return bookRepository.findByCollectionsAndStateAndPriceBetween(collection, BookState.ACTIVE, min, max,
+                    pageable);
+        else
+            return bookRepository.findByStateAndPriceBetween(BookState.ACTIVE, min, max,  pageable);
     }
 
     @Override
@@ -96,9 +99,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public void addBookToCollection(Long bookId, Long collectionId) {
         var existingBook = bookRepository.findById(bookId)
-            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách tương ứng"));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách tương ứng"));
         var existingCollection = collectionRepository.findById(collectionId)
-            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy bộ sưu tập tương ứng"));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy bộ sưu tập tương ứng"));
         if (existingBook.getCollections().contains(existingCollection)) {
             throw new BookDuplicateException("Sách này đã được thêm vào bộ sưu tập.");
         } else {
@@ -107,5 +110,4 @@ public class BookServiceImpl implements BookService {
 
     }
 
-    
 }
