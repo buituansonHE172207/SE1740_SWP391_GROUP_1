@@ -8,7 +8,7 @@ pipeline {
                 checkout scm
             }
         }
-        
+
         stage('Build and Push Docker Images') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/'){
@@ -45,10 +45,7 @@ pipeline {
     
     post {
         always {
-            // Cleanup - stop and remove the Docker Compose stack
-            script {
-                sh "docker-compose -f docker-compose.yml -p myapp down"
-            }
+            cleanWs()
         }
     }
 }
