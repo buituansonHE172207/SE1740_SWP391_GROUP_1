@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your source code from your version control system
+                checkout scm
+            }
+        }
+        
+        stage('Build and Push Docker Images') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/'){
+                script {
+                    def dockerImageTag = "lnguyennb"
+                    
+                    // Build and tag the API Docker image
+                    sh "docker build -t api:${dockerImageTag} ./Backend/"
+                    
+                    // Build and tag the Website Docker image
+                    sh "docker build -t website:${dockerImageTag} ./Frontend/website"
+                    
+                    // Build and tag the Admin Docker image
+                    sh "docker build -t admin:${dockerImageTag} ./Frontend/admin"
+                    
+                    // // Push the Docker images to a registry (e.g., Docker Hub)
+                    // sh "docker push api:${dockerImageTag}"
+                    // sh "docker push website:${dockerImageTag}"
+                    // sh "docker push admin:${dockerImageTag}"
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy Docker Compose') {
+            steps {
+                script {
+                    // Deploy the Docker Compose stack
+                    sh "docker-compose -f docker-compose.yml -p myapp up -d"
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Cleanup - stop and remove the Docker Compose stack
+            script {
+                sh "docker-compose -f docker-compose.yml -p myapp down"
+            }
+        }
+    }
+}

@@ -1,23 +1,5 @@
 version: "3.8"
 services:
-  # db:
-  #   image: mcr.microsoft.com/azure-sql-edge
-  #   container_name: azuresqledge
-  #   ports:
-  #     - "1433:1433"
-  #   environment:
-  #     - "ACCEPT_EULA=1"
-  #     - "MSSQL_SA_PASSWORD=yourStrong(!)Password"
-  #   cap_add:
-  #     - SYS_PTRACE
-  #   volumes:
-  #     - ./DB:/scripts
-  #   command:
-  #     [
-  #       "bash",
-  #       "-c",
-  #       "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $MSSQL_SA_PASSWORD -d master -i /scripts/scripts.sql"
-  #     ]
   api:
     build: ./Backend/
     ports:
