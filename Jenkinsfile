@@ -11,18 +11,16 @@ pipeline {
 
         stage('Build and Push Docker Images') {
             steps {
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/'){
                 script {
-                    def dockerImageTag = "lnguyennb"
                     
                     // Build and tag the API Docker image
-                    sh "docker build -t api:${dockerImageTag} ./Backend/"
+                    sh "docker build -t api:lnguyennb ./Backend/"
                     
                     // Build and tag the Website Docker image
-                    sh "docker build -t website:${dockerImageTag} ./Frontend/website"
+                    sh "docker build -t website:lnguyennb ./Frontend/website"
                     
                     // Build and tag the Admin Docker image
-                    sh "docker build -t admin:${dockerImageTag} ./Frontend/admin"
+                    sh "docker build -t admin:lnguyennb ./Frontend/admin"
                     
                     // // Push the Docker images to a registry (e.g., Docker Hub)
                     // sh "docker push api:${dockerImageTag}"
@@ -31,7 +29,7 @@ pipeline {
                     }
                 }
             }
-        }
+        
         
         stage('Deploy Docker Compose') {
             steps {
