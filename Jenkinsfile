@@ -1,6 +1,15 @@
 pipeline {
     agent any
     
+    stage("Initialize") {
+            steps {
+                script {
+                    def dockerHome = tool 'docker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
+
     stages {
         stage('Checkout') {
             steps {
@@ -29,7 +38,6 @@ pipeline {
                     }
                 }
             }
-        
         
         stage('Deploy Docker Compose') {
             steps {
