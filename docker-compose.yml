@@ -4,11 +4,21 @@ services:
     build: ./Backend/
     ports:
       - "8081:8081"
+    networks:
+      - localhost
   website:
     build: ./Frontend/website
     ports:
       - "3000:3000"
+    networks:
+      - localhost
   admin:
     build: ./Frontend/admin
     ports:
       - "3001:3001"
+    networks:
+      - localhost
+
+networks:
+  localhost:
+    driver: bridge
