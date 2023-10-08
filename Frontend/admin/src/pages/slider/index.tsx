@@ -1,23 +1,24 @@
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input, Modal, Space, Table } from "antd";
-import { ColumnsType } from "antd/es/table";
+import { Button, Card, Form, Image, Input, Modal, Space } from "antd";
 import { useEffect, useState } from "react";
 import {
-  IBookCategory,
-  addBookCategory,
-  deleteBookCategory,
-  getAllBookCategory,
-  updateBookCategory,
-} from "../../services/book.service";
+  ISlider,
+  addSlider,
+  deleteSlider,
+  getAllSlider,
+  updateSlider,
+} from "../../services/slider.service";
+import Table, { ColumnsType } from "antd/es/table";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import DragAndDropUpload from "../../components/upload/DragAndDropUpload";
 
-const BookCategoryPage = () => {
+const SliderPage = () => {
   const [formInstance] = Form.useForm();
-  const [dataSource, setDataSource] = useState<IBookCategory[]>([]);
+  const [dataSource, setDataSource] = useState<ISlider[]>([]);
   const [isShowPopup, setShowPopup] = useState<boolean>(false);
   const [isShowConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
-  const [selectedRow, setSelectedRow] = useState<IBookCategory | undefined>();
+  const [selectedRow, setSelectedRow] = useState<ISlider | undefined>();
 
-  const columns: ColumnsType<IBookCategory> = [
+  const columns: ColumnsType<ISlider> = [
     {
       title: "STT",
       dataIndex: "id",
@@ -25,12 +26,30 @@ const BookCategoryPage = () => {
       render: (text, record, index) => index + 1,
     },
     {
-      title: "Tên loại sách",
-      dataIndex: "name",
-      key: "name",
+      title: "Tiêu đề",
+      dataIndex: "title",
+      key: "title",
     },
     {
-      key: "action",
+      title: "Hình ảnh",
+      dataIndex: "imageUrl",
+      key: "imageUrl",
+      render(id, record, index) {
+        return <Image
+        width={200}
+        height={200}
+        src={record.imageUrl}
+        // fallback={}
+      />
+      },
+    },
+    {
+      title: "Liên kết",
+      dataIndex: "backLink",
+      key: "backLink",
+    },
+
+    {
       align: "right",
       dataIndex: "id",
       render(id, record, index) {
@@ -61,7 +80,7 @@ const BookCategoryPage = () => {
   useEffect(() => {
     if (!isShowPopup) {
       (async () => {
-        const res = await getAllBookCategory();
+        const res = await getAllSlider();
         setDataSource(res);
       })();
     }
@@ -79,9 +98,9 @@ const BookCategoryPage = () => {
       await formInstance.validateFields();
       const fieldValue = formInstance.getFieldsValue();
       if (selectedRow) {
-        await updateBookCategory({ ...fieldValue, id: selectedRow.id });
+        await updateSlider({ ...fieldValue, id: selectedRow.id });
       } else {
-        await addBookCategory(fieldValue);
+        await addSlider(fieldValue);
       }
       formInstance.resetFields();
       handleClose();
@@ -91,7 +110,7 @@ const BookCategoryPage = () => {
   const handleDelete = async () => {
     try {
       if (selectedRow) {
-        await deleteBookCategory(selectedRow.id.toString());
+        await deleteSlider(selectedRow.id.toString());
         handleClose();
       }
     } catch (error) {}
@@ -110,23 +129,27 @@ const BookCategoryPage = () => {
               type="primary"
               onClick={() => setShowPopup(true)}
             >
-              Thêm Danh mục sách
+              Thêm Slider
             </Button>
             {/* <Input.Search
-            placeholder="Nhập danh mục sách muốn tìm kiếm"
-            allowClear
-            enterButton="Tìm kiếm"
-            size="large"
-            // onSearch={onSearch}
-          /> */}
+                  placeholder="Nhập slider muốn tìm kiếm"
+                  allowClear
+                  enterButton="Tìm kiếm"
+                  size="large"
+                  // onSearch={onSearch}
+                /> */}
           </Space>
         }
       >
-        <Table dataSource={dataSource} columns={columns} rowKey={(record) => record.id}/>
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          rowKey={(record) => record.id}
+        />
       </Card>
 
       <Modal
-        title={`${selectedRow ? "Cập nhật" : "Thêm"} danh mục sách`}
+        title={`${selectedRow ? "Cập nhật" : "Thêm"} slider`}
         open={isShowPopup}
         cancelText="Hủy"
         okText={`${selectedRow ? "Cập nhật" : "Thêm"}`}
@@ -136,22 +159,47 @@ const BookCategoryPage = () => {
       >
         <Form form={formInstance} layout="vertical">
           <Form.Item
-            name="name"
-            label="Tên danh mục sách"
-            rules={[
-              { required: true, message: "Hãy nhập vào tên danh mục sách" },
-            ]}
+            name="title"
+            label="Tiêu đề"
+            rules={[{ required: true, message: "Hãy nhập vào tiêu đề slider" }]}
           >
             <Input
               autoComplete="false"
               size="large"
-              placeholder="Nhập vào tên danh mục sách"
+              placeholder="Nhập vào tiêu đề slider"
+            />
+          </Form.Item>
+          <Form.Item
+            name="imageUrl"
+            label="Hình ảnh"
+            rules={[{ required: true, message: "Hãy chọn hình ảnh" }]}
+            getValueFromEvent={() => "src"}
+          >
+            <DragAndDropUpload multiple={false} />
+          </Form.Item>
+          <Form.Item
+            name="backLink"
+            label="Đường dẫn"
+            rules={[{ required: true, message: "Hãy nhập vào đường dẫn" }]}
+          >
+            <Input
+              autoComplete="false"
+              size="large"
+              placeholder="Nhập vào đường dẫn"
+            />
+          </Form.Item>
+
+          <Form.Item name="description" label="Mô tả">
+            <Input.TextArea
+              autoComplete="false"
+              size="large"
+              placeholder="Nhập vào mô tả"
             />
           </Form.Item>
         </Form>
       </Modal>
       <Modal
-        title="Xoá danh mục sách"
+        title="Xoá slider"
         open={isShowConfirmDelete}
         cancelText="Hủy"
         okText="Xoá"
@@ -160,10 +208,10 @@ const BookCategoryPage = () => {
         onOk={handleDelete}
         onCancel={handleClose}
       >
-        Bạn có đồng ý xóa danh mục sách {selectedRow?.name} hay không?
+        Bạn có đồng ý xóa slider {selectedRow?.title} hay không?
       </Modal>
     </>
   );
 };
 
-export default BookCategoryPage;
+export default SliderPage;

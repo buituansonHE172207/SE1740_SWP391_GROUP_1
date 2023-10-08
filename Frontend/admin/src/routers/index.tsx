@@ -1,4 +1,6 @@
+import { URL_CONFIG } from "../config/url.config";
 import BookCategoryPage from "../pages/book-category";
+import SliderPage from "../pages/slider";
 
 export interface RouteMenu {
   label: React.ReactNode;
@@ -14,18 +16,25 @@ const menu: RouteMenu[] = [
   {
     label: "Quản lý sách",
     element: null,
-    key: "1",
-    path: "book",
+    key: "book",
+    path: URL_CONFIG.BOOK,
     children: [
       {
-        path: "book-category",
         label: "Quản lý danh mục sách",
         element: <BookCategoryPage />,
-        key: "1-1",
+        key: "book-category",
+        path: URL_CONFIG.BOOK_CATEGORY,
         children: [],
       },
     ],
   },
+  {
+    label: "Quản lí slider",
+    element: <SliderPage />,
+    key: "slider",
+    path: URL_CONFIG.SLIDER,
+    children: [],
+  }
 ];
 
 export default menu;
