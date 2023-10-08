@@ -4,8 +4,6 @@ services:
     build: ./Backend/
     ports:
       - "8081:8081"
-    environment:
-      DB_HOST: azuresqledge
   website:
     build: ./Frontend/website
     ports:
