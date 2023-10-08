@@ -2,17 +2,17 @@ pipeline {
     agent any
     stages{
         stage('Stop Docker compose'){
-            step{
+            steps{
                 sh 'docker-compose down'
             }
         }
         stage('Build Docker compose'){
-            step{
+            steps{
                 sh 'docker-compose build --no-cache'
             }
         }
         stage('Run Docker compose'){
-            step{
+            steps{
                 sh 'docker-compose up'
             }
         }
