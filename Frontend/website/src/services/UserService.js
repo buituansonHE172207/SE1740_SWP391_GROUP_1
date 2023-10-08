@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ACCOUNT_BASE_URL = "http://localhost:8081/api/v1/auth/";
+const ACCOUNT_BASE_URL = "localhost:8081/api/v1/auth/";
 
 const createAccount = (account) => {
     return axios.post(ACCOUNT_BASE_URL + 'register', account);
@@ -11,11 +11,11 @@ const login = (account) => {
 }
 
 const getUserInfoByEmail = (email) => {
-    return axios.get(`http://localhost:8081/api/v1/user/by-email/${email}`);
+    return axios.get(`localhost:8081/api/v1/user/by-email/${email}`);
 }
 
 const updateUser = (profile) => {
-    return axios.put("http://localhost:8081/api/v1/user", profile);
+    return axios.put("localhost:8081/api/v1/user", profile);
 }
 
 const forgetPassword = (email) => {
