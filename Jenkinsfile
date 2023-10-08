@@ -3,17 +3,17 @@ pipeline {
     stages{
         stage('Stop Docker compose'){
             steps{
-                sh '$echo ubuarm64 | sudo -S docker-compose down'
+                sh 'sudo -S <<< "ubuarm64" docker-compose down'
             }
         }
         stage('Build Docker compose'){
             steps{
-                sh '$echo ubuarm64 | sudo -S docker-compose build --no-cache'
+                sh 'sudo -S <<< "ubuarm64" docker-compose build --no-cache'
             }
         }
         stage('Run Docker compose'){
             steps{
-                sh '$echo ubuarm64 | sudo -S docker-compose up'
+                sh 'sudo -S <<< "ubuarm64" docker-compose up'
             }
         }
     }
