@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "localhost:8081/api/v1/",
+  baseURL: "http://localhost:8081/api/v1/",
 });
 
 const TOKEN = "token";

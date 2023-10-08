@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ACCOUNT_BASE_URL = "localhost:8081/api/v1/auth/";
+const ACCOUNT_BASE_URL = "http://localhost:8081/api/v1/auth/";
 
 const createAccount = (account) => {
     return axios.post(ACCOUNT_BASE_URL + 'register', account);
