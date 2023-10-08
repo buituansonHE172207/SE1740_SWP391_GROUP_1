@@ -26,6 +26,33 @@ const menu: RouteMenu[] = [
       },
     ],
   },
+
+  {
+    label: "Quản lý Bài viết",
+    element: null,
+    key: "2",
+    path: "post",
+    children: [
+      {
+        path: "post",
+        label: "Quản lý bài viết",
+        element: null,
+        key: "1-1",
+        children: [],
+      },
+      {
+        path: "post-category",
+        label: "Quản lí danh mục bài viết",
+        element: null,
+        key: "1-1",
+        children: [],
+      },
+    ],
+  },
+
+
+
+
 ];
 
 export default menu;
