@@ -11,11 +11,11 @@ const login = (account) => {
 }
 
 const getUserInfoByEmail = (email) => {
-    return axios.get(`localhost:8081/api/v1/user/by-email/${email}`);
+    return axios.get(`http://localhost:8081/api/v1/user/by-email/${email}`);
 }
 
 const updateUser = (profile) => {
-    return axios.put("localhost:8081/api/v1/user", profile);
+    return axios.put("http://localhost:8081/api/v1/user", profile);
 }
 
 const forgetPassword = (email) => {
