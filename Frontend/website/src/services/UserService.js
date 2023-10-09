@@ -18,4 +18,12 @@ const updateUser = (profile) => {
     return axios.put("http://localhost:8081/api/v1/user", profile);
 }
 
-export {createAccount, login, getUserInfoByEmail, updateUser}
+const forgetPassword = (email) => {
+    return axios.post(ACCOUNT_BASE_URL + 'forgot-password', email);
+}
+
+const resetPassword = (resetData) => {
+    return axios.post(ACCOUNT_BASE_URL + 'reset-password', resetData);
+}
+
+export {createAccount, login, getUserInfoByEmail, updateUser, forgetPassword, resetPassword}

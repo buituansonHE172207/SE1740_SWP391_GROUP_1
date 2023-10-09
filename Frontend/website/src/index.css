@@ -417,31 +417,6 @@ span.original-price {
   width: -webkit-fill-available;
 }
 
-#pagination span {
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  margin: 5px;
-}
-
-#pagination span:hover {
-  padding: 0px !important;
-  color: #fff;
-  background: #d51c24;
-  border: 1px solid #d51c24;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-#pagination>span.current {
-  padding: 0px !important;
-  color: #fff;
-  background: #d51c24;
-  border: 1px solid #d51c24;
-  border-radius: 3px;
-}
-
 .breadscrumb-w-img>img {
   width: -webkit-fill-available;
 }
