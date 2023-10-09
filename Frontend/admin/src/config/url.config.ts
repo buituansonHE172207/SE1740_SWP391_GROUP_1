@@ -1,0 +1,8 @@
+export const URL_CONFIG = {
+    HOME: "/book",
+    LOGIN: "/login",
+    REGISTER: "/register",
+    BOOK_CATEGORY: "/book-category",
+    BOOK: "/book",
+    SLIDER: "/slider"
+}

@@ -13,7 +13,7 @@ const SiderApp = () => {
     const selectedKeys = getPath(
       menu.map((single) => single.children),
       matchPatch
-    );
+    );    
   return (
     <Sider
     collapsible
@@ -26,7 +26,7 @@ const SiderApp = () => {
       theme="dark"
       mode="inline"
       defaultOpenKeys={collapsed ? [] : routeMatched}
-      defaultSelectedKeys={selectedKeys}
+      defaultSelectedKeys={selectedKeys ? selectedKeys : routeMatched}
     >
       {menu.map((item, index) => {
         if (item.children.length > 0) {
