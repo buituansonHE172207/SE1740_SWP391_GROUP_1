@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.dto.OrderDetailDTO;
+import com.kas.online_book_shop.enums.OrderDetailState;
 import com.kas.online_book_shop.enums.OrderState;
 import com.kas.online_book_shop.enums.PaymentState;
 import com.kas.online_book_shop.enums.ShippingState;
@@ -96,6 +97,17 @@ public class CartServiceImpl implements CartService {
                     .build());
         }
         return existingCart;
+    }
+
+    @Override
+    public void updateCart(Order order) {
+        order.getOrderDetails().forEach(orderDetail -> {
+            if (orderDetail.getOrderDetailState().equals(OrderDetailState.NOT_AVAILABLE))
+                throw new InsufficientStockException("Một số sản phẩm hiện không khả dụng do vượt quá số lượng mua");
+        });
+        orderRepository.findById(order.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Đã có lỗi xảy ra vui lòng tải lại trang"));
+        orderRepository.save(order);
     }
 
 }
