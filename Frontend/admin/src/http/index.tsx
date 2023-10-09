@@ -4,14 +4,16 @@ const axiosInstance = axios.create({
   baseURL: "http://localhost:8081/api/v1/",
 });
 
-const TOKEN = "token";
+export const TOKEN = "token";
 
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem(TOKEN);
     const auth = token ? `Bearer ${token}` : "";
+    console.log("auth: ", auth);
+    
     if (auth) {
-      config.headers.common["Authorization"] = auth;
+      config.headers.Authorization = auth;
     }
     return config;
   },

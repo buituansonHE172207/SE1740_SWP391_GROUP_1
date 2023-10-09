@@ -79,7 +79,7 @@ public class Order {
 
     private String email;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,  orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,12 @@ public class CartController {
     @GetMapping("/by-user/{id}")
     public ResponseEntity<Order> getCartByUser(@PathVariable(name = "id") Long userId) {
         return ResponseEntity.ok(cartService.getCartByUser(userId));
+    }
+
+    @PutMapping("")
+    public ResponseEntity<Void> updateUserCart(@RequestBody Order order) {
+        cartService.updateCart(order);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/add")

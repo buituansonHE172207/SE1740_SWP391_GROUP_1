@@ -5,22 +5,24 @@ export interface IBookCategory {
     name: string;
 }
 
+const BOOK_CATEGORY_URI = "book-category";
+
 export const getAllBookCategory = async () => {
-    const response = await axiosInstance.get<IBookCategory[]>('book-category');
+    const response = await axiosInstance.get<IBookCategory[]>(BOOK_CATEGORY_URI);
     return response.data;
 };
 
 export const addBookCategory = async (params: any) => {
-    const response = await axiosInstance.post('book-category', params);
+    const response = await axiosInstance.post(BOOK_CATEGORY_URI, params);
     return response.data;
 };
 
 export const updateBookCategory = async (params: any) => {
-    const response = await axiosInstance.put('book-category', params);
+    const response = await axiosInstance.put(BOOK_CATEGORY_URI, params);
     return response.data;
 };
 
 export const deleteBookCategory = async (id: string) => {
-    const response = await axiosInstance.delete(`book-category/${id}`);
+    const response = await axiosInstance.delete(`${BOOK_CATEGORY_URI}/${id}`);
     return response.data;
 };

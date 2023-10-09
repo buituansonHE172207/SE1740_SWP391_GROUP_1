@@ -23,7 +23,7 @@ const BookCategoryPage = () => {
   const columns: ColumnsType<IBookCategory> = [
     {
       title: "STT",
-      dataIndex: "name",
+      dataIndex: "id",
       key: "id",
       render: (text, record, index) => index + 1,
     },
@@ -33,6 +33,7 @@ const BookCategoryPage = () => {
       key: "name",
     },
     {
+      key: "action",
       align: "right",
       dataIndex: "id",
       render(id, record, index) {
@@ -117,7 +118,7 @@ const BookCategoryPage = () => {
           </Space>
         }
       >
-        <Table dataSource={dataSource} columns={columns} />
+        <Table dataSource={dataSource} columns={columns} rowKey={(record) => record.id}/>
       </Card>
 
       <Modal
