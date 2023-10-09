@@ -1,6 +1,7 @@
 package com.kas.online_book_shop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.kas.online_book_shop.enums.OrderDetailState;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,5 +49,11 @@ public class OrderDetail {
     private Long originalPrice;
 
     private Long salePrice;
+
+    public OrderDetailState getOrderDetailState() {
+        if (amount > book.getStock())
+            return OrderDetailState.NOT_AVAILABLE;
+        return OrderDetailState.AVAILABLE;
+    }
 }
 
