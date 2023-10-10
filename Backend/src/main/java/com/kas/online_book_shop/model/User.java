@@ -21,6 +21,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,25 +38,32 @@ import lombok.ToString;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
+    @NotBlank
     private String fullName;
 
+    @NotBlank
     private String province;
 
+    @NotBlank
     private String district;
 
+    @NotBlank
     private String ward;
 
+    @NotBlank
     private String address;
 
+    @NotBlank
     private String phone;
 
     @Column(unique = true)
+    @NotBlank
     private String email;
 
     @JsonIgnore
+    @NotBlank
     private String password;
 
     @Enumerated(EnumType.STRING)
