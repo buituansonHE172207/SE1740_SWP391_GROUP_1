@@ -4,8 +4,8 @@ services:
     build: ./Backend/
     ports:
       - 8081:8081
-  networks:
-    - onlin
+  # network:
+  #   - onlin
 
   website:
     build: ./Frontend/website
@@ -15,10 +15,10 @@ services:
       - "3000"
     depends_on:
       - api
-    volumes:
-      - websitedata:/app/build
-    networks:
-    - onlin
+    # volumes:
+    #   - websitedata:/app/build
+    # network:
+    # - onlin
 
 
   admin:
@@ -29,44 +29,45 @@ services:
       - "3001"
     depends_on:
       - api
-    volumes:
-      - admindata:/app/build
-    networks:
-      - onlin
+    # volumes:
+    #   - admindata:/app/build
+    # network:
+    #   - onlin
 
 
-  web-server:
-    image: nginx:1.25.2-alpine
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf:/etc/letsencrypt
-    depends_on:
-      - website
-      - admin
-    networks:
-      - onlin
 
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf:/etc/letsencrypt
-    command:
-#      - renew
-       - certonly
-       - --webroot
-       - -w
-       - /var/www/certbot/
-       - --email=lnguyennb@gmail.com
-       - --agree-tos
-       - --no-eff-email
-       - -d
-       - cod3rscampus.com
+  # web-server:
+  #   image: nginx:1.25.2-alpine
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   volumes:
+  #     - ./nginx/conf/:/etc/nginx/conf.d/:ro
+  #     - ./certbot/www:/var/www/certbot/:ro
+  #     - ./certbot/conf:/etc/letsencrypt
+  #   depends_on:
+  #     - website
+  #     - admin
+  #   networks:
+  #     - onlin
 
-volumes:
-  cert_home:
+#   certbot:
+#     image: certbot/certbot:latest
+#     volumes:
+#       - ./certbot/www/:/var/www/certbot/:rw
+#       - ./certbot/conf:/etc/letsencrypt
+#     command:
+# #      - renew
+#        - certonly
+#        - --webroot
+#        - -w
+#        - /var/www/certbot/
+#        - --email=lnguyennb@gmail.com
+#        - --agree-tos
+#        - --no-eff-email
+#        - -d
+#        - cod3rscampus.com
+
+# volumes:
+#   cert_home:
 
