@@ -4,26 +4,35 @@ services:
     build: ./Backend/
     ports:
       - 8081:8081
-
+  networks:
+    - onlin
 
   website:
     build: ./Frontend/website
     ports:
       - 3000:3000
+    expose:
+      - "3000"
     depends_on:
       - api
     volumes:
       - websitedata:/app/build
+    networks:
+    - onlin
 
 
   admin:
     build: ./Frontend/admin
     ports:
       - 3001:3001
+    expose:
+      - "3001"
     depends_on:
       - api
     volumes:
       - admindata:/app/build
+    networks:
+      - onlin
 
 
   web-server:
@@ -33,12 +42,31 @@ services:
       - 443:443
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - websitedata:/usr/share/nginx/html/:ro
-      - admindata:/usr/share/nginx/adminHtml//:ro
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf:/etc/letsencrypt
     depends_on:
       - website
       - admin
-      
+    networks:
+      - onlin
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf:/etc/letsencrypt
+    command:
+#      - renew
+       - certonly
+       - --webroot
+       - -w
+       - /var/www/certbot/
+       - --email=lnguyennb@gmail.com
+       - --agree-tos
+       - --no-eff-email
+       - -d
+       - cod3rscampus.com
+
 volumes:
-    websitedata:
-    admindata:
+  cert_home:
+
