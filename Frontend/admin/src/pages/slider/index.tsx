@@ -1,5 +1,17 @@
-import { Button, Card, Form, Image, Input, Modal, Space } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Card,
+  Form,
+  Image,
+  Input,
+  Modal,
+  Space,
+  UploadFile,
+} from "antd";
+import Table, { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
+import DragAndDropUpload from "../../components/upload/DragAndDropUpload";
 import {
   ISlider,
   addSlider,
@@ -7,9 +19,6 @@ import {
   getAllSlider,
   updateSlider,
 } from "../../services/slider.service";
-import Table, { ColumnsType } from "antd/es/table";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import DragAndDropUpload from "../../components/upload/DragAndDropUpload";
 
 const SliderPage = () => {
   const [formInstance] = Form.useForm();
@@ -17,6 +26,7 @@ const SliderPage = () => {
   const [isShowPopup, setShowPopup] = useState<boolean>(false);
   const [isShowConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [selectedRow, setSelectedRow] = useState<ISlider | undefined>();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const columns: ColumnsType<ISlider> = [
     {
@@ -35,12 +45,14 @@ const SliderPage = () => {
       dataIndex: "imageUrl",
       key: "imageUrl",
       render(id, record, index) {
-        return <Image
-        width={200}
-        height={200}
-        src={record.imageUrl}
-        // fallback={}
-      />
+        return (
+          <Image
+            width={200}
+            height={200}
+            src={''}
+            // fallback={}
+          />
+        );
       },
     },
     {
@@ -87,6 +99,7 @@ const SliderPage = () => {
   }, [isShowPopup, isShowConfirmDelete]);
 
   const handleClose = () => {
+    setFileList([]);
     setShowPopup(false);
     setShowConfirmDelete(false);
     setSelectedRow(undefined);
@@ -97,14 +110,20 @@ const SliderPage = () => {
     try {
       await formInstance.validateFields();
       const fieldValue = formInstance.getFieldsValue();
+      const params = {...fieldValue, 
+        imageUrl: `${fieldValue.imageUrl.file.name}`
+      }
       if (selectedRow) {
-        await updateSlider({ ...fieldValue, id: selectedRow.id });
+        await updateSlider({ ...params, id: selectedRow.id });
       } else {
-        await addSlider(fieldValue);
+        await addSlider(params);
       }
       formInstance.resetFields();
       handleClose();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const handleDelete = async () => {
@@ -172,10 +191,31 @@ const SliderPage = () => {
           <Form.Item
             name="imageUrl"
             label="Hình ảnh"
-            rules={[{ required: true, message: "Hãy chọn hình ảnh" }]}
-            getValueFromEvent={() => "src"}
+            rules={[
+              {
+                required: true,
+                message: "Hãy chọn hình ảnh",
+                validator(rule, value, callback) {
+                  if (fileList.length === 0) {
+                    return Promise.reject("Hãy chọn hình ảnh");
+                  }
+                  return Promise.resolve();
+                },
+              },
+            ]}
           >
-            <DragAndDropUpload multiple={false} />
+            <DragAndDropUpload
+              fileList={fileList}
+              multiple={false}
+              beforeUpload={(newFile) => {
+                setFileList([newFile]);
+                return false;
+              }}
+              onRemove={() => {
+                setFileList([]);
+              }}
+              accept="image/*"
+            />
           </Form.Item>
           <Form.Item
             name="backLink"

@@ -1,7 +1,12 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Form, Input, Layout } from "antd";
-import { Link } from "react-router-dom";
+import { useForm } from "antd/es/form/Form";
+import decode from "jwt-decode";
+import { Link, useNavigate } from "react-router-dom";
 import { URL_CONFIG } from "../../config/url.config";
+import { useAuth } from "../../context/AuthContext";
+import { TOKEN } from "../../http";
+import { TokenType, register } from "../../services/auth.service";
 
 type FieldType = {
   email: string;
@@ -12,9 +17,30 @@ type FieldType = {
 };
 
 const RegisterPage = () => {
-  const [form] = Form.useForm();
-  const onFinish = (values: FieldType) => {
-    console.log(values);
+  const { login: setLogin } = useAuth();
+  const [form] = useForm();
+  const navigate = useNavigate();
+  const onFinish = async (values: FieldType) => {
+    try {
+      const res = await register(values);
+      localStorage.setItem(TOKEN, res.token);
+      const decodedToken = (await decode(res.token)) as TokenType;
+      const role = decodedToken.authorities[0].authority;
+      await setLogin(role);
+      navigate(URL_CONFIG.HOME);
+    } catch (error: any) {
+      if (error.status === 409) {
+        form.setFields([
+          {
+            name: "email",
+            value: values.email,
+            errors: [error.data],
+          },
+        ]);
+      } else {
+        console.log(error);
+      }
+    }
   };
 
   return (
