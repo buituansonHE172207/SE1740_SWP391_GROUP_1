@@ -1,73 +1,24 @@
 version: "3.3"
 services:
   api:
-    build: ./Backend/
+    image: registry.gitlab.com/nguyenlghe176558/cicd-be
     ports:
       - 8081:8081
-  # network:
-  #   - onlin
 
   website:
-    build: ./Frontend/website
+    image: registry.gitlab.com/nguyenlghe176558/cicd-fe
     ports:
       - 3000:3000
     expose:
       - "3000"
     depends_on:
       - api
-    # volumes:
-    #   - websitedata:/app/build
-    # network:
-    # - onlin
-
 
   admin:
-    build: ./Frontend/admin
+    image: registry.gitlab.com/nguyenlghe176558/cicd-admin
     ports:
       - 3001:3001
     expose:
       - "3001"
     depends_on:
       - api
-    # volumes:
-    #   - admindata:/app/build
-    # network:
-    #   - onlin
-
-
-
-  # web-server:
-  #   image: nginx:1.25.2-alpine
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   volumes:
-  #     - ./nginx/conf/:/etc/nginx/conf.d/:ro
-  #     - ./certbot/www:/var/www/certbot/:ro
-  #     - ./certbot/conf:/etc/letsencrypt
-  #   depends_on:
-  #     - website
-  #     - admin
-  #   networks:
-  #     - onlin
-
-#   certbot:
-#     image: certbot/certbot:latest
-#     volumes:
-#       - ./certbot/www/:/var/www/certbot/:rw
-#       - ./certbot/conf:/etc/letsencrypt
-#     command:
-# #      - renew
-#        - certonly
-#        - --webroot
-#        - -w
-#        - /var/www/certbot/
-#        - --email=lnguyennb@gmail.com
-#        - --agree-tos
-#        - --no-eff-email
-#        - -d
-#        - cod3rscampus.com
-
-# volumes:
-#   cert_home:
-
