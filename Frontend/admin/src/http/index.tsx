@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://74.235.148.227:8081/api/v1/",
+  baseURL: "http://backend.sachtructuyen.shop/api/v1/",
 });
 
 export const TOKEN = "token";

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const COLLECTION_URL_API = "http://74.235.148.227:8081/api/v1/book-collection"
+const COLLECTION_URL_API = "http://backend.sachtructuyen.shop/api/v1/book-collection"
 
 const getCollections = () => {
     return axios.get(COLLECTION_URL_API)

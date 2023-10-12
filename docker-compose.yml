@@ -1,12 +1,37 @@
+# version: "3.3"
+# services:
+#   api:
+#     image: registry.gitlab.com/nguyenlghe176558/cicd-be
+#     ports:
+#       - 8081:8081
+
+#   website:
+#     image: registry.gitlab.com/nguyenlghe176558/cicd-fe
+#     ports:
+#       - 3000:3000
+#     expose:
+#       - "3000"
+#     depends_on:
+#       - api
+
+#   admin:
+#     image: registry.gitlab.com/nguyenlghe176558/cicd-admin
+#     ports:
+#       - 3001:3001
+#     expose:
+#       - "3001"
+#     depends_on:
+#       - api
+
 version: "3.3"
 services:
   api:
-    image: registry.gitlab.com/nguyenlghe176558/cicd-be
+    build: ./Backend/
     ports:
       - 8081:8081
 
   website:
-    image: registry.gitlab.com/nguyenlghe176558/cicd-fe
+    build: ./Frontend/website
     ports:
       - 3000:3000
     expose:
@@ -14,11 +39,13 @@ services:
     depends_on:
       - api
 
+
   admin:
-    image: registry.gitlab.com/nguyenlghe176558/cicd-admin
+    build: ./Frontend/admin
     ports:
       - 3001:3001
     expose:
       - "3001"
     depends_on:
       - api
+ 
