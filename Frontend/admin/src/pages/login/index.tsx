@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input, Layout } from "antd";
+import { Button, Card, Checkbox, Form, Input, Layout } from "antd";
 import decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import { URL_CONFIG } from "../../config/url.config";
@@ -96,6 +96,15 @@ const LoginPage = () => {
                 placeholder="Mật khẩu"
                 size="large"
               />
+            </Form.Item>
+
+            <Form.Item style={{ marginBottom: 0 }}>
+              <Checkbox
+                // checked={rememberMe}
+                // onChange={handleRememberMeChange}
+              >
+                Ghi nhớ đăng nhập
+              </Checkbox>
             </Form.Item>
 
             {/* <Form.Item<FieldType> name="remember" valuePropName="checked" style={{marginBottom: 0}}>

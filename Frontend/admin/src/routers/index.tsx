@@ -35,8 +35,8 @@ const menu: RouteMenu[] = [
     key: "slider",
     path: URL_CONFIG.SLIDER,
     children: [],
-  }
-=======
+  },
+// =======
 
   {
     label: "Quản lý Bài viết",

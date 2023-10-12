@@ -69,7 +69,9 @@ const RegisterPage = () => {
               name="fullName"
               rules={[{ required: true, message: "Hãy nhập họ và tên" }]}
             >
-              <Input placeholder="Họ và tên" size="large" />
+              <Input 
+              addonBefore={<UserOutlined />}
+              placeholder="Họ và tên" size="large" />
             </Form.Item>
 
             <Form.Item<FieldType>
