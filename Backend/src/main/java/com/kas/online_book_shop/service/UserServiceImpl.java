@@ -2,6 +2,9 @@ package com.kas.online_book_shop.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.enums.AccountState;
@@ -17,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
     @Override
@@ -27,13 +30,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Người dùng tương ứng không tồn tại"));
     }
 
     @Override
-    public List<User> getUserByRole(Role role) {
-        return userRepository.findByRole(role);
+    public Page<User> getUserByRole(Role role, Pageable page) {
+        // TODO
+        return null;
     }
 
     @Override
@@ -68,6 +72,11 @@ public class UserServiceImpl implements UserService {
         var existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tai khoan."));
         existingUser.setRole(Role.valueOf(role));
+    }
+
+    @Override
+    public Page<User> getCustomerByState(AccountState state, Pageable pageable) {
+        return userRepository.findByRoleAndState(Role.USER, state, pageable);
     }
 
     

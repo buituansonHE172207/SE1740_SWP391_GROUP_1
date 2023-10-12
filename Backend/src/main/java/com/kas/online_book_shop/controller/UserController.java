@@ -2,16 +2,23 @@ package com.kas.online_book_shop.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.service.UserService;
@@ -49,15 +56,17 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(user));
     }
 
-    @GetMapping("/role")
-    public ResponseEntity<List<User>> getUserByRole(@RequestParam Role role) {
-        var users = userService.getUserByRole(role);
-        if (users.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(users);
-        }
-
+    @GetMapping("/customer")
+    public ResponseEntity<Page<User>> getUserByRole(
+            @RequestParam(required = false) AccountState state,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        var customers = userService.getCustomerByState(state, pageable);
+        return ResponseEntity.ok(customers);
     }
 
     @GetMapping("/by-email/{email}")
@@ -69,7 +78,7 @@ public class UserController {
     public ResponseEntity<Void> setAccountState(
             @PathVariable Long id,
             @RequestParam String state) {
-            userService.setAccountState(id, state);
+        userService.setAccountState(id, state);
         return ResponseEntity.ok().build();
     }
 
@@ -77,7 +86,16 @@ public class UserController {
     public ResponseEntity<Void> setRole(
             @PathVariable Long id,
             @RequestParam String role) {
-            userService.setRole(id, role);
+        userService.setRole(id, role);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<User> addStaff(
+        @RequestBody User user) {
+            return null;
+    }
+
+
+    
 }
