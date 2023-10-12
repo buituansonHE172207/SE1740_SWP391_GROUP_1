@@ -17,6 +17,9 @@ const BookCategoryPage = () => {
   const [isShowConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [selectedRow, setSelectedRow] = useState<IBookCategory | undefined>();
 
+    // Define a regular expression pattern for validation
+    const namePattern = /^[\p{L}\s0-9,-]+$/u;
+
   const columns: ColumnsType<IBookCategory> = [
     {
       title: "STT",
@@ -112,13 +115,6 @@ const BookCategoryPage = () => {
             >
               Thêm Danh mục sách
             </Button>
-            {/* <Input.Search
-            placeholder="Nhập danh mục sách muốn tìm kiếm"
-            allowClear
-            enterButton="Tìm kiếm"
-            size="large"
-            // onSearch={onSearch}
-          /> */}
           </Space>
         }
       >
@@ -140,6 +136,10 @@ const BookCategoryPage = () => {
             label="Tên danh mục sách"
             rules={[
               { required: true, message: "Hãy nhập vào tên danh mục sách" },
+              {
+                pattern: namePattern,
+                message: "Tên danh mục sách không hợp lệ.",
+              },
             ]}
           >
             <Input

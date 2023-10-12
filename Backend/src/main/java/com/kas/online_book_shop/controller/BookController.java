@@ -28,7 +28,7 @@ import com.kas.online_book_shop.service.BookService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost"})
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/book")
 public class BookController {
@@ -93,7 +93,7 @@ public class BookController {
 
     @GetMapping("/sorted-and-paged/by-collection")
     public ResponseEntity<Page<Book>> getBooksByCollectionAndPriceBetween(
-            @RequestParam BookCollection collection,
+            @RequestParam(required = false) BookCollection collection,
             @RequestParam(defaultValue = "0") int min,
             @RequestParam(defaultValue = "0") int max,
             @RequestParam(defaultValue = "id") String sortBy,

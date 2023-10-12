@@ -1,5 +1,8 @@
 package com.kas.online_book_shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.kas.online_book_shop.enums.OrderDetailState;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @Builder
-@Table(name = "order_detail")
+@Table(name = "order_detail", uniqueConstraints = @UniqueConstraint(columnNames = { "book_id", "order_id" }))
 @Entity
 public class OrderDetail {
 
@@ -31,6 +35,7 @@ public class OrderDetail {
     @JoinColumn(name = "order_id")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonBackReference
     private Order order;
 
     @ManyToOne
@@ -41,8 +46,14 @@ public class OrderDetail {
 
     private int amount;
 
-    private int originalPrice;
+    private Long originalPrice;
 
-    private int salePrice;
+    private Long salePrice;
+
+    public OrderDetailState getOrderDetailState() {
+        if (amount > book.getStock())
+            return OrderDetailState.NOT_AVAILABLE;
+        return OrderDetailState.AVAILABLE;
+    }
 }
 

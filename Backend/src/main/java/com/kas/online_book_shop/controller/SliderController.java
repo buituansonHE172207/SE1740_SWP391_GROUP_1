@@ -20,7 +20,7 @@ import com.kas.online_book_shop.service.SliderService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost"})
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/slider")
 public class SliderController {

@@ -24,8 +24,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public void deleteFeedback(Long id) {
-        var existingFeedback = feedbackRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy feedback để xóa"));
+        var existingFeedback = getFeedbackById(id);
         existingFeedback.setState(FeedbackState.DELETED);
     }
 
@@ -42,7 +41,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public Feedback getFeedbackById(Long id) {
         return feedbackRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy feedback tương ứng"));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy feedback tương ứng"));
     }
 
     @Override
@@ -54,10 +53,10 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public Feedback updateFeedback(Feedback feedback) {
-        var existingFeedback = feedbackRepository.findById(feedback.getId());
-        if (existingFeedback == null)
-            throw new ResourceNotFoundException("Không tìm thấy Feedback để xóa");
-        return feedbackRepository.save(feedback);
+        var existingFeedback =getFeedbackById(feedback.getId());
+        existingFeedback.setState(feedback.getState());
+        existingFeedback.setComment(feedback.getComment());
+        return existingFeedback;
     }
 
     @Override
@@ -67,9 +66,12 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public void answerFeedback(Long id, Feedback feedback) {
-        // TODO Auto-generated method stub
-        
+        var existingFeedback = getFeedbackById(id);
+        existingFeedback.setState(FeedbackState.ANSWERED);
+        if (feedback != null)
+            feedback.setState(FeedbackState.ANSWERED);
+            feedback.setCreatedAt(LocalDateTime.now());
+            feedbackRepository.save(feedback);
     }
 
-    
 }
