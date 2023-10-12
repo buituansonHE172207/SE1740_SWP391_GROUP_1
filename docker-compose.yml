@@ -22,6 +22,9 @@ services:
       - 3001:3001
     depends_on:
       - api
+    env_file:
+      - .env.development
+
     # networks:
     #   - online-book-shop
 

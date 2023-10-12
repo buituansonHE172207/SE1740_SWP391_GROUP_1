@@ -1,8 +1,10 @@
 import axios from "axios";
 import { URL_CONFIG } from "../config/url.config";
 
+const BASE_URL = `${process.env.REACT_APP_API_URL}/api/v1/`;
+
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8081/api/v1/",
+  baseURL: BASE_URL,
 });
 
 export const TOKEN = "token";
@@ -22,6 +24,8 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (res) => res,
   (error) => {
+    console.log(error);
+
     const { response } = error;
     if (response) {
       const { data, status } = response;
