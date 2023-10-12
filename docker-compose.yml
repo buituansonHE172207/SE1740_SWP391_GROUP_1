@@ -36,9 +36,6 @@ services:
       - 3000:3000
     expose:
       - "3000"
-    depends_on:
-      - api
-
 
   admin:
     build: ./Frontend/admin
@@ -46,6 +43,5 @@ services:
       - 3001:3001
     expose:
       - "3001"
-    depends_on:
-      - api
+
  
