@@ -31,13 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Người dùng tương ứng không tồn tại"));
-    }
-
-    @Override
-    public Page<User> getUserByRole(Role role, Pageable page) {
-        // TODO
-        return null;
+                .orElseThrow(() -> new ResourceNotFoundException("Người dùng tương ứng không tồn tại"));
     }
 
     @Override
@@ -49,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(User user) {
         var existingUser = userRepository.findById(user.getId())
-            .orElseThrow(() -> new ResourceNotFoundException("Khong tim thay user tuong ung"));
+                .orElseThrow(() -> new ResourceNotFoundException("Khong tim thay user tuong ung"));
         existingUser.setAddress(user.getAddress());
         existingUser.setFullName(user.getFullName());
         existingUser.setProvince(user.getProvince());
@@ -76,7 +70,34 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> getCustomerByState(AccountState state, Pageable pageable) {
-        return userRepository.findByRoleAndState(Role.USER, state, pageable);
+        if (state != null)
+            return userRepository.findByRoleAndState(Role.USER, state, pageable);
+        return userRepository.findByRole(Role.USER, pageable);
+    }
+
+    @Override
+    public Page<User> getStaffByRoleAndState(Role role, AccountState state, Pageable page) {
+        if (role == null) {
+            if (state == null)
+                return userRepository.findByRoleNot(Role.USER, page);
+            return userRepository.findByRoleNotAndState(Role.USER, state, page);
+        } else {
+            if (state == null)
+                return userRepository.findByRole(role, page);
+            return userRepository.findByRoleAndState(role, state, page);
+        }
+    }
+
+    @Override
+    public Page<User> searchCustomerByFullName(String fullName, Pageable pageable) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Page<User> searchStaffByFullName(String fullName, Pageable pageable) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     
