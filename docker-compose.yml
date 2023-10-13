@@ -46,9 +46,6 @@ services:
     depends_on:
       - api
     env_file:
-      - .env.development
-
-    # networks:
-    #   - online-book-shop
+      - ./Frontend/admin/.env.development
 
  
