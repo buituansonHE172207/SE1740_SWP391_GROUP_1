@@ -4,15 +4,15 @@ trigger:
 variables:
 - group: OBS Pipeline
 - name: azKey
-  value: $(azk4y)
+  value: $[azk4y]
 - name: vmUsername
-  value: $(vm-user-name)
+  value: $[vm-user-name]
 - name: vmIp
-  value: $(vm-ip-address)
+  value: $[vm-ip-address]
 - name: gitlabRegistryUsername
-  value: $(gitlab-registry-username)
+  value: $[gitlab-registry-username]
 - name: gitlabRegistryPassword
-  value: $(gitlab-registry-password)
+  value: $[gitlab-registry-password]
 
 pool:
     vmImage: 'ubuntu-latest'
