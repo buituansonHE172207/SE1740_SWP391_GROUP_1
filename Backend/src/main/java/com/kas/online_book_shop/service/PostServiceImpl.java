@@ -1,7 +1,6 @@
 package com.kas.online_book_shop.service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,23 +26,13 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Long id) {
         var existingPost = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy post để xóa"));
-        existingPost.setState(PostState.HIDDEN);
-    }
-
-    @Override
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
-    }
-
-    @Override
-    public Page<Post> getAllPosts(Pageable pageable) {
-        return postRepository.findAll(pageable);
+        existingPost.setState(PostState.DELETED);
     }
 
     @Override
     public Post getPostById(Long id) {
         return postRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy post tương ứng"));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy post tương ứng"));
     }
 
     @Override
@@ -61,8 +50,33 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Page<Post> getPostsByCategory(PostCategory postCategory, Pageable pageable) {
-        return postRepository.findByCategory(postCategory, pageable);
+    public Page<Post> getAllPostsWithSorterAndFilter(PostCategory category, PostState state, Pageable pageable) {
+        if (category != null) {
+            if (state != null)
+                return postRepository.findByCategoryAndState(category, state, pageable);
+            else
+                return postRepository.findByCategory(category, pageable);
+        }
+        if (state != null)
+            return postRepository.findByState(state, pageable);
+        return postRepository.findAll(pageable); 
     }
 
+    @Override
+    public Page<Post> searchPostByTitleWithSorterAndFilter(String title, PostCategory category, PostState state,
+            Pageable pageable) {
+        if (title == null)
+                return getAllPostsWithSorterAndFilter(category, state, pageable);
+        if (category != null) {
+            if (state != null)
+                return postRepository.findByTitleContainingAndCategoryAndState(title, category, state, pageable);
+            else
+                return postRepository.findByTitleContainingAndCategory(title, category, pageable);
+        }
+        if (state != null)
+            return postRepository.findByTitleContainingAndState(title, state, pageable);
+        return postRepository.findByTitleContaining(title, pageable);
+    }
+
+    
 }
