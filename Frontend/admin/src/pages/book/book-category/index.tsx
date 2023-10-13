@@ -8,7 +8,8 @@ import {
   deleteBookCategory,
   getAllBookCategory,
   updateBookCategory,
-} from "../../services/book.service";
+} from "../../../services/book.service";
+import { namePattern } from "../../../utils/const.util";
 
 const BookCategoryPage = () => {
   const [formInstance] = Form.useForm();
@@ -16,9 +17,6 @@ const BookCategoryPage = () => {
   const [isShowPopup, setShowPopup] = useState<boolean>(false);
   const [isShowConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [selectedRow, setSelectedRow] = useState<IBookCategory | undefined>();
-
-    // Define a regular expression pattern for validation
-    const namePattern = /^[\p{L}\s0-9,-]+$/u;
 
   const columns: ColumnsType<IBookCategory> = [
     {
@@ -118,7 +116,11 @@ const BookCategoryPage = () => {
           </Space>
         }
       >
-        <Table dataSource={dataSource} columns={columns} rowKey={(record) => record.id}/>
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          rowKey={(record) => record.id}
+        />
       </Card>
 
       <Modal

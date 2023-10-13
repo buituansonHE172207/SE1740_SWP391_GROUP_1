@@ -4,5 +4,7 @@ export const URL_CONFIG = {
     REGISTER: "/register",
     BOOK_CATEGORY: "/book-category",
     BOOK: "/book",
-    SLIDER: "/slider"
+    SLIDER: "/slider",
+    PUBLISHER: "/publisher",
+    AUTHOR: "/author"
 }

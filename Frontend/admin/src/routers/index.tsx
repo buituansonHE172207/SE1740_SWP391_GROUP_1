@@ -1,5 +1,7 @@
 import { URL_CONFIG } from "../config/url.config";
-import BookCategoryPage from "../pages/book-category";
+import AuthorPage from "../pages/author";
+import BookCategoryPage from "../pages/book/book-category";
+import PublisherPage from "../pages/publisher";
 import SliderPage from "../pages/slider";
 
 export interface RouteMenu {
@@ -16,13 +18,13 @@ const menu: RouteMenu[] = [
   {
     label: "Quản lý sách",
     element: null,
-    key: "book",
+    key: URL_CONFIG.BOOK,
     path: URL_CONFIG.BOOK,
     children: [
       {
         label: "Quản lý danh mục sách",
         element: <BookCategoryPage />,
-        key: "book-category",
+        key: URL_CONFIG.BOOK_CATEGORY,
         path: URL_CONFIG.BOOK_CATEGORY,
         children: [],
       },
@@ -32,8 +34,24 @@ const menu: RouteMenu[] = [
   {
     label: "Quản lí slider",
     element: <SliderPage />,
-    key: "slider",
+    key: URL_CONFIG.SLIDER,
     path: URL_CONFIG.SLIDER,
+    children: [],
+  },
+
+  {
+    label: "Quản lí NXB",
+    element: <PublisherPage />,
+    key: URL_CONFIG.PUBLISHER,
+    path: URL_CONFIG.PUBLISHER,
+    children: [],
+  },
+
+  {
+    label: "Quản lí tác giả",
+    element: <AuthorPage />,
+    key: URL_CONFIG.AUTHOR,
+    path: URL_CONFIG.AUTHOR,
     children: [],
   },
 
@@ -59,10 +77,6 @@ const menu: RouteMenu[] = [
       },
     ],
   },
-
-
-
-
 ];
 
 export default menu;
