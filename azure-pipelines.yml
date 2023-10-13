@@ -8,7 +8,7 @@ jobs:
 - job: BuildAndPush
   displayName: 'Build and Push Docker Images'
   steps:
-  - checkout: develop
+  - checkout: self
   - script: |
       echo "Logging in to GitLab Container Registry"
       docker login -u $(gitlabRegistryUsername) -p $(gitlabRegistryPassword) registry.gitlab.com
