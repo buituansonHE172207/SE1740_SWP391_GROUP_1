@@ -1,4 +1,6 @@
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Card, Form, Image, Input, Modal, Space } from "antd";
+import Table, { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import {
   ISlider,
@@ -7,9 +9,6 @@ import {
   getAllSlider,
   updateSlider,
 } from "../../services/slider.service";
-import Table, { ColumnsType } from "antd/es/table";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import DragAndDropUpload from "../../components/upload/DragAndDropUpload";
 
 const SliderPage = () => {
   const [formInstance] = Form.useForm();
@@ -17,6 +16,7 @@ const SliderPage = () => {
   const [isShowPopup, setShowPopup] = useState<boolean>(false);
   const [isShowConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [selectedRow, setSelectedRow] = useState<ISlider | undefined>();
+  // const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const columns: ColumnsType<ISlider> = [
     {
@@ -34,13 +34,15 @@ const SliderPage = () => {
       title: "Hình ảnh",
       dataIndex: "imageUrl",
       key: "imageUrl",
-      render(id, record, index) {
-        return <Image
-        width={200}
-        height={200}
-        src={record.imageUrl}
-        // fallback={}
-      />
+      render(imageUrl, record, index) {
+        return (
+          <Image
+            width={200}
+            height={200}
+            src={imageUrl}
+            // fallback={}
+          />
+        );
       },
     },
     {
@@ -87,6 +89,7 @@ const SliderPage = () => {
   }, [isShowPopup, isShowConfirmDelete]);
 
   const handleClose = () => {
+    // setFileList([]);
     setShowPopup(false);
     setShowConfirmDelete(false);
     setSelectedRow(undefined);
@@ -104,7 +107,9 @@ const SliderPage = () => {
       }
       formInstance.resetFields();
       handleClose();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDelete = async () => {
@@ -172,10 +177,36 @@ const SliderPage = () => {
           <Form.Item
             name="imageUrl"
             label="Hình ảnh"
-            rules={[{ required: true, message: "Hãy chọn hình ảnh" }]}
-            getValueFromEvent={() => "src"}
+            rules={[
+              {
+                required: true,
+                message: "Hãy nhập vào đường dẫn của ảnh slider",
+                // validator(rule, value, callback) {
+                //   if (fileList.length === 0) {
+                //     return Promise.reject("Hãy chọn hình ảnh");
+                //   }
+                //   return Promise.resolve();
+                // },
+              },
+            ]}
           >
-            <DragAndDropUpload multiple={false} />
+            {/* <DragAndDropUpload
+              fileList={fileList}
+              multiple={false}
+              beforeUpload={(newFile) => {
+                setFileList([newFile]);
+                return false;
+              }}
+              onRemove={() => {
+                setFileList([]);
+              }}
+              accept="image/*"
+            /> */}
+            <Input
+              autoComplete="false"
+              size="large"
+              placeholder="Nhập vào đường dẫn của ảnh slider"
+            />
           </Form.Item>
           <Form.Item
             name="backLink"

@@ -1,11 +1,12 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Form, Input, Layout } from "antd";
+import { useForm } from "antd/es/form/Form";
 import decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import { URL_CONFIG } from "../../config/url.config";
 import { useAuth } from "../../context/AuthContext";
 import { TOKEN } from "../../http";
-import { login } from "../../services/auth.service";
+import { TokenType, login } from "../../services/auth.service";
 
 type FieldType = {
   email: string;
@@ -13,30 +14,42 @@ type FieldType = {
   // remember?: string;
 };
 
-type Authority = {
-  authority: string;
-};
-
-type TokenType = {
-  authorities: Authority[];
-  sub: string;
-  iat: number;
-  exp: number;
-};
-
 const LoginPage = () => {
   const { login: setLogin } = useAuth();
+  const [form] = useForm();
   const navigate = useNavigate();
   const onFinish = async (values: FieldType) => {
     try {
       const res = await login(values);
       localStorage.setItem(TOKEN, res.token);
-      const decodedToken = await decode(res.token) as TokenType;
+      const decodedToken = (await decode(res.token)) as TokenType;
       const role = decodedToken.authorities[0].authority;
       await setLogin(role);
-      navigate(URL_CONFIG.BOOK_CATEGORY);
-    } catch (error) {
-      console.log("Error decoding JWT: ", error);
+      navigate(URL_CONFIG.HOME);
+    } catch (error: any) {
+      if (error.status === 404) {
+        form.setFields([
+          {
+            name: "email",
+            value: values.email,
+            errors: [error.data],
+          },
+        ]);
+      } else if (error.status === 403) {
+        form.setFields([
+          {
+            name: "email",
+            value: values.email,
+          },
+          {
+            name: "password",
+            value: "",
+            errors: ["Mật khẩu không đúng"],
+          },
+        ]);
+      } else {
+        console.log("Error when login: ", error);
+      }
     }
   };
 
@@ -51,6 +64,7 @@ const LoginPage = () => {
     >
       <Card style={{ width: 560 }}>
         <Form
+          form={form}
           style={{
             display: "flex",
             flexDirection: "column",
