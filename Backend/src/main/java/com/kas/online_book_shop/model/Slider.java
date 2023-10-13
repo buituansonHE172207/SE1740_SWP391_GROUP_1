@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +25,10 @@ public class Slider {
     
     private String title;
 
+    @NotBlank(message = "The image link is required")
     private String imageUrl;
 
+    @NotBlank(message = "The backLinh is required")
     private String backLink;
 
     @Lob

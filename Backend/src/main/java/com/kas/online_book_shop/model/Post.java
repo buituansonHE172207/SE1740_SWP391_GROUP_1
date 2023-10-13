@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +33,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "The title of the post is required")
     private String title;
     
     @ManyToOne
@@ -46,11 +48,15 @@ public class Post {
     @EqualsAndHashCode.Exclude
     private User user;
     
+    @NotBlank(message = "The thumbnail of the post is required")
     private String thumbnail;
     
     @Lob
+    @NotBlank(message = "The content of the post is required")
     private String content;
     
+    @NotBlank
+    @NotBlank(message = "The brief of the post is required")
     private String brief;
 
     private LocalDateTime createdAt;

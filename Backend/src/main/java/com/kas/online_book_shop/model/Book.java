@@ -21,6 +21,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +42,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "The title of the book is required")
     private String title;
 
     @ManyToOne()
@@ -62,16 +66,20 @@ public class Book {
     @Lob
     private String description;
 
+    @Min(value = 0, message = "stock must be at least 0")
     private Integer stock;
 
+    @Min(value = 0, message = "Sold must be at least 0")
     private Integer sold;
 
     private LocalDate publicationDate;
-
+    
     private String size;
 
+    @Min(value = 0, message = "The weight must be at least 0")
     private Integer weight;
 
+    @Min(value = 0, message = "The price must be at least 0")
     private Long price;
 
     @ManyToOne
@@ -80,6 +88,7 @@ public class Book {
     @ToString.Exclude
     private Language language;
 
+    @Min(value = 0, message = "The page must be at least 0")
     private Integer page;
 
     private String cover;
@@ -87,6 +96,8 @@ public class Book {
     @Column(unique = true)
     private String ISBN;
 
+    @Min(value = 0, message = "The discount must be at least 0")
+    @Max(value = 0, message = "The discount must be equal and less than 1")
     private Float discount;
 
     @Enumerated(EnumType.STRING)

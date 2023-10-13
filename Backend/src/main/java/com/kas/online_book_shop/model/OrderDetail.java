@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +31,6 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
     @ManyToOne
     @JoinColumn(name = "order_id")
     @EqualsAndHashCode.Exclude
@@ -44,10 +44,13 @@ public class OrderDetail {
     @ToString.Exclude
     private Book book;
 
-    private int amount;
+    @Min(value = 1, message = "The number of units must be greater than 0")
+    private Integer amount;
 
+    @Min(value = 0, message = "The original price must be greater than 0")
     private Long originalPrice;
 
+    @Min(value = 0, message = "The sale price must be greater than 0")
     private Long salePrice;
 
     public OrderDetailState getOrderDetailState() {
