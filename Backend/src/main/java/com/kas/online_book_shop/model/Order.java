@@ -20,6 +20,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,20 +45,26 @@ public class Order {
     @ToString.Exclude
     private User user;
 
+    @NotBlank(message = "The full name is required")
     private String fullName;
 
+    @NotBlank(message = "The province is required")
     private String province;
 
+    @NotBlank(message = "The district is required")
     private String district;
 
+    @NotBlank(message = "The ward is required")
     private String ward;
 
+    @NotBlank(message = "The address is required")
     private String address;
 
     private Long totalPrice;
 
     private Long shippingPrice;
 
+    @NotBlank(message = "The phone is required")
     private String phone;
 
     @Lob
@@ -77,6 +84,7 @@ public class Order {
 
     private LocalDateTime created;
 
+    @NotBlank(message = "The email is required")
     private String email;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,  orphanRemoval = true)

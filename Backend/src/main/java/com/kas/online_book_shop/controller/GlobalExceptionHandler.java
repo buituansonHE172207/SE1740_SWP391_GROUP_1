@@ -3,6 +3,7 @@ package com.kas.online_book_shop.controller;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -20,6 +21,8 @@ import jakarta.annotation.security.PermitAll;
 @RestControllerAdvice()
 @PermitAll
 public class GlobalExceptionHandler {
+
+
 
     @ExceptionHandler(ISBNDuplicateException.class)
     public ResponseEntity<String> handleISBNDuplicateException(ISBNDuplicateException ex) {
@@ -62,15 +65,20 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    /*
-     * @ExceptionHandler(Exception.class)
-     * public ResponseEntity<String> handleException(Exception e) {
-     * return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-     * }
-     */
-
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<String> handleExpiredJwtException(ExpiredJwtException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("JWT has expired");
+        return new ResponseEntity<>("JWT Token has expired.", HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Mật khẩu không chính xác");
+    }
+
+    
+    /* @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    } */
+
 }
