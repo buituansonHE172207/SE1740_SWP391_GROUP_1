@@ -73,7 +73,7 @@ public class AuthenticationService {
                                 .orElseThrow(() -> new UserNotFoundException(
                                                 "Người dùng với email '" + request.email() + "' không tồn tại."));
                 var jwtToken = jwtService.generateToken(existingUser);
-                String urlWithToken = "http://localhost:3000/reset-password/" + jwtToken;
+                String urlWithToken = "https://sachtructuyen.shop/reset-password/" + jwtToken;
                 mailMessage.setFrom("sachtructuyen123@gmail.com");
                 mailMessage.setTo(request.email());
                 mailMessage.setSubject("Đặt lại mật khẩu");
