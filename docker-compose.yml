@@ -1,51 +1,51 @@
-# version: "3.3"
-# services:
-#   api:
-#     image: registry.gitlab.com/nguyenlghe176558/cicd-be
-#     ports:
-#       - 8081:8081
-
-#   website:
-#     image: registry.gitlab.com/nguyenlghe176558/cicd-fe
-#     ports:
-#       - 3000:3000
-#     expose:
-#       - "3000"
-#     depends_on:
-#       - api
-
-#   admin:
-#     image: registry.gitlab.com/nguyenlghe176558/cicd-admin
-#     ports:
-#       - 3001:3001
-#     expose:
-#       - "3001"
-#     depends_on:
-#       - api
-
 version: "3.3"
 services:
   api:
-    build: ./Backend/
+    image: registry.gitlab.com/nguyenlghe176558/cicd-be
     ports:
       - 8081:8081
 
   website:
-    build: ./Frontend/website
+    image: registry.gitlab.com/nguyenlghe176558/cicd-fe
     ports:
       - 3000:3000
     expose:
       - "3000"
 
+
   admin:
-    build: ./Frontend/admin
+    image: registry.gitlab.com/nguyenlghe176558/cicd-admin
     ports:
       - 3001:3001
     expose:
       - "3001"
-    depends_on:
-      - api
     env_file:
       - ./Frontend/admin/.env.development
 
- 
+
+# version: "3.3"
+# services:
+#   api:
+#     build: ./Backend/
+#     ports:
+#       - 8081:8081
+#     image: registry.gitlab.com/nguyenlghe176558/cicd-be .
+
+
+#   website:
+#     build: ./Frontend/website
+#     ports:
+#       - 3000:3000
+#     expose:
+#       - "3000"
+#     image: registry.gitlab.com/nguyenlghe176558/cicd-fe .
+
+#   admin:
+#     build: ./Frontend/admin
+#     ports:
+#       - 3001:3001
+#     expose:
+#       - "3001"
+#     env_file:
+#       - ./Frontend/admin/.env.development
+#     image: registry.gitlab.com/nguyenlghe176558/cicd-admin .
