@@ -1,0 +1,51 @@
+
+trigger:
+- develop
+pool:
+    vmImage: 'ubuntu-latest'
+
+jobs:
+- job: BuildAndPush
+  displayName: 'Build and Push Docker Images'
+  steps:
+  - checkout: develop
+  - script: |
+      echo "Logging in to GitLab Container Registry"
+      docker login -u $(gitlabRegistryUsername) -p $(gitlabRegistryPassword) registry.gitlab.com
+
+      echo "Building and pushing Docker images"
+      docker build -t registry.gitlab.com/nguyenlghe176558/cicd-be ./Backend/
+      docker push registry.gitlab.com/nguyenlghe176558/cicd-be
+
+      docker build -t registry.gitlab.com/nguyenlghe176558/cicd-fe ./Frontend/website
+      docker push registry.gitlab.com/nguyenlghe176558/cicd-fe
+
+      docker build -t registry.gitlab.com/nguyenlghe176558/cicd-admin ./Frontend/admin
+      docker push registry.gitlab.com/nguyenlghe176558/cicd-admin
+    displayName: 'Build and Push Docker Images'
+## deploy
+- job: DeployToAzureVM
+  dependsOn: BuildAndPush
+  displayName: 'Deploy to Azure VM'
+  steps:
+  - script: |
+      ssh -i /home/$(vmUsername)/.ssh/$(azKey) $(vmUsername)@$(vmIp)
+
+      docker login -u $(gitlabRegistryUsername) -p $(gitlabRegistryPassword) registry.gitlab.com
+      
+      docker-compose -f online-book-shop-aws/docker-compose.yml down 
+
+      cd /online-book-shop-aws
+
+      git pull origin
+
+      cd ..
+
+      docker-compose -f online-book-shop-aws/docker-compose.yml up -d
+
+variables:
+  azKey: 'azk4y.pem'
+  vmUsername: 'vm-user-name'
+  vmIp: 'vm-ip-address'
+  gitlabRegistryUsername: 'gitlab-registry-username'
+  gitlabRegistryPassword: 'gitlab-registry-password'
