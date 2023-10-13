@@ -6,13 +6,13 @@ variables:
 - name: azKey
   value: $[variables.azk4y]
 - name: vmUsername
-  value: $[variables.vm-user-name]
+  value: $[variables.vmUsername]
 - name: vmIp
-  value: $[variables.vm-ip-address]
+  value: $[variables.vmIp]
 - name: gitlabRegistryUsername
-  value: $[variables.gitlab-registry-username]
+  value: $[variables.gitlabRegistryUsername]
 - name: gitlabRegistryPassword
-  value: $[variables.gitlab-registry-password]
+  value: $[variables.gitlabRegistryPassword]
 
 pool:
     vmImage: 'ubuntu-latest'
