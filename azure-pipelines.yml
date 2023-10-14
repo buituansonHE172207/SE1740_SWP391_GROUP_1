@@ -3,8 +3,6 @@ trigger:
 
 variables:
 - group: OBS Pipeline
-- name: azKey1
-  value: $[variables.azk4y]
 - name: vmUsername1
   value: $[variables.vmUsername]
 - name: vmIp1
@@ -35,13 +33,18 @@ jobs:
 
       docker build -t registry.gitlab.com/nguyenlghe176558/cicd-admin ./Frontend/admin
       docker push registry.gitlab.com/nguyenlghe176558/cicd-admin
-## deploy
-- job: DeployToAzureVM
-  dependsOn: BuildAndPush
-  displayName: 'Deploy to Azure VM'
+
+- job: Deploy
+  displayName: 'Deploy Application'
+  dependsOn: BuildAndPush  
   steps:
+  - task: DownloadSecureFile@1
+    name: prPem
+    displayName: 'Get private key'
+    inputs:
+      secureFile: 'azk4y.pem'
   - script: |
-      ssh -i /home/$(vmUsername1)/.ssh/$(azKey1) $(vmUsername1)@$(vmIp1)
+      ssh -i /home/$(vmUsername1)/.ssh/$(prPem.secureFilePath) $(vmUsername1)@$(vmIp1)
       
       sudo docker-compose -f online-book-shop-aws/docker-compose.yml down 
 
