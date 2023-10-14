@@ -22,7 +22,7 @@ jobs:
   - checkout: self
   - script: |
       echo "Logging in to GitLab Container Registry"
-      docker login --username "$(gitlabRegistryUsername1)" --password "$(gitlabRegistryPassword1)" registry.gitlab.com
+      echo "$(gitlabRegistryPassword1)" | docker login --username "$(gitlabRegistryUsername1)" --password-stdin  registry.gitlab.com
 
       echo "Building and pushing Docker images"
       docker build -t registry.gitlab.com/nguyenlghe176558/cicd-be ./Backend/
