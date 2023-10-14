@@ -39,19 +39,17 @@ jobs:
   dependsOn: BuildAndPush  
   steps:
   - task: DownloadSecureFile@1
-    name: prPem
+    name: sshKey
     displayName: 'Get private key'
     inputs:
       secureFile: 'azk4y.pem'
   - script: |
-      ssh -t "$(prPem.secureFilePath)" $(vmUsername1)@$(vmIp1)
-      
-      sudo docker-compose -f online-book-shop-aws/docker-compose.yml down 
+      sudo chmod 400 $(sshKey.secureFilePath)
 
-      cd /online-book-shop-aws
-
-      git pull origin
-
-      cd ..
-
-      sudo docker-compose -f online-book-shop-aws/docker-compose.yml up -d
+      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+      sudo docker-compose -f online-book-shop-aws/docker-compose.yml down |
+      cd /online-book-shop-aws |
+      git pull origin develop |
+      cd .. |
+      sudo docker-compose -f online-book-shop-aws/docker-compose.yml up -d |
+      "
