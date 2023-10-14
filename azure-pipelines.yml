@@ -3,15 +3,15 @@ trigger:
 
 variables:
 - group: OBS Pipeline
-- name: azKey
+- name: azKey1
   value: $[variables.azk4y]
-- name: vmUsername
+- name: vmUsername1
   value: $[variables.vmUsername]
-- name: vmIp
+- name: vmIp1
   value: $[variables.vmIp]
-- name: gitlabRegistryUsername
+- name: gitlabRegistryUsername1
   value: $[variables.gitlabRegistryUsername]
-- name: gitlabRegistryPassword
+- name: gitlabRegistryPassword1
   value: $[variables.gitlabRegistryPassword]
 
 pool:
@@ -24,7 +24,7 @@ jobs:
   - checkout: self
   - script: |
       echo "Logging in to GitLab Container Registry"
-      docker login --username $(gitlabRegistryUsername) --password $(gitlabRegistryPassword) registry.gitlab.com
+      docker login --username $(gitlabRegistryUsername1) --password $(gitlabRegistryPassword1) registry.gitlab.com
 
       echo "Building and pushing Docker images"
       docker build -t registry.gitlab.com/nguyenlghe176558/cicd-be ./Backend/
@@ -41,7 +41,7 @@ jobs:
   displayName: 'Deploy to Azure VM'
   steps:
   - script: |
-      ssh -i /home/$(vmUsername)/.ssh/$(azKey) $(vmUsername)@$(vmIp)
+      ssh -i /home/$(vmUsername1)/.ssh/$(azKey1) $(vmUsername1)@$(vmIp1)
       
       sudo docker-compose -f online-book-shop-aws/docker-compose.yml down 
 
