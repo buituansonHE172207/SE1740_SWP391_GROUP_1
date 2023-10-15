@@ -1,8 +1,5 @@
 package com.kas.online_book_shop.auth;
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,14 +16,16 @@ import com.kas.online_book_shop.dto.ResetPasswordRequest;
 import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.exception.AccountDisabledException;
+import com.kas.online_book_shop.exception.AccountInactiveException;
 import com.kas.online_book_shop.exception.ExpiredtTokenException;
 import com.kas.online_book_shop.exception.OldPasswordMismatchException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
+import com.kas.online_book_shop.exception.UnauthorizedException;
 import com.kas.online_book_shop.exception.UserAlreadyExistsException;
 import com.kas.online_book_shop.exception.UserNotFoundException;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.UserRepository;
-import com.kas.online_book_shop.email.EmailService;
+import com.kas.online_book_shop.service.email.EmailService;
 
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
@@ -43,9 +42,9 @@ public class AuthenticationService {
         public void register(RegisterRequest request) throws MessagingException {
                 userRepository.findByEmail(request.email())
                                 .ifPresent(user -> {
-                                        throw new UserAlreadyExistsException("Người dùng đã tồn tại.");
+                                        throw new UserAlreadyExistsException(
+                                                        "Người dùng với email: " + request.email() + " đã tồn tại.");
                                 });
-
                 var user = User.builder()
                                 .fullName(request.fullname())
                                 .email(request.email())
@@ -59,8 +58,7 @@ public class AuthenticationService {
                                 .address(request.address())
                                 .build();
                 userRepository.save(user);
-                String url = "https://sachtructuyen.shop/activation/" + jwtService.generateToken(user);
-                        emailService.sendActivationEmail(request.email(), url, request.fullname());
+                emailService.sendActivationEmail(request.email(), request.fullname(), jwtService.generateToken(user));
                 return;
         }
 
@@ -69,9 +67,7 @@ public class AuthenticationService {
                 var user = userRepository.findByEmail(userEmail)
                                 .orElseThrow();
                 if (jwtService.isTokenExpired(request.token())) {
-                        String url = "https://sachtructuyen.shop/activation/" + jwtService.generateToken(user);
-                        emailService.sendActivationEmail(userEmail, url, user.getFullName());
-
+                        emailService.sendActivationEmail(userEmail, user.getFullName(), jwtService.generateToken(user));
                         throw new ExpiredtTokenException(
                                         "Email kích hoạt đã hết hạn. Vui lòng kiểm tra email để nhận hướng dẫn kích hoạt mới.");
                 } else {
@@ -83,34 +79,37 @@ public class AuthenticationService {
 
         public AuthenticationResponse authenticate(AuthenticationRequest request) throws MessagingException {
                 var user = userRepository.findByEmail(request.email())
-                                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy email"));
+                                .orElseThrow(() -> new ResourceNotFoundException(
+                                                "Người dùng với email: " + request.email()
+                                                                + " không tồn tại. \nVui lòng đăng ký tài khoản mới."));
                 if (user.getState() == AccountState.INACTIVE) {
-                        String url = "https://sachtructuyen.shop/activation/" + jwtService.generateToken(user);
-                        emailService.sendActivationEmail(request.email(), url, user.getFullName());
-                        throw new UserNotFoundException(
-                                        "Tài khoản chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt tài khoản.");
-                }
-                if (user.getState() == AccountState.ACTIVE) {
+                        emailService.sendActivationEmail(request.email(), user.getFullName(),
+                                        jwtService.generateToken(user));
+                        throw new AccountInactiveException("");
+                } else if (user.getState() == AccountState.DISABLE) {
+                        throw new AccountDisabledException("");
+                } else if (user.getState() == AccountState.ACTIVE) {
                         authenticationManager.authenticate(
                                         new UsernamePasswordAuthenticationToken(
                                                         request.email(),
                                                         request.password()));
                         var jwtToken = jwtService.generateToken(user);
                         return new AuthenticationResponse(jwtToken);
-                } else if (user.getState() == AccountState.DISABLE) {
-                        throw new AccountDisabledException("Tài khoản của bạn không được phép đăng nhập.");
                 }
                 return null;
         }
 
-        public AuthenticationResponse forgotPassword(ForgotPasswordRequest request) throws MessagingException {
+        public void forgotPassword(ForgotPasswordRequest request) throws MessagingException {
                 var existingUser = userRepository.findByEmail(request.email())
                                 .orElseThrow(() -> new UserNotFoundException(
                                                 "Người dùng với email '" + request.email() + "' không tồn tại."));
-                var jwtToken = jwtService.generateToken(existingUser);
-                String url = "https://sachtructuyen.shop/reset-password/" + jwtToken;
-                emailService.sendResetPasswordEmail(request.email(), url, existingUser.getFullName());
-                return new AuthenticationResponse(jwtToken);
+                if (existingUser.getRole() != Role.USER) {
+                        throw new UnauthorizedException(
+                                        "Không có quyền truy cập. Vui lòng liên hệ quản trị viên để được hỗ trợ.");
+                }
+                emailService.sendResetPasswordEmail(request.email(), existingUser.getFullName(),
+                                jwtService.generateToken(existingUser));
+                return;
         }
 
         public AuthenticationResponse changePassword(ChangePasswordRequest request) {
@@ -129,9 +128,13 @@ public class AuthenticationService {
                 var userEmail = jwtService.extractUsername(request.token());
                 var user = userRepository.findByEmail(userEmail)
                                 .orElseThrow();
-                user.setPassword(passwordEncoder.encode(request.password()));
-                userRepository.save(user);
-                var jwtToken = jwtService.generateToken(user);
-                return new AuthenticationResponse(jwtToken);
+                if (user.getRole() == Role.USER) {
+                        user.setPassword(passwordEncoder.encode(request.password()));
+                        userRepository.save(user);
+                        var jwtToken = jwtService.generateToken(user);
+                        return new AuthenticationResponse(jwtToken);
+                } else {
+                        throw new UnauthorizedException("Không có quyền truy cập.");
+                }
         }
 }

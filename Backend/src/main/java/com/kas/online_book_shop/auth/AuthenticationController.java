@@ -1,6 +1,5 @@
 package com.kas.online_book_shop.auth;
 
-import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties.Http;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +21,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost"})
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:3001", "http://localhost" })
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(
             @RequestBody RegisterRequest request) throws MessagingException {
-                authenticationService.register(request);
+        authenticationService.register(request);
         return ResponseEntity.ok().build();
     }
 
