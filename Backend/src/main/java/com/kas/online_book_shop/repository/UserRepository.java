@@ -12,6 +12,7 @@ import com.kas.online_book_shop.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
+    Optional<User> findByState(AccountState state);
 
     Page<User> findByRole(Role role, Pageable pageable);
 
