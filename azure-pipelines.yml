@@ -27,6 +27,7 @@ jobs:
   - script: |
       sudo chmod 400 $(sshKey.secureFilePath)
       ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+      sudo docker start 30fb216fa855 &&
       cd online-book-shop-aws && 
       git pull origin develop && 
       cd .. &&
