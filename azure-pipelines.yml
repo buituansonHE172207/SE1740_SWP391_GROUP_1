@@ -7,36 +7,17 @@ variables:
   value: $[variables.vmUsername]
 - name: vmIp1
   value: $[variables.vmIp]
-- name: gitlabRegistryUsername1
-  value: $[variables.gitlabRegistryUsername]
-- name: gitlabRegistryPassword1
-  value: $[variables.gitlabRegistryPassword]
+# - name: gitlabRegistryUsername1
+#   value: $[variables.gitlabRegistryUsername]
+# - name: gitlabRegistryPassword1
+#   value: $[variables.gitlabRegistryPassword]
 
 pool:
     vmImage: 'ubuntu-latest'
 
 jobs:
-- job: BuildAndPush
-  displayName: 'Build and Push Docker Images'
-  steps:
-  - checkout: self
-  - script: |
-      echo "Logging in to GitLab Container Registry"
-      echo "$(gitlabRegistryPassword1)" | docker login --username "$(gitlabRegistryUsername1)" --password-stdin  registry.gitlab.com
-
-      echo "Building and pushing Docker images"
-      docker build --no-cache -t registry.gitlab.com/nguyenlghe176558/cicd-be ./Backend/
-      docker push registry.gitlab.com/nguyenlghe176558/cicd-be
-
-      docker build --no-cache -t registry.gitlab.com/nguyenlghe176558/cicd-fe ./Frontend/website
-      docker push registry.gitlab.com/nguyenlghe176558/cicd-fe
-
-      docker build --no-cache -t registry.gitlab.com/nguyenlghe176558/cicd-admin ./Frontend/admin
-      docker push registry.gitlab.com/nguyenlghe176558/cicd-admin
-
-- job: Deploy
-  displayName: 'Deploy Application'
-  dependsOn: BuildAndPush  
+- job: Build
+  displayName: 'Build Docker Images'
   steps:
   - task: DownloadSecureFile@1
     name: sshKey
@@ -46,11 +27,26 @@ jobs:
   - script: |
       sudo chmod 400 $(sshKey.secureFilePath)
       ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
-      sudo docker compose -f online-book-shop-aws/docker-compose.yml down &&
-      sudo certbot renew --dry-run &&
-      sudo certbot renew &&
       cd online-book-shop-aws && 
       git pull origin develop && 
       cd .. &&
-      sudo docker compose -f online-book-shop-aws/docker-compose.yml up -d
+      sudo docker compose -f online-book-shop-aws/testDc.yml build --no-cache 
+      "
+  
+- job: Deploy
+  displayName: 'Deploy Application'
+  dependsOn: Build
+  steps:
+  - task: DownloadSecureFile@1
+    name: sshKey
+    displayName: 'Get private key'
+    inputs:
+      secureFile: 'azk4y.pem'
+  - script: |
+      sudo chmod 400 $(sshKey.secureFilePath)
+      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+      sudo docker compose -f online-book-shop-aws/testDc.yml down &&
+      sudo certbot renew --dry-run &&
+      sudo certbot renew &&
+      sudo docker compose -f online-book-shop-aws/testDc.yml up -d
       "
