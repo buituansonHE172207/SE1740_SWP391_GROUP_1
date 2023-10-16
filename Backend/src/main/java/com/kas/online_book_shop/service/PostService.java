@@ -9,9 +9,7 @@ import com.kas.online_book_shop.model.PostCategory;
 
 public interface PostService {
 
-    Page<Post> getAllPostsWithSorterAndFilter(PostCategory category, PostState state, Pageable pageable);
-
-    Page<Post> searchPostByTitleWithSorterAndFilter(String title, PostCategory category, PostState state, Pageable pageable);
+    Page<Post> getPostByTileContainingAndCategoryAndState(String title, PostCategory category, PostState state, Pageable pageable);
 
     Post savePost(Post post);
 
