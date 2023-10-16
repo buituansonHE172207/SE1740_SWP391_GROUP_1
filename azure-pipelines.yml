@@ -46,7 +46,5 @@ jobs:
       sudo chmod 400 $(sshKey.secureFilePath)
       ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
       sudo docker compose -f online-book-shop-aws/testDc.yml down &&
-      sudo certbot renew --dry-run &&
-      sudo certbot renew &&
       sudo docker compose -f online-book-shop-aws/testDc.yml up -d
       "
