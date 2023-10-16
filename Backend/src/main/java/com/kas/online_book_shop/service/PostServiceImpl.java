@@ -50,33 +50,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Page<Post> getAllPostsWithSorterAndFilter(PostCategory category, PostState state, Pageable pageable) {
-        if (category != null) {
-            if (state != null)
-                return postRepository.findByCategoryAndState(category, state, pageable);
-            else
-                return postRepository.findByCategory(category, pageable);
-        }
-        if (state != null)
-            return postRepository.findByState(state, pageable);
-        return postRepository.findAll(pageable); 
-    }
-
-    @Override
-    public Page<Post> searchPostByTitleWithSorterAndFilter(String title, PostCategory category, PostState state,
+    public Page<Post> getPostByTileContainingAndCategoryAndState(
+            String title,
+            PostCategory category,
+            PostState state,
             Pageable pageable) {
-        if (title == null)
-                return getAllPostsWithSorterAndFilter(category, state, pageable);
-        if (category != null) {
-            if (state != null)
-                return postRepository.findByTitleContainingAndCategoryAndState(title, category, state, pageable);
-            else
-                return postRepository.findByTitleContainingAndCategory(title, category, pageable);
-        }
-        if (state != null)
-            return postRepository.findByTitleContainingAndState(title, state, pageable);
-        return postRepository.findByTitleContaining(title, pageable);
+        return postRepository.findByTitleContainingAndCategoryAndState(title, category, state, pageable);
     }
 
-    
 }

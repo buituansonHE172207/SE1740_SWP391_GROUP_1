@@ -1,7 +1,5 @@
 package com.kas.online_book_shop.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,11 +20,6 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
 
     @Override
     public User getUserById(Long id) {
@@ -69,36 +62,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> getCustomerByState(AccountState state, Pageable pageable) {
-        if (state != null)
-            return userRepository.findByRoleAndState(Role.USER, state, pageable);
-        return userRepository.findByRole(Role.USER, pageable);
+    public Page<User> getCustomerByFullNameContainingAndState(
+            String fullName,
+            AccountState state,
+            Pageable pageable) {
+        return userRepository.findByFullNameContainingAndRoleAndState(fullName, Role.USER, state, pageable);
     }
 
     @Override
-    public Page<User> getStaffByRoleAndState(Role role, AccountState state, Pageable page) {
-        if (role == null) {
-            if (state == null)
-                return userRepository.findByRoleNot(Role.USER, page);
-            return userRepository.findByRoleNotAndState(Role.USER, state, page);
-        } else {
-            if (state == null)
-                return userRepository.findByRole(role, page);
-            return userRepository.findByRoleAndState(role, state, page);
-        }
+    public Page<User> getStaffByFullNameContainingAndRoleAndState(
+            String fullName,
+            Role role,
+            AccountState state,
+            Pageable page) {
+        if (role == null)
+            return userRepository.findByFullNameContainingAndRoleNotAndState(fullName, Role.USER, state, page);
+        return userRepository.findByFullNameContainingAndRoleAndState(fullName, role, state, page);
     }
 
-    @Override
-    public Page<User> searchCustomerByFullName(String fullName, Pageable pageable) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Page<User> searchStaffByFullName(String fullName, Pageable pageable) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    
 }
