@@ -1,0 +1,48 @@
+version: "3.3"
+services:
+  api:
+    build: ./Backend/
+    ports:
+      - 8081:8081
+    # networks:
+    #   - online-book-shop
+
+  website:
+    build: ./Frontend/website
+    ports:
+      - 80:3000
+    depends_on:
+      - api
+    # networks:
+    #   - online-book-shop
+
+  admin:
+    build: ./Frontend/admin
+    ports:
+      - 3001:3001
+    depends_on:
+      - api
+    env_file:
+      - .env.development
+
+    # networks:
+    #   - online-book-shop
+
+#   webserver:
+#     image: nginx:latest
+#     ports:
+#       - 80:80
+#       - 443:443
+#     restart: always
+#     volumes:
+#       - ./nginx/conf/:/etc/nginx/conf.d/:ro
+# #     - ./certbot/www:/var/www/certbot/:ro
+# #      - ./certbot/conf:/etc/letsencrypt
+#     depends_on:
+#       - website
+#       - admin
+#     networks:
+#       - online-book-shop
+
+# networks:
+#   online-book-shop:

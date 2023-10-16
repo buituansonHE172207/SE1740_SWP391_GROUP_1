@@ -1,21 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
 import FormSelect from 'react-bootstrap/esm/FormSelect'
-const SelectAddress = ({label, options = null, name, setValue}) => {
+const SelectAddress = ({label, options = null, name, setValue, setName}) => {
     const [optionDisabled, setOptionDisabled] = useState(false);
     const handleSelectChange = (event) => {
         const newValue = event.target.value;
+        setName(event.target.selectedOptions[0].dataset.name);
         setValue(newValue);
       };
   return (
     <div>
-        <label htmlFor="select-address">{label}</label>
         <FormSelect name={name} onChange={handleSelectChange}>
-            <option value=''> {`--Chọn ${label}--`} </option>
+            <option value=''> {`--${label}--`} </option>
             {
                 options?.map(option => {
                     return (
-                        <option key={option?.codename} value={option.code}>{option?.name}</option>
+                        <option key={option?.codename} data-name={option.name} value={option.code}>{option?.name}</option>
                     )
                 })
             }

@@ -8,7 +8,8 @@ import {
   deleteBookCategory,
   getAllBookCategory,
   updateBookCategory,
-} from "../../services/book.service";
+} from "../../../services/book.service";
+import { namePattern } from "../../../utils/const.util";
 
 const BookCategoryPage = () => {
   const [formInstance] = Form.useForm();
@@ -20,7 +21,7 @@ const BookCategoryPage = () => {
   const columns: ColumnsType<IBookCategory> = [
     {
       title: "STT",
-      dataIndex: "name",
+      dataIndex: "id",
       key: "id",
       render: (text, record, index) => index + 1,
     },
@@ -30,6 +31,7 @@ const BookCategoryPage = () => {
       key: "name",
     },
     {
+      key: "action",
       align: "right",
       dataIndex: "id",
       render(id, record, index) {
@@ -111,17 +113,14 @@ const BookCategoryPage = () => {
             >
               Thêm Danh mục sách
             </Button>
-            {/* <Input.Search
-            placeholder="Nhập danh mục sách muốn tìm kiếm"
-            allowClear
-            enterButton="Tìm kiếm"
-            size="large"
-            // onSearch={onSearch}
-          /> */}
           </Space>
         }
       >
-        <Table dataSource={dataSource} columns={columns} />
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          rowKey={(record) => record.id}
+        />
       </Card>
 
       <Modal
@@ -139,6 +138,10 @@ const BookCategoryPage = () => {
             label="Tên danh mục sách"
             rules={[
               { required: true, message: "Hãy nhập vào tên danh mục sách" },
+              {
+                pattern: namePattern,
+                message: "Tên danh mục sách không hợp lệ.",
+              },
             ]}
           >
             <Input

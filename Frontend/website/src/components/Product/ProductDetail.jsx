@@ -113,7 +113,7 @@ const ProductDetail = () => {
                                                     </li>
                                                     <li>
                                                         Tác giả:
-                                                        <strong> {book_authors.map(author => <Link key={author.id} style={{ color: '#d51c24' }} to={`/collection/${author.id}`}>{author.name}</Link>)} </strong>
+                                                        <strong> {book_authors.map(author => <span key={author.id}>{author.name}</span>)} </strong>
                                                     </li>
                                                     {
                                                         book_collections
@@ -171,6 +171,9 @@ const ProductDetail = () => {
                                                                     }}>
                                                                         <i className='fa-solid fa-plus'></i>
                                                                     </button>
+                                                                </div>
+                                                                <div className="max-stock">
+                                                                    <span>Available: {book.stock}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
