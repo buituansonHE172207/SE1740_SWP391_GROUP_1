@@ -25,13 +25,13 @@ jobs:
       echo "$(gitlabRegistryPassword1)" | docker login --username "$(gitlabRegistryUsername1)" --password-stdin  registry.gitlab.com
 
       echo "Building and pushing Docker images"
-      docker build -t registry.gitlab.com/nguyenlghe176558/cicd-be ./Backend/
+      docker build --no-cache -t registry.gitlab.com/nguyenlghe176558/cicd-be ./Backend/
       docker push registry.gitlab.com/nguyenlghe176558/cicd-be
 
-      docker build -t registry.gitlab.com/nguyenlghe176558/cicd-fe ./Frontend/website
+      docker build --no-cache -t registry.gitlab.com/nguyenlghe176558/cicd-fe ./Frontend/website
       docker push registry.gitlab.com/nguyenlghe176558/cicd-fe
 
-      docker build -t registry.gitlab.com/nguyenlghe176558/cicd-admin ./Frontend/admin
+      docker build --no-cache -t registry.gitlab.com/nguyenlghe176558/cicd-admin ./Frontend/admin
       docker push registry.gitlab.com/nguyenlghe176558/cicd-admin
 
 - job: Deploy
