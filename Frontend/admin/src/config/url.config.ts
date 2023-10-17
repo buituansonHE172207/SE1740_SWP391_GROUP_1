@@ -6,5 +6,8 @@ export const URL_CONFIG = {
     BOOK: "/book",
     SLIDER: "/slider",
     PUBLISHER: "/publisher",
-    AUTHOR: "/author"
+    AUTHOR: "/author",
+    POST: "/post",
+    POST_CATEGORY: "/post-category",
+
 }
