@@ -1,6 +1,8 @@
 import { URL_CONFIG } from "../config/url.config";
 import AuthorPage from "../pages/author";
 import BookCategoryPage from "../pages/book/book-category";
+import PostPage from "../pages/post";
+import PostCategoryPage from "../pages/post/post-category";
 import PublisherPage from "../pages/publisher";
 import SliderPage from "../pages/slider";
 
@@ -56,23 +58,23 @@ const menu: RouteMenu[] = [
   },
 
   {
-    label: "Quản lý Bài viết",
+    label: "Bài viết",
     element: null,
-    key: "2",
-    path: "post",
+    key: URL_CONFIG.POST,
+    path: URL_CONFIG.POST,
     children: [
       {
-        path: "post",
         label: "Quản lý bài viết",
         element: null,
-        key: "1-1",
+        key: URL_CONFIG.POST,
+        path: URL_CONFIG.POST,
         children: [],
       },
       {
-        path: "post-category",
         label: "Quản lí danh mục bài viết",
-        element: null,
-        key: "1-1",
+        element: <PostCategoryPage />,
+        path: URL_CONFIG.POST_CATEGORY,
+        key: URL_CONFIG.POST_CATEGORY,
         children: [],
       },
     ],

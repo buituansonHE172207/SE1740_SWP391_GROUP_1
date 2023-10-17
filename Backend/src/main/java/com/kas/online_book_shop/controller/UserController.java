@@ -1,7 +1,5 @@
 package com.kas.online_book_shop.controller;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kas.online_book_shop.enums.AccountState;
+import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.service.UserService;
 
@@ -31,15 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
-
-    @GetMapping("")
-    public ResponseEntity<List<User>> getUser() {
-        var users = userService.getAllUsers();
-        if (users.isEmpty())
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(users);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
@@ -57,7 +47,8 @@ public class UserController {
     }
 
     @GetMapping("/customer")
-    public ResponseEntity<Page<User>> getUserByRole(
+    public ResponseEntity<Page<User>> getCustomer(
+            @RequestParam(required = false) String fullName,
             @RequestParam(required = false) AccountState state,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "0") int page,
@@ -65,8 +56,21 @@ public class UserController {
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        var customers = userService.getCustomerByState(state, pageable);
-        return ResponseEntity.ok(customers);
+        return ResponseEntity.ok(userService.getCustomerByFullNameContainingAndState(fullName, state, pageable));
+    }
+
+    @GetMapping("/Staff")
+    public ResponseEntity<Page<User>> getStaff(
+            @RequestParam(required = false) String fullName,
+            @RequestParam(required = false) AccountState state,
+            @RequestParam(required = false) Role role,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return ResponseEntity.ok(userService.getStaffByFullNameContainingAndRoleAndState(fullName, role, state, pageable));
     }
 
     @GetMapping("/by-email/{email}")

@@ -49,19 +49,6 @@ public class PostController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<Post>> getAllPosts(
-            @RequestParam(required = false) PostCategory category,
-            @RequestParam(required = false) PostState state,
-            @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "asc") String sortOrder) {
-        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
-        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        return ResponseEntity.ok(postService.getAllPostsWithSorterAndFilter(category, state, pageable));
-    }
-
-    @GetMapping("/search")
     public ResponseEntity<Page<Post>> searchPost(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) PostCategory category,
@@ -72,6 +59,6 @@ public class PostController {
             @RequestParam(defaultValue = "asc") String sortOrder) {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        return ResponseEntity.ok(postService.searchPostByTitleWithSorterAndFilter(title, category, state, pageable));
+        return ResponseEntity.ok(postService.getPostByTileContainingAndCategoryAndState(title, category, state, pageable));
     }
 }
