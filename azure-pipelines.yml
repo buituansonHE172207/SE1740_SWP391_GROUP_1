@@ -7,10 +7,8 @@ variables:
   value: $[variables.vmUsername]
 - name: vmIp1
   value: $[variables.vmIp]
-# - name: gitlabRegistryUsername1
-#   value: $[variables.gitlabRegistryUsername]
-# - name: gitlabRegistryPassword1
-#   value: $[variables.gitlabRegistryPassword]
+- name: feVmIp1
+  value: $[variables.feVmIp]
 
 pool:
     vmImage: 'ubuntu-latest'
@@ -31,9 +29,15 @@ jobs:
       cd online-book-shop-aws && 
       git pull origin develop && 
       cd .. &&
-      sudo docker compose -f online-book-shop-aws/testDc.yml build --no-cache 
+      sudo docker compose -f online-book-shop-aws/testDc.yml build 
       "
-  
+      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+      cd online-book-shop-aws && 
+      git pull origin develop && 
+      cd .. &&
+      sudo docker compose -f online-book-shop-aws/docker-compose.yml build 
+      "
+
 - job: Deploy
   displayName: 'Deploy Application'
   dependsOn: Build
@@ -46,6 +50,14 @@ jobs:
   - script: |
       sudo chmod 400 $(sshKey.secureFilePath)
       ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
-      sudo docker compose -f online-book-shop-aws/testDc.yml down &&
-      sudo docker compose -f online-book-shop-aws/testDc.yml up -d
+      sudo docker compose -f online-book-shop-aws/testDc.yml down
+      "
+      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+      sudo docker compose -f online-book-shop-aws/docker-compose.yml down
+      "
+      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+      sudo docker compose -f online-book-shop-aws/testDc.yml up --force-recreate -d
+      "
+      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+      sudo docker compose -f online-book-shop-aws/docker-compose.yml up --force-recreate -d
       "
