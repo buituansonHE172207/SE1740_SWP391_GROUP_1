@@ -67,6 +67,7 @@ const Profile = () => {
     fetchUserInfo()
   }, [])
 
+
   const handleProfileChange = (e) => {
     const { name, value } = e.target
     setProfileData((prevState) => ({

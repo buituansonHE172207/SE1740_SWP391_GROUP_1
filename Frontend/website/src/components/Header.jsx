@@ -5,9 +5,15 @@ import Col from 'react-bootstrap/esm/Col'
 import SelectAddress from "./Home/SelectAddress";
 import { createAccount, login } from "../services/UserService";
 import { getProvince, getDistrict, getWard } from '../services/CityService'
-import Cookies from 'js-cookie'
-const Header = () => {
-    const authToken = Cookies.get('authToken')
+import { useCookies } from 'react-cookie';
+import jwt_decode from 'jwt-decode'
+import { getAllCartByUserId, addToCart, updateCartItem } from "../services/CartService";
+import { getUserInfoByEmail } from "../services/UserService"
+import { useNavigate } from "react-router-dom";
+import SearchBar from "./Home/SearchBar";
+import SearchResult from "./Home/SearchResult";
+const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartChange }) => {
+
     const [formData, setFormData] = useState({
         si_email: "",
         si_password: "",
@@ -17,7 +23,7 @@ const Header = () => {
         su_password: "",
         su_address: "",
     })
-    const [error, setError] = useState({ formatError: false, emptyError: false, existError: false, loginError: false })
+    const [error, setError] = useState({ formatError: false, emptyError: false, existError: false, loginError: false, passwordError: false, emailError: false, phoneError: false })
     const [provinces, setProvices] = useState([])
     const [province, setProvince] = useState()
     const [province_name, setProvinceName] = useState()
@@ -28,7 +34,7 @@ const Header = () => {
     const [ward_name, setWardName] = useState()
     const [wards, setWards] = useState([])
     const [reset, setReset] = useState(false)
-
+    const [result, setResult] = useState({})
     useEffect(() => {
         setProvinceName(null)
         const fetchProvince = async () => {
@@ -69,6 +75,19 @@ const Header = () => {
         }))
     }
 
+    const toggleSmallCartModel = (e) => {
+        e.stopPropagation()
+        const cartModel = document.querySelector('.quickview-cart')
+        cartModel.style.display = cartModel.style.display === 'none' ? 'block' : 'none'
+    }
+
+    const deleteCartItemHandler = (order_id) => {
+        cart.orderDetails = cart.orderDetails.filter(item => item.id !== order_id)
+        updateCartItem(cart).then(res => {
+            setCartChange(!cartChange)
+        })
+    }
+
     const handleSignIn = (event) => {
         event.preventDefault()
         const email_regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g
@@ -82,13 +101,15 @@ const Header = () => {
         }
         let account = { email: formData.si_email, password: formData.si_password }
         login(account).then(res => {
-            Cookies.set('authToken', res.data.token)
+            setCookies('authToken', res.data.token)
             window.location.reload()
         })
             .catch(err => {
                 setError((prevData) => ({ ...prevData, loginError: true }))
             })
+
     }
+
     const handleSignUp = (event) => {
         event.preventDefault()
         if (formData.su_name.trim() === '' || formData.su_phone.trim() === '' || formData.su_email === '' || formData.su_password.trim() === '' || formData.su_address.trim() === '' || province_name === null || district_name === null || ward_name === null || province_name == undefined || district_name == undefined || ward_name == undefined) {
@@ -101,16 +122,33 @@ const Header = () => {
         const phone_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g
         const email_regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g
         const password_regex = /[a-zA-Z\d]{6,}$/g
-        if (!phone_regex.test(formData.su_phone) || !email_regex.test(formData.su_email) || !password_regex.test(formData.su_password)) {
-            setError((prevData) => ({ ...prevData, formatError: true }))
+        if (!phone_regex.test(formData.su_phone) ) {
+            setError((prevData) => ({ ...prevData, phoneError: true }))
+            setError((prevData) => ({ ...prevData, passwordError: false }))
+            setError((prevData) => ({ ...prevData, emailError: false }))
+            return
+        }
+        else if (!email_regex.test(formData.su_email))
+        {
+            setError((prevData) => ({ ...prevData, emailError: true }))
+            setError((prevData) => ({ ...prevData, passwordError: false }))
+            setError((prevData) => ({ ...prevData, phoneError: false }))
+            return
+        }
+        else if (!password_regex.test(formData.su_password)){
+            setError((prevData) => ({ ...prevData, passwordError: true }))
+            setError((prevData) => ({ ...prevData, emailError: false }))
+            setError((prevData) => ({ ...prevData, phoneError: false }))
             return
         }
         else {
-            setError((prevData) => ({ ...prevData, formatError: false }))
+            setError((prevData) => ({ ...prevData, passwordError: false }))
+            setError((prevData) => ({ ...prevData, emailError: false }))
+            setError((prevData) => ({ ...prevData, phoneError: false }))
         }
         let account = { fullname: formData.su_name, email: formData.su_email, password: formData.su_password, province: province_name, district: district_name, ward: ward_name, phone: formData.su_phone, address: formData.su_address }
         createAccount(account).then(res => {
-            Cookies.set('authToken', res.data.token)
+            setCookies('authToken', res.data.token)
             window.location.reload()
         })
             .catch(err => {
@@ -119,7 +157,8 @@ const Header = () => {
     }
 
     const logout = () => {
-        Cookies.remove('authToken')
+        removeCookies('authToken')
+        setCookies('authToken', null)
         window.location.reload()
     }
 
@@ -164,14 +203,9 @@ const Header = () => {
                 <div className="inner desktop-header medium--hide small--hide">
                     <div className="row align-items-center">
                         <div className="col-lg-4">
-                            <div className="input-group rounded">
-                                <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <button className="search-btn">
-                                    <span className="input-group-text border-0" id="search-addon">
-                                        <i className="fas fa-search"></i>
-                                    </span>
-                                </button>
-
+                            <div className="search-form-wrapper">
+                                <SearchBar setResult={setResult}/>
+                                <SearchResult result={result} />
                             </div>
                         </div>
                         <div className="col-lg-4">
@@ -186,7 +220,7 @@ const Header = () => {
 
                             <div className="hd-account">
                                 {
-                                    authToken ? (
+                                    cookies.authToken ? (
                                         <>
                                             <Link className="popup_form_user_btn" to={`/account`}>
                                                 <i className="fa-solid fa-user"></i>
@@ -220,11 +254,81 @@ const Header = () => {
                                     </a>
                                 </div>
                             </div>
-                            <div className="desktop-cart-wrapper">
-                                <a href="" className="hd-cart">
-                                    <i className="fa-solid fa-bag-shopping"></i>
-                                    <span className="hd-cart-count">0</span>
-                                </a>
+                            <div className="desktop-cart-wrapper" >
+                                <span href="" className="hd-cart">
+                                    <i onClick={toggleSmallCartModel} style={{ cursor: 'pointer' }} className="fa-solid fa-bag-shopping"></i>
+                                    <span className="hd-cart-count">{cart?.orderDetails?.reduce((total, item) => (total + item.amount), 0)}</span>
+                                </span>
+                                <div className="quickview-cart" style={{ fontSize: '12px', display: 'none' }}>
+                                    {
+                                        cart?.orderDetails?.length > 0 ?
+                                            (
+                                                <>
+                                                    <div className="cart-title">
+                                                        Giỏ hàng của tôi({cart?.orderDetails?.reduce((total, item) => (total + item.amount), 0)} sản phẩm)
+                                                        <span onClick={toggleSmallCartModel} className="btnCloseQVCart"><i className="fa-regular fa-circle-xmark"></i></span>
+                                                    </div>
+                                                    <ul className="no-bullet mt-3">
+                                                        {cart?.orderDetails?.map((item, index) => (
+                                                            <li key={index} className="cart-item">
+                                                                <span onClick={() => deleteCartItemHandler(item.id)} className="cart__remove"><i className="fa-regular fa-circle-xmark"></i></span>
+
+                                                                <Row>
+                                                                    <Col lg={4}>
+                                                                        <div className="cart-item-img text-center">
+                                                                            <a href={`/products/${item.book.id}`}>
+                                                                                <img src={item.book.images[0].link} alt="image" />
+                                                                            </a>
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col lg={8}>
+                                                                        <div className="cart-item-info text-left">
+                                                                            <a href={`/products/${item.book.id}`}>
+                                                                                {item.book.title}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div className="cart-item-price-quantity text-left">
+                                                                            <div className="quantity mb-1">
+                                                                                Số lượng: {item.amount}
+                                                                            </div>
+                                                                            <span className="current-price">
+                                                                                Giá/sp: {item.salePrice.toLocaleString()}₫
+                                                                            </span>
+                                                                        </div>
+                                                                    </Col>
+                                                                </Row>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                    <div className="qv-cart-total">
+                                                        Tạm tính: <span>{cart.orderDetails.reduce((total, item) => (total + item.amount * item.salePrice), 0).toLocaleString()}₫</span>
+                                                    </div>
+                                                    <div className="quickview-cartactions">
+                                                        <a href={`/cart`}>
+                                                            Xem giỏ hàng
+                                                        </a>
+                                                        <a href={`/checkout`}>
+                                                            Thanh toán
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            )
+                                            :
+                                            (
+                                                <>
+                                                    <div className="cart-title">
+                                                        Giỏ hàng trống
+                                                        <span onClick={toggleSmallCartModel} className="btnCloseQVCart">
+                                                            <i className="fa-regular fa-circle-xmark"></i>
+                                                        </span>
+                                                    </div>
+                                                    <ul className="no-bullet mt-2">
+                                                        <li>Bạn chưa có sản phẩm nào trong giỏ hàng!</li>
+                                                    </ul>
+                                                </>
+                                            )
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -306,9 +410,11 @@ const Header = () => {
                                 <button className="btn-signin">Đăng ký</button>
                             </div>
                             <div>
-                                {error.emptyError && <p className="text-danger">Vui lòng điền đầy đủ thông tin</p>}
-                                {error.formatError && <p className="text-danger">Vui lòng điền đúng định dạng</p>}
-                                {error.existError && <p className="text-danger">Email đã tồn tại</p>}
+                                {error.emptyError && <p className="text-danger ms-3">Vui lòng điền đầy đủ thông tin</p>}
+                                {error.phoneError && <p className="text-danger ms-3">Số điện thoại không hợp lệ</p>}
+                                {error.emailError && <p className="text-danger ms-3">Email không hợp lệ</p>}
+                                {error.passwordError && <p className="text-danger ms-3">Mật khẩu phải có ít nhất 6 kí tự</p>}
+                                {error.existError && <p className="text-danger ms-3">Email đã tồn tại</p>}
                             </div>
                         </form>
                     </div>

@@ -7,11 +7,18 @@ import { getBookById } from '../../services/BookService';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-const ProductDetail = () => {
+import Modal from 'react-bootstrap/Modal';
+import { addToCart, updateCartItem } from '../../services/CartService';
+
+const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) => {
     const [book, setBook] = useState({})
     const [quantity, setQuantity] = useState(1)
     const { id } = useParams()
-
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [stockError, setStockError] = useState(false)
+    const [tempCart, setTempCart] = useState({})
     const fetchBook = async () => {
         const res = await getBookById(id)
         const { data } = res
@@ -20,7 +27,7 @@ const ProductDetail = () => {
 
     const book_images = book.images ? book.images : []
     const book_authors = book.authors ? book.authors : []
-    const book_item = book_images.map((image, index) => {
+    const book_item = book_images?.map((image, index) => {
         return (
             <Carousel.Item key={index} interval={3000}>
                 <img
@@ -33,10 +40,56 @@ const ProductDetail = () => {
     })
     const book_collections = book.collections ? book.collections : []
 
-
     useEffect(() => {
         fetchBook()
     }, [])
+
+    const handleItemChange = (e, order_id) => {
+        setTempCart(cart => {
+            const newCart = { ...cart }
+            newCart.orderDetails = newCart.orderDetails.map(item => {
+                if (item.id === order_id && parseInt(e.target.value, 10) <= item.book.stock && parseInt(e.target.value, 10) >= 1) {
+                    item.amount = parseInt(e.target.value, 10)
+                }
+                return item
+            })
+            return newCart
+        })
+    }
+
+    const updateCart = () => {
+        updateCartItem(tempCart).then(res => {
+            setCartChange(!cartChange)
+            handleClose()
+        })
+    }
+
+    const addToCartHandler = () => {
+        setStockError(false)
+
+        const cartData = { userId: cart.user.id, bookId: book.id, amount: quantity }
+        addToCart(cartData).then(res => {
+            setCartChange(!cartChange)
+            handleShow()
+
+        })
+            .catch(err => {
+                setStockError(true)
+            })
+
+    }
+    const deleteCartItemHandler = (order_id) => {
+        cart.orderDetails = cart.orderDetails.filter(item => item.id !== order_id)
+        updateCartItem(cart).then(res => {
+            setCartChange(!cartChange)
+        })
+    }
+
+    useEffect(() => {
+        setTempCart({...cart})
+    }
+    , [cart])
+
     return (
         <div>
             <div id='breadcrumb-wrapper' className='breadcrumb-w-img'>
@@ -180,12 +233,13 @@ const ProductDetail = () => {
                                                     </Col>
                                                     <Col lg={12}>
                                                         <div className='product-actions'>
-                                                            <Button name='add' className='btnAddToCart is-adding'>Thêm vào giỏ hàng</Button>
+                                                            <Button onClick={addToCartHandler} name='add' className='btnAddToCart is-adding'>Thêm vào giỏ hàng</Button>
                                                             <Row>
                                                                 <Col lg={6}>
                                                                     <Button name='buy' className='btnBuyNow'>Mua Ngay</Button>
                                                                 </Col>
                                                             </Row>
+                                                            {stockError && <h5 className='mt-2' style={{ color: 'red' }}>Số lượng trong kho không đủ</h5>}
                                                         </div>
                                                     </Col>
                                                 </Row>
@@ -209,83 +263,114 @@ const ProductDetail = () => {
                                     <div className='pro-tabcontent'>
                                         {book.description}
                                     </div>
-                                    <div className='pro-tabcontent' style={{display: 'none'}}>
-                                        
+                                    <div className='pro-tabcontent' style={{ display: 'none' }}>
+
                                     </div>
                                 </div>
                                 <div className='product-description-wrapper'>
-                                    
+
                                 </div>
                             </Col>
                             <Col lg={3}>
-                                
+
                             </Col>
                         </Row>
                     </div>
                 </section>
             </div>
+            <Modal size='lg' show={show} onHide={handleClose} centered aria-labelledby="contained-modal-title-vcenter">
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter" className='modal-cart-status'>
+                        Giỏ hàng của bạn
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="modal-main-cart">
+                        <div className="modal-tbl-cart">
+                            <table className="cart-table full table--responsive">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        tempCart ? tempCart.orderDetails?.map((item, index) => (
+                                            <tr key={index}>
+                                                <td className='product-img'>
+                                                    <a href={`/products/${item.book.id}`}>
+                                                        <img className='cart-img' src={item.book.images[0].link} alt="image" />
+                                                    </a>
+                                                </td>
+                                                <td className='product-title'>
+                                                    <a href={`/products/${item.book.id}`}>
+                                                        {item.book.title}
+                                                    </a>
+                                                </td>
+                                                <td className='product-price'>
+                                                    <span className="current-price" style={{ display: 'block' }}>{item.salePrice?.toLocaleString()}₫</span>
+                                                    <span className="original-price me-5" style={{ display: 'block' }}><s>{item.originalPrice.toLocaleString()}₫</s></span>
+                                                    <span className="sale-off" style={{ display: 'block' }}>-{item.book.discount * 100}%</span>
+                                                </td>
+                                                <td className='product-action'>
+                                                    <input type="number" onChange={(e) => handleItemChange(e, item.id)} value={item.amount} />
+                                                    <div>Kho: {item.book.stock}</div>
+                                                </td>
+                                                <td className='product-money'>
+                                                    {(item.book.salePrice * item.amount)?.toLocaleString()}
+                                                </td>
+                                                <td className='product-remove'>
+                                                    <i onClick={() => deleteCartItemHandler(item.id)} className="fa-solid fa-trash"></i>
+                                                </td>
+                                            </tr>
+                                        )) : 'abcd'
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="modal-checkout-actions">
+                            <Row>
+                                <Col lg={6}>
+                                    <div className="cart-note-wrapper">
+                                        <div className="cart-note">
+                                            <textarea name="note" placeholder='Ghi chú' id="CartSpecialInstructions" cols="30" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col lg={6}>
+                                    <div className="model-cart-checkout text-right">
+                                        <div className="modal-cart-sum">
+                                            <h4>Tổng: <span>{cart?.orderDetails?.reduce((total, item) => total + item.amount * item.salePrice, 0)?.toLocaleString()}₫</span></h4>
+                                            <p className="you-save">
+                                                Tiết kiệm: <span>{cart?.orderDetails?.reduce((total, item) => total + item.amount * (item.book.price - item.book.salePrice), 0)?.toLocaleString()}₫</span>
+                                            </p>
+                                        </div>
+                                        <div className="modal-cart-actions">
+                                            <div className="modal-cart-actions">
+                                                <Button type='button' onClick={updateCart} className='btnRefreshModal update-cart'>
+                                                    Cập nhật giỏ hàng
+                                                </Button>
+                                                <a className='btnProceedCheckOut' href="/checkout">
+                                                    Tiến hành thanh toán
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }
 
 export default ProductDetail
 
-
-// {
-//     "id": 1,
-//     "title": "Chú Thuật Hồi Chiến - Tập 17 - Bản giới hạn",
-//     "publisher": {
-//         "id": 1,
-//         "name": "Nhà Xuất Bản Kim Đồng",
-//         "website": null
-//     },
-//     "authors": [
-//         {
-//             "id": 1,
-//             "name": "Gege Akutami",
-//             "company": null
-//         }
-//     ],
-//     "collections": [
-//         {
-//             "id": 14,
-//             "name": "TUỔI TRƯỞNG THÀNH(TRÊN 18 TUỔI)",
-//             "type": "ĐỘ TUỔI",
-//             "isDisplay": true
-//         },
-//         {
-//             "id": 6,
-//             "name": "MANGA-COMIC",
-//             "type": "THỂ LOẠI",
-//             "isDisplay": true
-//         }
-//     ],
-//     "description": null,
-//     "stock": 1,
-//     "sold": 1,
-//     "publicationDate": "2021-09-11",
-//     "size": "11.3x17.6 cm",
-//     "weight": 140,
-//     "price": 27000,
-//     "language": {
-//         "id": 1,
-//         "name": "Tiếng Anh"
-//     },
-//     "page": 200,
-//     "cover": "Bìa mềm",
-//     "discount": 0.1,
-//     "category": {
-//         "id": 1,
-//         "name": "Manga - Comic"
-//     },
-//     "images": [
-//         {
-//             "id": 1,
-//             "link": "https://product.hstatic.net/200000343865/product/17_3216c448936a49568a22dd2d39d1f8ce_master.jpg",
-//             "description": "Cover Image"
-//         }
-//     ],
-//     "salePrice": 24300,
-//     "rating": 0.0,
-//     "isbn": "978-604-2-33155-5"
-// }
