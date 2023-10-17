@@ -25,9 +25,13 @@ const getBooksByCollectionId = (id) => {
 const getBooksByQuery = (id, page, min, max) => {
     if(id === 'all')
     {
-        return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged?sortBy=id&page=${page === null ? 0 : page - 1}&size=12&sortOrder=asc${min ? `&min=${min}` : ''}${max ? `&max=${max}` : ''}`)
+        return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged/by-collection?sortBy=price&page=${page === null ? 0 : page - 1}&size=12&sortOrder=asc${min ? `&min=${min}` : ''}${max ? `&max=${max}` : ''}`)
     }
-    return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged/by-collection?collection=${id}&sortBy=authors&page=${page -1}&size=12&sortOrder=desc${min ? `&min=${min}` : ''}${max ? `&max=${max}` : ''}`)
+    return axios.get(BOOK_API_BASE_URL + `/sorted-and-paged/by-collection?collection=${id}&sortBy=price&page=${page -1}&size=12&sortOrder=asc${min ? `&min=${min}` : ''}${max ? `&max=${max}` : ''}`)
 }
 
-export {getBook, getBookByQuery, getBooksByCollectionId, getBooksByQuery, getBookById}
+const getBooksBySearchValue = (value) => {
+    return axios.get(BOOK_API_BASE_URL + `/search?size=12&sortOrder=asc&name=${value}`)
+}
+
+export {getBook, getBookByQuery, getBooksByCollectionId, getBooksByQuery, getBookById, getBooksBySearchValue}

@@ -16,13 +16,11 @@ const BooksByCollection = () => {
     const { id } = useParams()
     const urlParams = new URLSearchParams(window.location.search);
     const [page, setPage] = useState(urlParams.get('page'));
-    const [min, setMin] = useState(urlParams.get('min'));
-    const [max, setMax] = useState(urlParams.get('max'));
     const [limit,] = useState(12);
     const totalPage = Math.ceil(book_length.current / limit);
 
     const fetchData = (id) => {
-        getBooksByQuery(id, page, min, max)
+        getBooksByQuery(id, page, urlParams.get('min'), urlParams.get('max'))
             .then(res => {
                 setBooks(res.data.content)
                 book_length.current = res.data.totalElements
@@ -122,19 +120,25 @@ const BooksByCollection = () => {
         const maxValue = Number(e.target.dataset.max)
         if (minValue && maxValue)
         {
-            navigate(`/collections/${id}?min=${minValue}&max=${maxValue}`)
+            navigate(`/collections/${id}?min=${minValue}&max=${maxValue}${page ? `&page=${page}` : ''}`)
         }
         else if (minValue)
-            navigate(`/collections/${id}?min=${minValue}`)
+        {
+            navigate(`/collections/${id}?min=${minValue}${page ? `&page=${page}` : ''}`)
+        }
         else if (maxValue)
-            navigate(`/collections/${id}?max=${maxValue}`)
+        {
+            navigate(`/collections/${id}?max=${maxValue}${page ? `&page=${page}` : ''}`)
+        }
         else
-            navigate(`/collections/${id}`)
+        {
+            navigate(`/collections/${id}${page ? `?page=${page}` : ''}`)
+        }
     }
 
     useEffect(() => {
         fetchData(id)
-    }, [id, page, min, max])
+    }, [id, page, window.location.search])
 
     useEffect(() => {
         setPage(1)

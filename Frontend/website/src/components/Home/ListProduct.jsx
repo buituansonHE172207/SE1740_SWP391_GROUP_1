@@ -32,9 +32,9 @@ const ListProduct = (props) => {
                                 <div key={book.id} className="col-lg-2">
                                     <div className="product-item">
                                         <div className="product-img">
-                                            <Link to={`/products/${book.id}`}>
+                                            <a href={`/products/${book.id}`}>
                                                 <img src={book.images[0].link} alt={book.title} />
-                                            </Link>
+                                            </a>
                                             <div className="tag-saleoff text-center">
                                                 -{book.discount * 100}%
                                             </div>
@@ -42,7 +42,7 @@ const ListProduct = (props) => {
                                     </div>
                                     <div className="product-info">
                                         <div className="product-title">
-                                            <Link className="text-container" to={`/products/${book.id}`}>{book.title}</Link>
+                                            <a className="text-container" href={`/products/${book.id}`}>{book.title}</a>
                                         </div>
                                         <div className="product-price">
                                             <span className="current-price">{book.salePrice.toLocaleString()}₫</span>
