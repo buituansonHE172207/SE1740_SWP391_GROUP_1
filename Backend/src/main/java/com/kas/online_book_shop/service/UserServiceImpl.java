@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.kas.online_book_shop.dto.RegisterRequest;
 import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
@@ -48,14 +49,24 @@ public class UserServiceImpl implements UserService {
         return existingUser;
     }
 
-    @Override 
-    public User registerStaff(User user) {
-        userRepository.findByEmail(user.getEmail())
-                                .ifPresent(existingUser -> {
-                                        throw new UserAlreadyExistsException("Người dùng đã tồn tại.");
-                                });
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setId(null);
+    @Override
+    public User registerStaff(RegisterRequest request) {
+        userRepository.findByEmail(request.email())
+                .ifPresent(existingUser -> {
+                    throw new UserAlreadyExistsException("Người dùng đã tồn tại.");
+                });
+        var user = User.builder()
+                .fullName(request.fullName())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
+                .role(request.role())
+                .state(AccountState.ACTIVE)
+                .province(request.province())
+                .district(request.district())
+                .ward(request.ward())
+                .phone(request.phone())
+                .address(request.address())
+                .build();
         return userRepository.save(user);
     }
 

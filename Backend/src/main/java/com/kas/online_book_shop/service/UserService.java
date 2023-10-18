@@ -3,6 +3,7 @@ package com.kas.online_book_shop.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.kas.online_book_shop.dto.RegisterRequest;
 import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
@@ -10,7 +11,7 @@ import com.kas.online_book_shop.model.User;
 public interface UserService {
     User getUserById(Long id);
 
-    User registerStaff(User user);
+    User registerStaff(RegisterRequest user);
 
     User updateUser(User user);
 
