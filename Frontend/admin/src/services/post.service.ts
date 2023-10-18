@@ -1,4 +1,5 @@
 import axiosInstance from "../http";
+import { WebResponse } from "./base.response";
 import { IUser } from "./user.service";
 
 export interface IPostCategory {
@@ -41,7 +42,7 @@ export const deletePostCategory = async (id: string) => {
     return response.data;
 };
 export const getAllPost = async () => {
-    const response = await axiosInstance.get<IPost[]>(POST);
+    const response = await axiosInstance.get<WebResponse<IPost>>(POST);
     return response.data;
 };
 

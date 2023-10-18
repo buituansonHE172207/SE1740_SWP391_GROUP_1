@@ -1,12 +1,9 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input, Layout } from "antd";
+import { Button, Card, Form, Input, Layout, notification } from "antd";
 import { useForm } from "antd/es/form/Form";
-import decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import { URL_CONFIG } from "../../config/url.config";
-import { useAuth } from "../../context/AuthContext";
-import { TOKEN } from "../../http";
-import { TokenType, register } from "../../services/auth.service";
+import { register } from "../../services/auth.service";
 
 type FieldType = {
   email: string;
@@ -17,17 +14,20 @@ type FieldType = {
 };
 
 const RegisterPage = () => {
-  const { login: setLogin } = useAuth();
+  // const { login: setLogin } = useAuth();
   const [form] = useForm();
   const navigate = useNavigate();
   const onFinish = async (values: FieldType) => {
     try {
       const res = await register(values);
-      localStorage.setItem(TOKEN, res.token);
-      const decodedToken = (await decode(res.token)) as TokenType;
-      const role = decodedToken.authorities[0].authority;
-      await setLogin(role);
-      navigate(URL_CONFIG.HOME);
+      // localStorage.setItem(TOKEN, res.token);
+      // const decodedToken = (await decode(res.token)) as TokenType;
+      // const role = decodedToken.authorities[0].authority;
+      // await setLogin(role);
+      notification.success({
+        message: "Đăng ký thành công",
+      });
+      navigate(URL_CONFIG.LOGIN);
     } catch (error: any) {
       if (error.status === 409) {
         form.setFields([

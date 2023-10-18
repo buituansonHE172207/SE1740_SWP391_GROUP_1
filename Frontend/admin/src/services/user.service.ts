@@ -1,3 +1,5 @@
+import axiosInstance from "../http";
+
 export interface IUser {
 	id: number;
 	fullName: string;
@@ -15,3 +17,10 @@ export interface IUser {
 	credentialsNonExpired: boolean;
 	username: string;
 }
+
+const USER = "user";
+
+export const getUserByEmail = async (email: string) => {
+    const response = await axiosInstance.get<IUser>(`${USER}/by-email/${email}`);
+    return response.data;
+};

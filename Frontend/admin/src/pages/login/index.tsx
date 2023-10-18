@@ -1,12 +1,12 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input, Layout } from "antd";
+import { Button, Card, Form, Input, Layout, notification } from "antd";
 import { useForm } from "antd/es/form/Form";
-import decode from "jwt-decode";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { URL_CONFIG } from "../../config/url.config";
 import { useAuth } from "../../context/AuthContext";
 import { TOKEN } from "../../http";
-import { TokenType, login } from "../../services/auth.service";
+import { login } from "../../services/auth.service";
+import { getUserByEmail } from "../../services/user.service";
 
 type FieldType = {
   email: string;
@@ -15,16 +15,18 @@ type FieldType = {
 };
 
 const LoginPage = () => {
-  const { login: setLogin } = useAuth();
+  const { setUserInfo } = useAuth();
   const [form] = useForm();
   const navigate = useNavigate();
   const onFinish = async (values: FieldType) => {
     try {
       const res = await login(values);
       localStorage.setItem(TOKEN, res.token);
-      const decodedToken = (await decode(res.token)) as TokenType;
-      const role = decodedToken.authorities[0].authority;
-      await setLogin(role);
+      const userInfo = await getUserByEmail(values.email);
+      await setUserInfo(userInfo);
+      notification.success({
+        message: "Đăng nhập thành công",
+      });
       navigate(URL_CONFIG.HOME);
     } catch (error: any) {
       if (error.status === 404) {
@@ -122,7 +124,7 @@ const LoginPage = () => {
               Đăng nhập
             </Button>
           </Form.Item>
-          <Link to={URL_CONFIG.REGISTER}>Đăng ký</Link>
+          {/* <Link to={URL_CONFIG.REGISTER}>Đăng ký</Link> */}
         </Form>
       </Card>
     </Layout>
