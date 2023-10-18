@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.dto.RegisterRequest;
 import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.model.User;
@@ -33,12 +34,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(userService.getUserById(id));   
     }
 
     @PutMapping()
@@ -59,7 +55,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getCustomerByFullNameContainingAndState(fullName, state, pageable));
     }
 
-    @GetMapping("/Staff")
+    @GetMapping("/staff")
     public ResponseEntity<Page<User>> getStaff(
             @RequestParam(required = false) String fullName,
             @RequestParam(required = false) AccountState state,
@@ -94,10 +90,10 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/add")
+    @PostMapping("/staff/register")
     public ResponseEntity<User> addStaff(
-        @RequestBody User user) {
-            return null;
+        @RequestBody RegisterRequest user) {
+        return ResponseEntity.ok(userService.registerStaff(user));
     }
 
 

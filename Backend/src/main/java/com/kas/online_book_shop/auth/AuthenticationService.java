@@ -46,7 +46,7 @@ public class AuthenticationService {
                                                         "Người dùng với email: " + request.email() + " đã tồn tại.");
                                 });
                 var user = User.builder()
-                                .fullName(request.fullname())
+                                .fullName(request.fullName())
                                 .email(request.email())
                                 .password(passwordEncoder.encode(request.password()))
                                 .role(Role.USER)
@@ -58,7 +58,7 @@ public class AuthenticationService {
                                 .address(request.address())
                                 .build();
                 userRepository.save(user);
-                emailService.sendActivationEmail(request.email(), request.fullname(), jwtService.generateToken(user));
+                emailService.sendActivationEmail(request.email(), request.fullName(), jwtService.generateToken(user));
                 return;
         }
 
