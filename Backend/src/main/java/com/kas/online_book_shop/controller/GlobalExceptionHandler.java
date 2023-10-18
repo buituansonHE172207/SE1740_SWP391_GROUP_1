@@ -21,12 +21,16 @@ import com.kas.online_book_shop.exception.UserNotFoundException;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.annotation.security.PermitAll;
+import jakarta.validation.ConstraintViolationException;
 
 @RestControllerAdvice()
 @PermitAll
 public class GlobalExceptionHandler {
 
-
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
 
     @ExceptionHandler(ISBNDuplicateException.class)
     public ResponseEntity<String> handleISBNDuplicateException(ISBNDuplicateException ex) {

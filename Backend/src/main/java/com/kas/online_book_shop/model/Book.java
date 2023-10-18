@@ -97,7 +97,7 @@ public class Book {
     private String ISBN;
 
     @Min(value = 0, message = "The discount must be at least 0")
-    @Max(value = 0, message = "The discount must be equal and less than 1")
+    @Max(value = 1, message = "The discount must be equal and less than 1")
     private Float discount;
 
     @Enumerated(EnumType.STRING)
