@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kas.online_book_shop.enums.AccountState;
 import com.kas.online_book_shop.enums.Role;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
+import com.kas.online_book_shop.exception.UserAlreadyExistsException;
 import com.kas.online_book_shop.model.User;
 import com.kas.online_book_shop.repository.UserRepository;
 
@@ -45,6 +46,17 @@ public class UserServiceImpl implements UserService {
         existingUser.setPhone(user.getPhone());
         existingUser.setAddress(user.getAddress());
         return existingUser;
+    }
+
+    @Override 
+    public User registerStaff(User user) {
+        userRepository.findByEmail(user.getEmail())
+                                .ifPresent(existingUser -> {
+                                        throw new UserAlreadyExistsException("Người dùng đã tồn tại.");
+                                });
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setId(null);
+        return userRepository.save(user);
     }
 
     @Override

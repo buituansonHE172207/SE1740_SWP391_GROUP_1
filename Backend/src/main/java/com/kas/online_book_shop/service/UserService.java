@@ -10,6 +10,8 @@ import com.kas.online_book_shop.model.User;
 public interface UserService {
     User getUserById(Long id);
 
+    User registerStaff(User user);
+
     User updateUser(User user);
 
     void setAccountState(Long userId, String state);
@@ -22,5 +24,4 @@ public interface UserService {
 
     Page<User> getStaffByFullNameContainingAndRoleAndState(String fullName, Role role,AccountState state ,Pageable page);
 
-    
 }
