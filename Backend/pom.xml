@@ -13,7 +13,7 @@
 	<groupId>com.kas</groupId>
 	<artifactId>online_book_shop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>online_book_shop</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

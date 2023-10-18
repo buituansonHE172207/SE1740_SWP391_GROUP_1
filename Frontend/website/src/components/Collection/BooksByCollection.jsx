@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { getBooksByCollectionId, getBooksByCollectionIdAndPage } from "../../services/BookService"
+import React, { useEffect, useRef, useState } from 'react'
+import { getBooksByCollectionId, getBooksByQuery } from "../../services/BookService"
 import { useNavigate, useParams } from 'react-router-dom'
 import Breadscrumb from '../Breadscrumb'
 import { Link } from 'react-router-dom'
@@ -9,18 +9,23 @@ import Pagination from '../Pagination'
 const BooksByCollection = () => {
     const navigate = useNavigate()
     const [books, setBooks] = useState([])
-    const [bookData, setBookData] = useState([])
     const [collections, setCollections] = useState([])
+    const book_length = useRef(0)
     const [categories, setCategories] = useState([])
     const [curCollection, setCurCollection] = useState()
     const { id } = useParams()
     const urlParams = new URLSearchParams(window.location.search);
     const [page, setPage] = useState(urlParams.get('page'));
+    const [min, setMin] = useState(urlParams.get('min'));
+    const [max, setMax] = useState(urlParams.get('max'));
+    const [limit,] = useState(12);
+    const totalPage = Math.ceil(book_length.current / limit);
+
     const fetchData = (id) => {
-        getBooksByCollectionIdAndPage(id, page)
+        getBooksByQuery(id, page, min, max)
             .then(res => {
                 setBooks(res.data.content)
-                setBookData(res.data)
+                book_length.current = res.data.totalElements
             })
             .catch(error => console.error(error))
         getCollections()
@@ -43,8 +48,32 @@ const BooksByCollection = () => {
         ) : null
     ));
 
-    const setCurrentPage = (page) => {
-        setPage(page)
+
+    const setCurrentPage = (value) => {
+        window.scrollTo(0, 0);
+        if (value === '&laquo;') {
+            setPage(1)
+            return
+        }
+        else if (value === '&lsaquo;') {
+            if (page !== 1) {
+                setPage(page - 1)
+            }
+            return
+        }
+        else if (value === '&rsaquo;') {
+            if (page !== totalPage)
+                setPage(page + 1)
+            return
+        }
+        else if (value === '&raquo;') {
+            setPage(totalPage)
+            return
+        }
+        else if (value === '...') {
+            return
+        }
+        setPage(value)
         if (id === 'all')
             navigate(`/collections/all?page=${page}`)
         else
@@ -56,9 +85,9 @@ const BooksByCollection = () => {
             <div key={book.id} className='col-lg-3 mb-4'>
                 <div className="product-item">
                     <div className="product-img">
-                        <a href="#">
+                        <Link to={`/products/${book.id}`}>
                             <img src={book.images[0].link} alt={book.title} />
-                        </a>
+                        </Link>
                         <div className="tag-saleoff text-center">
                             -{book.discount * 100}%
                         </div>
@@ -66,7 +95,7 @@ const BooksByCollection = () => {
                 </div>
                 <div className="product-info">
                     <div className="product-title">
-                        <a className="text-container" href="#">{book.title}</a>
+                        <Link className="text-container" to={`/products/${book.id}`}>{book.title}</Link>
                     </div>
                     <div className="product-price">
                         <span className="current-price">{book.salePrice.toLocaleString()}₫</span>
@@ -88,9 +117,24 @@ const BooksByCollection = () => {
         )
     })
 
+    const handlePrice = (e) => {
+        const minValue = Number(e.target.dataset.min)
+        const maxValue = Number(e.target.dataset.max)
+        if (minValue && maxValue)
+        {
+            navigate(`/collections/${id}?min=${minValue}&max=${maxValue}`)
+        }
+        else if (minValue)
+            navigate(`/collections/${id}?min=${minValue}`)
+        else if (maxValue)
+            navigate(`/collections/${id}?max=${maxValue}`)
+        else
+            navigate(`/collections/${id}`)
+    }
+
     useEffect(() => {
         fetchData(id)
-    }, [id, page])
+    }, [id, page, min, max])
 
     useEffect(() => {
         setPage(1)
@@ -138,43 +182,43 @@ const BooksByCollection = () => {
                                                             <ul className='no-bullets'>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} type='radio' name='price-filter'></input>
                                                                         <span>Tất cả</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} type='radio' data-max='100000' name='price-filter'></input>
                                                                         <span>Nhỏ hơn 100,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} type='radio' data-min='100000' data-max='200000' name='price-filter'></input>
                                                                         <span> Từ 100,000₫ - 200,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} type='radio' data-min='200000' data-max='300000' name='price-filter'></input>
                                                                         <span>Từ 200,000₫ - 300,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} type='radio' data-min='300000' data-max='400000' name='price-filter'></input>
                                                                         <span> Từ 300,000₫ - 400,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} data-min='400000' data-max='500000' type='radio' name='price-filter'></input>
                                                                         <span>Từ 400,000₫ - 500,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input type='radio' name='price-filter'></input>
+                                                                        <input onClick={handlePrice} type='radio' data-min='500000' name='price-filter'></input>
                                                                         <span>Lớn hơn 500,000₫</span>
                                                                     </label>
                                                                 </li>
@@ -244,7 +288,7 @@ const BooksByCollection = () => {
                     </div>
                 </section>
             </div>
-            <Pagination totalPosts={bookData.totalElements} postsPerPage={12} setCurrentPage={setCurrentPage} />
+            <Pagination totalPage={totalPage} page={page} limit={limit} siblings={1} setCurrentPage={setCurrentPage} />
         </>
     )
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getBookByQuery } from "../../services/BookService";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ListProduct = (props) => {
     const [books, setBooks] = useState([]);
@@ -31,9 +32,9 @@ const ListProduct = (props) => {
                                 <div key={book.id} className="col-lg-2">
                                     <div className="product-item">
                                         <div className="product-img">
-                                            <a href="#">
+                                            <Link to={`/products/${book.id}`}>
                                                 <img src={book.images[0].link} alt={book.title} />
-                                            </a>
+                                            </Link>
                                             <div className="tag-saleoff text-center">
                                                 -{book.discount * 100}%
                                             </div>
@@ -41,7 +42,7 @@ const ListProduct = (props) => {
                                     </div>
                                     <div className="product-info">
                                         <div className="product-title">
-                                            <a className="text-container" href="#">{book.title}</a>
+                                            <Link className="text-container" to={`/products/${book.id}`}>{book.title}</Link>
                                         </div>
                                         <div className="product-price">
                                             <span className="current-price">{book.salePrice.toLocaleString()}₫</span>

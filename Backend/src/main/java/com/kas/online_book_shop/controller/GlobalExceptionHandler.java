@@ -6,12 +6,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 
+import com.kas.online_book_shop.exception.AccountDisabledException;
+import com.kas.online_book_shop.exception.AccountInactiveException;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.InsufficientStockException;
 import com.kas.online_book_shop.exception.InvalidValueException;
 import com.kas.online_book_shop.exception.OldPasswordMismatchException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
+import com.kas.online_book_shop.exception.UnauthorizedException;
 import com.kas.online_book_shop.exception.UserAlreadyExistsException;
 import com.kas.online_book_shop.exception.UserNotFoundException;
 
@@ -76,10 +80,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Mật khẩu không chính xác");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password.");
+    }
+    @ExceptionHandler(AccountDisabledException.class)
+    public ResponseEntity<String> handleAccountDisabledException(AccountDisabledException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Account_disabled");
     }
 
-    
+    @ExceptionHandler(AccountInactiveException.class)
+    public ResponseEntity<String> handleAccountInactiveException(AccountInactiveException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Account_not_activated");
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<String> handleUnauthorizedException(UnauthorizedException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    }    
     /* @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
