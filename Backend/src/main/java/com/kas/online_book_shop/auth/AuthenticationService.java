@@ -111,21 +111,6 @@ public class AuthenticationService {
                                 jwtService.generateToken(existingUser));
                 return;
         }
-
-        // public AuthenticationResponse activateAccount(ForgotPasswordRequest request) {
-        //         var existingUser = repository.findByEmail(request.email())
-        //                         .orElseThrow(() -> new UserNotFoundException(
-        //                                         "Người dùng với email '" + request.email() + "' không tồn tại."));
-        //         var jwtToken = jwtService.generateToken(existingUser);
-        //         String urlWithToken = "http://localhost:3000/activate/" + jwtToken;
-        //         mailMessage.setFrom("sachtructuyen123@gmail.com");
-        //         mailMessage.setTo(request.email());
-        //         mailMessage.setSubject("Đặt lại mật khẩu");
-        //         mailMessage.setText("Xin chào " + existingUser.getFullName() + "!\n"
-        //                         + "Hãy nhấn vào đường link bên dưới để đặt lại mật khẩu: \n" + urlWithToken);
-        //         javaMailSender.send(mailMessage);
-        //         return new AuthenticationResponse(jwtToken);
-        // }
         
         public AuthenticationResponse changePassword(ChangePasswordRequest request) {
                 var user = userRepository.findByEmail(jwtService.extractUsername(request.token()))
