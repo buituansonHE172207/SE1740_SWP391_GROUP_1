@@ -44,6 +44,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
         fetchProvince()
     }, [])
 
+
     useEffect(() => {
         setDistrict(null)
         setDistrictName(null)
@@ -159,7 +160,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
     const logout = () => {
         removeCookies('authToken')
         setCookies('authToken', null)
-        window.location.reload()
+        window.location.href = '/'
     }
 
     return (

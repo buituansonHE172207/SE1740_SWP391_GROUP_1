@@ -86,7 +86,7 @@ const CheckoutInfo = ({ cart, setCart, cartChange, setCartChange }) => {
         !district ? setReset(true) : setReset(false)
         !district && setWards([])
       }, [district, province])
-    console.log(province_name, district_name, ward_name)
+      
     return (
         <div className="main">
             <div className="main-header">
@@ -108,16 +108,16 @@ const CheckoutInfo = ({ cart, setCart, cartChange, setCartChange }) => {
                             </div>
                             <div className="section-content section-customer-information no-mb">
                                 <div className='mb-3'>
-                                    <label for="name" class="form-label">Họ và tên</label>
+                                    <label for="name" className="form-label">Họ và tên</label>
                                     <input id='name' className='form-control' autoComplete='off' type="text" name='fullName' placeholder='Họ và tên' value={cart.fullName || ''} onChange={handleInputChange} />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="phone" class="form-label">Số điện thoại</label>
+                                    <label for="phone" className="form-label">Số điện thoại</label>
                                     <input id='phone' type="text" className='form-control' autoComplete='off' name='phone' placeholder='Điện thoại' value={cart.phone || ''} onChange={handleInputChange} />
                                 </div>
 
                                 <div className="mb-3">
-                                    <label for="address" class="form-label">Địa chỉ</label>
+                                    <label for="address" className="form-label">Địa chỉ</label>
                                     <input type="text" className='form-control' autoComplete='off' name='address' placeholder='Địa chỉ' value={cart.address || ''} onChange={handleInputChange} />
                                 </div>
                                 <div className="mb-3">
