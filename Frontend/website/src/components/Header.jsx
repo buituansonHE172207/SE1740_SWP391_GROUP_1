@@ -147,14 +147,14 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
             setError((prevData) => ({ ...prevData, emailError: false }))
             setError((prevData) => ({ ...prevData, phoneError: false }))
         }
-        let account = { fullname: formData.su_name, email: formData.su_email, password: formData.su_password, province: province_name, district: district_name, ward: ward_name, phone: formData.su_phone, address: formData.su_address }
+        let account = { fullName: formData.su_name, email: formData.su_email, password: formData.su_password, province: province_name, district: district_name, ward: ward_name, phone: formData.su_phone, address: formData.su_address }
         createAccount(account).then(res => {
-            setCookies('authToken', res.data.token)
-            window.location.reload()
+            window.location.href = '/check-mail'
         })
-            .catch(err => {
-                setError((prevData) => ({ ...prevData, existError: true }))
-            })
+        .catch(err => {
+            setError((prevData) => ({ ...prevData, existError: true }))
+        })
+       
     }
 
     const logout = () => {

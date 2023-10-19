@@ -1025,12 +1025,13 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   width: 38%;
   position: relative;
   background: #f7f7f7fa;
-  border-left: 2px solid #e1e1e1; /* Border bên trái màu đỏ */
+  border-left: 2px solid #e1e1e1;
+  /* Border bên trái màu đỏ */
   padding-left: 4%;
   padding-top: 4%;
 }
 
-.sidebar-content{
+.sidebar-content {
   margin-right: 20px;
 }
 
@@ -1039,6 +1040,18 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   padding-right: 6%;
   margin-top: 50px;
   margin-bottom: 10%;
+}
+
+.main-check-email {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  text-align: center;
+  padding-right: 6%;
+  margin-top: 50px;
+  margin-bottom: 10%;
+
 }
 
 .step-footer {
@@ -1062,6 +1075,7 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   color: white;
   border: none;
 }
+
 /* 
 .sidebar::after {
   content: "|";
@@ -1075,24 +1089,25 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
     box-shadow: 2px 2px 2px #e1e1e1 inset;
     left: 0;
 } */
-.product{
+.product {
   display: flex;
   align-items: center;
   margin-bottom: 5%;
 }
-.product-image{
+
+.product-image {
   width: 20%;
 }
 
-.product-image img{
+.product-image img {
   width: -webkit-fill-available;
 }
 
-.product-thumbnail{
+.product-thumbnail {
   position: relative;
 }
 
-.product-thumbnail .product-thumbnail-quantity{
+.product-thumbnail .product-thumbnail-quantity {
   position: absolute;
   top: 0;
   right: 0;
@@ -1103,20 +1118,20 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   font-size: 12px;
 }
 
-.product-description{
+.product-description {
   margin-left: 20px;
 }
 
-.product-description-name{
+.product-description-name {
   font-size: 12px;
 }
 
-.order-summary-emphasis{
+.order-summary-emphasis {
   margin-left: 10px;
   font-size: 12px;
 }
 
-.total-line{
+.total-line {
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -1148,7 +1163,7 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   line-height: 1em;
 }
 
-.login{
+.login {
   position: relative;
   left: 45%;
 }
@@ -1156,6 +1171,8 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
 .error-message {
   position: absolute;
   bottom: -40%;
-  background-color: white; /* Tùy chỉnh màu nền */
-  padding: 10px; /* Tùy chỉnh padding */
+  background-color: white;
+  /* Tùy chỉnh màu nền */
+  padding: 10px;
+  /* Tùy chỉnh padding */
 }
