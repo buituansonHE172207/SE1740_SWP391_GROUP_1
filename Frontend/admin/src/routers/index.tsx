@@ -65,7 +65,7 @@ const menu: RouteMenu[] = [
     children: [
       {
         label: "Quản lý bài viết",
-        element: null,
+        element: <PostPage />,
         key: URL_CONFIG.POST,
         path: URL_CONFIG.POST,
         children: [],
