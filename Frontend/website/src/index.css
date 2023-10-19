@@ -1147,3 +1147,15 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   color: #4b4b4b;
   line-height: 1em;
 }
+
+.login{
+  position: relative;
+  left: 45%;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -40%;
+  background-color: white; /* Tùy chỉnh màu nền */
+  padding: 10px; /* Tùy chỉnh padding */
+}

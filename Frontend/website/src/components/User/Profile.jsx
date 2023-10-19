@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/esm/Button'
 import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 import { getUserInfoByEmail, updateUser } from "../../services/UserService"
-const Profile = () => {
+const Profile = ({cart, cookies}) => {
   const [errors, setErrors] = useState({emptyError: false, phoneError: false, emailError: false, passwordError: false})
   const [profileData, setProfileData] = useState()
   const [provinces, setProvices] = useState([])
@@ -23,6 +23,8 @@ const Profile = () => {
   const [ward_name, setWardName] = useState()
   const [wards, setWards] = useState([])
   const [reset, setReset] = useState(false)
+
+  
   useEffect(() => {
     setProvinceName(null)
     const fetchProvince = async () => {
@@ -126,6 +128,7 @@ const Profile = () => {
 
   return (
     <div>
+      {!cookies.authToken && (window.location.href = '/login')}
       <Breadscrumb label="Account" />
       {profileData ? (
         <div id="PageContainer">
