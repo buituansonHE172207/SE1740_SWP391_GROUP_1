@@ -20,6 +20,7 @@ import Checkout from './components/Checkout/Checkout';
 import Payment from './components/Checkout/Payment';
 import Login from './components/Login/Login';
 import Activate from './components/User/Activate';
+import CheckMail from './components/User/CheckMail';
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies([]);
   const [profileData, setProfileData] = useState()
@@ -61,6 +62,7 @@ function App() {
           <Route path='/checkout/payment' element={<Payment cart={cart} setCart={setCart} setCartChange={setCartChange} cartChange={cartChange}/>}></Route>
           <Route path='/login' element={<Login cookies={cookies} setCookies={setCookies} removeCookies={removeCookies} cart={cart} setCartChange={setCartChange} cartChange={cartChange}/>}></Route>
           <Route path='/activation/:token' Component={Activate}></Route>
+          <Route path='/check-email' Component={CheckMail}></Route>
         </Routes>
         <Footer/>
       </Router>
