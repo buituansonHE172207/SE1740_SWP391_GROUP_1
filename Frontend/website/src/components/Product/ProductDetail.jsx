@@ -65,13 +65,17 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
     }
 
     const addToCartHandler = () => {
+        if (!cart)
+        {
+            window.location.href = '/login' 
+            return
+        }
         setStockError(false)
 
         const cartData = { userId: cart.user.id, bookId: book.id, amount: quantity }
         addToCart(cartData).then(res => {
             setCartChange(!cartChange)
             handleShow()
-
         })
             .catch(err => {
                 setStockError(true)
@@ -89,7 +93,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         setTempCart({...cart})
     }
     , [cart])
-
+    console.log(cart)
     return (
         <div>
             <div id='breadcrumb-wrapper' className='breadcrumb-w-img'>
