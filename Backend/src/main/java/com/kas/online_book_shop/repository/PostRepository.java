@@ -19,7 +19,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
         return findAll((root, query, criteriaBuilder) -> {
             Predicate predicate = criteriaBuilder.conjunction();
 
-            if (!title.isEmpty()) {
+            if (title != null && !title.isEmpty()) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("title"), "%" + title + "%"));
             }
 
