@@ -27,7 +27,7 @@ const resetPassword = (resetData) => {
 }
 
 const activateAccount = (token) => {
-    return axios.post("http://localhost:8081/api/v1/auth/activation", token)
+    return axios.post("https://backend.sachtructuyen.shop/api/v1/auth/activation", token)
 }
 
 export {createAccount, login, getUserInfoByEmail, updateUser, forgetPassword, resetPassword, activateAccount}
