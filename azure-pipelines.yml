@@ -12,58 +12,61 @@ variables:
 
 pool:
     vmImage: 'ubuntu-latest'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    displayName: 'Build Docker Images'
+    steps:
+    - task: DownloadSecureFile@1
+      name: sshKey
+      displayName: 'Get private key'
+      inputs:
+        secureFile: 'azk4y.pem'
+    - script: |
+        sudo chmod 400 $(sshKey.secureFilePath)
+        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+        sudo docker start 30fb216fa855 &&
+        cd online-book-shop-aws && 
+        git pull origin develop && 
+        cd .. &&
+        sudo docker compose -f online-book-shop-aws/testDc.yml build --no-cache &&
+        exit
+        "
+        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+        cd online-book-shop-aws && 
+        git pull origin develop && 
+        cd .. &&
+        sudo docker compose -f online-book-shop-aws/docker-compose.yml build --no-cache &&
+        exit
+        "
 
-jobs:
-- job: Build
-  displayName: 'Build Docker Images'
-  steps:
-  - task: DownloadSecureFile@1
-    name: sshKey
-    displayName: 'Get private key'
-    inputs:
-      secureFile: 'azk4y.pem'
-  - script: |
-      sudo chmod 400 $(sshKey.secureFilePath)
-      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
-      sudo docker start 30fb216fa855 &&
-      cd online-book-shop-aws && 
-      git pull origin develop && 
-      cd .. &&
-      sudo docker compose -f online-book-shop-aws/testDc.yml build --no-cache &&
-      exit
-      "
-      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
-      cd online-book-shop-aws && 
-      git pull origin develop && 
-      cd .. &&
-      sudo docker compose -f online-book-shop-aws/docker-compose.yml build --no-cache &&
-      exit
-      "
-
-- job: Deploy
-  displayName: 'Deploy Application'
-  dependsOn: Build
-  steps:
-  - task: DownloadSecureFile@1
-    name: sshKey
-    displayName: 'Get private key'
-    inputs:
-      secureFile: 'azk4y.pem'
-  - script: |
-      sudo chmod 400 $(sshKey.secureFilePath)
-      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
-      sudo docker compose -f online-book-shop-aws/testDc.yml down &&
-      exit
-      "
-      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
-      sudo docker compose -f online-book-shop-aws/docker-compose.yml down &&
-      exit
-      "
-      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
-      sudo docker compose -f online-book-shop-aws/testDc.yml up --force-recreate -d &&
-      exit
-      "
-      ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
-      sudo docker compose -f online-book-shop-aws/docker-compose.yml up --force-recreate -d &&
-      exit
-      "
+- stage: Deploy
+  #dependsOn: Build
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy Application'
+    steps:
+    - task: DownloadSecureFile@1
+      name: sshKey
+      displayName: 'Get private key'
+      inputs:
+        secureFile: 'azk4y.pem'
+    - script: |
+        sudo chmod 400 $(sshKey.secureFilePath)
+        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+        sudo docker compose -f online-book-shop-aws/testDc.yml down &&
+        exit
+        "
+        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+        sudo docker compose -f online-book-shop-aws/docker-compose.yml down &&
+        exit
+        "
+        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+        sudo docker compose -f online-book-shop-aws/testDc.yml up --force-recreate -d &&
+        exit
+        "
+        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+        sudo docker compose -f online-book-shop-aws/docker-compose.yml up --force-recreate -d &&
+        exit
+        "
