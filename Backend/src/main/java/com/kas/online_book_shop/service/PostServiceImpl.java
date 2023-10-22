@@ -55,7 +55,7 @@ public class PostServiceImpl implements PostService {
             PostCategory category,
             PostState state,
             Pageable pageable) {
-        return postRepository.findPostsByCriteria(title, category, state, pageable);
+        return postRepository.findByTitleContainingAndCategoryAndState(title, category, state, pageable);
     }
 
 }

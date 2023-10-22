@@ -46,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
                     || existingBook.getStock() < orderDetail.getAmount()) {
                 order.setState(OrderState.CANCELED);
                 order.setShopNote("Đơn hàng đã bị hủy do một số sản phẩm hiện không khả dụng");
+                orderRepository.save(order);
                 return;
             }
         }
@@ -56,6 +57,17 @@ public class OrderServiceImpl implements OrderService {
                 var existingBook = bookRepository.findById(orderDetail.getBook().getId()).orElse(null);
                 existingBook.setStock(existingBook.getStock() - orderDetail.getAmount());
             }
+        }
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void changeOrderState(Long OrderId, OrderState orderState) {
+        var existingOrder = orderRepository.findById(OrderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
+        if  (existingOrder.getState() != orderState)
+        {
+            existingOrder.setState(orderState);
         }
     }
 }
