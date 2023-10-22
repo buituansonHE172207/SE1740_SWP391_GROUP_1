@@ -1,4 +1,4 @@
-package com.kas.online_book_shop.config;
+package com.kas.online_book_shop.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
