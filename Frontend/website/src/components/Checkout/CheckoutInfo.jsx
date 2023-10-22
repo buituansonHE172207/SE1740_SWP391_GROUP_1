@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react'
-import { Row, Container, Col, Breadcrumb } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 import SelectAddress from '../Home/SelectAddress'
 import { getProvince, getDistrict, getWard } from '../../services/CityService'
 import { updateCartItem } from '../../services/CartService'
 const CheckoutInfo = ({ cart, setCart, cartChange, setCartChange }) => {
-    // console.log(cart)
+
     const [provinces, setProvices] = useState([])
     const [province, setProvince] = useState()
     const [province_name, setProvinceName] = useState()
@@ -57,47 +59,59 @@ const CheckoutInfo = ({ cart, setCart, cartChange, setCartChange }) => {
     useEffect(() => {
         setProvinceName(null)
         const fetchProvince = async () => {
-          const res = await getProvince()
-          setProvices(res?.data)
+            const res = await getProvince()
+            setProvices(res?.data)
         }
         fetchProvince()
-      }, [])
-    
-      useEffect(() => {
+    }, [])
+
+    useEffect(() => {
         setDistrict(null)
         setDistrictName(null)
         const fetchDistrict = async () => {
-          const res = await getDistrict(province)
-          setDistricts(res?.data.districts)
+            const res = await getDistrict(province)
+            setDistricts(res?.data.districts)
         }
         province && fetchDistrict()
         !province ? setReset(true) : setReset(false)
         !province && setDistricts([])
-      }, [province])
-    
-      useEffect(() => {
+    }, [province])
+
+    useEffect(() => {
         setWard(null)
         setWardName(null)
         const fetchWard = async () => {
-          const res = await getWard(district)
-          setWards(res?.data.wards)
+            const res = await getWard(district)
+            setWards(res?.data.wards)
         }
         district && fetchWard()
         !district ? setReset(true) : setReset(false)
         !district && setWards([])
-      }, [district, province])
-      
+    }, [district, province])
+
     return (
         <div className="main">
             <div className="main-header">
-                <a href="/"><h4>Nhà xuất bản sách mới</h4></a>
-                <Breadcrumb>
-                    <Breadcrumb.Item href="/cart">Giỏ hàng</Breadcrumb.Item>
-                    <Breadcrumb.Item active>
+                <a href="/"><h4 >Nhà xuất bản sách mới</h4></a>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" color="inherit" href="/cart">
+                        Giỏ hàng
+                    </Link>
+                    <Link
+                        underline="hover"
+                        color="text.primary"
+                    >
                         Thông tin vận chuyển
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item active>Phương thức thanh toán</Breadcrumb.Item>
-                </Breadcrumb>
+                    </Link>
+                    <Link
+                        underline="hover"
+                        color="inherit"
+
+                        aria-current="page"
+                    >
+                        Phương thức thanh toán
+                    </Link>
+                </Breadcrumbs>
             </div>
             <div className="main-content">
                 <div className="step">
@@ -136,7 +150,7 @@ const CheckoutInfo = ({ cart, setCart, cartChange, setCartChange }) => {
                                         </Col>
                                     </Row>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
