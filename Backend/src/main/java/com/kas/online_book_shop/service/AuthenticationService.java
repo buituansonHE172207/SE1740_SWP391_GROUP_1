@@ -1,11 +1,10 @@
-package com.kas.online_book_shop.auth;
+package com.kas.online_book_shop.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.kas.online_book_shop.config.JwtService;
 import com.kas.online_book_shop.dto.ActivateAccountRequest;
 import com.kas.online_book_shop.dto.AuthenticationRequest;
 import com.kas.online_book_shop.dto.AuthenticationResponse;
