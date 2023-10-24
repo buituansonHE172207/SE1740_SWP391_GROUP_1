@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { addToCart, updateCartItem } from '../../services/CartService';
+import { getWishlistByUserId, deleteWishList, addWishList } from '../../services/WishlistService';
 
 const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) => {
     const [book, setBook] = useState({})
@@ -19,6 +20,8 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
     const handleShow = () => setShow(true);
     const [stockError, setStockError] = useState(false)
     const [tempCart, setTempCart] = useState({})
+    const [wishlist, setWishlist] = useState([])
+    const [heart, setHeart] = useState(false)
     const fetchBook = async () => {
         const res = await getBookById(id)
         const { data } = res
@@ -39,10 +42,28 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         )
     })
     const book_collections = book.collections ? book.collections : []
-
+    
     useEffect(() => {
         fetchBook()
     }, [])
+
+    const toggleHeart = () => {
+        if (!cookies?.authToken)
+        {
+            window.location.href = '/login'
+            return
+        }
+        if (heart)
+        {
+            cart?.user?.id && deleteWishList(cart?.user?.id, id).then(res => {
+                setHeart(false)
+            })
+            return
+        }
+        cart?.user?.id && addWishList(cart?.user?.id, id).then(res => {
+            setHeart(true)
+        })
+    }
 
     const handleItemChange = (e, order_id) => {
         setTempCart(cart => {
@@ -93,7 +114,19 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         setTempCart({...cart})
     }
     , [cart])
-    console.log(cart)
+
+    useEffect(() => {
+        const fetchWishlist = async () => {
+            const res = await getWishlistByUserId(cart?.user?.id)
+            setWishlist(res.data)
+        }
+        cart?.user?.id && fetchWishlist()
+    }, [cart])
+
+    useEffect(() => {
+        setHeart(wishlist.some(item => item.book.id === book.id))
+    }, [wishlist])
+
     return (
         <div>
             <div id='breadcrumb-wrapper' className='breadcrumb-w-img'>
@@ -152,13 +185,15 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                                             <s>{book.price ? book.price.toLocaleString() : 'N/A'}₫</s>
                                         </span>
 
-                                        <div className='sale-percentage'>
+                                        <div className='sale-percentage me-5'>
                                             <span className='PriceSaving'>
                                                 ( {book.price && book.salePrice ? (
                                                     `Bạn đã tiết kiệm được ${(book.price - book.salePrice).toLocaleString()}₫`
                                                 ) : 'N/A'} )
                                             </span>
                                         </div>
+                                        {heart ?<i onClick={toggleHeart} className="fa-solid fa-heart" style={{color: '#c20000', cursor: 'pointer'}}></i> : <i onClick={toggleHeart} className="fa-regular fa-heart" style={{color: '#000000', cursor: 'pointer'}}></i>}
+
                                     </div>
                                     <Row>
                                         <Col lg={6}>

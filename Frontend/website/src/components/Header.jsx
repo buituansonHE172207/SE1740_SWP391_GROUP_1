@@ -5,11 +5,8 @@ import Col from 'react-bootstrap/esm/Col'
 import SelectAddress from "./Home/SelectAddress";
 import { createAccount, login } from "../services/UserService";
 import { getProvince, getDistrict, getWard } from '../services/CityService'
-import { useCookies } from 'react-cookie';
-import jwt_decode from 'jwt-decode'
 import { getAllCartByUserId, addToCart, updateCartItem } from "../services/CartService";
-import { getUserInfoByEmail } from "../services/UserService"
-import { useNavigate } from "react-router-dom";
+import { getWishlistByUserId } from "../services/WishlistService";
 import SearchBar from "./Home/SearchBar";
 import SearchResult from "./Home/SearchResult";
 const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartChange }) => {
@@ -23,6 +20,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
         su_password: "",
         su_address: "",
     })
+    const [wishlist, setWishlist] = useState([])
     const [error, setError] = useState({ formatError: false, emptyError: false, existError: false, loginError: false, passwordError: false, emailError: false, phoneError: false })
     const [provinces, setProvices] = useState([])
     const [province, setProvince] = useState()
@@ -68,6 +66,14 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
         !district ? setReset(true) : setReset(false)
         !district && setWards([])
     }, [district, province])
+
+    useEffect(() => {
+        const fetchWishlist = async () => {
+            const res = await getWishlistByUserId(cart?.user?.id)
+            setWishlist(res.data)
+        }
+        cart?.user?.id && fetchWishlist()
+    }, [cart])
 
     const handleInput = (event) => {
         const { name, value, type, checked } = event.target
@@ -249,9 +255,9 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
                             </div>
                             <div className="wishlist_btn">
                                 <div id="onAppWishList_btn_page">
-                                    <a>
-                                        <i className="fa-regular fa-heart"></i>
-                                        <p style={{ fontSize: "16px", display: "block" }} id="onAppWishList_numberLike">0</p>
+                                    <a href="/wishlist">
+                                        <i className="fa-regular fa-heart" style={{color: 'black'}}></i>
+                                        <p style={{ fontSize: "16px", display: "block" }} id="onAppWishList_numberLike">{wishlist ? wishlist.length : 0}</p>
                                     </a>
                                 </div>
                             </div>
