@@ -55,6 +55,7 @@ stages:
     - script: |
         sudo chmod 400 $(sshKey.secureFilePath)
         ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
+        sudo docker start 30fb216fa855 &&
         sudo docker compose -f online-book-shop-aws/testDc.yml down &&
         exit
         "
