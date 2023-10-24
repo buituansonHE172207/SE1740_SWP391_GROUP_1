@@ -8,7 +8,6 @@ const Cart = ({ cart, setCart, cartChange, setCartChange }) => {
     useEffect(() => {
         setTempCart(cart);
     }, [cart]);
-    console.log(cart) 
 
     const handleItemChange = (e, order_id) => {
         setTempCart(cart => {
@@ -34,6 +33,7 @@ const Cart = ({ cart, setCart, cartChange, setCartChange }) => {
         updateCartItem(tempCart).then(res => {
             setCartChange(!cartChange)
         })
+        window.location.reload()
     }
 
     const checkout = () => {

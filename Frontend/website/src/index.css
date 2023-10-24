@@ -1176,3 +1176,44 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   padding: 10px;
   /* Tùy chỉnh padding */
 }
+
+.radio-wrapper .two-page, .checkbox-wrapper .checkbox-label {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  padding: 1.3em;
+  width: auto;
+}
+
+.content-box {
+  box-shadow: 0 0 0 1px #d9d9d9;
+  border-radius: 4px;
+  background: #fff;
+  color: #737373;
+  margin-top: 1em;
+}
+
+.radio-wrapper .radio-content-input {
+  display: flex;
+  align-items: center;
+}
+
+.radio-wrapper .radio-input {
+  display: table-cell;
+  padding-right: 0.75em;
+  white-space: nowrap;
+}
+
+.radio-wrapper .radio-content-input .main-img {
+  margin-right: 10px;
+  display: flex;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+}
+
+.payment{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
