@@ -10,6 +10,8 @@ import Button from 'react-bootstrap/esm/Button'
 import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 import { getUserInfoByEmail, updateUser } from "../../services/UserService"
+import { getOrderByUserId } from '../../services/OrderService'
+import Orders from './Orders'
 const Profile = ({cart, cookies}) => {
   const [errors, setErrors] = useState({emptyError: false, phoneError: false, emailError: false, passwordError: false})
   const [profileData, setProfileData] = useState()
@@ -23,8 +25,8 @@ const Profile = ({cart, cookies}) => {
   const [ward_name, setWardName] = useState()
   const [wards, setWards] = useState([])
   const [reset, setReset] = useState(false)
+  const [orders, setOrders] = useState([])
 
-  
   useEffect(() => {
     setProvinceName(null)
     const fetchProvince = async () => {
@@ -68,6 +70,12 @@ const Profile = ({cart, cookies}) => {
     }
     fetchUserInfo()
   }, [])
+
+  useEffect(() => {
+    cart?.user?.id && getOrderByUserId(cart?.user?.id).then(res => {
+      setOrders(res?.data?.content)
+    })
+  }, [cart])
 
 
   const handleProfileChange = (e) => {
@@ -126,6 +134,7 @@ const Profile = ({cart, cookies}) => {
     })
   }
 
+
   return (
     <div>
       {!cookies.authToken && (window.location.href = '/login')}
@@ -138,11 +147,11 @@ const Profile = ({cart, cookies}) => {
                 <h3>TÀI KHOẢN CỦA BẠN</h3>
                 <hr className="hr--small" />
                 <Row>
-                  <Col md={6}>
+                  <Col md={8}>
                     <h4>Lịch sử giao dịch</h4>
-                    <p>Bạn chưa có đơn hàng nào</p>
+                    {orders?.length !== 0 ? <Orders orders={orders} /> : <p>Bạn chưa có đơn hàng nào</p>}
                   </Col>
-                  <Col md={6}>
+                  <Col md={4}>
                     <Form className='update-form shadow p-3 mb-5 bg-body rounded'>
                       <h4>Thông tin tài khoản</h4>
                       <Form.Group>

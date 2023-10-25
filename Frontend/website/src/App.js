@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import Header from './components/Header';
 import Home from './components/Home/Home';
@@ -22,25 +21,26 @@ import Login from './components/Login/Login';
 import Activate from './components/User/Activate';
 import CheckMail from './components/User/CheckMail';
 import Paypal from './components/Checkout/Paypal';
+import Wishlist from './components/Wishlist/Wishlist';
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies([]);
   const [profileData, setProfileData] = useState()
   const [cart, setCart] = useState([])
   const [cartChange, setCartChange] = useState(false)
-  
+
   const handleCart = async () => {
     try {
       const user_email = cookies.authToken && jwt_decode(cookies.authToken).sub;
       if (!user_email) return;
       const userInfo = await getUserInfoByEmail(user_email);
       const cartData = await getAllCartByUserId(userInfo?.data.id);
-      
+
       setProfileData(userInfo?.data);
       setCart(cartData?.data);
     } catch (error) {
       console.error(error);
     }
-};
+  };
   useEffect(() => {
     handleCart();
   }, [cookies, cartChange]);
@@ -48,25 +48,26 @@ function App() {
   return (
     <div>
       <Router>
-        <Header cookies={cookies} setCookies={setCookies} removeCookies={removeCookies} cart={cart} setCartChange={setCartChange} cartChange={cartChange}/>
+        <Header cookies={cookies} setCookies={setCookies} removeCookies={removeCookies} cart={cart} setCartChange={setCartChange} cartChange={cartChange} />
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/collections' Component={Collection}></Route>
           <Route path='/collections/:id' Component={BooksByCollection}></Route>
-          <Route path='/products/:id' element={<ProductDetail cookies={cookies} setCart={setCart} cart={cart} cartChange={cartChange} setCartChange={setCartChange} setCookie={setCookies} removeCookie={removeCookies}  />}></Route>
-          <Route path='/account' element={<Profile cart={cart} cookies={cookies}/>}></Route>
+          <Route path='/products/:id' element={<ProductDetail cookies={cookies} setCart={setCart} cart={cart} cartChange={cartChange} setCartChange={setCartChange} setCookie={setCookies} removeCookie={removeCookies} />}></Route>
+          <Route path='/account' element={<Profile cart={cart} cookies={cookies} />}></Route>
           <Route path='/reset-password/:token' Component={ResetPassword}></Route>
           <Route path='/forgot-password' Component={ForgotPassword}></Route>
-          <Route path='/cart' element={<Cart cart={cart} setCart={setCart} setCartChange={setCartChange} cartChange={cartChange}/>}></Route>
+          <Route path='/cart' element={<Cart cart={cart} setCart={setCart} setCartChange={setCartChange} cartChange={cartChange} />}></Route>
           <Route path='/search/:name' Component={Search}></Route>
-          <Route path='/checkout' element={<Checkout cart={cart} setCart={setCart} cookies={cookies} setCartChange={setCartChange} cartChange={cartChange}/>}></Route>
-          <Route path='/checkout/payment' element={<Payment cart={cart} setCart={setCart} setCartChange={setCartChange} cookies={cookies} cartChange={cartChange}/>}></Route>
-          <Route path='/checkout/payment/paypal' element={<Paypal value={((cart?.orderDetails?.reduce((acc, item) => acc + item.salePrice * item.amount, 0) + 30000) / 24500).toFixed(2)} cart={cart} setCart={setCart}/>}></Route>
-          <Route path='/login' element={<Login cookies={cookies} setCookies={setCookies} removeCookies={removeCookies} cart={cart} setCartChange={setCartChange} cartChange={cartChange}/>}></Route>
+          <Route path='/checkout' element={<Checkout cart={cart} setCart={setCart} cookies={cookies} setCartChange={setCartChange} cartChange={cartChange} />}></Route>
+          <Route path='/checkout/payment' element={<Payment cart={cart} setCart={setCart} setCartChange={setCartChange} cookies={cookies} cartChange={cartChange} />}></Route>
+          <Route path='/checkout/payment/paypal' element={<Paypal value={((cart?.orderDetails?.reduce((acc, item) => acc + item.salePrice * item.amount, 0) + 30000) / 24500).toFixed(2)} cart={cart} setCart={setCart} />}></Route>
+          <Route path='/login' element={<Login cookies={cookies} setCookies={setCookies} removeCookies={removeCookies} cart={cart} setCartChange={setCartChange} cartChange={cartChange} />}></Route>
           <Route path='/activation/:token' Component={Activate}></Route>
           <Route path='/check-email' Component={CheckMail}></Route>
+          <Route path='/wishlist' element={<Wishlist setCart={setCart} cart={cart} />}></Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );

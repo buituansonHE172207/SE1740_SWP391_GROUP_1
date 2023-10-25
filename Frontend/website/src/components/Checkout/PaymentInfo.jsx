@@ -1,7 +1,7 @@
 import React from 'react'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-
+import { addOrder } from '../../services/OrderService';
 const PaymentInfo = ({ cart, setCart, cartChange, setCartChange }) => {
     const [paymentMethod, setPaymentMethod] = React.useState('cod')
 
@@ -9,6 +9,14 @@ const PaymentInfo = ({ cart, setCart, cartChange, setCartChange }) => {
         if (paymentMethod === 'paypal')
         {
             window.location.href = '/checkout/payment/paypal'
+        }
+        else if (paymentMethod === 'cod') {
+            addOrder(cart).then(res => {
+                window.location.href = '/account'
+            })
+            .catch(err => {
+                console.log(err)
+            })
         }
     }
 

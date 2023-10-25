@@ -124,7 +124,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
     }, [cart])
 
     useEffect(() => {
-        setHeart(wishlist.some(item => item.book.id === book.id))
+        wishlist && setHeart(wishlist?.some(item => item.book.id === book.id))
     }, [wishlist])
 
     return (
