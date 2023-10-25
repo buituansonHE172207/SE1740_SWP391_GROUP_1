@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.enums.OrderState;
 import com.kas.online_book_shop.model.Order;
 import com.kas.online_book_shop.service.OrderService;
 
@@ -44,6 +45,7 @@ public class OrderController {
     @PostMapping("/process")
     public ResponseEntity<Void> processOrder(@RequestBody Order order)
     {
+        orderService.changeOrderState(order.getId(), OrderState.PROCESSING);
         synchronized(lock) {
             orderService.processOrder(order);
         }
