@@ -9,8 +9,8 @@ variables:
   value: $[variables.vmIp]
 - name: feVmIp1
   value: $[variables.feVmIp]
-- name: sonarqube-pjKeys1
-  value: $[sonarqube-pjKeys]
+# - name: sonarqube-pjKeys1
+#   value: $[sonarqube-pjKeys]
 
 pool:
     vmImage: 'ubuntu-latest'
@@ -46,7 +46,7 @@ stages:
         SonarQube: 'https://test.sachtructuyen.shop'
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: '$(sonarqube-pjKeys1)'
+        cliProjectKey: 'aiygfywiausgdf'
 # Run Code Analysis task
     - task: SonarQubeAnalyze@5
 # Publish Quality Gate Result task
