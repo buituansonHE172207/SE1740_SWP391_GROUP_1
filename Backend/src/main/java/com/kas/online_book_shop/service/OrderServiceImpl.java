@@ -35,6 +35,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Async
     public void processOrder(Order order) {
+        var existingOrder = orderRepository.findById(order.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
+        if (existingOrder.getState() != OrderState.PROCESSING)     
+            return;
         var existingUser = userRepository.findById(order.getUser().getId()).orElse(null);
         if (existingUser == null) {
             return;

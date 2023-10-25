@@ -1,5 +1,6 @@
 package com.kas.online_book_shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -30,7 +31,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn (name = "book_id")
-    @JsonIgnore
+    @JsonBackReference
     private Book book;
 
     @NotBlank(message = "The link is not blank")
