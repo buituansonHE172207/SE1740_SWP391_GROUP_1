@@ -31,4 +31,4 @@ jobs:
         with:
           args: >
             -Dsonar.sources=Backend,Frontend/website,Frontend/re-admin
-            -Dsonar.java.binaries=path/to/compiled/classes
+            -Dsonar.java.binaries=Backend/target/classes
