@@ -1,21 +1,23 @@
 package com.kas.online_book_shop.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.enums.BookState;
-import com.kas.online_book_shop.enums.OrderState;
 import com.kas.online_book_shop.exception.BookDuplicateException;
 import com.kas.online_book_shop.exception.ISBNDuplicateException;
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
+import com.kas.online_book_shop.model.Image;
 import com.kas.online_book_shop.repository.BookCollectionRepository;
 import com.kas.online_book_shop.repository.BookRepository;
+import com.kas.online_book_shop.repository.ImageRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookCollectionRepository collectionRepository;
+    private final ImageRepository imageRepository;
 
     @Override
     public Page<Book> getAllBooks(Pageable pageable) {
@@ -50,18 +53,34 @@ public class BookServiceImpl implements BookService {
     public void deleteBook(Long id) {
         var existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để xóa"));
-        existingBook.getOrderDetails().forEach((x) -> {
-            if (x.getOrder().getState() == OrderState.ORDER)
-                x.setBook(null);
-        });
-        bookRepository.deleteById(id);
+        existingBook.setState(BookState.HIDDEN);
     }
 
     @Override
     public Book updateBook(Book book) {
-        bookRepository.findById(book.getId())
+        var existingBook = bookRepository.findById(book.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để câp nhật"));
-        return bookRepository.save(book);
+        existingBook.setAuthors(book.getAuthors());
+        existingBook.setCategory(book.getCategory());
+        existingBook.setTitle(book.getTitle());
+        existingBook.setDescription(book.getDescription());
+        existingBook.setISBN(book.getISBN());
+        existingBook.setPage(book.getPage());
+        existingBook.setCover(book.getCover());
+        imageRepository.deleteAll(existingBook.getImages());
+        existingBook.getImages().clear();
+        for (Image image : book.getImages()) {
+            image.setId(null);
+            imageRepository.save(image);
+        }
+        existingBook.setPrice(book.getPrice());
+        existingBook.setDiscount(book.getDiscount());
+        existingBook.setLanguage(book.getLanguage());
+        existingBook.setPublisher(book.getPublisher());
+        existingBook.setStock(book.getStock());
+        existingBook.setWeight(book.getWeight());
+        existingBook.setState(book.getState());
+        return existingBook;
     }
 
     @Override
@@ -78,7 +97,7 @@ public class BookServiceImpl implements BookService {
             return bookRepository.findByCollectionsAndStateAndPriceBetween(collection, BookState.ACTIVE, min, max,
                     pageable);
         else
-            return bookRepository.findByStateAndPriceBetween(BookState.ACTIVE, min, max,  pageable);
+            return bookRepository.findByStateAndPriceBetween(BookState.ACTIVE, min, max, pageable);
     }
 
     @Override

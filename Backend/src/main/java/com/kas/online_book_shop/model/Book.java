@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kas.online_book_shop.enums.BookState;
 
 import jakarta.persistence.CascadeType;
@@ -109,7 +110,7 @@ public class Book {
     @ToString.Exclude
     private BookCategory category;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
@@ -125,7 +126,7 @@ public class Book {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
-    private List<Wishlist> wishlists; // Cascade: Remove (Deleting a Book deletes associated WishlistDetails)
+    private List<Wishlist> wishlists; 
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
@@ -133,9 +134,8 @@ public class Book {
     @JsonIgnore
     private List<Rating> ratings; 
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+    @OneToMany(mappedBy = "book", cascade = CascadeType.MERGE)
+    @JsonManagedReference
     private List<Image> images;
 
     public Long getSalePrice() {
