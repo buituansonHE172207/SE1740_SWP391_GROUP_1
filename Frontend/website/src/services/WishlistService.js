@@ -14,4 +14,5 @@ const deleteWishList = (user, book) => {
     return axios.delete(WISHLIST_BASE_URL + `?user=${user}&book=${book}`);
 }
 
+
 export {getWishlistByUserId, addWishList, deleteWishList}
