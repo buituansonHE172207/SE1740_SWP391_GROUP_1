@@ -43,7 +43,7 @@ stages:
         "
     - task: SonarQubePrepare@5
       inputs:
-        SonarQube: 'https://test.sachtructuyen.shop'
+        SonarQube: 'VeryMemorable'
         scannerMode: 'CLI'
         configMode: 'manual'
         cliProjectKey: 'aiygfywiausgdf'
