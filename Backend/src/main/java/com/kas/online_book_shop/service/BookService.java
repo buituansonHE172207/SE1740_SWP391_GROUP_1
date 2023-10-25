@@ -11,7 +11,6 @@ import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
 
 public interface BookService {
-    List<Book> getAllBooks();
 
     Book getBookById(Long id);
 
@@ -27,9 +26,9 @@ public interface BookService {
 
     Page<Book> getBooksByCollectionAndPriceRanges(BookCollection collection,int min, int max,Pageable pageable);
 
-    Page<Book> getBookByState(BookState state, Pageable pageable);
-
     Page<Book> getBooksByName(String name, Pageable pageable);
 
     void addBookToCollection(Long bookId, Long collectionId);
+
+    Page<Book> queryBook(String title, BookState state, BookCollection collection, Pageable pageable);
 }

@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kas.online_book_shop.enums.BookState;
+import com.kas.online_book_shop.enums.PostState;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
+import com.kas.online_book_shop.model.Post;
+import com.kas.online_book_shop.model.PostCategory;
 import com.kas.online_book_shop.service.BookService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,15 +37,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/book")
 public class BookController {
     private final BookService bookService;
-
-    @GetMapping("")
-    public ResponseEntity<List<Book>> getAllBooks() {
-        List<Book> books = bookService.getAllBooks();
-        if (books.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else
-            return ResponseEntity.ok(books);
-    }
 
     @GetMapping("/sorted-and-paged")
     public ResponseEntity<Page<Book>> getAllBooksSortedAndPaged(
@@ -117,5 +112,19 @@ public class BookController {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
         return ResponseEntity.ok(bookService.getBooksByName(name, pageable));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Page<Book>> searchPost(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) BookCollection collection,
+            @RequestParam(required = false) BookState state,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
+        return ResponseEntity.ok(bookService.queryBook(title, state, collection, pageable));
     }
 }
