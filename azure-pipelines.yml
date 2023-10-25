@@ -34,6 +34,7 @@ stages:
         exit
         "
         ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+        sudo docker start f010aa64c220 &&
         cd online-book-shop-aws && 
         git pull origin develop && 
         cd .. &&
