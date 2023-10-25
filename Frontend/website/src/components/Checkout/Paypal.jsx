@@ -5,7 +5,7 @@ const Paypal = ({value, cart, setCart}) => {
     const paypal = React.useRef()
     
     const getPay = () => {
-        window.paypal.Buttons({
+        cart.orderDetails.length !== 0 && window.paypal.Buttons({
             createOrder: (data, actions, err) => {
                 return actions.order.create({
                     intent: "CAPTURE",
@@ -21,9 +21,9 @@ const Paypal = ({value, cart, setCart}) => {
                 })
             },
             onApprove: async (data, actions) => {
-                setCart({...cart, paymentState: 'PAID'})
+                cart.paymentState = 'PAID'
                 addOrder(cart).then(res => {
-                    console.log(res)
+                window.location.href = '/account'
                 })
                 .catch(err => {
                     console.log(err)

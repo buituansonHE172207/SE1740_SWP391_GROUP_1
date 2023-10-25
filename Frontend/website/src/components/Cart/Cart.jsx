@@ -48,6 +48,7 @@ const Cart = ({ cart, setCart, cartChange, setCartChange }) => {
                     <div id="page-wrapper">
                         <Container>
                             <h3>Giỏ hàng</h3>
+                            {cart?.orderDetails?.length === 0 && <h5>Giỏ hàng của bạn trống</h5>}
                             <table className="cart-table full" width={'100%'}>
                                 <thead className="cart__row cart__header-labels">
                                     <tr>
