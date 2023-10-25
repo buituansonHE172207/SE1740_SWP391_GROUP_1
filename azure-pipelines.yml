@@ -9,51 +9,10 @@ variables:
   value: $[variables.vmIp]
 - name: feVmIp1
   value: $[variables.feVmIp]
-# - name: sonarqube-pjKeys1
-#   value: $[sonarqube-pjKeys]
 
 pool:
     vmImage: 'ubuntu-latest'
 stages:
-- stage: StaticTest
-  jobs:
-  - job: Test
-    displayName: 'Static test with SonarQube'
-    steps:
-    - task: DownloadSecureFile@1
-      name: sshKey
-      displayName: 'Get private key'
-      inputs:
-        secureFile: 'azk4y.pem'
-    - script: |
-        sudo chmod 400 $(sshKey.secureFilePath)
-        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
-        sudo docker start 30fb216fa855 &&
-        cd online-book-shop-aws && 
-        git pull origin develop && 
-        cd .. &&
-        exit
-        "
-        ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
-        sudo docker start f010aa64c220 &&
-        cd online-book-shop-aws && 
-        git pull origin develop && 
-        cd .. &&
-        exit
-        "
-    - task: SonarQubePrepare@5
-      inputs:
-        SonarQube: 'VeryMemorable'
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: 'aiygfywiausgdf'
-# Run Code Analysis task
-    - task: SonarQubeAnalyze@5
-# Publish Quality Gate Result task
-    - task: SonarQubePublish@5
-      inputs:
-        pollingTimeoutSec: '300'
-
 - stage: Build
   jobs:
   - job: Build
@@ -68,15 +27,21 @@ stages:
         sudo chmod 400 $(sshKey.secureFilePath)
         ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(vmIp1) "
         sudo docker start 30fb216fa855 &&
+        cd online-book-shop-aws && 
+        git pull origin develop && 
+        cd .. &&
         sudo docker compose -f online-book-shop-aws/testDc.yml build --no-cache &&
         exit
         "
         ssh -o StrictHostKeyChecking=no -i $(sshKey.secureFilePath) $(vmUsername1)@$(feVmIp1) "
+        cd online-book-shop-aws && 
+        git pull origin develop && 
+        cd .. &&
         sudo docker compose -f online-book-shop-aws/docker-compose.yml build --no-cache &&
         exit
         "
+
 - stage: Deploy
-  #dependsOn: Build
   jobs:
   - job: Deploy
     displayName: 'Deploy Application'
