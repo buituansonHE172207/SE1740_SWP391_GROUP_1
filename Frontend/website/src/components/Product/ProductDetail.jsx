@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { addToCart, updateCartItem } from '../../services/CartService';
 import { getWishlistByUserId, deleteWishList, addWishList } from '../../services/WishlistService';
+import RelevantProducts from './RelevantProducts';
 
 const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) => {
     const [book, setBook] = useState({})
@@ -27,7 +28,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         const { data } = res
         setBook(data)
     }
-
+    console.log(book)
     const book_images = book.images ? book.images : []
     const book_authors = book.authors ? book.authors : []
     const book_item = book_images?.map((image, index) => {
@@ -42,6 +43,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         )
     })
     const book_collections = book.collections ? book.collections : []
+    console.log(book_collections)
     
     useEffect(() => {
         fetchBook()
@@ -293,15 +295,13 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                                 <div className='product-description-wrapper'>
                                     <div className='tab'>
                                         <button className='pro-tablinks active'>
-                                            <span>Mô tả - Đánh giá</span>
+                                            <span>Mô tả</span>
                                         </button>
                                         <button className='pro-tablinks'>
-                                            <span>Bình luận</span>
+                                            <span>Đánh giá</span>
                                         </button>
                                     </div>
-                                    <div className='pro-tabcontent'>
-                                        {book.description}
-                                    </div>
+                                    <div dangerouslySetInnerHTML={{__html: book.description}} style={{padding: '2%'}} className='pro-tabcontent'></div>
                                     <div className='pro-tabcontent' style={{ display: 'none' }}>
 
                                     </div>
@@ -311,7 +311,14 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                                 </div>
                             </Col>
                             <Col lg={3}>
-
+                                <div className='product-description-wrapper'>
+                                    <div className="tab">
+                                        <button className="pro-tablinks active" style={{width: '100%'}}>
+                                            <span>Sản phẩm tương tự</span>
+                                        </button>
+                                    </div>
+                                    <RelevantProducts collection_id={book_collections[0]?.id} />
+                                </div>
                             </Col>
                         </Row>
                     </div>

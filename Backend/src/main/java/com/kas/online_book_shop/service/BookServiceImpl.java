@@ -1,7 +1,6 @@
 package com.kas.online_book_shop.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +31,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Page<Book> getAllBooks(Pageable pageable) {
-        return bookRepository.findAll(pageable);
+        return bookRepository.findByState(BookState.ACTIVE, pageable);
     }
 
     @Override
@@ -46,6 +45,7 @@ public class BookServiceImpl implements BookService {
         if (bookRepository.existsByISBN(book.getISBN())) {
             throw new ISBNDuplicateException("Mã ISBN không thể bị trùng.");
         }
+        book.setState(BookState.ACTIVE);
         return bookRepository.save(book);
     }
 
@@ -101,18 +101,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
-    }
-
-    @Override
     public Page<Book> getBooksByName(String name, Pageable pageable) {
-        return bookRepository.findByTitleContaining(name, pageable);
-    }
-
-    @Override
-    public Page<Book> getBookByState(BookState state, Pageable pageable) {
-        return bookRepository.findByState(state, pageable);
+        return bookRepository.findByTitleContainingAndState(name, BookState.ACTIVE, pageable);
     }
 
     @Override
@@ -127,6 +117,11 @@ public class BookServiceImpl implements BookService {
             existingBook.getCollections().add(existingCollection);
         }
 
+    }
+
+    @Override
+    public Page<Book> queryBook(String title, BookState state, BookCollection collection, Pageable pageable) {
+        return bookRepository.findByTitleContainingAndCategoryAndCollectionsAndState(title, state, null, collection, pageable);
     }
 
 }

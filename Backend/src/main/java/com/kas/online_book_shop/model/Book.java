@@ -134,7 +134,7 @@ public class Book {
     @JsonIgnore
     private List<Rating> ratings; 
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Image> images;
 
