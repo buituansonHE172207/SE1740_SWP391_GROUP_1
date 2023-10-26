@@ -45,6 +45,7 @@ public class BookServiceImpl implements BookService {
         if (bookRepository.existsByISBN(book.getISBN())) {
             throw new ISBNDuplicateException("Mã ISBN không thể bị trùng.");
         }
+        book.setState(BookState.ACTIVE);
         return bookRepository.save(book);
     }
 
