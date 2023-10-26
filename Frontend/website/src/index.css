@@ -1217,3 +1217,30 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
   justify-content: center;
   align-items: center;
 }
+
+.home-section-body{
+  padding: 15px;
+}
+
+.rsp-title a {
+  color: #333333;
+}
+
+span.rsp-current-price{
+  color: #d51c24;
+}
+
+.rsp-price > span{
+  margin-right: 5px;
+  font-size: 13px;
+}
+
+.rsp-price > span.rsp-original-price{
+  color: #bebebe;
+}
+
+.rsp-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
