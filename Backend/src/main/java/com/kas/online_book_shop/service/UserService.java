@@ -1,5 +1,7 @@
 package com.kas.online_book_shop.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -24,5 +26,7 @@ public interface UserService {
     Page<User> getCustomerByFullNameContainingAndState(String fullName ,AccountState state, Pageable pageable);
 
     Page<User> getStaffByFullNameContainingAndRoleAndState(String fullName, Role role,AccountState state ,Pageable page);
+
+    List<User> getAll();
 
 }

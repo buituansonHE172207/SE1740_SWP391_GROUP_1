@@ -1,6 +1,5 @@
 package com.kas.online_book_shop.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +87,6 @@ public class CartServiceImpl implements CartService {
                     .ward(existingUser.getWard())
                     .email(existingUser.getEmail())
                     .phone(existingUser.getPhone())
-                    .created(LocalDateTime.now())
                     .shippingPrice(30000L)
                     .shippingState(ShippingState.SHIPPING)
                     .state(OrderState.CART)

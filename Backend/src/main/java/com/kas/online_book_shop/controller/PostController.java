@@ -1,5 +1,7 @@
 package com.kas.online_book_shop.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -59,5 +61,10 @@ public class PostController {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
         return ResponseEntity.ok(postService.getPostByTileContainingAndCategoryAndState(title, category, state, pageable));
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Post>> getAll(){
+        return ResponseEntity.ok(postService.getAll());
     }
 }

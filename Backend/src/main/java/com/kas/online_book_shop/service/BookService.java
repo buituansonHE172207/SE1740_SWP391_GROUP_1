@@ -16,6 +16,8 @@ public interface BookService {
 
     Page<Book> getAllBooks(Pageable pageable);
 
+    List<Book> getAllBooks();
+
     Book saveBook(Book book);
 
     Book updateBook(Book book);
