@@ -2,6 +2,7 @@ package com.kas.online_book_shop.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -77,5 +78,10 @@ public class OrderController {
             to = toDate.atTime(23, 59, 59);
         }
         return ResponseEntity.ok(orderService.queryOrder(state, payment, shipping, from, to, pageable));
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Order>> getAll() {
+        return ResponseEntity.ok(orderService.getAll());
     }
 }

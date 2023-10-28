@@ -1,6 +1,7 @@
 package com.kas.online_book_shop.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -101,5 +102,12 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
         existingOrder.setShippingState(shippingState);
     }
+
+    @Override
+    public List<Order> getAll() {
+        return orderRepository.findByStateNot(OrderState.CART);
+    }
+
+    
 
 }

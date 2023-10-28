@@ -124,4 +124,9 @@ public class BookController {
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
         return ResponseEntity.ok(bookService.queryBook(title, state, collection, pageable));
     }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Book>> getAll() {
+        return ResponseEntity.ok(bookService.getAllBooks());
+    }
 }

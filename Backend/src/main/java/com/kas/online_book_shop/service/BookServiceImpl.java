@@ -124,4 +124,11 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByTitleContainingAndCategoryAndCollectionsAndState(title, state, null, collection, pageable);
     }
 
+    @Override
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    
+
 }

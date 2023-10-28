@@ -1,6 +1,7 @@
 package com.kas.online_book_shop.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -36,4 +37,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
                         @Param("from") LocalDateTime from,
                         @Param("to") LocalDateTime to,
                         Pageable pageable);
+
+        List<Order> findByStateNot(OrderState state);
 }

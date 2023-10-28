@@ -1,4 +1,4 @@
-package com.kas.online_book_shop.config;
+package com.kas.online_book_shop.filter;
 
 import java.io.IOException;
 
