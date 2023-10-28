@@ -14,4 +14,8 @@ const updateBook = (data) => {
     return axios.put(BOOK_BASE_URL, data);
 }
 
-export {getAllBooks, getBookById, updateBook}
+const addBook = (data) => {
+    return axios.post(BOOK_BASE_URL, data);
+}
+
+export {getAllBooks, getBookById, updateBook, addBook}

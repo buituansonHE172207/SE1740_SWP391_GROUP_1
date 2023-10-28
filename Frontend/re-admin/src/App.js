@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import ProductSingle from "./pages/single/ProductSingle";
+import ProductNew from "./pages/new/ProductNew";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -40,7 +41,7 @@ function App() {
               <Route path=":productId" element={<RequireAuth><ProductSingle /></RequireAuth>} />
               <Route
                 path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
+                element={<ProductNew title="Add New Product" />}
               />
             </Route>
           </Route>
