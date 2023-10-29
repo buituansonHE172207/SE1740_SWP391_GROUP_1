@@ -11,6 +11,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import ProductSingle from "./pages/single/ProductSingle";
 import ProductNew from "./pages/new/ProductNew";
+import Order from "./pages/order/Order";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -43,6 +44,10 @@ function App() {
                 path="new"
                 element={<ProductNew title="Add New Product" />}
               />
+            </Route>
+            <Route path="orders">
+              <Route index element={<RequireAuth><Order /></RequireAuth>}></Route>
+            
             </Route>
           </Route>
         </Routes>

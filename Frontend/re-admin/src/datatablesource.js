@@ -84,3 +84,26 @@ export const productColumns = [
     }
   },
 ];
+
+export const orderColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "fullName", headerName: "Full Name", width: 150 },
+  { field: "phone", headerName: "Phone", width: 150 },
+  { field: "address", headerName: "Address", width: 200 },
+  { field: "shippingState", headerName: "Shipping State", width: 130, 
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.shippingState.toLowerCase()}`}>
+          {params.row.shippingState}
+        </div>
+      );
+    },
+  },
+  { field: "totalPrice", headerName: "Total Price", width: 120,
+    renderCell: (params) => {
+      return (
+        <div>{params.row.totalPrice.toLocaleString()}₫</div>
+      )
+    }
+  },
+]
