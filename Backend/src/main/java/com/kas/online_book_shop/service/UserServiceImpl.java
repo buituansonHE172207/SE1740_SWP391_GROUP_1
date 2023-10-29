@@ -1,5 +1,7 @@
 package com.kas.online_book_shop.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -103,4 +105,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByFullNameContainingAndRoleAndState(fullName, role, state, page);
     }
 
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
 }

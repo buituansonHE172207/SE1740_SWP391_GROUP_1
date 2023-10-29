@@ -21,12 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kas.online_book_shop.enums.BookState;
-import com.kas.online_book_shop.enums.PostState;
 import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.model.BookCollection;
-import com.kas.online_book_shop.model.Post;
-import com.kas.online_book_shop.model.PostCategory;
 import com.kas.online_book_shop.service.BookService;
 
 import lombok.RequiredArgsConstructor;
@@ -127,5 +124,10 @@ public class BookController {
         Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, direction, sortBy);
         return ResponseEntity.ok(bookService.queryBook(title, state, collection, pageable));
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Book>> getAll() {
+        return ResponseEntity.ok(bookService.getAllBooks());
     }
 }

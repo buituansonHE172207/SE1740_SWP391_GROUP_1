@@ -10,7 +10,7 @@ const Datatable = ({type}) => {
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
-
+  
   const actionColumn = [
     {
       field: "action",
@@ -20,7 +20,7 @@ const Datatable = ({type}) => {
         return (
           <div className="cellAction">
             <Link to={`/${type}/${params.row.id}`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton">Update</div>
             </Link>
             <div
               className="deleteButton"
@@ -38,8 +38,8 @@ const Datatable = ({type}) => {
     switch (type) {
       case "products":
         getAllBooks().then((res) => {
-          setData(res.data);
           setColumns(productColumns.concat(actionColumn));
+          setData(res.data);
         });
         break;
       case "users":
@@ -53,7 +53,7 @@ const Datatable = ({type}) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add new {type}
+        New {type}
         <Link to={`/${type}/new`} className="link">
           Add New
         </Link>

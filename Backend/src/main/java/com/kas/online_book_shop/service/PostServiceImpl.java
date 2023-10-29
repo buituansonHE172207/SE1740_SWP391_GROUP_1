@@ -1,6 +1,7 @@
 package com.kas.online_book_shop.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,5 +58,12 @@ public class PostServiceImpl implements PostService {
             Pageable pageable) {
         return postRepository.findByTitleContainingAndCategoryAndState(title, category, state, pageable);
     }
+
+    @Override
+    public List<Post> getAll() {
+        return postRepository.findAll();
+    }
+
+    
 
 }

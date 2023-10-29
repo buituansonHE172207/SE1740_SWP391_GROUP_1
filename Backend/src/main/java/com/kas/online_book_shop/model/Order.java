@@ -60,8 +60,6 @@ public class Order {
     @NotBlank(message = "The address is required")
     private String address;
 
-    private Long totalPrice;
-
     private Long shippingPrice;
 
     @NotBlank(message = "The phone is required")
@@ -92,4 +90,16 @@ public class Order {
     @ToString.Exclude
     @JsonManagedReference
     private List<OrderDetail> orderDetails;
+
+    public Long getTotalPrice() {
+        if (orderDetails != null && !orderDetails.isEmpty()) {
+            long total = 0;
+            for (OrderDetail detail : orderDetails) {
+                total += detail.getSalePrice() * detail.getAmount();
+            }
+            return total + shippingPrice;
+        } else {
+            return 0L;
+        }
+    }
 }

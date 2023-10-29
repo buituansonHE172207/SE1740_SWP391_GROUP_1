@@ -3,7 +3,7 @@ import axios from 'axios'
 const BOOK_BASE_URL = "http://localhost:8081/api/v1/book";
 
 const getAllBooks = () => {
-    return axios.get(BOOK_BASE_URL);
+    return axios.get(BOOK_BASE_URL + '/get-all');
 }
 
 const getBookById = (bookId) => {
@@ -14,4 +14,8 @@ const updateBook = (data) => {
     return axios.put(BOOK_BASE_URL, data);
 }
 
-export {getAllBooks, getBookById, updateBook}
+const addBook = (data) => {
+    return axios.post(BOOK_BASE_URL, data);
+}
+
+export {getAllBooks, getBookById, updateBook, addBook}

@@ -1,5 +1,7 @@
 package com.kas.online_book_shop.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -96,6 +98,9 @@ public class UserController {
         return ResponseEntity.ok(userService.registerStaff(user));
     }
 
-
+    @PostMapping("/get-all")
+    public ResponseEntity<List<User>> getAll() {
+        return ResponseEntity.ok(userService.getAll());
+    }
     
 }
