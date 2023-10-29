@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react"
-import "./order.scss"
+import "./publisher.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 import { DataGrid } from "@mui/x-data-grid";
-import { orderColumns } from "../../datatablesource";
-import { getAllOrders } from "../../service/OrderService"
-import { Link } from "react-router-dom";
+import { publisherColumns } from "../../datatablesource";
+import { getAllPublishers, deletePublisher } from "../../service/PublisherService";
+import { Link, useNavigate } from "react-router-dom";
 
-const Order = () => {
+const Publisher = () => {
     const [data, setData] = useState([])
     const [columns, setColumns] = useState([]);
+    const navigate = useNavigate()
 
-
-    const handleChangeState = (row) => {
-        console.log(row)
+    const handleDelete = (id) => {
+        const confirmBox = window.confirm(
+            "Do you really want to delete this publisher?"
+        )
+        if (!confirmBox) return
+        deletePublisher(id).then((res) => {
+            window.location.reload()
+        })
     }
 
     const actionColumn = [
@@ -24,14 +30,14 @@ const Order = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to={`/orders/${params.row.id}`} style={{ textDecoration: "none" }}>
-                            <div className="viewButton">View Detail</div>
+                        <Link to={`/publishers/${params.row.id}`} style={{ textDecoration: "none" }}>
+                            <div className="viewButton">Update</div>
                         </Link>
                         <div
                             className="deleteButton"
-                            onClick={() => handleChangeState(params.row)}
+                            onClick={() => handleDelete(params.row.id)}
                         >
-                            Change State
+                            Delete
                         </div>
                     </div>
                 );
@@ -40,9 +46,9 @@ const Order = () => {
     ];
 
     useEffect(() => {
-        getAllOrders().then((res) => {
+        getAllPublishers().then((res) => {
             setData(res.data)
-            setColumns(orderColumns.concat(actionColumn))
+            setColumns(publisherColumns.concat(actionColumn))
         })
     }, [])
 
@@ -53,8 +59,8 @@ const Order = () => {
                 <Navbar />
                 <div className="datatable">
                     <div className="datatableTitle">
-                        Orders
-                        <Link to={`/orders/new`} className="link">
+                        Publishers
+                        <Link to={`/publishers/new`} className="link">
                             Add New
                         </Link>
                     </div>
@@ -71,4 +77,4 @@ const Order = () => {
     )
 }
 
-export default Order
+export default Publisher

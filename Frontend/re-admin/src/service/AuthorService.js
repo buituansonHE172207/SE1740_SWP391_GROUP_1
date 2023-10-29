@@ -6,4 +6,8 @@ const getAllAuthors = () => {
     return axios.get(API_URL);
 }
 
-export {getAllAuthors};
+const deleteAuthor = (authorId) => {
+    return axios.delete(API_URL + '/' + authorId);
+}
+
+export {getAllAuthors, deleteAuthor};

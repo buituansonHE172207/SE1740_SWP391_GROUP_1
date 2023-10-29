@@ -6,4 +6,8 @@ const getAllOrders = () => {
     return axios.get(ORDER_BASE_URL + "/get-all");
 };
 
-export { getAllOrders };
+const getOrderById = (orderId) => {
+    return axios.get(ORDER_BASE_URL + "/" + orderId);
+}
+
+export { getAllOrders, getOrderById };
