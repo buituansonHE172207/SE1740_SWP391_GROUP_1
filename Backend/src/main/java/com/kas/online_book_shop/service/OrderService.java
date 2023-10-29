@@ -12,7 +12,7 @@ import com.kas.online_book_shop.enums.ShippingState;
 import com.kas.online_book_shop.model.Order;
 
 public interface OrderService {
-    Page<Order> getOrderByUser(Long userID, Pageable pageable);
+    List<Order> getOrderByUser(Long userID);
 
     void processOrder(Order order);
 
@@ -25,4 +25,6 @@ public interface OrderService {
     void changeOrderPaymentState(Long OrderId, PaymentState paymentState);
 
     void changeOrderShippingState(Long OrderId, ShippingState shippingState);
+
+    Order getOrderById(Long Id);
 }

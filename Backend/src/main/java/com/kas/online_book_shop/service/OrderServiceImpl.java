@@ -31,10 +31,10 @@ public class OrderServiceImpl implements OrderService {
     private final BookRepository bookRepository;
 
     @Override
-    public Page<Order> getOrderByUser(Long userID, Pageable pageable) {
+    public List<Order> getOrderByUser(Long userID) {
         var existingUser = userRepository.findById(userID)
                 .orElseThrow(() -> new ResourceNotFoundException("User_not_found"));
-        return orderRepository.findByUserAndStateNot(existingUser, OrderState.CART, pageable);
+        return orderRepository.findByUserAndStateNot(existingUser, OrderState.CART);
     }
 
     @Override
@@ -109,6 +109,10 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findByStateNot(OrderState.CART);
     }
 
-    
-
+    @Override
+    public Order getOrderById(Long Id) {
+        return orderRepository.findById(Id)
+            .orElseThrow(() -> new ResourceNotFoundException("Order_not_Found"));
+    }
+   
 }

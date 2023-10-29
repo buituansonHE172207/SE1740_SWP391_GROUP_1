@@ -18,7 +18,7 @@ import com.kas.online_book_shop.model.User;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-        Page<Order> findByUserAndStateNot(User user, OrderState state, Pageable pageable);
+        List<Order> findByUserAndStateNot(User user, OrderState state);
 
         Optional<Order> findByUserAndState(User user, OrderState state);
 
