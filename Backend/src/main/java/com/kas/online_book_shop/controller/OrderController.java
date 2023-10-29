@@ -36,15 +36,9 @@ public class OrderController {
     private final Object lock = new Object();
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<Page<Order>> getOrderByUser(
-            @PathVariable(name = "id") Long userID,
-            @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "asc") String sortOrder) {
-        Sort.Direction direction = (sortOrder.equalsIgnoreCase("asc")) ? Direction.ASC : Direction.DESC;
-        Pageable pageable = PageRequest.of(page, size, direction, sortBy);
-        return ResponseEntity.ok(orderService.getOrderByUser(userID, pageable));
+    public ResponseEntity<List<Order>> getOrderByUser(
+            @PathVariable(name = "id") Long userID) {
+        return ResponseEntity.ok(orderService.getOrderByUser(userID));
     }
 
     @PostMapping("/process")
@@ -83,5 +77,11 @@ public class OrderController {
     @GetMapping("/get-all")
     public ResponseEntity<List<Order>> getAll() {
         return ResponseEntity.ok(orderService.getAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> getOrderById(
+            @PathVariable(name = "id") Long Id) {
+        return ResponseEntity.ok(orderService.getOrderById(Id));
     }
 }
