@@ -90,6 +90,7 @@ export const orderColumns = [
   { field: "fullName", headerName: "Full Name", width: 150 },
   { field: "phone", headerName: "Phone", width: 150 },
   { field: "address", headerName: "Address", width: 200 },
+  { field: "paymentState", headerName: "Payment Method", width: 150,},
   { field: "shippingState", headerName: "Shipping State", width: 130, 
     renderCell: (params) => {
       return (
