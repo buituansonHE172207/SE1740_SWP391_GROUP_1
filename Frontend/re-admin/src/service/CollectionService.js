@@ -6,4 +6,18 @@ const getAllCollections = () => {
     return axios.get(API_URL);
 };
 
-export {getAllCollections};
+const deleteCollection = (collectionId) => {
+    return axios.delete(API_URL + '/' + collectionId);
+}
+
+const addCollection = (collection) => {
+    try{
+        collection.isDisplay = Boolean(collection.isDisplay === 'true');
+        return axios.post(API_URL, collection);
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+export {getAllCollections, deleteCollection, addCollection};

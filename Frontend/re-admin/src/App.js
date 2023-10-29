@@ -4,7 +4,7 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { productInputs, authorInputs, userInputs, collectionInputs, sliderInputs, publisherInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -13,6 +13,12 @@ import ProductSingle from "./pages/single/ProductSingle";
 import ProductNew from "./pages/new/ProductNew";
 import Order from "./pages/order/Order";
 import OrderDetail from "./pages/order/OrderDetail";
+import Collection from "./pages/collection/Collection";
+import Slider from "./pages/slider/Slider";
+import Publisher from "./pages/publisher/Publisher";
+import { addPublisher } from "./service/PublisherService";
+import { addSlider } from "./service/SliderService";
+import { addCollection } from "./service/CollectionService";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -30,12 +36,12 @@ function App() {
           <Route path="/">
             <Route path="login" element={<Login />} />
             <Route index element={<RequireAuth><Home /></RequireAuth>} />
-            <Route path="users">
-              <Route index element={<RequireAuth><List type={'users'} /></RequireAuth>} />
-              <Route path=":userId" element={<RequireAuth><Single /></RequireAuth>} />
+            <Route path="authors">
+              <Route index element={<RequireAuth><List type={'authors'} /></RequireAuth>} />
+              <Route path=":authorId" element={<RequireAuth><Single /></RequireAuth>} />
               <Route
                 path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
+                element={<New inputs={authorInputs} title="Add New Author" />}
               />
             </Route>
             <Route path="products">
@@ -49,6 +55,18 @@ function App() {
             <Route path="orders">
               <Route index element={<RequireAuth><Order /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><OrderDetail /></RequireAuth>}></Route>
+            </Route>
+            <Route path="collections">
+              <Route index element={<RequireAuth><Collection /></RequireAuth>}></Route>
+              <Route path="new" element={<RequireAuth><New inputs={collectionInputs} title="Add New Collection" location={'/collections'} handleAdd={addCollection}/></RequireAuth>}></Route>
+            </Route>
+            <Route path="sliders">
+              <Route index element={<RequireAuth><Slider /></RequireAuth>}></Route>
+              <Route path="new" element={<RequireAuth><New inputs={sliderInputs} title="Add New Slider" location={'/sliders'} handleAdd={addSlider} /></RequireAuth>}></Route>
+            </Route>
+            <Route path="publishers">
+              <Route index element={<RequireAuth><Publisher></Publisher></RequireAuth> }></Route>
+              <Route path="new" element={<RequireAuth><New inputs={publisherInputs} title="Add New Publisher" location={'/publishers'} handleAdd={addPublisher} /></RequireAuth>}></Route>
             </Route>
           </Route>
         </Routes>
