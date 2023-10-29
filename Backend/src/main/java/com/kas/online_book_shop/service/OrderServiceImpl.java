@@ -44,6 +44,7 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
         if (existingOrder.getState() != OrderState.PROCESSING)
             return;
+        order.setCreated(existingOrder.getCreated());
         var existingUser = userRepository.findById(order.getUser().getId()).orElse(null);
         if (existingUser == null) {
             return;
