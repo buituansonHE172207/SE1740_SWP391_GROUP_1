@@ -7,12 +7,10 @@ com/kas/online_book_shop/service/FeedbackService.class
 com/kas/online_book_shop/OnlineBookShopApplication.class
 com/kas/online_book_shop/model/Order$OrderBuilder.class
 com/kas/online_book_shop/service/BookCollectionServiceImpl.class
-com/kas/online_book_shop/config/ApplicationConfig.class
 com/kas/online_book_shop/service/RoleService.class
 com/kas/online_book_shop/model/BookCollection.class
 com/kas/online_book_shop/controller/GlobalExceptionHandler.class
 com/kas/online_book_shop/repository/RatingRepository.class
-com/kas/online_book_shop/auth/AuthenticationController.class
 com/kas/online_book_shop/service/PublisherServiceImpl.class
 com/kas/online_book_shop/exception/InvalidValueException.class
 com/kas/online_book_shop/service/BookCategoryService.class
@@ -37,7 +35,6 @@ com/kas/online_book_shop/repository/SliderRepository.class
 com/kas/online_book_shop/enums/AccountState.class
 com/kas/online_book_shop/model/Author.class
 com/kas/online_book_shop/controller/BookCollectionController.class
-com/kas/online_book_shop/auth/AuthenticationService.class
 com/kas/online_book_shop/model/BookCategory.class
 com/kas/online_book_shop/service/PostCategoryServiceImpl.class
 com/kas/online_book_shop/model/Slider$SliderBuilder.class
@@ -46,7 +43,6 @@ com/kas/online_book_shop/service/BookCollectionService.class
 com/kas/online_book_shop/service/CartService.class
 com/kas/online_book_shop/model/Book.class
 com/kas/online_book_shop/controller/PostCategoryController.class
-com/kas/online_book_shop/config/JwtAuthenticationFilter.class
 com/kas/online_book_shop/model/Feedback.class
 com/kas/online_book_shop/repository/AuthorRepository.class
 com/kas/online_book_shop/model/Rating.class
@@ -91,7 +87,6 @@ com/kas/online_book_shop/model/Publisher$PublisherBuilder.class
 com/kas/online_book_shop/service/LanguageService.class
 com/kas/online_book_shop/exception/OldPasswordMismatchException.class
 com/kas/online_book_shop/model/Post$PostBuilder.class
-com/kas/online_book_shop/config/JwtService.class
 com/kas/online_book_shop/dto/ResetPasswordRequest.class
 com/kas/online_book_shop/exception/InsufficientStockException.class
 com/kas/online_book_shop/service/WishlistService.class
