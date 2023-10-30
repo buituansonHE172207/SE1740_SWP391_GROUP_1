@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://backend.sachtructuyen.shop/api/v1/author";
+const API_URL = "http://localhost:8081/api/v1/author";
 
 const getAllAuthors = () => {
     return axios.get(API_URL);
