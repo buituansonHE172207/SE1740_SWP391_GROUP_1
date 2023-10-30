@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8081/api/v1/book-collection";
+const API_URL = "https://backend.sachtructuyen.shop/api/v1/book-collection";
 
 const getAllCollections = () => {
     return axios.get(API_URL);

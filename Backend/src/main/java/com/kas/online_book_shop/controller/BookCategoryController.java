@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.kas.online_book_shop.model.BookCategory;
 import com.kas.online_book_shop.service.BookCategoryService;
@@ -18,6 +19,8 @@ import com.kas.online_book_shop.service.BookCategoryService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+//@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost", "http://74.235.148.227:3000", "http://74.235.148.227:3001"})
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class BookCategoryController {
 

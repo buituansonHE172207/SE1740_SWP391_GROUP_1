@@ -6,6 +6,7 @@ RUN ./mvnw dependency:go-offline
 COPY ./src ./src
 RUN ./mvnw clean install
 
+
 FROM eclipse-temurin:17
 WORKDIR /opt/app
 EXPOSE 8081
