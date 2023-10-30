@@ -28,8 +28,7 @@ import com.kas.online_book_shop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-// @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:3001" })
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:3001" })
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/order")
 public class OrderController {

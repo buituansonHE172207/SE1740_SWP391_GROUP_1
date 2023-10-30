@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const WISHLIST_BASE_URL = 'https://backend.sachtructuyen.shop/api/v1/wishlist'
+const WISHLIST_BASE_URL = 'http://localhost:8081/api/v1/wishlist'
 
 const getWishlistByUserId = (userId) => {
     return axios.get(WISHLIST_BASE_URL + '/by-user/' + userId);

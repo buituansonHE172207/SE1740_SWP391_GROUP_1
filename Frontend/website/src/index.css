@@ -741,7 +741,7 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
 .quickview-cart {
   border-radius: 3px;
   overflow: hidden;
-  -webkit-transition: all 0.3s ease;
+  webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
   display: block;
@@ -814,7 +814,7 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
 
 .quickview-cart ul .cart-item-info>a {
   color: #333333;
-  -webkit-transition: all 0.3s ease;
+  webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
   margin-bottom: 3px;

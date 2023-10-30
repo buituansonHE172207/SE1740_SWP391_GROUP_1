@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BOOK_BASE_URL = "https://backend.sachtructuyen.shop/api/v1/book";
+const BOOK_BASE_URL = "http://localhost:8081/api/v1/book";
 
 const getAllBooks = () => {
     return axios.get(BOOK_BASE_URL + '/get-all');

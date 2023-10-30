@@ -110,7 +110,7 @@ public class AuthenticationService {
                                 jwtService.generateToken(existingUser));
                 return;
         }
-        
+
         public AuthenticationResponse changePassword(ChangePasswordRequest request) {
                 var user = userRepository.findByEmail(jwtService.extractUsername(request.token()))
                                 .orElseThrow();
