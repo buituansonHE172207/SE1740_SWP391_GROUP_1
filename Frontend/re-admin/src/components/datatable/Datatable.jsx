@@ -1,14 +1,30 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, productColumns } from "../../datatablesource";
+import { authorColumns, productColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAllBooks } from "../../service/BookService";
+import { getAllBooks, deleteBook } from "../../service/BookService";
+import { getAllAuthors, deleteAuthor } from "../../service/AuthorService";
 const Datatable = ({type}) => {
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    const confirm = window.confirm("Are you sure you want to delete?");
+    if (!confirm) return;
+    switch (type) {
+      case "products":
+        deleteBook(id).then((res) => {
+          setData(data.filter((item) => item.id !== id));
+        });
+        break;
+      case "authors":
+        deleteAuthor(id).then((res) => {
+          setData(data.filter((item) => item.id !== id));
+        });
+        break;
+      default:
+        break;
+    }
   };
   
   const actionColumn = [
@@ -38,12 +54,15 @@ const Datatable = ({type}) => {
     switch (type) {
       case "products":
         getAllBooks().then((res) => {
-          setColumns(productColumns.concat(actionColumn));
           setData(res.data);
+          setColumns(productColumns.concat(actionColumn));
         });
         break;
-      case "users":
-        setColumns(userColumns.concat(actionColumn));
+      case "authors":
+        getAllAuthors().then((res) => {
+          setColumns(authorColumns.concat(actionColumn));
+          setData(res.data);
+        });
         break;
       default:
         break;

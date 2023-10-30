@@ -18,4 +18,8 @@ const addBook = (data) => {
     return axios.post(BOOK_BASE_URL, data);
 }
 
-export {getAllBooks, getBookById, updateBook, addBook}
+const deleteBook = (bookId) => {
+    return axios.delete(BOOK_BASE_URL + '/' + bookId);
+}
+
+export {getAllBooks, getBookById, updateBook, addBook, deleteBook}

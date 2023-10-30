@@ -6,4 +6,12 @@ const getAllPublishers = () => {
     return axios.get(PUBLISHER_BASE_URL);
 }
 
-export {getAllPublishers}
+const deletePublisher = (publisherId) => {
+    return axios.delete(PUBLISHER_BASE_URL + '/' + publisherId);
+}
+
+const addPublisher = (publisher) => {
+    axios.post(PUBLISHER_BASE_URL, publisher);
+}
+
+export {getAllPublishers, deletePublisher, addPublisher}

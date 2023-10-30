@@ -53,8 +53,6 @@ const ProductNew = ({ }) => {
         sold: 0
     })
 
-    console.log(data)
-
     const navigate = useNavigate()
 
     useEffect(() => {
