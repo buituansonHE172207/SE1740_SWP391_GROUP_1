@@ -22,6 +22,7 @@ import Activate from './components/User/Activate';
 import CheckMail from './components/User/CheckMail';
 import Paypal from './components/Checkout/Paypal';
 import Wishlist from './components/Wishlist/Wishlist';
+import ProfileDetail from "./components/User/ProfileDetail";
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies([]);
   const [profileData, setProfileData] = useState()
@@ -55,6 +56,7 @@ function App() {
           <Route path='/collections/:id' Component={BooksByCollection}></Route>
           <Route path='/products/:id' element={<ProductDetail cookies={cookies} setCart={setCart} cart={cart} cartChange={cartChange} setCartChange={setCartChange} setCookie={setCookies} removeCookie={removeCookies} />}></Route>
           <Route path='/account' element={<Profile cart={cart} cookies={cookies} />}></Route>
+          <Route path="/account-detail" element={<ProfileDetail cookies={cookies} />}></Route>
           <Route path='/reset-password/:token' Component={ResetPassword}></Route>
           <Route path='/forgot-password' Component={ForgotPassword}></Route>
           <Route path='/cart' element={<Cart cart={cart} setCart={setCart} setCartChange={setCartChange} cartChange={cartChange} />}></Route>

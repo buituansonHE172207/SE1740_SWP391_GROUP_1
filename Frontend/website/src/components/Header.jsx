@@ -33,6 +33,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
     const [wards, setWards] = useState([])
     const [reset, setReset] = useState(false)
     const [result, setResult] = useState({})
+   
     useEffect(() => {
         setProvinceName(null)
         const fetchProvince = async () => {
@@ -119,7 +120,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
 
     const handleSignUp = (event) => {
         event.preventDefault()
-        if (formData.su_name.trim() === '' || formData.su_phone.trim() === '' || formData.su_email === '' || formData.su_password.trim() === '' || formData.su_address.trim() === '' || province_name === null || district_name === null || ward_name === null || province_name == undefined || district_name == undefined || ward_name == undefined) {
+        if (formData.su_name.trim() === '' || formData.su_phone.trim() === '' || formData.su_email === '' || formData.su_password.trim() === '' || formData.su_address.trim() === '' || province_name === null || district_name === null || ward_name === null || province_name === undefined || district_name === undefined || ward_name === undefined) {
             setError((prevData) => ({ ...prevData, emptyError: true }))
             return
         }
@@ -129,20 +130,19 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
         const phone_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g
         const email_regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g
         const password_regex = /[a-zA-Z\d]{6,}$/g
-        if (!phone_regex.test(formData.su_phone) ) {
+        if (!phone_regex.test(formData.su_phone)) {
             setError((prevData) => ({ ...prevData, phoneError: true }))
             setError((prevData) => ({ ...prevData, passwordError: false }))
             setError((prevData) => ({ ...prevData, emailError: false }))
             return
         }
-        else if (!email_regex.test(formData.su_email))
-        {
+        else if (!email_regex.test(formData.su_email)) {
             setError((prevData) => ({ ...prevData, emailError: true }))
             setError((prevData) => ({ ...prevData, passwordError: false }))
             setError((prevData) => ({ ...prevData, phoneError: false }))
             return
         }
-        else if (!password_regex.test(formData.su_password)){
+        else if (!password_regex.test(formData.su_password)) {
             setError((prevData) => ({ ...prevData, passwordError: true }))
             setError((prevData) => ({ ...prevData, emailError: false }))
             setError((prevData) => ({ ...prevData, phoneError: false }))
@@ -155,12 +155,12 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
         }
         let account = { fullName: formData.su_name, email: formData.su_email, password: formData.su_password, province: province_name, district: district_name, ward: ward_name, phone: formData.su_phone, address: formData.su_address }
         createAccount(account).then(res => {
-            window.location.href = '/check-mail'
+            window.location.href = '/check-email'
         })
-        .catch(err => {
-            setError((prevData) => ({ ...prevData, existError: true }))
-        })
-       
+            .catch(err => {
+                setError((prevData) => ({ ...prevData, existError: true }))
+            })
+
     }
 
     const logout = () => {
@@ -211,7 +211,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
                     <div className="row align-items-center">
                         <div className="col-lg-4">
                             <div className="search-form-wrapper">
-                                <SearchBar setResult={setResult}/>
+                                <SearchBar setResult={setResult} />
                                 <SearchResult result={result} />
                             </div>
                         </div>
@@ -256,7 +256,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
                             <div className="wishlist_btn">
                                 <div id="onAppWishList_btn_page">
                                     <a href="/wishlist">
-                                        <i className="fa-regular fa-heart" style={{color: 'black'}}></i>
+                                        <i className="fa-regular fa-heart" style={{ color: 'black' }}></i>
                                         <p style={{ fontSize: "16px", display: "block" }} id="onAppWishList_numberLike">{wishlist ? wishlist.length : 0}</p>
                                     </a>
                                 </div>
