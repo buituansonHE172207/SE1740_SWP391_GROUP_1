@@ -192,38 +192,38 @@ const BooksByCollection = () => {
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input onClick={handlePrice} type='radio' data-max='100000' name='price-filter'></input>
-                                                                        <span>Nhỏ hơn 100,000₫</span>
+                                                                        <input onClick={handlePrice} type='radio' data-max='10000' name='price-filter'></input>
+                                                                        <span>Nhỏ hơn 10,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input onClick={handlePrice} type='radio' data-min='100000' data-max='200000' name='price-filter'></input>
-                                                                        <span> Từ 100,000₫ - 200,000₫</span>
+                                                                        <input onClick={handlePrice} type='radio' data-min='10000' data-max='20000' name='price-filter'></input>
+                                                                        <span> Từ 10,000₫ - 20,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input onClick={handlePrice} type='radio' data-min='200000' data-max='300000' name='price-filter'></input>
-                                                                        <span>Từ 200,000₫ - 300,000₫</span>
+                                                                        <input onClick={handlePrice} type='radio' data-min='20000' data-max='30000' name='price-filter'></input>
+                                                                        <span>Từ 20,000₫ - 30,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input onClick={handlePrice} type='radio' data-min='300000' data-max='400000' name='price-filter'></input>
-                                                                        <span> Từ 300,000₫ - 400,000₫</span>
+                                                                        <input onClick={handlePrice} type='radio' data-min='30000' data-max='40000' name='price-filter'></input>
+                                                                        <span> Từ 30,000₫ - 40,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input onClick={handlePrice} data-min='400000' data-max='500000' type='radio' name='price-filter'></input>
-                                                                        <span>Từ 400,000₫ - 500,000₫</span>
+                                                                        <input onClick={handlePrice} data-min='40000' data-max='50000' type='radio' name='price-filter'></input>
+                                                                        <span>Từ 40,000₫ - 50,000₫</span>
                                                                     </label>
                                                                 </li>
                                                                 <li>
                                                                     <label>
-                                                                        <input onClick={handlePrice} type='radio' data-min='500000' name='price-filter'></input>
-                                                                        <span>Lớn hơn 500,000₫</span>
+                                                                        <input onClick={handlePrice} type='radio' data-min='50000' name='price-filter'></input>
+                                                                        <span>Lớn hơn 50,000₫</span>
                                                                     </label>
                                                                 </li>
                                                             </ul>

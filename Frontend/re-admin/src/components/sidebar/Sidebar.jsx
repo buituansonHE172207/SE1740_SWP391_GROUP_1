@@ -11,6 +11,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ArticleIcon from '@mui/icons-material/Article';
 import QueueIcon from '@mui/icons-material/Queue';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
@@ -82,6 +83,12 @@ const Sidebar = () => {
             <li>
               <AssuredWorkloadIcon className="icon" />
               <span>Publishers</span>
+            </li>
+          </Link>
+          <Link to={'/posts'} style={{textDecoration: 'none'}}>
+            <li>
+              <ArticleIcon className="icon" />
+              <span>Posts</span>
             </li>
           </Link>
           <p className="title">USEFUL</p>

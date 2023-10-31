@@ -155,19 +155,19 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                                         </div>
                                         <div className='pro-rating'>
                                             <div className='starbap-prev-badge'>
-                                                <a className='starbap-star'>
+                                                <a href className='starbap-star'>
                                                     <i className="fa-regular fa-star" style={{ color: '#d9d326' }}></i>
                                                 </a>
-                                                <a className='starbap-star'>
+                                                <a href className='starbap-star'>
                                                     <i className="fa-regular fa-star" style={{ color: '#d9d326' }}></i>
                                                 </a>
-                                                <a className='starbap-star'>
+                                                <a href className='starbap-star'>
                                                     <i className="fa-regular fa-star" style={{ color: '#d9d326' }}></i>
                                                 </a>
-                                                <a className='starbap-star'>
+                                                <a href className='starbap-star'>
                                                     <i className="fa-regular fa-star" style={{ color: '#d9d326' }}></i>
                                                 </a>
-                                                <a className='starbap-star'>
+                                                <a href className='starbap-star'>
                                                     <i className="fa-regular fa-star" style={{ color: '#d9d326' }}></i>
                                                 </a>
                                                 <span className='starbap-prev-badgetext'>
