@@ -22,7 +22,8 @@ public class EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        String url = "https://sachtructuyen.shop/activation/" + token;
+        // String url = "https://sachtructuyen.shop/activation/" + token;
+        String url = "http://localhost:3000/activation/" + token;
 
         String html = htmlContent.setHtmlConten(fullName, "Kích hoạt tài khoản", url,
                 "Cảm ơn bạn đã đăng ký tài khoản tại Sách Trực Tuyến",
@@ -40,7 +41,8 @@ public class EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        String url = "https://sachtructuyen.shop/reset-password/" + token;
+        // String url = "https://sachtructuyen.shop/reset-password/" + token;
+        String url = "http://localhost:3000/reset-password/" + token;
 
         String html = htmlContent.setHtmlConten(fullName, "Đặt lại mật khẩu", url,
                 "Bạn vừa yêu cầu đặt lại mật khẩu tại Sách Trực Tuyến",
