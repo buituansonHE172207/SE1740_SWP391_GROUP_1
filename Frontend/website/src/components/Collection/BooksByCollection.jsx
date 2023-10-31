@@ -18,7 +18,7 @@ const BooksByCollection = () => {
     const [page, setPage] = useState(urlParams.get('page'));
     const [limit,] = useState(12);
     const totalPage = Math.ceil(book_length.current / limit);
-
+   
     const fetchData = (id) => {
         getBooksByQuery(id, page, urlParams.get('min'), urlParams.get('max'))
             .then(res => {

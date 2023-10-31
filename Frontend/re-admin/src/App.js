@@ -1,7 +1,6 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
-import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { productInputs, authorInputs, userInputs, collectionInputs, sliderInputs, publisherInputs } from "./formSource";
@@ -19,6 +18,13 @@ import Publisher from "./pages/publisher/Publisher";
 import { addPublisher } from "./service/PublisherService";
 import { addSlider } from "./service/SliderService";
 import { addCollection } from "./service/CollectionService";
+import { addAuthor } from "./service/AuthorService";
+import CollectionSingle from "./pages/collection/CollectionSingle";
+import SliderSingle from "./pages/slider/SliderSingle";
+import PublisherSingle from "./pages/publisher/PublisherSingle";
+import AuthorSingle from "./pages/single/AuthorSingle";
+import Footer from "./components/footer/Footer";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -38,10 +44,11 @@ function App() {
             <Route index element={<RequireAuth><Home /></RequireAuth>} />
             <Route path="authors">
               <Route index element={<RequireAuth><List type={'authors'} /></RequireAuth>} />
-              <Route path=":authorId" element={<RequireAuth><Single /></RequireAuth>} />
+              <Route path=":id" element={<RequireAuth><AuthorSingle /></RequireAuth>} />
+              
               <Route
                 path="new"
-                element={<New inputs={authorInputs} title="Add New Author" />}
+                element={<New inputs={authorInputs} title="Add New Author" handleAdd={addAuthor } location={'/authors'}/>}
               />
             </Route>
             <Route path="products">
@@ -59,17 +66,21 @@ function App() {
             <Route path="collections">
               <Route index element={<RequireAuth><Collection /></RequireAuth>}></Route>
               <Route path="new" element={<RequireAuth><New inputs={collectionInputs} title="Add New Collection" location={'/collections'} handleAdd={addCollection}/></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><CollectionSingle/></RequireAuth>}></Route>
             </Route>
             <Route path="sliders">
               <Route index element={<RequireAuth><Slider /></RequireAuth>}></Route>
               <Route path="new" element={<RequireAuth><New inputs={sliderInputs} title="Add New Slider" location={'/sliders'} handleAdd={addSlider} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><SliderSingle /></RequireAuth>}></Route>
             </Route>
             <Route path="publishers">
               <Route index element={<RequireAuth><Publisher></Publisher></RequireAuth> }></Route>
               <Route path="new" element={<RequireAuth><New inputs={publisherInputs} title="Add New Publisher" location={'/publishers'} handleAdd={addPublisher} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><PublisherSingle /></RequireAuth>}></Route>
             </Route>
           </Route>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

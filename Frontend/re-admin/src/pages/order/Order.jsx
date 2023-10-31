@@ -54,9 +54,6 @@ const Order = () => {
                 <div className="datatable">
                     <div className="datatableTitle">
                         Orders
-                        <Link to={`/orders/new`} className="link">
-                            Add New
-                        </Link>
                     </div>
                     <DataGrid
                         className="datagrid"

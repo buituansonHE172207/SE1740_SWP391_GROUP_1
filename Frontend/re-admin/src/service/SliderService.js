@@ -14,4 +14,12 @@ const addSlider = (slider) => {
     return axios.post(API_URL, slider);
 }
 
-export {getAllSliders, deleteSlider, addSlider};
+const getSliderById = (id) => {
+    return axios.get(API_URL + '/' + id);
+}
+
+const updateSlider = (data) => {
+    return axios.put(API_URL , data);
+}
+
+export {getAllSliders, deleteSlider, addSlider, getSliderById, updateSlider};

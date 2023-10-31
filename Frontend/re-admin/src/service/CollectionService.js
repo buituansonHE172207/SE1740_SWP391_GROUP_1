@@ -20,4 +20,12 @@ const addCollection = (collection) => {
     }
 }
 
-export {getAllCollections, deleteCollection, addCollection};
+const getCollectionsById = (id) => {
+    return axios.get(API_URL + '/' + id);
+}
+
+const updateCollection = (data) => {
+    return axios.put(API_URL , data);
+}
+
+export {getAllCollections, deleteCollection, addCollection, getCollectionsById, updateCollection};
