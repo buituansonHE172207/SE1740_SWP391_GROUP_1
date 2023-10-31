@@ -10,4 +10,16 @@ const deleteAuthor = (authorId) => {
     return axios.delete(API_URL + '/' + authorId);
 }
 
-export {getAllAuthors, deleteAuthor};
+const updateAuthor = (data) => {
+    return axios.put(API_URL, data);
+}
+
+const getAuthorById = (authorId) => {
+    return axios.get(API_URL + '/' + authorId);
+}
+
+const addAuthor = (data) => {
+    return axios.post(API_URL, data);
+}
+
+export {getAllAuthors, deleteAuthor, updateAuthor, getAuthorById, addAuthor};

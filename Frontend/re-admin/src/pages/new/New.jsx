@@ -2,12 +2,10 @@ import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const New = ({ inputs, title, handleAdd, location }) => {
   const [data, setData] = useState({})
-  const navigate = useNavigate()
 
   const handleInput = (e) => {
     const id = e.target.id;

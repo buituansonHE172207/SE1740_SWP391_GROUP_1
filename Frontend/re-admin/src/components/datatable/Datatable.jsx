@@ -14,12 +14,12 @@ const Datatable = ({type}) => {
     switch (type) {
       case "products":
         deleteBook(id).then((res) => {
-          setData(data.filter((item) => item.id !== id));
+          window.location.reload();
         });
         break;
       case "authors":
         deleteAuthor(id).then((res) => {
-          setData(data.filter((item) => item.id !== id));
+          window.location.reload();
         });
         break;
       default:

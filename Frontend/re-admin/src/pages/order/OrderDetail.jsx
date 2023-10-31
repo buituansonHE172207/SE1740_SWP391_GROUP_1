@@ -64,7 +64,7 @@ const OrderDetail = () => {
             setOrder(res.data)
         })
     }, [])
-    console.log(order)
+
     return (
         <div>
             <div className="list">

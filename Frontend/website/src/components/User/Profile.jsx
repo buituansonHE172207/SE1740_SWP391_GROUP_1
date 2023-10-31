@@ -73,10 +73,10 @@ const Profile = ({cart, cookies}) => {
 
   useEffect(() => {
     cart?.user?.id && getOrderByUserId(cart?.user?.id).then(res => {
-      setOrders(res?.data?.content)
+      setOrders(res?.data)
     })
-  }, [cart])
-
+  }, [])
+  
 
   const handleProfileChange = (e) => {
     const { name, value } = e.target
