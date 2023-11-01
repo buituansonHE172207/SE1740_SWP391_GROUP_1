@@ -32,6 +32,7 @@ public class Publisher {
     @NotBlank(message = "The publisher name is required")
     private String name;
     
+    @NotBlank(message =  "The website name is required")
     private String website;
 
     @OneToMany(mappedBy = "publisher")
