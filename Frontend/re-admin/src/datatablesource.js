@@ -72,8 +72,9 @@ export const orderColumns = [
   { field: "fullName", headerName: "Full Name", width: 150 },
   { field: "phone", headerName: "Phone", width: 150 },
   { field: "address", headerName: "Address", width: 200 },
-  { field: "paymentState", headerName: "Payment Method", width: 150,},
-  { field: "shippingState", headerName: "Shipping State", width: 130, 
+  { field: "paymentState", headerName: "Payment Method", width: 150, },
+  {
+    field: "shippingState", headerName: "Shipping State", width: 130,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.shippingState.toLowerCase()}`}>
@@ -82,7 +83,8 @@ export const orderColumns = [
       );
     },
   },
-  { field: "totalPrice", headerName: "Total Price", width: 120,
+  {
+    field: "totalPrice", headerName: "Total Price", width: 120,
     renderCell: (params) => {
       return (
         <div>{params.row.totalPrice.toLocaleString()}₫</div>
@@ -95,13 +97,14 @@ export const collectionColumns = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "name", headerName: "Name", width: 250 },
   { field: "type", headerName: "Type", width: 150 },
-  { field: "isDisplay", headerName: "Display", width: 150,}
+  { field: "isDisplay", headerName: "Display", width: 150, }
 ]
 
 export const sliderColumns = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "title", headerName: "Title", width: 150 },
-  { field: "imageUrl", headerName: "Image", width: 250,
+  {
+    field: "imageUrl", headerName: "Image", width: 250,
     renderCell: (params) => {
       return (
         <div className="sliderWithImg">
@@ -111,12 +114,38 @@ export const sliderColumns = [
       );
     },
   },
-  { field: "backLink", headerName: "Back Link", width: 150,},
-  { field: "description", headerName: "Description", width: 150,}
+  { field: "backLink", headerName: "Back Link", width: 150, },
+  { field: "description", headerName: "Description", width: 150, }
 ]
 
 export const publisherColumns = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "name", headerName: "Name", width: 150 },
   { field: "website", headerName: "Website", width: 250 },
+]
+
+export const postColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "title", headerName: "Title", width: 150 },
+  {
+    field: 'category', headerName: 'Category', width: 150,
+    renderCell: (params) => {
+      return (
+        <div>
+          { params.row.category.name }
+        </div>
+      );
+    },
+  },
+  { field: 'createdAt', headerName: 'Created Time', width: 250 },
+  {
+    field: 'author', headerName: 'Author', width: 150,
+    renderCell: (params) => {
+      return (
+        <div>
+          { params.row.user.fullName }
+        </div>
+      );
+    },
+  }
 ]
