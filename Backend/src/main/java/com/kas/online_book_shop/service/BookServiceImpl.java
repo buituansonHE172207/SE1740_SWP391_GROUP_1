@@ -129,6 +129,16 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll();
     }
 
-    
+    @Override
+    public void changeBookState(Long id) {
+        var existingBook = bookRepository.findById(id)
+            .orElseThrow( () -> new ResourceNotFoundException("Không tìm thấy sách tương ứng"));
+        if (existingBook.getState() == BookState.ACTIVE)
+            existingBook.setState(BookState.HIDDEN);
+        existingBook.setState(BookState.ACTIVE);
+        
+    }
 
+    
+    
 }

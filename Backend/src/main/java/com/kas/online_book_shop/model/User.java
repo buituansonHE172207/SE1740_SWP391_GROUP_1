@@ -21,7 +21,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,26 +42,27 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "The full name is required")
     private String fullName;
 
-    @NotBlank
+    @NotBlank(message = "The province is required")
     private String province;
 
-    @NotBlank
+    @NotBlank(message = "The district is required")
     private String district;
 
-    @NotBlank
+    @NotBlank(message = "The ward is required")
     private String ward;
 
-    @NotBlank
+    @NotBlank(message = "The address is required")
     private String address;
 
-    @NotBlank
+    @NotBlank(message = "The phone is required")
+    @Pattern(regexp = "^0\\d{9}$", message = "The phone is invalid")
     private String phone;
 
     @Column(unique = true)
-    @NotBlank
+    @Email(message = "The email is invalid")
     private String email;
 
     @JsonIgnore
@@ -142,5 +145,4 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
-
 }

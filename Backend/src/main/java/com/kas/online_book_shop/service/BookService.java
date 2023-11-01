@@ -24,6 +24,8 @@ public interface BookService {
 
     void deleteBook(Long id);
 
+    void changeBookState(Long id);
+
     Page<Book> getBookByCategoriesAndPriceRange(List<BookCategory> categories, int min, int max, Pageable pageable);
 
     Page<Book> getBooksByCollectionAndPriceRanges(BookCollection collection,int min, int max,Pageable pageable);

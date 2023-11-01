@@ -21,6 +21,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -63,11 +64,12 @@ public class Order {
     private Long shippingPrice;
 
     @NotBlank(message = "The phone is required")
+    @Pattern(regexp = "^0\\d{9}$", message = "The phone is invalid")
     private String phone;
 
     @Lob
     private String customerNote;
-    
+
     @Lob
     private String shopNote;
 
@@ -85,7 +87,7 @@ public class Order {
     @NotBlank(message = "The email is required")
     private String email;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonManagedReference
