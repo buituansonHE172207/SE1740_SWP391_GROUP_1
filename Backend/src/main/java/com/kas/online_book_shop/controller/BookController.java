@@ -129,4 +129,11 @@ public class BookController {
     public ResponseEntity<List<Book>> getAll() {
         return ResponseEntity.ok(bookService.getAllBooks());
     }
+
+    @GetMapping("/change-state/{id}")
+    public ResponseEntity<Void> changeBookState(@PathVariable Long id)
+    {
+        bookService.changeBookState(id);
+        return ResponseEntity.noContent().build();
+    }
 }

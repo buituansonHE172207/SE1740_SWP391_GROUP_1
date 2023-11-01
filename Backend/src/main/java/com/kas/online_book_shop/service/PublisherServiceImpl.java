@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.kas.online_book_shop.exception.ResourceNotFoundException;
+import com.kas.online_book_shop.model.Book;
 import com.kas.online_book_shop.model.Publisher;
 import com.kas.online_book_shop.repository.PublisherRepository;
 
@@ -19,8 +20,12 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public void deletePublisher(Long id) {
-        publisherRepository.findById(id)
+        var existingPublisher = publisherRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy nhà xuất bản để xóa."));
+        for (Book book : existingPublisher.getBooks()) {
+            book.setPublisher(null);
+        }
+        publisherRepository.deleteById(id);
     }
 
     @Override
