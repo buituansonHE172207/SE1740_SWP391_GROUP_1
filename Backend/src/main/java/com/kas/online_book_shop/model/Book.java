@@ -77,10 +77,10 @@ public class Book {
     
     private String size;
 
-    @Min(value = 0, message = "The weight must be at least 0")
+    @Min(value = 1, message = "The weight must be at least 1")
     private Integer weight;
 
-    @Min(value = 0, message = "The price must be at least 0")
+    @Min(value = 1, message = "The price must be at least 1")
     private Long price;
 
     @ManyToOne
@@ -89,12 +89,13 @@ public class Book {
     @ToString.Exclude
     private Language language;
 
-    @Min(value = 0, message = "The page must be at least 0")
+    @Min(value = 1, message = "The page must be at least 1")
     private Integer page;
 
     private String cover;
 
     @Column(unique = true)
+    @NotBlank(message = "The ISBN is required")
     private String ISBN;
 
     @Min(value = 0, message = "The discount must be at least 0")
