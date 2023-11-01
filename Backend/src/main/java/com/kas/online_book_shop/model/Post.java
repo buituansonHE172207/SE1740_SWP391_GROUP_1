@@ -55,7 +55,7 @@ public class Post {
     @NotBlank(message = "The content of the post is required")
     private String content;
     
-    @NotBlank
+    @Lob
     @NotBlank(message = "The brief of the post is required")
     private String brief;
 
