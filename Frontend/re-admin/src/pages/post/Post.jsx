@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react"
-import "./slider.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 import { DataGrid } from "@mui/x-data-grid";
-import { sliderColumns } from "../../datatablesource";
-import { getAllSliders, deleteSlider } from "../../service/SliderService";
+import { postColumns } from "../../datatablesource";
+import { getAllPosts, deletePost } from "../../service/PostService";
 import { Link } from "react-router-dom";
 
-const Slider = () => {
+const Post = () => {
     const [data, setData] = useState([])
     const [columns, setColumns] = useState([]);
-  
+
     const handleDelete = (id) => {
         const confirmBox = window.confirm(
-            "Do you really want to delete this slider?"
+            "Do you really want to delete this post?"
         )
         if (!confirmBox) return
-        deleteSlider(id).then((res) => {
+        deletePost(id).then((res) => {
             window.location.reload()
         })
     }
@@ -29,7 +28,7 @@ const Slider = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to={`/sliders/${params.row.id}`} style={{ textDecoration: "none" }}>
+                        <Link to={`/posts/${params.row.id}`} style={{ textDecoration: "none" }}>
                             <div className="viewButton">Update</div>
                         </Link>
                         <div
@@ -45,9 +44,9 @@ const Slider = () => {
     ];
 
     useEffect(() => {
-        getAllSliders().then((res) => {
-            setData(res.data)
-            setColumns(sliderColumns.concat(actionColumn))
+        getAllPosts().then((res) => {
+            setData(res.data.content)
+            setColumns(postColumns.concat(actionColumn))
         })
     }, [])
 
@@ -59,7 +58,7 @@ const Slider = () => {
                 <div className="datatable">
                     <div className="datatableTitle">
                         Sliders
-                        <Link to={`/sliders/new`} className="link">
+                        <Link to={`/posts/new`} className="link">
                             Add New
                         </Link>
                     </div>
@@ -76,4 +75,4 @@ const Slider = () => {
     )
 }
 
-export default Slider
+export default Post

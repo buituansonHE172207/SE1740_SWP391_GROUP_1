@@ -24,6 +24,8 @@ import SliderSingle from "./pages/slider/SliderSingle";
 import PublisherSingle from "./pages/publisher/PublisherSingle";
 import AuthorSingle from "./pages/single/AuthorSingle";
 import Footer from "./components/footer/Footer";
+import Post from "./pages/post/Post";
+import PostSingle from "./pages/post/PostSingle";
 
 
 function App() {
@@ -77,6 +79,10 @@ function App() {
               <Route index element={<RequireAuth><Publisher></Publisher></RequireAuth> }></Route>
               <Route path="new" element={<RequireAuth><New inputs={publisherInputs} title="Add New Publisher" location={'/publishers'} handleAdd={addPublisher} /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><PublisherSingle /></RequireAuth>}></Route>
+            </Route>
+            <Route path="posts">
+              <Route index element={<RequireAuth><Post /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><PostSingle /></RequireAuth>}></Route>
             </Route>
           </Route>
         </Routes>
