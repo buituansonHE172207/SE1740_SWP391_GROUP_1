@@ -132,7 +132,7 @@ export const postColumns = [
     renderCell: (params) => {
       return (
         <div>
-          { params.row.category.name }
+          { params?.row?.category?.name }
         </div>
       );
     },

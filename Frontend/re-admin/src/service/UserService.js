@@ -6,4 +6,9 @@ const login = (account) => {
     return axios.post(ACCOUNT_BASE_URL + 'authenticate', account);
 }
 
-export {login}
+const getUserInfoByEmail = (email) => {
+    return axios.get(`http://localhost:8081/api/v1/user/by-email/${email}`);
+}
+
+
+export {login, getUserInfoByEmail}

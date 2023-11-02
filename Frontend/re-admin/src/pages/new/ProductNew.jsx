@@ -19,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { getAllAuthors } from "../../service/AuthorService";
 import Ckeditor from "../ckeditor/Ckeditor";
 import { getAllLanguages } from "../../service/LanguageService";
-import { updateBook } from "../../service/BookService";
 
 const ProductNew = ({ }) => {
     const [publishers, setPublishers] = useState([])

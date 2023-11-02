@@ -26,6 +26,7 @@ import AuthorSingle from "./pages/single/AuthorSingle";
 import Footer from "./components/footer/Footer";
 import Post from "./pages/post/Post";
 import PostSingle from "./pages/post/PostSingle";
+import PostNew from "./pages/post/PostNew";
 
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
             <Route path="posts">
               <Route index element={<RequireAuth><Post /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><PostSingle /></RequireAuth>}></Route>
+              <Route path="new" element={<RequireAuth><PostNew currentUser={currentUser}/></RequireAuth>}></Route>
             </Route>
           </Route>
         </Routes>
