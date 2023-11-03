@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Orders = ({ orders }) => {
 
-    const formatDate = (inputDate) => {
+    const formatDate = useMemo( (inputDate) => {
         var date = new Date(inputDate);
 
         var day = date.getDate();
@@ -42,7 +42,7 @@ const Orders = ({ orders }) => {
         var seconds = date.getSeconds();
      
         return day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
-    }
+    }, [])
 
     return (
         <TableContainer component={Paper}>
