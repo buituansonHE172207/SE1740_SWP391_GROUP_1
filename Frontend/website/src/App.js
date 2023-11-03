@@ -23,6 +23,8 @@ import CheckMail from './components/User/CheckMail';
 import Paypal from './components/Checkout/Paypal';
 import Wishlist from './components/Wishlist/Wishlist';
 import ProfileDetail from "./components/User/ProfileDetail";
+import Post from "./components/Post/Post";
+import PostDetail from "./components/Post/PostDetail";
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies([]);
   const [profileData, setProfileData] = useState()
@@ -68,6 +70,8 @@ function App() {
           <Route path='/activation/:token' Component={Activate}></Route>
           <Route path='/check-email' Component={CheckMail}></Route>
           <Route path='/wishlist' element={<Wishlist setCart={setCart} cart={cart} />}></Route>
+          <Route path='/blogs/:id' element={<Post />}></Route>
+          <Route path='/blog-detail/:id' element={<PostDetail />}></Route>
         </Routes>
         <Footer />
       </Router>
