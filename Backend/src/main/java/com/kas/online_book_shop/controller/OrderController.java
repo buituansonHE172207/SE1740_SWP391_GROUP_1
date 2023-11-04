@@ -97,7 +97,7 @@ public class OrderController {
     @PutMapping("/update-orderState/{id}")
     public ResponseEntity<Void> updateOrderState(
             @PathVariable(name = "id") Long orderId,
-            @RequestParam OrderState state) {
+            @RequestBody OrderState state) {
         orderService.changeOrderState(orderId, state);
         return ResponseEntity.noContent().build();
     }
