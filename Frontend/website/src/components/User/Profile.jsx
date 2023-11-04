@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/esm/Col'
 import { useState, useEffect } from 'react'
 import { getOrderByUserId } from '../../services/OrderService'
 import Orders from './Orders'
+import Button from 'react-bootstrap/esm/Button'
 const Profile = ({cart, cookies}) => {
   
   const [orders, setOrders] = useState([])
@@ -27,12 +28,15 @@ const Profile = ({cart, cookies}) => {
                 <h3>TÀI KHOẢN CỦA BẠN</h3>
                 <hr className="hr--small" />
                 <Row>
-                  <Col md={8}>
+                  <Col md={10}>
                     <h4>Lịch sử giao dịch</h4>
                     {orders?.length !== 0 ? <Orders orders={orders} /> : <p>Bạn chưa có đơn hàng nào</p>}
                   </Col>
-                  <Col md={4}>
-                      <a href='/account-detail'>Thông tin tài khoản chi tiết</a>
+                  <Col md={2} style={{display: 'flex', alignItems: 'center', color: '#333333', textDecoration: 'none'}}>
+                    <div>
+                      <a style={{color: '#333333', textDecoration: 'none'}} href='/account-detail'><Button style={{marginBottom: '5px'}} variant="dark">Thông tin tài khoản</Button></a>
+                      <a style={{color: '#333333', textDecoration: 'none'}} href='/change-password'><Button variant="dark">Đổi mật khẩu</Button></a>
+                    </div>
                   </Col>
                 </Row>
               </div>

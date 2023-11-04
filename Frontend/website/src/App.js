@@ -25,6 +25,8 @@ import Wishlist from './components/Wishlist/Wishlist';
 import ProfileDetail from "./components/User/ProfileDetail";
 import Post from "./components/Post/Post";
 import PostDetail from "./components/Post/PostDetail";
+import OrderDetail from "./components/User/OrderDetail";
+import ChangePassword from "./components/User/ChangePassword";
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies([]);
   const [profileData, setProfileData] = useState()
@@ -72,6 +74,8 @@ function App() {
           <Route path='/wishlist' element={<Wishlist setCart={setCart} cart={cart} />}></Route>
           <Route path='/blogs/:id' element={<Post />}></Route>
           <Route path='/blog-detail/:id' element={<PostDetail />}></Route>
+          <Route path="/order-detail/:id" element={<OrderDetail />}></Route>
+          <Route path="/change-password" element={<ChangePassword cookies={cookies}/>}></Route>
         </Routes>
         <Footer />
       </Router>

@@ -12,12 +12,6 @@ import Paper from '@mui/material/Paper';
 import { useParams } from 'react-router-dom'
 import { getOrderById } from "../../service/OrderService"
 
-const TAX_RATE = 0.07;
-
-function ccyFormat(num) {
-    return `${num.toFixed(2)}`;
-}
-
 function priceRow(qty, unit) {
     return qty * unit;
 }
@@ -36,10 +30,6 @@ const rows = [
     createRow('Paper (Case)', 10, 45.99),
     createRow('Waste Basket', 2, 17.99),
 ];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
 const formatDate = (inputDate) => {
     var date = new Date(inputDate);

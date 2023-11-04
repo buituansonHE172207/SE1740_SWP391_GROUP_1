@@ -46,6 +46,8 @@ const BooksByCollection = () => {
         ) : null
     ));
 
+    console.log(categories)
+
 
     const setCurrentPage = (value) => {
         window.scrollTo(0, 0);
@@ -104,7 +106,7 @@ const BooksByCollection = () => {
         )
     })
 
-    const category_items = categories.map(category => {
+    const category_items = categories?.map(category => {
         return (
             <li key={category.id}>
                 <label>

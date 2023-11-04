@@ -23,7 +23,7 @@ const CollectionHeader = () => {
             })
     }
 
-    const collection_item = useMemo(() => {
+    const collection_item = () => {
         return collections.map(collection => {
             if (collection.isDisplay) {
                 return <Link style={{ fontSize: '15px' }} to={`/collections/${collection.id}`} key={collection.id}>
@@ -31,15 +31,15 @@ const CollectionHeader = () => {
                 </Link>
             }
         })
-    }, [collections])
+    }
 
-    const category_item = useMemo(() => {
+    const category_item = () => {
         return categories.map(category => {       
             return <Link style={{ fontSize: '15px' }} to={`/blogs/${category.id}`} key={category.id}>
                 {category.name}
             </Link>
         })
-    }, [categories])
+    }
 
     React.useEffect(() => {
         fetchData();
