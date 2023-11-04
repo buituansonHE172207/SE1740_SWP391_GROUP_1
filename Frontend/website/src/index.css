@@ -1337,3 +1337,12 @@ span.rsp-current-price {
   margin-bottom: 30px;
   background: #e1e1e1;
 }
+
+.password-form{
+  display: flex;
+  justify-content: center;
+}
+
+.warning{
+  position: absolute;
+}

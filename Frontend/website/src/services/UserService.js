@@ -30,4 +30,9 @@ const activateAccount = (token) => {
     return axios.post("http://localhost:8081/api/v1/auth/activation", token)
 }
 
-export {createAccount, login, getUserInfoByEmail, updateUser, forgetPassword, resetPassword, activateAccount}
+const changePassword = (data) => {
+    return axios.post("http://localhost:8081/api/v1/auth/change-password", data)
+
+}
+
+export {createAccount, login, getUserInfoByEmail, updateUser, forgetPassword, resetPassword, activateAccount, changePassword}

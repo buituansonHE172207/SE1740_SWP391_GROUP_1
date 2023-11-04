@@ -88,7 +88,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
     }
 
     const addToCartHandler = () => {
-        if (!cart)
+        if (!cart?.user?.id)
         {
             window.location.href = '/login' 
             return
@@ -110,6 +110,24 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         updateCartItem(cart).then(res => {
             setCartChange(!cartChange)
         })
+    }
+
+    const handleBuyNow = () => {
+        if (!cart?.user?.id)
+        {
+            window.location.href = '/login' 
+            return
+        }
+        setStockError(false)
+
+        const cartData = { userId: cart.user.id, bookId: book.id, amount: quantity }
+        addToCart(cartData).then(res => {
+            setCartChange(!cartChange)
+            window.location.href = '/cart'
+        })
+            .catch(err => {
+                setStockError(true)
+            })
     }
 
     useEffect(() => {
@@ -277,7 +295,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                                                             <Button onClick={addToCartHandler} name='add' className='btnAddToCart is-adding'>Thêm vào giỏ hàng</Button>
                                                             <Row>
                                                                 <Col lg={6}>
-                                                                    <Button name='buy' className='btnBuyNow'>Mua Ngay</Button>
+                                                                    <Button onClick={handleBuyNow} name='buy' className='btnBuyNow'>Mua Ngay</Button>
                                                                 </Col>
                                                             </Row>
                                                             {stockError && <h5 className='mt-2' style={{ color: 'red' }}>Số lượng trong kho không đủ</h5>}

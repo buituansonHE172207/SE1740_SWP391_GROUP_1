@@ -10,4 +10,12 @@ const addOrder = (order) => {
     return axios.post(ORDER_BASE_URL + '/process', order);
 }
 
-export {getOrderByUserId, addOrder}
+const cancelOrder = (orderId) => {
+    return axios.put(ORDER_BASE_URL + '/cancel/' + orderId)
+}
+
+const getOrderById = (orderId) => {
+    return axios.get(ORDER_BASE_URL + '/' + orderId)
+}
+
+export {getOrderByUserId, addOrder, cancelOrder, getOrderById}
