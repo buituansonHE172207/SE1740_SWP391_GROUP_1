@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,4 +85,31 @@ public class OrderController {
             @PathVariable(name = "id") Long Id) {
         return ResponseEntity.ok(orderService.getOrderById(Id));
     }
+
+    @PutMapping("/update-shipping/{id}")
+    public ResponseEntity<Void> updateShipping(
+            @PathVariable(name = "id") Long orderId,
+            @RequestBody ShippingState state) {
+        orderService.changeOrderShippingState(orderId, state);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/update-orderState/{id}")
+    public ResponseEntity<Void> updateOrderState(
+            @PathVariable(name = "id") Long orderId,
+            @RequestBody OrderState state) {
+        orderService.changeOrderState(orderId, state);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/cancel/{id}")
+    public ResponseEntity<String> cancelOrder(
+            @PathVariable(name = "id") Long orderId) {
+        var existingOrder = orderService.getOrderById(orderId);
+        if (existingOrder.getShippingState() == ShippingState.SHIPPING)
+            return ResponseEntity.ok("Không thể hủy đơn hàng đang trong quá trình vận chuyển");
+        orderService.changeOrderState(orderId, OrderState.CANCELED);
+        return ResponseEntity.noContent().build();
+    }
+
 }

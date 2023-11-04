@@ -5,7 +5,7 @@ public enum OrderState {
     CART,
     PROCESSING,
     CONFIRMED,
-    DELIVERING,
+    SHIPPING,
     CANCELED,
     RETURNED,
     COMPLETED;

@@ -57,6 +57,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book updateBook(Book book) {
         var existingBook = bookRepository.findById(book.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách để câp nhật"));
@@ -73,6 +74,7 @@ public class BookServiceImpl implements BookService {
             image.setId(null);
             imageRepository.save(image);
         }
+        existingBook.setImages(book.getImages());
         existingBook.setPrice(book.getPrice());
         existingBook.setDiscount(book.getDiscount());
         existingBook.setLanguage(book.getLanguage());
@@ -80,6 +82,7 @@ public class BookServiceImpl implements BookService {
         existingBook.setStock(book.getStock());
         existingBook.setWeight(book.getWeight());
         existingBook.setState(book.getState());
+        existingBook.setCollections(book.getCollections());
         return existingBook;
     }
 
@@ -136,7 +139,6 @@ public class BookServiceImpl implements BookService {
         if (existingBook.getState() == BookState.ACTIVE)
             existingBook.setState(BookState.HIDDEN);
         existingBook.setState(BookState.ACTIVE);
-        
     }
 
     
