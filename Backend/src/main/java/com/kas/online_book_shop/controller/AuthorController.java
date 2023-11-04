@@ -26,7 +26,7 @@ import com.kas.online_book_shop.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost"})
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:3001", "http://localhost" })
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/author")
 public class AuthorController {
@@ -35,10 +35,7 @@ public class AuthorController {
     @GetMapping("")
     public ResponseEntity<List<Author>> getAllAuthors() {
         var authors = authorService.getAllAuthors();
-        if (authors.isEmpty())
-            return ResponseEntity.notFound().build();
-        else
-            return ResponseEntity.ok(authors);
+        return ResponseEntity.ok(authors);
     }
 
     @GetMapping("/sorted-and-paged")
