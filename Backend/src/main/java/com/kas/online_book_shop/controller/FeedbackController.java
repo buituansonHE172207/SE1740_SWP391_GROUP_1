@@ -27,7 +27,7 @@ import com.kas.online_book_shop.service.FeedbackService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost"})
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:3001", "http://localhost" })
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/feedback")
 public class FeedbackController {
@@ -36,10 +36,8 @@ public class FeedbackController {
     @GetMapping("")
     public ResponseEntity<List<Feedback>> getAllFeedbacks() {
         var feedbacks = feedbackService.getAllFeedbacks();
-        if (feedbacks.isEmpty())
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(feedbacks);
+
+        return ResponseEntity.ok(feedbacks);
     }
 
     @GetMapping("/sorted-and-paged")

@@ -88,7 +88,7 @@ public class CartServiceImpl implements CartService {
                     .email(existingUser.getEmail())
                     .phone(existingUser.getPhone())
                     .shippingPrice(30000L)
-                    .shippingState(ShippingState.SHIPPING)
+                    .shippingState(ShippingState.NOTSHIPPING)
                     .state(OrderState.CART)
                     .paymentState(PaymentState.PENDING)
                     .orderDetails(new ArrayList<OrderDetail>())
