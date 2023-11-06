@@ -23,5 +23,5 @@ public interface FeedbackService {
 
     void deleteFeedback(Long id);
 
-    void answerFeedback(Long id, Feedback feedback);
+    void answerFeedback(Feedback feedback);
 }
