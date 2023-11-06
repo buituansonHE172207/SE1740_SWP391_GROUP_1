@@ -65,14 +65,10 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public void answerFeedback(Long id, Feedback feedback) {
-        var existingFeedback = getFeedbackById(id);
+    public void answerFeedback(Feedback feedback) {
+        var existingFeedback = getFeedbackById(feedback.getId());
         existingFeedback.setState(FeedbackState.ANSWERED);
-        if (feedback != null) {
-            feedback.setState(FeedbackState.ANSWERED);
-            feedback.setCreatedAt(LocalDateTime.now());
-            feedbackRepository.save(feedback);
-        }
+        existingFeedback.setAnswer(feedback.getAnswer());
     }
 
 }

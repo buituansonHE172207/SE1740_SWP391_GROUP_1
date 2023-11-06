@@ -47,6 +47,10 @@ public class Feedback {
     @NotBlank(message = "The comment is not blank")
     private String comment;
 
+    @Lob
+    @NotBlank(message = "The comment is not blank")
+    private String answer;
+
     private LocalDateTime createdAt;
 
     @ManyToOne
