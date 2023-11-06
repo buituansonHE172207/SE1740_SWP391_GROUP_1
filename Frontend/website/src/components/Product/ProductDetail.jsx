@@ -321,7 +321,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                                     </div>
                                     <div dangerouslySetInnerHTML={{__html: book.description}} style={{padding: '2%'}} className='pro-tabcontent'></div>
                                     <div className='pro-tabcontent' style={{ display: 'none' }}>
-                                            
+
                                     </div>
                                 </div>
                                 <div className='product-description-wrapper'>

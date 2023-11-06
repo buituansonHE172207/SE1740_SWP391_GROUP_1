@@ -55,7 +55,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
         !province ? setReset(true) : setReset(false)
         !province && setDistricts([])
     }, [province])
-
+    
     useEffect(() => {
         setWard(null)
         setWardName(null)
