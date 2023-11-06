@@ -9,13 +9,15 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { addToCart, updateCartItem } from '../../services/CartService';
+import { getFeedbackByBookId } from '../../services/Feedback';
 import { getWishlistByUserId, deleteWishList, addWishList } from '../../services/WishlistService';
 import RelevantProducts from './RelevantProducts';
+import Feedback from './Feedback';
 
-const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) => {
+const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) => {
     const [book, setBook] = useState({})
     const [quantity, setQuantity] = useState(1)
-    const { id } = useParams()
+    const [id, setId] = useState(useParams().id)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -23,12 +25,14 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
     const [tempCart, setTempCart] = useState({})
     const [wishlist, setWishlist] = useState([])
     const [heart, setHeart] = useState(false)
+    const [feedback, setFeedback] = useState({})
+    const [state, setState] = useState(true)
     const fetchBook = async () => {
         const res = await getBookById(id)
         const { data } = res
         setBook(data)
     }
-    console.log(book)
+
     const book_images = book.images ? book.images : []
     const book_authors = book.authors ? book.authors : []
     const book_item = book_images?.map((image, index) => {
@@ -43,10 +47,17 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
         )
     })
     const book_collections = book.collections ? book.collections : []
-    console.log(book_collections)
     
     useEffect(() => {
         fetchBook()
+    }, [])
+
+    useEffect(() => {
+        const fetchFeedback = async () => {
+            const res = await getFeedbackByBookId(id)
+            setFeedback(res.data)
+        }
+        fetchFeedback()
     }, [])
 
     const toggleHeart = () => {
@@ -66,6 +77,8 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
             setHeart(true)
         })
     }
+
+    console.log(profile)
 
     const handleItemChange = (e, order_id) => {
         setTempCart(cart => {
@@ -312,20 +325,17 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, setCart }) =>
                             <Col lg={9}>
                                 <div className='product-description-wrapper'>
                                     <div className='tab'>
-                                        <button className='pro-tablinks active'>
+                                        <button onClick={() => setState(true)} className={`pro-tablinks ${state === true ? 'active' : ''}`}>
                                             <span>Mô tả</span>
                                         </button>
-                                        <button className='pro-tablinks'>
+                                        <button onClick={() => setState(false)} className={`pro-tablinks ${state === false ? 'active': ''}`}>
                                             <span>Đánh giá</span>
                                         </button>
                                     </div>
-                                    <div dangerouslySetInnerHTML={{__html: book.description}} style={{padding: '2%'}} className='pro-tabcontent'></div>
-                                    <div className='pro-tabcontent' style={{ display: 'none' }}>
-
+                                    <div  style={{display: state === true ? 'block': 'none', padding: '2%'}} dangerouslySetInnerHTML={{__html: book.description}} className='pro-tabcontent'></div>
+                                    <div className='pro-tabcontent'  style={{display: state === false ? 'block': 'none', padding: '2%'}}>
+                                        <Feedback feedback={feedback} userId={profile && profile.id} bookId={id} />
                                     </div>
-                                </div>
-                                <div className='product-description-wrapper'>
-
                                 </div>
                             </Col>
                             <Col lg={3}>
