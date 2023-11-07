@@ -58,7 +58,7 @@ function App() {
           <Route path='/' Component={Home}></Route>
           <Route path='/collections' Component={Collection}></Route>
           <Route path='/collections/:id' Component={BooksByCollection}></Route>
-          <Route path='/products/:id' element={<ProductDetail cookies={cookies} setCart={setCart} cart={cart} cartChange={cartChange} setCartChange={setCartChange} setCookie={setCookies} removeCookie={removeCookies} />}></Route>
+          <Route path='/products/:id' element={<ProductDetail cookies={cookies} setCart={setCart} cart={cart} cartChange={cartChange} setCartChange={setCartChange} setCookie={setCookies} profile={profileData} />}></Route>
           <Route path='/account' element={<Profile cart={cart} cookies={cookies} />}></Route>
           <Route path="/account-detail" element={<ProfileDetail cookies={cookies} />}></Route>
           <Route path='/reset-password/:token' Component={ResetPassword}></Route>

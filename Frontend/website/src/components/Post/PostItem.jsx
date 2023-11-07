@@ -16,8 +16,8 @@ const PostItem = ({data}) => {
     // console.log(data)
   return (
     <Card style={{marginBottom: '30px'}}>
-      <a style={{height: '315px'}} href={`blog-detail/${data.id}`}><Card.Img style={{height: 'inherit'}} variant="top" src={data.thumbnail} /></a>
-      <Card.Body style={{height: '142px'}}>
+      <a style={{height: '315px'}} href={`/blog-detail/${data.id}`}><Card.Img style={{height: 'inherit'}} variant="top" src={data.thumbnail} /></a>
+      <Card.Body style={{height: '165px'}}>
         <div className='post-info'>
           <div className="post-date me-3">
             <i class="fa fa-calendar me-1" aria-hidden="true"></i>

@@ -10,7 +10,6 @@ const RelevantProducts = ({ collection_id }) => {
             setBooks(data.content.slice(0, 6))
         })
     }, [collection_id])
-    console.log(books)
 
     return (
         <div className='home-section-body abc'>

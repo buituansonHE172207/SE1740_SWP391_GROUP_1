@@ -11,6 +11,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ChatIcon from '@mui/icons-material/Chat';
 import ArticleIcon from '@mui/icons-material/Article';
 import QueueIcon from '@mui/icons-material/Queue';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
@@ -19,7 +20,6 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import styled from "@emotion/styled";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -66,7 +66,7 @@ const Sidebar = () => {
           <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
-          </li>
+          </li> 
           <Link to={"/collections"} style={{textDecoration: 'none'}}>
             <li>
               <QueueIcon className="icon" />
@@ -89,6 +89,12 @@ const Sidebar = () => {
             <li>
               <ArticleIcon className="icon" />
               <span>Posts</span>
+            </li>
+          </Link>
+          <Link to={'/feedbacks'} style={{textDecoration: 'none'}}>
+            <li>
+              <ChatIcon className="icon" />
+              <span>Feedbacks</span>
             </li>
           </Link>
           <p className="title">USEFUL</p>

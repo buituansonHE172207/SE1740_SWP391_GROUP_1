@@ -149,3 +149,28 @@ export const postColumns = [
     },
   }
 ]
+
+export const feedbackColumns = [
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'comment', headerName: 'Content', width: 150 },
+  { field: 'createdAt', headerName: 'Created Time', width: 250 },
+  { field: 'user', headerName: 'User', width: 150 , 
+    renderCell: (params) => {
+      return (
+        <div>
+          { params.row.user.fullName }
+        </div>
+      );
+    }
+  },
+  { field: 'state', headerName: 'State', width: 150 },
+  { field: 'book', headerName: 'Book', width: 250, 
+    renderCell: (params) => {
+      return (
+        <div>
+          { params.row.book.title }
+        </div>
+      );
+    }
+  }
+]
