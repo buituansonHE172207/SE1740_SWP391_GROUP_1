@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import "./order.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
@@ -11,25 +11,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useParams } from 'react-router-dom'
 import { getOrderById } from "../../service/OrderService"
+import { useReactToPrint } from "react-to-print"
+import PrintIcon from '@mui/icons-material/Print';
 
-function priceRow(qty, unit) {
-    return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-    const price = priceRow(qty, unit);
-    return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-    createRow('Paperclips (Box)', 100, 1.15),
-    createRow('Paper (Case)', 10, 45.99),
-    createRow('Waste Basket', 2, 17.99),
-];
 
 const formatDate = (inputDate) => {
     var date = new Date(inputDate);
@@ -48,6 +32,10 @@ const formatDate = (inputDate) => {
 const OrderDetail = () => {
     const { id } = useParams()
     const [order, setOrder] = useState({})
+    const printRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => printRef.current,
+    })
 
     useEffect(() => {
         getOrderById(id).then(res => {
@@ -55,18 +43,21 @@ const OrderDetail = () => {
         })
     }, [])
 
+
     return (
         <div>
             <div className="list">
                 <Sidebar />
                 <div className="listContainer">
                     <Navbar />
-                    <div className="order-detail" style={{padding: '20px'}}>
+                    <div className="order-detail" ref={printRef} style={{padding: '20px'}}>
                         <h3>Order: {order.id}</h3>
                         <div>
                             Order date: {formatDate(order.created)}
                         </div>
-
+                        <div>
+                            Address: {order.address + ', ' + order.ward + ', ' + order.district + ', ' + order.province}
+                        </div>
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 700 }} aria-label="spanning table">
                                 <TableHead>
@@ -111,7 +102,7 @@ const OrderDetail = () => {
                             </Table>
                         </TableContainer>
                     </div>
-
+                    <PrintIcon onClick={handlePrint} style={{marginLeft: '30px', fontSize: '40px', cursor: 'pointer'}}/>
                 </div>
             </div>
         </div>

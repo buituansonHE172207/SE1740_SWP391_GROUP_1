@@ -28,8 +28,6 @@ const Feedback = () => {
         },
     ];
 
-    console.log(data)
-
     useEffect(() => {
         getAllFeedbacks().then((res) => {
             setData(res.data)
