@@ -86,18 +86,18 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderById(Id));
     }
 
-    @PutMapping("/update-shipping/{id}")
+    @PutMapping("/update-shipping/{id}/{state}")
     public ResponseEntity<Void> updateShipping(
             @PathVariable(name = "id") Long orderId,
-            @RequestBody ShippingState state) {
+            @PathVariable ShippingState state) {
         orderService.changeOrderShippingState(orderId, state);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update-orderState/{id}")
+    @PutMapping("/update-orderState/{id}/{state}")
     public ResponseEntity<Void> updateOrderState(
             @PathVariable(name = "id") Long orderId,
-            @RequestBody OrderState state) {
+            @PathVariable OrderState state) {
         orderService.changeOrderState(orderId, state);
         return ResponseEntity.noContent().build();
     }

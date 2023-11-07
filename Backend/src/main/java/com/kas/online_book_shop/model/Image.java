@@ -32,7 +32,7 @@ public class Image {
     @JoinColumn (name = "book_id")
     @JsonBackReference
     private Book book;
-
+    
     @NotBlank(message = "The link is not blank")
     private String link;
 
