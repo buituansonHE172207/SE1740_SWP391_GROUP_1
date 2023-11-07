@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import "./order.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
@@ -11,6 +11,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useParams } from 'react-router-dom'
 import { getOrderById } from "../../service/OrderService"
+import { useReactToPrint } from "react-to-print"
+import PrintIcon from '@mui/icons-material/Print';
 
 function priceRow(qty, unit) {
     return qty * unit;
@@ -48,6 +50,10 @@ const formatDate = (inputDate) => {
 const OrderDetail = () => {
     const { id } = useParams()
     const [order, setOrder] = useState({})
+    const printRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => printRef.current,
+    })
 
     useEffect(() => {
         getOrderById(id).then(res => {
@@ -55,13 +61,14 @@ const OrderDetail = () => {
         })
     }, [])
 
+
     return (
         <div>
             <div className="list">
                 <Sidebar />
                 <div className="listContainer">
                     <Navbar />
-                    <div className="order-detail" style={{padding: '20px'}}>
+                    <div className="order-detail" ref={printRef} style={{padding: '20px'}}>
                         <h3>Order: {order.id}</h3>
                         <div>
                             Order date: {formatDate(order.created)}
@@ -111,7 +118,7 @@ const OrderDetail = () => {
                             </Table>
                         </TableContainer>
                     </div>
-
+                    <PrintIcon onClick={handlePrint} style={{marginLeft: '30px', fontSize: '40px', cursor: 'pointer'}}/>
                 </div>
             </div>
         </div>
