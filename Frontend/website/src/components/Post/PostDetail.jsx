@@ -37,7 +37,6 @@ const PostDetail = () => {
                 console.error("Error fetching post data: ", error)
             })
     }, [])
-    console.log(post)
 
     return (
         <div>
