@@ -238,7 +238,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) =>
                                                     </li>
                                                     <li>
                                                         Tác giả:
-                                                        <strong> {book_authors.map(author => <span key={author.id}>{author.name}</span>)} </strong>
+                                                        <strong> {book_authors.map(author => <span key={author.id}>{author.name}&nbsp;</span>)} </strong>
                                                     </li>
                                                     {
                                                         book_collections
