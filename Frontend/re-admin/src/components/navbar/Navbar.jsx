@@ -20,26 +20,26 @@ const Navbar = () => {
           <SearchOutlinedIcon />
         </div>
         <div className="items">
-          <div className="item">
+          {/* <div className="item">
             <LanguageOutlinedIcon className="icon" />
             English
-          </div>
-          <div className="item">
+          </div> */}
+          {/* <div className="item">
             <DarkModeOutlinedIcon
               className="icon"
               onClick={() => dispatch({ type: "TOGGLE" })}
             />
-          </div>
-          <div className="item">
+          </div> */}
+          {/* <div className="item">
             <FullscreenExitOutlinedIcon className="icon" />
-          </div>
+          </div> */}
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter">1</div>
+            {/* <div className="counter">1</div> */}
           </div>
           <div className="item">
             <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">2</div>
+            {/* <div className="counter">1</div> */}
           </div>
           <div className="item">
             <ListOutlinedIcon className="icon" />

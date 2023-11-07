@@ -98,9 +98,9 @@ const Footer = () => {
                             </div>
                         </Col>
                         <Col lg='2'>
-                            <div className='ft-certification'>
+                            {/* <div className='ft-certification'>
                                 <img src="/img/384357041_3446030152377386_696000851305344398_n.png" alt="certi" />
-                            </div>
+                            </div> */}
                         </Col>
                         <Col lg='5'>
                             <div className='ft-subscribe'>
