@@ -29,6 +29,7 @@ import PostSingle from "./pages/post/PostSingle";
 import PostNew from "./pages/post/PostNew";
 import Feedback from "./pages/feedback/Feedback";
 import FeedbackSingle from "./pages/feedback/FeedbackSingle";
+import ChangeState from "./pages/order/ChangeState";
 
 
 function App() {
@@ -67,6 +68,9 @@ function App() {
             <Route path="orders">
               <Route index element={<RequireAuth><Order /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><OrderDetail /></RequireAuth>}></Route>
+            </Route>
+            <Route path="order-state">
+              <Route path=":id" element={<RequireAuth><ChangeState /></RequireAuth>}></Route> 
             </Route>
             <Route path="collections">
               <Route index element={<RequireAuth><Collection /></RequireAuth>}></Route>

@@ -83,6 +83,7 @@ export const orderColumns = [
       );
     },
   },
+  { field: 'state', headerName: 'Order State', width: 150, },
   {
     field: "totalPrice", headerName: "Total Price", width: 120,
     renderCell: (params) => {

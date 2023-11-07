@@ -12,10 +12,6 @@ const Order = () => {
     const [columns, setColumns] = useState([]);
 
 
-    const handleChangeState = (row) => {
-        console.log(row)
-    }
-
     const actionColumn = [
         {
             field: "action",
@@ -29,9 +25,8 @@ const Order = () => {
                         </Link>
                         <div
                             className="deleteButton"
-                            onClick={() => handleChangeState(params.row)}
                         >
-                            Change State
+                            <a href={`/order-state/${params.row.id}`} style={{textDecoration: 'none', color: 'crimson'}}>Change State</a>
                         </div>
                     </div>
                 );
