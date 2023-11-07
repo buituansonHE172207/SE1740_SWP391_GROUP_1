@@ -64,9 +64,9 @@ const Feedback = ({ feedback, userId, bookId }) => {
                 ))
             }
             <div>
-                <TextareaAutosize value={comment} onChange={(e) => setComment(e.target.value)} style={{width: '100%', height: '110px'}} placeholder='Share your thought on this book'/>
+                <TextareaAutosize value={comment} onChange={(e) => setComment(e.target.value)} style={{width: '100%', height: '110px'}} placeholder='Chia sẻ cảm nghĩ của bản về cuốn sách này'/>
                 <div>
-                    <button onClick={handleSend} className='btn btn-primary'>Send</button>
+                    <button onClick={handleSend} className='btn btn-primary'>Gửi</button>
                 </div>
             </div>
         </div>

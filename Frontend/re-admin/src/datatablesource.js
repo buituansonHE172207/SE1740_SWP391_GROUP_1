@@ -164,4 +164,13 @@ export const feedbackColumns = [
     }
   },
   { field: 'state', headerName: 'State', width: 150 },
+  { field: 'book', headerName: 'Book', width: 250, 
+    renderCell: (params) => {
+      return (
+        <div>
+          { params.row.book.title }
+        </div>
+      );
+    }
+  }
 ]

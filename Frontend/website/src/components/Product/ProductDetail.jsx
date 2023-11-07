@@ -323,7 +323,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) =>
                         </div>
                         <Row>
                             <Col lg={9}>
-                                <div className='product-description-wrapper'>
+                                <div className='product-description-wrapper' style={{border: '1px solid #e6e6e6'}}>
                                     <div className='tab'>
                                         <button onClick={() => setState(true)} className={`pro-tablinks ${state === true ? 'active' : ''}`}>
                                             <span>Mô tả</span>
