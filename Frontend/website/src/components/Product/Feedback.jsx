@@ -6,8 +6,6 @@ import { answerFeedback } from '../../services/Feedback';
 const Feedback = ({ feedback, userId, bookId }) => {
 
     const [comment, setComment] = React.useState('')
-    console.log(feedback)
-    console.log(bookId)
     const handleSend = () => {
         if (comment.trim() === '' || !userId || !bookId)
         {

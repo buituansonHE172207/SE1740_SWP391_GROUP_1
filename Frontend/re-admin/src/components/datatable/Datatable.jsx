@@ -81,9 +81,8 @@ const Datatable = ({type}) => {
         className="datagrid"
         rows={data}
         columns={columns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        
+        pageSize={25}
+        rowsPerPageOptions={[25]}
       />
     </div>
   );

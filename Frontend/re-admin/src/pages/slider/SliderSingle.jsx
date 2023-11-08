@@ -98,6 +98,10 @@ const SliderSingle = () => {
                                     onChange={(e) => setData({ ...data, backLink: e.target.value })}
                                 />
                             </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                                <img src={data.imageUrl} alt="slider" style={{width: '100%'}} />
+                            </Grid>
                         </Grid>
                     </div>
                 </div>
