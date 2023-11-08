@@ -11,11 +11,11 @@ const getOrderById = (orderId) => {
 }
 
 const changeShippingState = (orderId, shippingState) => {
-    return axios.put(ORDER_BASE_URL + "/update-shipping/" + orderId, shippingState);
+    return axios.put(ORDER_BASE_URL + "/update-shipping/" + orderId + '/' + shippingState);
 }
 
 const changeOrderState = (orderId, orderState) => {
-    return axios.put(ORDER_BASE_URL + "/update-orderState/" + orderId, orderState);
+    return axios.put(ORDER_BASE_URL + "/update-orderState/" + orderId + '/' + orderState);
 }
 
 export { getAllOrders, getOrderById, changeShippingState, changeOrderState };

@@ -7,22 +7,35 @@ import NativeSelect from '@mui/material/NativeSelect';
 import { useParams } from 'react-router-dom'
 import { Container, Grid } from "@mui/material";
 import Button from '@mui/material/Button';
+import { getOrderById } from "../../service/OrderService";
 import { changeShippingState, changeOrderState } from "../../service/OrderService";
 const ChangeState = () => {
     const { id } = useParams()
     const [shippingState, setShippingState] = useState('')
     const [orderState, setOrderState] = useState('')
+    const [data, setData] = useState({})
 
     const handleSave = () => {
-        if (shippingState !== '') {
-            changeShippingState(id, {state: shippingState})
-        }
-        if (orderState !== '') {
-            changeOrderState(id, {state: orderState})
-        }
-      
+        window.location.href = '/orders'
     }
-    console.log(shippingState, orderState)
+
+    useEffect(() => {
+        getOrderById(id).then(res => {
+            setData(res.data)
+            setShippingState(res.data.shippingState)
+            setOrderState(res.data.state)
+        })
+    }, [])
+
+    const handleChangeShipping = (e) => {
+        setShippingState(e.target.value)
+        changeShippingState(id, e.target.value)
+    }
+
+    const handleChangeOrder = (e) => {
+        setOrderState(e.target.value)
+        changeOrderState(id, e.target.value)
+    }
 
     return (
         <div>
@@ -38,12 +51,12 @@ const ChangeState = () => {
                                         Shipping State
                                     </InputLabel>
                                     <NativeSelect
-                                        value={shippingState.current}
+                                        value={shippingState}
                                         inputProps={{
                                             name: "shippingState",
                                             id: "shippingState",
                                         }}
-                                        onChange={(e) => setShippingState(e.target.value)}
+                                        onChange={(e) => handleChangeShipping(e)}
                                     >
                                         <option value="NOTSHIPPING">NOTSHIPPING</option>
                                         <option
@@ -61,12 +74,12 @@ const ChangeState = () => {
                                         Order State
                                     </InputLabel>
                                     <NativeSelect
-                                        value={orderState.current}
+                                        value={orderState}
                                         inputProps={{
                                             name: "orderState",
                                             id: "orderState",
                                         }}
-                                        onChange={(e) => setOrderState(e.target.value)}
+                                        onChange={(e) => handleChangeOrder(e)}
                                     >
                                         <option value="ORDER">ORDER</option>
                                         <option value="CART">CART</option>

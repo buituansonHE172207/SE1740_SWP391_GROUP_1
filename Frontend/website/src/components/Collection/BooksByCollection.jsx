@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getBooksByCollectionId, getBooksByQuery } from "../../services/BookService"
+import { getBooksByQuery, getBookByQuery } from "../../services/BookService"
 import { useNavigate, useParams } from 'react-router-dom'
 import Breadscrumb from '../Breadscrumb'
 import { Link } from 'react-router-dom'
@@ -46,9 +46,6 @@ const BooksByCollection = () => {
         ) : null
     ));
 
-    console.log(categories)
-
-
     const setCurrentPage = (value) => {
         window.scrollTo(0, 0);
         if (value === '&laquo;') {
@@ -80,43 +77,6 @@ const BooksByCollection = () => {
             navigate(`/collections/${id}?page=${page}`)
     }
 
-    const book_items = books.map(book => {
-        return (
-            <div key={book.id} className='col-lg-3 mb-4'>
-                <div className="product-item">
-                    <div className="product-img">
-                        <Link to={`/products/${book.id}`}>
-                            <img src={book.images[0].link} alt={book.title} />
-                        </Link>
-                        <div className="tag-saleoff text-center">
-                            -{book.discount * 100}%
-                        </div>
-                    </div>
-                </div>
-                <div className="product-info">
-                    <div className="product-title">
-                        <Link className="text-container" to={`/products/${book.id}`}>{book.title}</Link>
-                    </div>
-                    <div className="product-price">
-                        <span className="current-price">{book.salePrice.toLocaleString()}₫</span>
-                        <span className="original-price"><s>{book.price.toLocaleString()}₫</s></span>
-                    </div>
-                </div>
-            </div>
-        )
-    })
-
-    const category_items = categories?.map(category => {
-        return (
-            <li key={category.id}>
-                <label>
-                    <input type='checkbox' />
-                    <span>{category.name}</span>
-                </label>
-            </li>
-        )
-    })
-
     const handlePrice = (e) => {
         const minValue = Number(e.target.dataset.min)
         const maxValue = Number(e.target.dataset.max)
@@ -135,6 +95,35 @@ const BooksByCollection = () => {
         else
         {
             navigate(`/collections/${id}${page ? `?page=${page}` : ''}`)
+        }
+    }
+    const handleChange = (e) => {
+        const value = e.target.value
+        switch (value) {
+            case 'manual':
+                break;
+            case 'best-selling':
+                getBookByQuery('sorted-and-paged/by-collection?sortBy=sold&size=12')
+                    .then(res => setBooks(res.data.content))
+                break;
+            case 'title-ascending':
+                getBookByQuery('sorted-and-paged/by-collection?sortBy=title&size=12')
+                    .then(res => setBooks(res.data.content))
+                break;
+            case 'title-descending':
+                getBookByQuery('sorted-and-paged/by-collection?sortBy=title&size=12&sortOrder=desc')
+                    .then(res => setBooks(res.data.content))
+                break;
+            case 'price-ascending':
+                getBookByQuery('sorted-and-paged/by-collection?sortBy=price&size=12')
+                    .then(res => setBooks(res.data.content))
+                break;
+            case 'price-descending':
+                getBookByQuery('sorted-and-paged/by-collection?sortBy=price&size=12&sortOrder=desc')
+                    .then(res => setBooks(res.data.content))
+                break;
+            default:
+                break;
         }
     }
 
@@ -233,23 +222,6 @@ const BooksByCollection = () => {
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div className="accordion" id="accordionPanelsStayOpenExample">
-                                                <div className="accordion-item">
-                                                    <h2 className="accordion-header" id="panelsStayOpen-headingThree">
-                                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                                            Thể Loại
-                                                        </button>
-                                                    </h2>
-                                                    <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
-                                                        <div className='panel'>
-                                                            <ul className='no-bullets'>
-                                                                {category_items}
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,15 +239,13 @@ const BooksByCollection = () => {
                                                 <div className='collection-sorting-wrapper'>
                                                     <div className="form-horizontal text-right">
                                                         <label htmlFor="SortBy">Sắp xếp</label>
-                                                        <select name="SortBy" id="SortBy">
+                                                        <select onChange={(e) => handleChange(e)} name="SortBy" id="SortBy">
                                                             <option value="manual">Tùy chọn</option>
                                                             <option value="best-selling">Bán chạy nhất</option>
                                                             <option value="title-ascending">Tên A-Z</option>
                                                             <option value="title-descending">Tên Z-A</option>
                                                             <option value="price-ascending">Giá tăng dần</option>
                                                             <option value="price-descending">Giá giảm dần</option>
-                                                            <option value="created-descending">Mới nhất</option>
-                                                            <option value="created-ascending">Cũ nhất</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -285,7 +255,33 @@ const BooksByCollection = () => {
 
                                     <div className='collection-body'>
                                         <div className='row'>
-                                            {book_items}
+                                            {
+                                                books.map(book => {
+                                                    return (
+                                                        <div key={book.id} className='col-lg-3 mb-4'>
+                                                            <div className="product-item">
+                                                                <div className="product-img">
+                                                                    <Link to={`/products/${book.id}`}>
+                                                                        <img src={book.images[0].link} alt={book.title} />
+                                                                    </Link>
+                                                                    <div className="tag-saleoff text-center">
+                                                                        -{book.discount * 100}%
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="product-info">
+                                                                <div className="product-title">
+                                                                    <Link className="text-container" to={`/products/${book.id}`}>{book.title}</Link>
+                                                                </div>
+                                                                <div className="product-price">
+                                                                    <span className="current-price">{book.salePrice.toLocaleString()}₫</span>
+                                                                    <span className="original-price"><s>{book.price.toLocaleString()}₫</s></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                     </div>
                                 </div>

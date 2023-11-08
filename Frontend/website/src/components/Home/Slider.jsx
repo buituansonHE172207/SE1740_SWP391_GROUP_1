@@ -21,11 +21,10 @@ const Slider = () => {
                 className={`carousel-item ${slider.id === 1 ? "active" : ""}`}
                 data-bs-interval="3000"
             >
-                <img src={slider.imageUrl} className="d-block w-100" alt={`Slide ${slider.id}`} />
+                <a href={slider.backLink}><img src={slider.imageUrl} className="d-block w-100" alt={`Slide ${slider.id}`} /></a>
             </div>
         )
     })
-
 
     React.useEffect(() => {
         fetchData();

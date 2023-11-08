@@ -160,6 +160,8 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) =>
         wishlist && setHeart(wishlist?.some(item => item.book.id === book.id))
     }, [wishlist])
 
+    console.log(book)
+
     return (
         <div>
             <div id='breadcrumb-wrapper' className='breadcrumb-w-img'>
@@ -264,6 +266,10 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) =>
                                                     <li>
                                                         Trọng lượng:
                                                         {book.weight}g
+                                                    </li>
+                                                    <li>
+                                                        Nhà xuất bản:
+                                                        {book.publisher.name} 
                                                     </li>
                                                 </ul>
                                             </div>

@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { getBookById } from "../../service/BookService";
 import { getAllPublishers } from "../../service/PublisherService";
 import { getAllCollections } from "../../service/CollectionService"
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getAllAuthors } from "../../service/AuthorService";
 import Ckeditor from "../ckeditor/Ckeditor";
 import { getAllLanguages } from "../../service/LanguageService";
@@ -161,7 +161,7 @@ const ProductSingle = () => {
                     <Box className="spacing"
                         component="form"
                         sx={{
-                            '& > :not(style)': { m: 1, width: '30ch' },
+                            '& > :not(style)': { m: 1, width: '50ch' },
                         }}
                         noValidate
                         autoComplete="off"
@@ -259,19 +259,6 @@ const ProductSingle = () => {
                                 autoComplete="off"
                             >
                                 <TextField id="outlined-basic" name="isbn" onChange={handleInputChange} value={data.isbn} label="ISBN" variant="standard" />
-                            </Box>
-                        </Grid>
-
-                        <Grid item xs={4}>
-                            <Box className="spacing"
-                                component="form"
-                                sx={{
-                                    '& > :not(style)': { width: '30ch' },
-                                }}
-                                noValidate
-                                autoComplete="off"
-                            >
-                                <TextField id="outlined-basic" placeholder="Image link" name="images" onChange={handleImgChange} value={data?.images[0]?.link} label="Image" variant="standard" />
                             </Box>
                         </Grid>
 
@@ -414,6 +401,24 @@ const ProductSingle = () => {
                                 placeholder="Ex: Bìa cứng"
                             />
                         </Grid>
+
+                        <Grid item xs={4}>
+                            <Box className="spacing"
+                                component="form"
+                                sx={{
+                                    '& > :not(style)': { width: '30ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <TextField id="outlined-basic" placeholder="Image link" name="images" onChange={handleImgChange} value={data?.images[0]?.link} label="Image" variant="standard" />
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <img src={data?.images[0]?.link} alt="" style={{ width: '200px' }} />
+                        </Grid>
+
                     </Grid>
                 </div>
             </div>}
