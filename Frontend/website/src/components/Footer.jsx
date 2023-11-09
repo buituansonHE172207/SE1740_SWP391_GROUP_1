@@ -16,19 +16,19 @@ const Footer = () => {
                                 <h4>Dịch vụ</h4>
                                 <ul className='no-bullet'>
                                     <li>
-                                        <Link to='/'>Điều khoản sử dụng</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/dieu-khoan-dich-vu'>Điều khoản sử dụng</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Chính sách bảo mật</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/chinh-sach-bao-mat'>Chính sách bảo mật</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Liên hệ</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/lien-he'>Liên hệ</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Hệ thống nhà sách</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/he-thong-cua-hang'>Hệ thống nhà sách</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Tra cứu đơn hàng</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/tra-cuu-don-hang-da-mua'>Tra cứu đơn hàng</a>
                                     </li>
                                 </ul>
                             </div>
@@ -38,22 +38,22 @@ const Footer = () => {
                                 <h4>Hỗ trợ</h4>
                                 <ul className='no-bullet'>
                                     <li>
-                                        <Link to='/'>Hướng dẫn đặt hàng</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/huong-dan-dat-hang'>Hướng dẫn đặt hàng</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Chính sách đổi trả - hoàn tiền</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/chinh-sach-doi-tra'>Chính sách đổi trả - hoàn tiền</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Phương thức vận chuyển</Link>
+                                        <a href='https://nxbkimdong.com.vn/pages/phuong-thuc-van-chuyen'>Phương thức vận chuyển</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Phương thức thanh toán</Link>
+                                        <a href="https://nxbkimdong.com.vn/pages/phuong-thuc-thanh-toan">Phương thức thanh toán</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Chính sách khách hàng mua sỉ</Link>
+                                        <a href="https://nxbkimdong.com.vn/pages/chinh-sach-khach-hang-mua-si">Chính sách khách hàng mua sỉ</a>
                                     </li>
                                     <li>
-                                        <Link to='/'>Chính sách khách hàng cho trường học</Link>
+                                        <a href = "https://nxbkimdong.com.vn/pages/chinh-sach-khach-hang-mua-cho-truong-hoc" >Chính sách khách hàng cho trường học</a>
                                     </li>
                                 </ul>
                             </div>
@@ -75,14 +75,14 @@ const Footer = () => {
                         </Col>
                         <Col lg='3'>
                             <div className='ft-social-network'>
-                                <h4>Kết nối mạng xã hội</h4>
-                                <Link to={`/`} target='_blank'>
+                                <h4>Kết nối mạng xã hội</h4>        
+                                <Link to={`https://www.facebook.com/`} target='_blank'>
                                     <i className="fa-brands fa-facebook"></i>
                                 </Link>
                                 <Link to={`https://www.youtube.com/channel/UCnqGt1p0QZ9gw4-cykvjjSg`} target='_blank'>
                                     <i className="fa-brands fa-youtube" style={{color: '#c4302b'}}></i>
                                 </Link>
-                                <Link to={`/`} target='_blank'>
+                                <Link to={`https://www.instagram.com/?hl=en`} target='_blank'>
                                     <i className="fa-brands fa-instagram" style={{color: '#962fbf'}}></i>
                                 </Link>
                             </div>
@@ -93,7 +93,7 @@ const Footer = () => {
                             <div className='ft-contact'>
                                 <h4>Giấy phép kinh doanh</h4>
                                 <div className='content'>
-                                    Giấy phép số: L 517/GP-BTTTT ngày 6/10/2015 của Bộ Thông tin và Truyền thông
+                                    Giấy phép số: L 517/GP-BTTTT ngày 16/11/2022 của Bộ Thông tin và Truyền thông
                                 </div>
                             </div>
                         </Col>
