@@ -18,7 +18,9 @@ import com.kas.online_book_shop.model.OrderDetail;
 import com.kas.online_book_shop.repository.BookRepository;
 import com.kas.online_book_shop.repository.OrderRepository;
 import com.kas.online_book_shop.repository.UserRepository;
+import com.kas.online_book_shop.service.email.EmailService;
 
+import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
+    private final EmailService emailService;
 
     @Override
     public List<Order> getOrderByUser(Long userID) {
@@ -69,6 +72,11 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         orderRepository.save(order);
+        try {
+            emailService.sendOrderConfirmationEmail(existingOrder.getEmail(), existingOrder.getFullName());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -79,6 +87,12 @@ public class OrderServiceImpl implements OrderService {
             if (orderState == OrderState.PROCESSING)
                 existingOrder.setCreated(LocalDateTime.now());
             existingOrder.setState(orderState);
+            try {
+                emailService.sendOrderStateEmail(existingOrder.getEmail(), existingOrder.getFullName(), orderState.getVietnameseName(),
+                        null);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -109,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getOrderById(Long Id) {
         return orderRepository.findById(Id)
-            .orElseThrow(() -> new ResourceNotFoundException("Order_not_Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Order_not_Found"));
     }
 
     @Override
@@ -121,7 +135,13 @@ public class OrderServiceImpl implements OrderService {
                 var existingBook = orderDetail.getBook();
                 existingBook.setStock(existingBook.getStock() + orderDetail.getAmount());
             }
+            try {
+                emailService.sendOrderStateEmail(existingOrder.getEmail(), existingOrder.getFullName(), OrderState.CANCELED.getVietnameseName(),
+                        null);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
     }
-   
+
 }
