@@ -29,14 +29,14 @@ const PostDetail = () => {
             .catch(error => {
                 console.error("Error fetching categories data: ", error)
             })
-        getPostById(id)
+        id && getPostById(id)
             .then(response => {
                 setPost(response.data)
             })
             .catch(error => {
                 console.error("Error fetching post data: ", error)
             })
-    }, [])
+    }, [id])
 
     return (
         <div>
@@ -54,7 +54,7 @@ const PostDetail = () => {
                                             </div>
                                             <ul className="no-bullet" style={{ marginTop: '58px' }}>
                                                 {
-                                                    categories?.map(category => (
+                                                    categories.length !== 0 && categories?.map(category => (
                                                         <li key={category.id} className={post.category.id === category.id ? 'active' : ''}>
                                                             <a href={`/blogs/${category.id}`} >{category.name}</a>
                                                         </li>
