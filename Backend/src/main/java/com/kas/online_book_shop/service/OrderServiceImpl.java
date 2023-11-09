@@ -91,16 +91,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void changeOrderPaymentState(Long OrderId, PaymentState paymentState) {
-
-        var existingOrder = orderRepository.findById(OrderId)
-                .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
+        var existingOrder = getOrderById(OrderId);
         existingOrder.setPaymentState(paymentState);
     }
 
     @Override
     public void changeOrderShippingState(Long OrderId, ShippingState shippingState) {
-        var existingOrder = orderRepository.findById(OrderId)
-                .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
+        var existingOrder = getOrderById(OrderId);
         existingOrder.setShippingState(shippingState);
     }
 
@@ -113,6 +110,18 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderById(Long Id) {
         return orderRepository.findById(Id)
             .orElseThrow(() -> new ResourceNotFoundException("Order_not_Found"));
+    }
+
+    @Override
+    public void cancel(Long OrderId) {
+        var existingOrder = getOrderById(OrderId);
+        existingOrder.setState(OrderState.CANCELED);
+        if (existingOrder.getState() != OrderState.CANCELED) {
+            for (OrderDetail orderDetail : existingOrder.getOrderDetails()) {
+                var existingBook = orderDetail.getBook();
+                existingBook.setStock(existingBook.getStock() + orderDetail.getAmount());
+            }
+        }
     }
    
 }

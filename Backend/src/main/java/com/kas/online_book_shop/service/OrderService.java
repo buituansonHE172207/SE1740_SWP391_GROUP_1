@@ -27,4 +27,6 @@ public interface OrderService {
     void changeOrderShippingState(Long OrderId, ShippingState shippingState);
 
     Order getOrderById(Long Id);
+
+    void cancel(Long OrderId);
 }

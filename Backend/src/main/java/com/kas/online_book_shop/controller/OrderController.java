@@ -108,7 +108,7 @@ public class OrderController {
         var existingOrder = orderService.getOrderById(orderId);
         if (existingOrder.getShippingState() == ShippingState.SHIPPING)
             return ResponseEntity.ok("Không thể hủy đơn hàng đang trong quá trình vận chuyển");
-        orderService.changeOrderState(orderId, OrderState.CANCELED);
+        orderService.cancel(orderId);
         return ResponseEntity.noContent().build();
     }
 
