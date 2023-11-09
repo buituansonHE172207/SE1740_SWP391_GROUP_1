@@ -6,7 +6,7 @@ const SearchResult = ({ result }) => {
             <div id='product'>
                 {
                     result?.content ? (
-                        result.content.map(item => {
+                        result?.content?.map(item => {
                             return <div className='search-wrapper' key={item.id}>
                                 <div className='prod-img'>
                                     <a href={`products/${item.id}`}>

@@ -1184,11 +1184,8 @@ footer .ft-content .ft-subscribe .ft-sub-desc {
 
 .error-message {
   position: absolute;
-  bottom: -40%;
+  bottom: -25%;
   background-color: white;
-  /* Tùy chỉnh màu nền */
-  padding: 10px;
-  /* Tùy chỉnh padding */
 }
 
 .radio-wrapper .two-page,
@@ -1346,3 +1343,4 @@ span.rsp-current-price {
 .warning{
   position: absolute;
 }
+

@@ -240,14 +240,14 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) =>
                                                     </li>
                                                     <li>
                                                         Tác giả:
-                                                        <strong> {book_authors.map(author => <span key={author.id}>{author.name}&nbsp;</span>)} </strong>
+                                                        <strong> {book_authors.map(author => <span key={author?.id}>{author?.name}&nbsp;</span>)} </strong>
                                                     </li>
                                                     {
                                                         book_collections
                                                             .filter(collection => collection.type === "ĐỘ TUỔI")
                                                             .map(collection => (
                                                                 <li key={collection.id}>
-                                                                    Độ tuổi: <Link style={{ color: '#d51c24' }} to={`/collections/${collection.id}`}>{collection.name}</Link>
+                                                                    Độ tuổi: <Link style={{ color: '#d51c24' }} to={`/collections/${collection.id}`}>{collection?.name}</Link>
                                                                 </li>
                                                             ))
                                                     }
@@ -269,7 +269,7 @@ const ProductDetail = ({ cookies, cart, cartChange, setCartChange, profile }) =>
                                                     </li>
                                                     <li>
                                                         Nhà xuất bản:
-                                                        {book.publisher.name} 
+                                                        {book.publisher?.name} 
                                                     </li>
                                                 </ul>
                                             </div>

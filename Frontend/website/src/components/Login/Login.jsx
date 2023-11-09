@@ -41,11 +41,10 @@ const Login = ({ setCookies = { setCookies } }) => {
     return (
         <div id='page-wrapper' className='mb-5'>
             <Breadscrumb label={'Login'} />
-            <Container className='mt-5'>
-                <Row>
-                    <Col lg={3} className='login'>
+            <Container className='mt-5' style={{display: 'flex', justifyContent: 'center'}}>
+                
                         <div className='form-vertical'>
-                            <h4>
+                            <h4 style={{textAlign: 'center'}}>
                                 Đăng nhập
                             </h4>
                             <Form onSubmit={handleSubmit}>
@@ -66,8 +65,6 @@ const Login = ({ setCookies = { setCookies } }) => {
                                 </div>
                             )}
                         </div>
-                    </Col>
-                </Row>
             </Container>
         </div>
     )

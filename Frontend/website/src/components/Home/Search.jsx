@@ -30,7 +30,7 @@ const Search = () => {
                             <Row>
                                 {
                                     result?.content ? (
-                                        result.content.map(item => (
+                                        result?.content?.map(item => (
                                             <Col key={item.id} lg={3}>
                                                 <div className="product-item" style={{marginBottom: '15px'}}>
                                                     <div className="product-img">
