@@ -97,7 +97,7 @@ const Footer = () => {
                                 </div>
                             </div>
                         </Col>
-                       
+
                         <Col lg='5'>
                             <div className='ft-subscribe'>
                                 <h4>Đăng ký nhận tin</h4>
