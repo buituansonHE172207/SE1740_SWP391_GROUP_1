@@ -280,19 +280,6 @@ const ProductNew = ({ }) => {
                         </Grid>
 
                         <Grid item xs={4}>
-                            <Box className="spacing"
-                                component="form"
-                                sx={{
-                                    '& > :not(style)': { width: '30ch' },
-                                }}
-                                noValidate
-                                autoComplete="off"
-                            >
-                                <TextField id="outlined-basic" placeholder="Image link" name="images" onChange={handleImgChange} value={data?.images[0]?.link} label="Image" variant="standard" />
-                            </Box>
-                        </Grid>
-
-                        <Grid item xs={4}>
                             <Box sx={{ maxWidth: 250 }} className='spacing'>
                                 <FormControl fullWidth>
                                     <NativeSelect
@@ -428,6 +415,23 @@ const ProductNew = ({ }) => {
                                 error={data.cover < 0}
                                 placeholder="Ex: Bìa cứng"
                             />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <Box className="spacing"
+                                component="form"
+                                sx={{
+                                    '& > :not(style)': { width: '30ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <TextField id="outlined-basic" placeholder="Image link" name="images" onChange={handleImgChange} value={data?.images[0]?.link} label="Image" variant="standard" />
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <img src={data?.images[0]?.link} alt="image" style={{width: '200px'}}/>
                         </Grid>
                     </Grid>
                 </div>
