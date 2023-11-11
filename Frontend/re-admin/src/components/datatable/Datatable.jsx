@@ -72,9 +72,9 @@ const Datatable = ({type}) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        New {type}
+        Manage {type}
         <Link to={`/${type}/new`} className="link">
-          Add New
+          Add {type}
         </Link>
       </div>
       <DataGrid
