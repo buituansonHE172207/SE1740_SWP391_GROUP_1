@@ -23,7 +23,7 @@ const Activate = () => {
                             Kích hoạt
                         </button>
                         {error.error && (
-                            <p className='text-danger text-center'>Kích hoạt tài khoản thất bại</p>
+                            <p className='text-danger text-center'>Kích hoạt tài khoản thất bại!</p>
                         )}
                     </div>
                 </div>
