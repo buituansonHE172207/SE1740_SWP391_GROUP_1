@@ -59,9 +59,9 @@ const Publisher = () => {
                 <Navbar />
                 <div className="datatable">
                     <div className="datatableTitle">
-                        Publishers
+                        Manage Publishers
                         <Link to={`/publishers/new`} className="link">
-                            Add New
+                            Add New Publisher
                         </Link>
                     </div>
                     <DataGrid

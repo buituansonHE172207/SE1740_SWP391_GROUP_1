@@ -57,9 +57,9 @@ const Post = () => {
                 <Navbar />
                 <div className="datatable">
                     <div className="datatableTitle">
-                        Sliders
+                       Manage Post
                         <Link to={`/posts/new`} className="link">
-                            Add New
+                            Add New Post
                         </Link>
                     </div>
                     <DataGrid
