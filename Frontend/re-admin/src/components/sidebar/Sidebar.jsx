@@ -24,7 +24,7 @@ import { AuthContext } from "../../context/AuthContext";
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   const authContext = useContext(AuthContext);
-  
+
   const logout = () => {
     authContext.dispatch({ type: "LOGOUT" });
   }
@@ -58,40 +58,40 @@ const Sidebar = () => {
             </li>
           </Link>
           <Link to="/orders" style={{ textDecoration: "none" }}>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Orders</span>
+            </li>
           </Link>
           <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
-          </li> 
-          <Link to={"/collections"} style={{textDecoration: 'none'}}>
+          </li>
+          <Link to={"/collections"} style={{ textDecoration: 'none' }}>
             <li>
               <QueueIcon className="icon" />
               <span>Collections</span>
             </li>
           </Link>
-          <Link to={"/sliders"} style={{textDecoration: 'none'}}>
+          <Link to={"/sliders"} style={{ textDecoration: 'none' }}>
             <li>
               <SlideshowIcon className="icon" />
               <span>Sliders</span>
             </li>
           </Link>
-          <Link to={"/publishers"} style={{textDecoration: 'none'}}>
+          <Link to={"/publishers"} style={{ textDecoration: 'none' }}>
             <li>
               <AssuredWorkloadIcon className="icon" />
               <span>Publishers</span>
             </li>
           </Link>
-          <Link to={'/posts'} style={{textDecoration: 'none'}}>
+          <Link to={'/posts'} style={{ textDecoration: 'none' }}>
             <li>
               <ArticleIcon className="icon" />
               <span>Posts</span>
             </li>
           </Link>
-          <Link to={'/feedbacks'} style={{textDecoration: 'none'}}>
+          <Link to={'/feedbacks'} style={{ textDecoration: 'none' }}>
             <li>
               <ChatIcon className="icon" />
               <span>Feedbacks</span>
@@ -99,10 +99,12 @@ const Sidebar = () => {
           </Link>
 
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          <Link to={"/changePass"} style={{ textDecoration: 'none' }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Change Password</span>
+            </li>
+          </Link>
           <li>
             <ExitToAppIcon className="icon" />
             <span onClick={logout}>Logout</span>

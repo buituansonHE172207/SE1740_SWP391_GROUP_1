@@ -30,6 +30,7 @@ import PostNew from "./pages/post/PostNew";
 import Feedback from "./pages/feedback/Feedback";
 import FeedbackSingle from "./pages/feedback/FeedbackSingle";
 import ChangeState from "./pages/order/ChangeState";
+import ChangePassword from "./pages/changePass/changePass";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
 
   const { currentUser } = useContext(AuthContext);
 
-  const RequireAuth = ({children}) => {
+  const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to={"/login"} />;
   }
 
@@ -51,10 +52,10 @@ function App() {
             <Route path="authors">
               <Route index element={<RequireAuth><List type={'authors'} /></RequireAuth>} />
               <Route path=":id" element={<RequireAuth><AuthorSingle /></RequireAuth>} />
-              
+
               <Route
                 path="new"
-                element={<New inputs={authorInputs} title="Add New Author" handleAdd={addAuthor } location={'/authors'}/>}
+                element={<New inputs={authorInputs} title="Add New Author" handleAdd={addAuthor} location={'/authors'} />}
               />
             </Route>
             <Route path="products">
@@ -69,13 +70,16 @@ function App() {
               <Route index element={<RequireAuth><Order /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><OrderDetail /></RequireAuth>}></Route>
             </Route>
+            <Route path="changePass">
+              <Route index element={<RequireAuth><ChangePassword /></RequireAuth>}></Route>
+            </Route>
             <Route path="order-state">
-              <Route path=":id" element={<RequireAuth><ChangeState /></RequireAuth>}></Route> 
+              <Route path=":id" element={<RequireAuth><ChangeState /></RequireAuth>}></Route>
             </Route>
             <Route path="collections">
               <Route index element={<RequireAuth><Collection /></RequireAuth>}></Route>
-              <Route path="new" element={<RequireAuth><New inputs={collectionInputs} title="Add New Collection" location={'/collections'} handleAdd={addCollection}/></RequireAuth>}></Route>
-              <Route path=":id" element={<RequireAuth><CollectionSingle/></RequireAuth>}></Route>
+              <Route path="new" element={<RequireAuth><New inputs={collectionInputs} title="Add New Collection" location={'/collections'} handleAdd={addCollection} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><CollectionSingle /></RequireAuth>}></Route>
             </Route>
             <Route path="sliders">
               <Route index element={<RequireAuth><Slider /></RequireAuth>}></Route>
@@ -83,14 +87,14 @@ function App() {
               <Route path=":id" element={<RequireAuth><SliderSingle /></RequireAuth>}></Route>
             </Route>
             <Route path="publishers">
-              <Route index element={<RequireAuth><Publisher></Publisher></RequireAuth> }></Route>
+              <Route index element={<RequireAuth><Publisher></Publisher></RequireAuth>}></Route>
               <Route path="new" element={<RequireAuth><New inputs={publisherInputs} title="Add New Publisher" location={'/publishers'} handleAdd={addPublisher} /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><PublisherSingle /></RequireAuth>}></Route>
             </Route>
             <Route path="posts">
               <Route index element={<RequireAuth><Post /></RequireAuth>}></Route>
               <Route path=":id" element={<RequireAuth><PostSingle /></RequireAuth>}></Route>
-              <Route path="new" element={<RequireAuth><PostNew currentUser={currentUser}/></RequireAuth>}></Route>
+              <Route path="new" element={<RequireAuth><PostNew currentUser={currentUser} /></RequireAuth>}></Route>
             </Route>
             <Route path="feedbacks">
               <Route index element={<RequireAuth><Feedback /></RequireAuth>}></Route>
@@ -98,7 +102,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );

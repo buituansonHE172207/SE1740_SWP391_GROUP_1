@@ -173,7 +173,7 @@ const ProductNew = ({ }) => {
                         <div className="btn-list">
                             {error && <span style={{color: 'red', marginRight: '20px'}}>Error</span>}
                             <button onClick={handleCancel} className="cancel">Cancel</button>
-                            <button onClick={handleSave} className="save">Save</button>
+                            <button onClick={handleSave} className="save">Add</button>
                         </div>
                     </div>
 

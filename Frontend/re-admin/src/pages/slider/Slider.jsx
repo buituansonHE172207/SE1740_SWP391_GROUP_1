@@ -58,9 +58,9 @@ const Slider = () => {
                 <Navbar />
                 <div className="datatable">
                     <div className="datatableTitle">
-                       Manage Sliders
+                        Sliders
                         <Link to={`/sliders/new`} className="link">
-                            Add Slider
+                            Add New
                         </Link>
                     </div>
                     <DataGrid

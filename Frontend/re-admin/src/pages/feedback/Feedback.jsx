@@ -20,7 +20,7 @@ const Feedback = () => {
                 return (
                     <div className="cellAction">
                         <Link to={`/feedbacks/${params.row.id}`} style={{ textDecoration: "none" }}>
-                            <div className="viewButton">Respond</div>
+                            <div className="viewButton">Answer</div>
                         </Link>
                     </div>
                 );
@@ -42,7 +42,7 @@ const Feedback = () => {
                 <Navbar />
                 <div className="datatable">
                     <div className="datatableTitle">
-                        Manage Feedbacks
+                        Feedbacks
                     </div>
                     <DataGrid
                         className="datagrid"

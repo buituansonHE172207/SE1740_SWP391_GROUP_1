@@ -12,7 +12,7 @@ const Footer = () => {
             alignItems: "center",
           }}
         >
-          <span>@2023 Sachtructuyen.shop</span>
+          <span>@2023 TuNT.All rights served.</span>
           <span>
             <i style={{marginRight: '10px'}} className="fa-brands fa-youtube"></i>
             <i style={{marginRight: '10px'}} className="fa-brands fa-facebook"></i>
