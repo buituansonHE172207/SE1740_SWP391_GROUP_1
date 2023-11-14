@@ -10,5 +10,14 @@ const getUserInfoByEmail = (email) => {
     return axios.get(`http://localhost:8081/api/v1/user/by-email/${email}`);
 }
 
+const getAllUser = async () => {
+    return axios.get(`http://localhost:8081/api/v1/user/customer`);
+}
 
-export {login, getUserInfoByEmail}
+const changePassword = (data) => {
+    return axios.post("http://localhost:8081/api/v1/auth/change-password", data)
+
+}
+
+
+export { login, getUserInfoByEmail, getAllUser, changePassword }

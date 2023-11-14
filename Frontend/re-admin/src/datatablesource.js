@@ -31,7 +31,7 @@ export const productColumns = [
 
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.images[0] && params?.row?.images[0]?.link} alt="avatar" />
+          <img className="cellImg" src={params?.row?.images?.length > 0 ? params?.row?.images[0]?.link : ""} alt="avatar" />
           {params.row.title}
         </div>
       );
@@ -49,7 +49,7 @@ export const productColumns = [
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.state.toLowerCase()}`}>
+        <div className={`cellWithStatus ${params.row?.state?.toLowerCase()}`}>
           {params.row.state}
         </div>
       );
@@ -61,7 +61,7 @@ export const productColumns = [
     width: 100,
     renderCell: (params) => {
       return (
-        <div>{params.row.price.toLocaleString()}</div>
+        <div>{params.row?.price?.toLocaleString()}</div>
       )
     }
   },
@@ -133,7 +133,7 @@ export const postColumns = [
     renderCell: (params) => {
       return (
         <div>
-          { params?.row?.category?.name }
+          {params?.row?.category?.name}
         </div>
       );
     },
@@ -144,7 +144,7 @@ export const postColumns = [
     renderCell: (params) => {
       return (
         <div>
-          { params.row.user.fullName }
+          {params.row.user.fullName}
         </div>
       );
     },
@@ -155,21 +155,23 @@ export const feedbackColumns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'comment', headerName: 'Content', width: 150 },
   { field: 'createdAt', headerName: 'Created Time', width: 250 },
-  { field: 'user', headerName: 'User', width: 150 , 
+  {
+    field: 'user', headerName: 'User', width: 150,
     renderCell: (params) => {
       return (
         <div>
-          { params.row.user.fullName }
+          {params.row.user.fullName}
         </div>
       );
     }
   },
   { field: 'state', headerName: 'State', width: 150 },
-  { field: 'book', headerName: 'Book', width: 250, 
+  {
+    field: 'book', headerName: 'Book', width: 250,
     renderCell: (params) => {
       return (
         <div>
-          { params.row.book.title }
+          {params.row.book.title}
         </div>
       );
     }

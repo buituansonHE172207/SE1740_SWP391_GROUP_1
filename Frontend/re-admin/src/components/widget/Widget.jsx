@@ -5,12 +5,30 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
-const Widget = ({ type }) => {
+import {getAllUser} from "../../service/UserService"
+import {getAllOrders} from "../../service/OrderService"
+import { useEffect, useState } from "react";
+
+const Widget =  ({ type }) => {
   let data;
+  const [users,setUsers] = useState(null);
+  const [orders,setOrdes] = useState(null);
+  const [earnings,setEarnings] = useState(null);
+  const [balances,setBalances] = useState(null);
 
   //temporary
   const amount = 100;
   const diff = 20;
+
+  useEffect(() => {
+    getAllUser().then((result)=>{
+      setUsers(result.data.content);
+    })
+    getAllOrders().then((result)=>{
+      setOrdes(result.data);
+    })
+
+  },[])
 
   switch (type) {
     case "user":
@@ -18,6 +36,7 @@ const Widget = ({ type }) => {
         title: "USERS",
         isMoney: false,
         link: "See all users",
+        amount : users != null ? users.length : "loading",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -34,6 +53,7 @@ const Widget = ({ type }) => {
         title: "ORDERS",
         isMoney: false,
         link: "View all orders",
+        amount:orders == null ? "loading" : orders.length ,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -83,7 +103,7 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {data.amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
