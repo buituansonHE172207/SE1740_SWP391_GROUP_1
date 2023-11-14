@@ -20,7 +20,7 @@ const Feedback = () => {
                 return (
                     <div className="cellAction">
                         <Link to={`/feedbacks/${params.row.id}`} style={{ textDecoration: "none" }}>
-                            <div className="viewButton">Answer</div>
+                            <div className="viewButton">Respond</div>
                         </Link>
                     </div>
                 );

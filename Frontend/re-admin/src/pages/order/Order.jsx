@@ -48,7 +48,7 @@ const Order = () => {
                 <Navbar />
                 <div className="datatable">
                     <div className="datatableTitle">
-                        Orders
+                       Manage Orders
                     </div>
                     <DataGrid
                         className="datagrid"

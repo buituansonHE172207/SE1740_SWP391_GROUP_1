@@ -129,9 +129,9 @@ const Datatable = ({ type }) => {
         <SearchOutlinedIcon onClick={searchHandler} />
       </div>
       <div className="datatableTitle">
-        New {type}
+        Manage {type}
         <Link to={`/${type}/new`} className="link">
-          Add New
+          Add New {type}
         </Link>
       </div>
       <DataGrid
