@@ -31,8 +31,6 @@ import Feedback from "./pages/feedback/Feedback";
 import FeedbackSingle from "./pages/feedback/FeedbackSingle";
 import ChangeState from "./pages/order/ChangeState";
 import ChangePassword from "./pages/changePass/changePass";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -106,7 +104,6 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-      <ToastContainer />
     </div>
   );
 }
