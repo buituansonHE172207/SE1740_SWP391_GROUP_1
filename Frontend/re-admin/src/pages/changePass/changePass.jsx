@@ -4,6 +4,8 @@ import React, { useContext, useState } from 'react';
 import './changePass.scss';
 import { AuthContext } from '../../context/AuthContext';
 import { changePassword, getUserInfoByEmail } from '../../service/UserService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ChangePassword = () => {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -11,6 +13,7 @@ const ChangePassword = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const userData = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -41,14 +44,16 @@ const ChangePassword = () => {
         const user = await getUserInfoByEmail(userMail)
         console.log(user)
         const data = {
-            currentPassword,
+            oldPassword: currentPassword,
             newPassword,
-            token: ""
+            token: userData.currentUser.token
         }
         changePassword(data).then(res => {
-            console.log('Password changed successfully!');
+            toast('Password changed successfully!', { type: toast.TYPE.SUCCESS });
+            navigate("/login")
         }
         ).catch(err => {
+            toast('Change password failed', { type: toast.TYPE.ERROR });
             console.log(err.response.data)
             return
         })

@@ -11,28 +11,29 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const { dispatch } = useContext(AuthContext)
   const navigate = useNavigate()
-  
+
   const handleLogin = (e) => {
     e.preventDefault()
-    login({ email, password}).then(res => {
+    login({ email, password }).then(res => {
       const user = jwt_decode(res.data.token)
       if (user.authorities[0].authority !== "ADMIN") {
         setError(true)
         return
       }
-      dispatch({ type: "LOGIN", payload: user})
+      user.token = res.data.token;
+      dispatch({ type: "LOGIN", payload: user })
       navigate("/")
     })
-    .catch(err => {
-      setError(true)
-    })
+      .catch(err => {
+        setError(true)
+      })
   }
 
   return (
     <div className="login">
       <form onSubmit={handleLogin}>
-        <input type="email"  placeholder="email" onChange={e => setEmail(e.target.value)}/>
-        <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}/>
+        <input type="email" placeholder="email" onChange={e => setEmail(e.target.value)} />
+        <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
         <button>Login</button>
         {error && <span>Wrong email or password!</span>}
       </form>
