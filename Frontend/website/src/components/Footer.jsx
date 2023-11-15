@@ -16,19 +16,19 @@ const Footer = () => {
                                 <h4>Dịch vụ</h4>
                                 <ul className='no-bullet'>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/dieu-khoan-dich-vu'>Điều khoản sử dụng</a>
+                                        <a href='#'>Điều khoản sử dụng</a>
                                     </li>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/chinh-sach-bao-mat'>Chính sách bảo mật</a>
+                                        <a href='#'>Chính sách bảo mật</a>
                                     </li>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/lien-he'>Liên hệ</a>
+                                        <a href='#'>Liên hệ</a>
                                     </li>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/he-thong-cua-hang'>Hệ thống nhà sách</a>
+                                        <a href='#'>Hệ thống nhà sách</a>
                                     </li>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/tra-cuu-don-hang-da-mua'>Tra cứu đơn hàng</a>
+                                        <a href='#'>Tra cứu đơn hàng</a>
                                     </li>
                                 </ul>
                             </div>
@@ -38,22 +38,22 @@ const Footer = () => {
                                 <h4>Hỗ trợ</h4>
                                 <ul className='no-bullet'>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/huong-dan-dat-hang'>Hướng dẫn đặt hàng</a>
+                                        <a href='#'>Hướng dẫn đặt hàng</a>
                                     </li>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/chinh-sach-doi-tra'>Chính sách đổi trả - hoàn tiền</a>
+                                        <a href='#'>Chính sách đổi trả - hoàn tiền</a>
                                     </li>
                                     <li>
-                                        <a href='https://nxbkimdong.com.vn/pages/phuong-thuc-van-chuyen'>Phương thức vận chuyển</a>
+                                        <a href='#'>Phương thức vận chuyển</a>
                                     </li>
                                     <li>
-                                        <a href="https://nxbkimdong.com.vn/pages/phuong-thuc-thanh-toan">Phương thức thanh toán</a>
+                                        <a href='#'>Phương thức thanh toán</a>
                                     </li>
                                     <li>
-                                        <a href="https://nxbkimdong.com.vn/pages/chinh-sach-khach-hang-mua-si">Chính sách khách hàng mua sỉ</a>
+                                        <a href='#'>Chính sách khách hàng mua sỉ</a>
                                     </li>
                                     <li>
-                                        <a href = "https://nxbkimdong.com.vn/pages/chinh-sach-khach-hang-mua-cho-truong-hoc" >Chính sách khách hàng cho trường học</a>
+                                        <a href = '#' >Chính sách khách hàng cho trường học</a>
                                     </li>
                                 </ul>
                             </div>
@@ -61,15 +61,15 @@ const Footer = () => {
                         <Col lg='3'>
                             <div className="ft-nav">
                                 <h4>Nhà xuất bản</h4>
-                                <div className='ft-contact-desc'>Giám đốc: Nguyễn Văn A</div>
+                                <div className='ft-contact-desc'>Giám đốc:Nguyễn Văn A</div>
                                 <div className='ft-contact-address'>
-                                    Địa chỉ: Nguyên Xá 2, Minh Khai, Bắc Từ Liêm, Hà Nội
+                                    Địa chỉ: Thôn 4, Hòa Lạc, Thạch Thất, Hà Nội
                                 </div>
                                 <div className='ft-contact-tel'>
                                     Số điện thoại: (+84) 123454321
                                 </div>
                                 <div className='ft-contact-email'>
-                                    Email: bookstore_cskh@gmail.com
+                                    Email: sachtructuyen_cskh@gmail.com
                                 </div>
                             </div>
                         </Col>
