@@ -54,7 +54,7 @@ const ListProduct = (props) => {
                         })
                     }
                     <div className="grid__item large--one-whole text-right">
-                        <a href={`collections/${props.collection}`}>Xem thêm &gt;&gt;</a>
+                        <a href={`collections/all`}>Xem thêm &gt;&gt;</a>
                     </div>
                 </div>
             </div>
