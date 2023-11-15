@@ -99,7 +99,7 @@ const PostNew = ({currentUser}) => {
                                     onChange={(e) => setData({ ...data, brief: e.target.value })}
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={12}>
                                 <TextField
                                     required
                                     id="thumbnail"
