@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllBooks, deleteBook } from "../../service/BookService";
 import { getAllAuthors, deleteAuthor } from "../../service/AuthorService";
-const Datatable = ({type}) => {
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+const Datatable = ({ type }) => {
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchedData, setSearchedData] = useState([])
   const handleDelete = (id) => {
     const confirm = window.confirm("Are you sure you want to delete?");
     if (!confirm) return;
@@ -26,7 +29,50 @@ const Datatable = ({type}) => {
         break;
     }
   };
-  
+
+  const searchHandler = () => {
+    const searchedData = []
+    switch (type) {
+      case "products":
+        data.forEach(element => {
+          if (window.location.href.includes("products")) {
+            if (element.title.toLowerCase().includes(search.toLowerCase())) {
+              searchedData.push(element)
+            }
+          } else {
+          }
+        });
+        setSearchedData(searchedData)
+        break;
+      case "authors":
+        data.forEach(element => {
+          if (window.location.href.includes("authors")) {
+            console.log(element)
+            if (element.name.toLowerCase().includes(search.toLowerCase())) {
+              searchedData.push(element)
+            }
+          } else {
+            console.log(element)
+          }
+        });
+        setSearchedData(searchedData)
+        break;
+      default:
+        break;
+    }
+    // data.forEach(element => {
+    //   if (window.location.href.includes("authors")) {
+    //     console.log(element)
+    //     if (element.name.toLowerCase().includes(search.toLowerCase())) {
+    //       searchedData.push(element)
+    //     }
+    //   } else {
+    //     console.log(element)
+    //   }
+    // });
+    // setSearchedData(searchedData)
+  }
+
   const actionColumn = [
     {
       field: "action",
@@ -56,30 +102,41 @@ const Datatable = ({type}) => {
         getAllBooks().then((res) => {
           setData(res.data);
           setColumns(productColumns.concat(actionColumn));
-        });
+          setSearchedData(res.data)
+          console.log(res.data)
+        }).catch(err => console.log(err));
         break;
       case "authors":
         getAllAuthors().then((res) => {
           setColumns(authorColumns.concat(actionColumn));
           setData(res.data);
-        });
+          setSearchedData(res.data)
+          console.log(res.data)
+        }).catch(err => console.log(err));
         break;
       default:
         break;
     }
+
   }, [type])
 
   return (
     <div className="datatable">
+      <div className="search" style={{ display: "flex", justifyItems: "center", alignItems: "center" }}>
+        <input onChange={(e) => {
+          setSearch(e.target.value)
+        }} value={search} type="text" placeholder="Search..." />
+        <SearchOutlinedIcon onClick={searchHandler} />
+      </div>
       <div className="datatableTitle">
-        New {type}
+        Manage {type}
         <Link to={`/${type}/new`} className="link">
-          Add New
+          Add New {type}
         </Link>
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={searchedData}
         columns={columns}
         pageSize={25}
         rowsPerPageOptions={[25]}

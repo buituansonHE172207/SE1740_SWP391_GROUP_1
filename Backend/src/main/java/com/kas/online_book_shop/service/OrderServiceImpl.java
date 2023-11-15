@@ -18,7 +18,9 @@ import com.kas.online_book_shop.model.OrderDetail;
 import com.kas.online_book_shop.repository.BookRepository;
 import com.kas.online_book_shop.repository.OrderRepository;
 import com.kas.online_book_shop.repository.UserRepository;
+import com.kas.online_book_shop.service.email.EmailService;
 
+import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
+    private final EmailService emailService;
 
     @Override
     public List<Order> getOrderByUser(Long userID) {
@@ -69,6 +72,11 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         orderRepository.save(order);
+        try {
+            emailService.sendOrderConfirmationEmail(existingOrder.getEmail(), existingOrder.getFullName());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -79,6 +87,12 @@ public class OrderServiceImpl implements OrderService {
             if (orderState == OrderState.PROCESSING)
                 existingOrder.setCreated(LocalDateTime.now());
             existingOrder.setState(orderState);
+            try {
+                emailService.sendOrderStateEmail(existingOrder.getEmail(), existingOrder.getFullName(), orderState.getVietnameseName(),
+                        null);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -91,16 +105,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void changeOrderPaymentState(Long OrderId, PaymentState paymentState) {
-
-        var existingOrder = orderRepository.findById(OrderId)
-                .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
+        var existingOrder = getOrderById(OrderId);
         existingOrder.setPaymentState(paymentState);
     }
 
     @Override
     public void changeOrderShippingState(Long OrderId, ShippingState shippingState) {
-        var existingOrder = orderRepository.findById(OrderId)
-                .orElseThrow(() -> new ResourceNotFoundException("Order_not_found"));
+        var existingOrder = getOrderById(OrderId);
         existingOrder.setShippingState(shippingState);
     }
 
@@ -112,7 +123,25 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getOrderById(Long Id) {
         return orderRepository.findById(Id)
-            .orElseThrow(() -> new ResourceNotFoundException("Order_not_Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Order_not_Found"));
     }
-   
+
+    @Override
+    public void cancel(Long OrderId) {
+        var existingOrder = getOrderById(OrderId);
+        existingOrder.setState(OrderState.CANCELED);
+        if (existingOrder.getState() != OrderState.CANCELED) {
+            for (OrderDetail orderDetail : existingOrder.getOrderDetails()) {
+                var existingBook = orderDetail.getBook();
+                existingBook.setStock(existingBook.getStock() + orderDetail.getAmount());
+            }
+            try {
+                emailService.sendOrderStateEmail(existingOrder.getEmail(), existingOrder.getFullName(), OrderState.CANCELED.getVietnameseName(),
+                        null);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

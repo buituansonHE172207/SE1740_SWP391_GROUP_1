@@ -66,7 +66,7 @@ const PostNew = ({currentUser}) => {
                     <Navbar />
                     <div className="wrapper">
                         <div className="function spacing">
-                            <h3>Update Posts</h3>
+                            <h3>Add Posts</h3>
                             <div className="btn-list">
                                 {error && <span style={{ color: 'red', marginRight: '20px' }}>Error</span>}
                                 <button onClick={handleCancel} className="cancel">Cancel</button>

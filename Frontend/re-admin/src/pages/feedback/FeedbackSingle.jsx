@@ -60,7 +60,7 @@ const FeedbackSingle = () => {
                             </Grid>
                             <Grid item xs={12} sm={12}>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Answer</Form.Label>
+                                    <Form.Label>Respond</Form.Label>
                                     <div>
                                         <Form.Control style={{fontSize: '16px'}} name="answer" id="answer" as="textarea" rows={3} value={data.answer} onChange={(e) => setData({ ...data, answer: e.target.value })} />
                                     </div>

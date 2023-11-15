@@ -179,10 +179,10 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
                                 <a href="https://www.facebook.com/is.mycampione/">
                                     <i className="fa-brands fa-facebook-f"></i>
                                 </a>
-                                <a href="https://www.facebook.com/is.mycampione/">
+                                <a href="https://www.instagram.com/?hl=en">
                                     <i className="fa-brands fa-instagram"></i>
                                 </a>
-                                <a href="https://www.facebook.com/is.mycampione/">
+                                <a href="https://www.youtube.com/">
                                     <i className="fa-brands fa-youtube"></i>
                                 </a>
                             </div>
@@ -192,7 +192,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
                                 <div className="slide-left">
                                     <i className="fa-solid fa-rss"></i>
                                     <marquee behavior="scroll" direction="left">
-                                        Chào mừng bạn đến với BOOKSTORE.COM ^^ Nếu bạn cần giúp đỡ, Hãy liên lạc với chúng tôi qua số hotline: (+84) 123456789 hoặc email: bookstore_cskh@gmail.com
+                                        Chào mừng bạn đến với SÁCH TRỰC TUYẾN ^^ Nếu bạn cần giúp đỡ, Hãy liên lạc với chúng tôi qua số hotline: (+84) 123456789 hoặc email: sachtructuyen_cskh@gmail.com
                                     </marquee>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@ const Header = ({ cookies, setCookies, removeCookies, cart, cartChange, setCartC
                         <div className="col-lg-5">
                             <div className="hdt-contact text-right">
                                 <a href="tel:(+84) 1900561595"><i className="fa fa-phone" aria-hidden="true"></i>  (+84) 123456789</a>
-                                <a href="mailto:cskh_online@sachtructuyen.com.vn"><i className="fa fa-envelope" aria-hidden="true"></i>  bookstore_cskh@gmail.com </a>
+                                <a href="mailto:cskh_online@sachtructuyen.com.vn"><i className="fa fa-envelope" aria-hidden="true"></i>  sachtructuyen_cskh@gmail.com </a>
                             </div>
                         </div>
                     </div>

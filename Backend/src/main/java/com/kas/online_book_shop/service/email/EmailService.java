@@ -64,7 +64,7 @@ public class EmailService {
      * @param fullName user full name
      * @throws MessagingException
      */
-    public void sendOrderCornfirmationEmail(String to, String fullName) throws MessagingException {
+    public void sendOrderConfirmationEmail(String to, String fullName) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
