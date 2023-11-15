@@ -3,6 +3,7 @@ package com.kas.online_book_shop.service.email;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import jakarta.mail.MessagingException;
@@ -18,6 +19,7 @@ public class EmailService {
 
     SimpleMailMessage mailMessage = new SimpleMailMessage();
 
+    @Async
     public void sendActivationEmail(String to, String fullName, String token) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -37,6 +39,7 @@ public class EmailService {
         javaMailSender.send(message);
     }
 
+    @Async
     public void sendResetPasswordEmail(String to, String fullName, String token) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -64,6 +67,7 @@ public class EmailService {
      * @param fullName user full name
      * @throws MessagingException
      */
+    @Async
     public void sendOrderConfirmationEmail(String to, String fullName) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -92,6 +96,7 @@ public class EmailService {
      * @param endMessage message for state change (đơn hàng bị huỷ vì...)
      * @throws MessagingException
      */
+    @Async
     public void sendOrderStateEmail(String to, String fullName, String orderState, String endMessage)
             throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
