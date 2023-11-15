@@ -75,7 +75,7 @@ const PostNew = ({currentUser}) => {
                         </div>
 
                         <Grid container spacing={2} className='spacing'>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={12}>
                                 <TextField
                                     required
                                     id="title"
@@ -87,7 +87,7 @@ const PostNew = ({currentUser}) => {
                                     onChange={(e) => setData({ ...data, title: e.target.value })}
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={12}>
                                 <TextField
                                     required
                                     id="brief"
