@@ -27,6 +27,7 @@ import Post from "./components/Post/Post";
 import PostDetail from "./components/Post/PostDetail";
 import OrderDetail from "./components/User/OrderDetail";
 import ChangePassword from "./components/User/ChangePassword";
+import page404 from "./components/page404";
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies([]);
   const [profileData, setProfileData] = useState()
@@ -76,6 +77,7 @@ function App() {
           <Route path='/blog-detail/:id' element={<PostDetail />}></Route>
           <Route path="/order-detail/:id" element={<OrderDetail />}></Route>
           <Route path="/change-password" element={<ChangePassword cookies={cookies}/>}></Route>
+          <Route path="*" Component={page404}></Route>
         </Routes>
         <Footer />
       </Router>
