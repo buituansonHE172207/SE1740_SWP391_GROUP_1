@@ -1,0 +1,44 @@
+# Ignore Maven target directory
+/target/
+
+# Ignore IntelliJ IDEA project files
+/.idea/
+/*.iml
+
+# Ignore Eclipse project files
+/.classpath
+/.project
+/.settings/
+
+# Ignore NetBeans project files
+/nbproject/
+
+# Ignore VS Code settings
+/.vscode/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.bak
+*.orig
+
+# Ignore compiled Java files
+*.class
+
+# Ignore Maven wrapper files
+.mvn/wrapper/maven-wrapper.jar
+
+# Ignore application properties for different environments
+application.properties
+application-*.properties
+
+# Ignore Docker files
+docker-compose.override.yml
